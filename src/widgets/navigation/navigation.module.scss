@@ -1,0 +1,33 @@
+.nav{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    width: 100%;
+    max-width: 210px;
+
+    &-item{
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0 10px 10px;
+    }
+
+    &-item:hover > svg > path{
+        fill: var(--icon-hover);
+    }
+
+    &-item:hover{
+        border-radius: var(--main-border-radius);
+        background-color: var(--btn-background-color-hover);
+    }
+
+    &-item:hover > &-item__descr{
+        color: var(--btn-text-color-hover);
+    }
+
+    &-item__descr{
+        font-size: 14;
+        font-weight: 400;
+    }
+}
