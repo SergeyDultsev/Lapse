@@ -11,6 +11,7 @@
         align-items: center;
         gap: 12px;
         padding: 10px 0 10px 10px;
+        cursor: pointer;
     }
 
     &-item:hover > svg > path{
