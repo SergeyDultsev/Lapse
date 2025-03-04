@@ -1,11 +1,36 @@
 @use "reset";
 @use "variables";
 
+body{
+  height: 100%;
+}
+
 .container {
+  position: relative;
+
   width: 100%;
   max-width: 1020px;
+  min-height: 100%;
+
   margin: 0 auto;
   padding: 20px 0 0 0;
+
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .container{
+      display: flex;
+      flex-direction: column-reverse;
+
+      height: 100%;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
 }
 
 svg > path{

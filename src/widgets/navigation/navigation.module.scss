@@ -32,3 +32,36 @@
         font-weight: 400;
     }
 }
+
+
+@media (max-width: 600px) {
+    .nav{
+        position: sticky;
+        top: 0;
+        left: 0;
+
+        justify-content: center;
+        flex-direction: row;
+        align-items: end;
+        flex: 0 0 auto;
+
+        border-top: 1px solid var(--main-border-color);
+        background-color: var(--main-background-color);
+
+        padding: 10px;
+        margin: 0 auto;
+        max-width: 100%;
+
+        &-item{
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        &-item__descr{
+            display: none;
+        }
+    }
+}
