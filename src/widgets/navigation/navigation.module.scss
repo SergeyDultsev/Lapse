@@ -20,7 +20,7 @@
 
     &-item:hover{
         border-radius: var(--main-border-radius);
-        background-color: var(--btn-background-color-hover);
+        background-color: var(--btn-bg-color-hover);
     }
 
     &-item:hover > &-item__descr{
@@ -46,7 +46,7 @@
         flex: 0 0 auto;
 
         border-top: 1px solid var(--main-border-color);
-        background-color: var(--main-background-color);
+        background-color: var(--main-bg-color);
 
         padding: 10px;
         margin: 0 auto;
