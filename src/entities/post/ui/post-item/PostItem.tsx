@@ -21,15 +21,15 @@ const PostItem: React.FC<IPost> = ({ user, content }) => {
     return (
         <article className={styles["post"]}>
 
-            <div className={styles["author-info"]}>
+            <div className={styles["user-info"]}>
                 {user.avatar && (
                     <img 
-                        className={styles["author_info__avatar"]} 
+                        className={styles["user_info__avatar"]} 
                         src={user.avatar} 
                         alt="avatar" 
                         loading="lazy" />
                 )}
-                <h2 className={styles["author-info__name"]}>{user.username}</h2>
+                <h2 className={styles["user-info__name"]}>{user.username}</h2>
             </div>
             
             <div className={styles["post-content"]}>
@@ -37,7 +37,7 @@ const PostItem: React.FC<IPost> = ({ user, content }) => {
                 <p className={styles["post-content__content"]}>{content.content} </p>
                 {content.prewiew && (
                         <img 
-                            className={styles["author_info__avatar"]} 
+                            className={styles["post-content__prewiew"]} 
                             src={content.prewiew} 
                             alt="avatar" 
                             loading="lazy" />
@@ -46,20 +46,16 @@ const PostItem: React.FC<IPost> = ({ user, content }) => {
 
             <div className={styles["post-option__list"]}>
                 <div className={styles["post-option__item"]}>
-                    <div className={styles["post-option__item__couter"]}>
+                    <div className={styles["post-option__item__counter"]}>
                         {content.commentCount}
                     </div>
-                    <div className={styles["post-option__icon"]}>
-                        <CommentIcon/>
-                    </div>
+                    <CommentIcon/>
                 </div>
                 <div className={styles["post-option__item"]}>
-                    <div className={styles["post-option__item__couter"]}>
+                    <div className={styles["post-option__item__counter"]}>
                         {content.saveCount}
                     </div>
-                    <div className={styles["post-option__icon"]}>
-                        <SaveIcon/>
-                    </div>
+                    <SaveIcon/>
                 </div>
             </div>
             
