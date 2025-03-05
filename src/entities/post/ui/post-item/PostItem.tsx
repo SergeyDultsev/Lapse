@@ -4,7 +4,7 @@ import SaveIcon from "@/assets/icon/SaveIcon";
 import CommentIcon from "@/assets/icon/CommentIcon";
 
 interface IPost {
-    author: {
+    user: {
         avatar: string | null;
         username: string;
     };
@@ -17,19 +17,19 @@ interface IPost {
     };
 }
 
-const PostItem: React.FC<IPost> = ({ author, content }) => {
+const PostItem: React.FC<IPost> = ({ user, content }) => {
     return (
         <article className={styles["post"]}>
 
             <div className={styles["author-info"]}>
-                {author.avatar && (
+                {user.avatar && (
                     <img 
                         className={styles["author_info__avatar"]} 
-                        src={author.avatar} 
+                        src={user.avatar} 
                         alt="avatar" 
                         loading="lazy" />
                 )}
-                <h2 className={styles["author-info__name"]}>{author.username}</h2>
+                <h2 className={styles["author-info__name"]}>{user.username}</h2>
             </div>
             
             <div className={styles["post-content"]}>

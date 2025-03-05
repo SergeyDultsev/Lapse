@@ -1,10 +1,12 @@
-import PostList from "@/widgets/post-list/ui/PostList";
 import React from "react";
+import CartInfo from "@/widgets/cart-info/CartInfo";
+import PostList from "@/widgets/post-list/ui/PostList";
+import SubscriberList from "@/widgets/cart-info/ui/subscriber-list/SubscriberList";
 
 const MainPage: React.FC = () => {
     const posts: Object[] = [
         {
-            author: {
+            user: {
                 avatar: null,
                 username: "Сергей Дульцев",
             },
@@ -17,7 +19,7 @@ const MainPage: React.FC = () => {
             }
         },
         {
-            author: {
+            user: {
                 avatar: null,
                 username: "Сергей Дульцев",
             },
@@ -31,9 +33,28 @@ const MainPage: React.FC = () => {
         }
     ];
 
+    const subscribers: Object[] = [
+        {
+            avatar: null,
+            username: "Сергей Дульцев",
+        },
+        {
+            avatar: null,
+            username: "Serejka",
+        },
+        {
+            avatar: null,
+            username: "Serejka@",
+        }
+    ];
+
+
     return (
         <main>
             <PostList posts={posts}/>
+            <CartInfo nameCart={"Подписчики"} children={
+                <SubscriberList subscribers={subscribers}/>
+            }/>
         </main>
     );
 }

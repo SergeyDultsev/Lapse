@@ -1,0 +1,34 @@
+.subscriber-item{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    cursor: pointer;
+
+    transition: all .3s ease-out;
+
+    &:hover {
+        padding: 10px;
+
+        border-radius: var(--main-border-radius);
+        background-color: var(--main-color);
+        
+        transition: all .3s ease-out;
+    }
+
+    &__img{
+        width: 36px;
+        height: 36px;
+    }
+
+    &__username{
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    &:hover >  &__username{
+        color: #FFFFFF;
+
+        transition: all .3s ease-out;
+    }
+}

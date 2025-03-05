@@ -20,6 +20,11 @@ body{
   gap: 20px;
 }
 
+main{
+  display: flex;
+  gap: 20px;
+}
+
 @media (max-width: 600px) {
   .container{
       display: flex;

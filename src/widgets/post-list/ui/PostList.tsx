@@ -16,7 +16,7 @@ const PostList: React.FC<IPosts> = ({ posts }) => {
                 <ButtonDefault name={"closePost"} active={false} type="button" disabled={false}>Эксклюзивные посты</ButtonDefault>
             </div>
             {posts.map((postItem, index) => 
-                <PostItem author={postItem.author} content={postItem.post} key={index}/>
+                <PostItem user={postItem.user} content={postItem.post} key={index}/>
             )}
         </section>
     );
