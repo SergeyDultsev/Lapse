@@ -13,7 +13,6 @@ body{
   min-height: 100%;
 
   margin: 0 auto;
-  padding: 20px 0 0 0;
 
   display: grid;
   grid-template-columns: 210px 1fr;
@@ -23,6 +22,7 @@ body{
 main{
   display: flex;
   gap: 20px;
+  padding: 20px 0 0 0;
 }
 
 @media (max-width: 600px) {

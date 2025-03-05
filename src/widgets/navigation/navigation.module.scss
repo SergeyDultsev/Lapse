@@ -1,14 +1,20 @@
 .nav{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    position: relative;
 
     width: 100%;
     max-width: 210px;
 
-    cursor: pointer;
+    &-list{
+        position: sticky;
+        top: 0;
+        left: 0;
 
-    transition: all .3s ease-out;
+        padding: 20px 0 0 0;
+
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
 
     &-item{
         display: flex;
@@ -16,6 +22,10 @@
         gap: 12px;
 
         padding: 10px 0 10px 10px;
+
+        cursor: pointer;
+
+        transition: all .3s ease-out;    
     }
 
     &-item:hover > svg > path{
@@ -62,6 +72,8 @@
         color: var(--btn-text-color-hover);
     }
 }
+
+
 
 
 @media (max-width: 600px) {
