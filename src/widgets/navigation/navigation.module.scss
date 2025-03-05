@@ -6,30 +6,60 @@
     width: 100%;
     max-width: 210px;
 
+    cursor: pointer;
+
+    transition: all .3s ease-out;
+
     &-item{
         display: flex;
         align-items: center;
         gap: 12px;
+
         padding: 10px 0 10px 10px;
-        cursor: pointer;
     }
 
     &-item:hover > svg > path{
         fill: var(--icon-hover);
+
+        transition: all .3s ease-out;
     }
 
     &-item:hover{
         border-radius: var(--main-border-radius);
         background-color: var(--btn-bg-color-hover);
+
+        transition: all .3s ease-out;
     }
 
     &-item:hover > &-item__descr{
         color: var(--btn-text-color-hover);
+
+        transition: all .3s ease-out;
     }
 
     &-item__descr{
         font-size: 14px;
         font-weight: 400;
+    }
+
+    &-item__active{
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        border-radius: var(--main-border-radius);
+        background-color: var(--btn-bg-color-hover);
+
+        padding: 10px 0 10px 10px;
+    }
+
+    &-item__active > svg > path{
+        fill: var(--icon-hover);
+    }
+
+
+    &-item__active > &-item__descr{
+        color: var(--btn-text-color-hover);
     }
 }
 
@@ -52,12 +82,13 @@
         margin: 0 auto;
         max-width: 100%;
 
+        cursor: pointer;
+
         &-item{
             display: flex;
             align-items: center;
             gap: 12px;
             padding: 10px;
-            cursor: pointer;
         }
 
         &-item__descr{
