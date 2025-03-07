@@ -29,20 +29,17 @@
     }
 
     &-item:hover > svg > path{
-        fill: var(--icon-hover);
+        fill: var(--main-color);
 
         transition: all .3s ease-out;
     }
 
     &-item:hover{
-        border-radius: var(--main-border-radius);
-        background-color: var(--btn-bg-color-hover);
-
         transition: all .3s ease-out;
     }
 
     &-item:hover > &-item__descr{
-        color: var(--btn-text-color-hover);
+        color: var(--main-color);
 
         transition: all .3s ease-out;
     }
@@ -57,19 +54,16 @@
         align-items: center;
         gap: 12px;
 
-        border-radius: var(--main-border-radius);
-        background-color: var(--btn-bg-color-hover);
-
         padding: 10px 0 10px 10px;
     }
 
     &-item__active > svg > path{
-        fill: var(--icon-hover);
+        fill: var(--main-color);
     }
 
 
     &-item__active > &-item__descr{
-        color: var(--btn-text-color-hover);
+        color: var(--main-color);
     }
 }
 
@@ -99,7 +93,6 @@
         &-item{
             display: flex;
             align-items: center;
-            gap: 12px;
             padding: 10px;
         }
 
