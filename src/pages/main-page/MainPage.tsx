@@ -12,11 +12,18 @@ const MainPage: React.FC = () => {
     const users: iUserBrief[] = userStore?.usersData || [];
 
     return (
-        <main>
-            <PostList posts={posts}/>
-            <CartInfo nameCart={"Подписки"} children={
-                <UserList users={users}/>
-            }/>
+        <main className="main">
+            {users.length > 0 &&
+                <PostList posts={posts}/>
+            }
+
+            {users.length > 0 &&
+                <aside className="aside">
+                    <CartInfo nameCart={"Подписки"} children={
+                        <UserList users={users}/>
+                    }/>
+                </aside>
+            }
         </main>
     );
 }
