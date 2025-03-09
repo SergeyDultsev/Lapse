@@ -1,7 +1,7 @@
 import {makeAutoObservable} from "mobx";
 import iPost from "./types/iPost";
 
-class Post{
+class PostStore{
     postsData:iPost[] = [];
 
     constructor() {
@@ -9,4 +9,4 @@ class Post{
     }
 }
 
-export default new Post;
+export default new PostStore;
