@@ -97,7 +97,7 @@
     &__avatar{
         width: 36px;
         height: 36px;
-        border-radius: 1px solid var(--main-border-color);
+        border-radius: var(--main-border-radius);
     }
 
     &__name{
