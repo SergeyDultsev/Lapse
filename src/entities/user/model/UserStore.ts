@@ -1,7 +1,7 @@
 import {makeAutoObservable} from "mobx";
 import iUserBrief from "./types/iUserBrief";
 
-class User{
+class UserStore{
     usersData:iUserBrief[] = [];
 
     constructor() {
@@ -9,4 +9,4 @@ class User{
     }
 }
 
-export default new User;
+export default new UserStore;
