@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ProfileInfo.module.scss"
-import ButtonDefault from "@/assets/shared/ui/button/ButtonDefault";
+import ButtonDefault from "@/shared/ui/button/ButtonDefault";
 
 const ProfileInfo: React.FC = (() => {
     return (

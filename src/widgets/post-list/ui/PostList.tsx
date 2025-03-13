@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {observer} from "mobx-react-lite";
 import styles from "./PostList.module.scss";
 import PostItem from "@/entities/post/ui/post-item/PostItem";
-import ButtonDefault from "@/assets/shared/ui/button/ButtonDefault";
+import ButtonDefault from "@/shared/ui/button/ButtonDefault";
 import iPost from "@/entities/post/model/types/iPost";
 import PostFilterStore from "@/entities/post/model/PostFilterStore";
 
