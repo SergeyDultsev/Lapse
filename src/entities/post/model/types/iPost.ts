@@ -4,6 +4,7 @@ interface iPost {
         username: string,
     },
     post: {
+        postId: string
         title: string,
         content: string,
         prewiew: string | null,

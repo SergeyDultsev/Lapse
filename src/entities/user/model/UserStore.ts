@@ -1,8 +1,8 @@
 import {makeAutoObservable} from "mobx";
-import iUserBrief from "./types/iUserBrief";
+import iUserSummary from "./types/iUserSummary";
 
 class UserStore{
-    usersData:iUserBrief[] = [];
+    usersSummaryData:iUserSummary[] = [];
 
     constructor() {
         makeAutoObservable(this);

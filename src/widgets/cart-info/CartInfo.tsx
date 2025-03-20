@@ -12,9 +12,7 @@ const CartInfo: React.FC<ICartInfo> = ({nameCart, children}) => {
             <div className={styles["cart-info__header"]}>
                 <h2 className={styles["cart-info__title"]}>{nameCart}</h2>
             </div>
-            <div className={styles["cart-info__body"]}>
-                {children}
-            </div>
+            {children}
         </section>
     );
 }

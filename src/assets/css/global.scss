@@ -23,7 +23,7 @@ body{
 .main{
   display: flex;
   gap: 20px;
-  padding: 20px 0 0 0;
+  padding: 20px 0;
 }
 
 .aside{
@@ -43,7 +43,7 @@ body{
       height: 100%;
   }
 
-  main {
+  .main {
     flex: 1 0 auto;
     margin: 20px;
   }

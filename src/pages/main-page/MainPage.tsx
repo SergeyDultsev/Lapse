@@ -3,16 +3,16 @@
 import React from "react";
 import CartInfo from "@/widgets/cart-info/CartInfo";
 import PostList from "@/widgets/post-list/ui/PostList";
-import UserList from "@/widgets/cart-info/ui/user-list/UserList";
+import UserSummaryList from "@/widgets/cart-info/user-summary-list/UserBriefList";
 import iPost from "@/entities/post/model/types/iPost";
-import iUserBrief from "@/entities/user/model/types/iUserBrief";
+import IUserSummary from "@/entities/user/model/types/iUserSummary";
 import postStore from "@/entities/post/model/PostStore";
 import userStore from "@/entities/user/model/UserStore";
 import AlertBlock from "@/widgets/alert-block/AlertBlock";
 
 const MainPage: React.FC = (() => {
     const postsData: iPost[] = postStore?.postsData || [];
-    const users: iUserBrief[] = userStore?.usersData || [];
+    const users: IUserSummary[] = userStore?.usersSummaryData || [];
 
     return (
         <main className="main">
@@ -23,7 +23,7 @@ const MainPage: React.FC = (() => {
             {users.length > 0 &&
                 <aside className="aside">
                     <CartInfo nameCart={"Подписки"} children={
-                        <UserList users={users}/>
+                        <UserSummaryList users={users}/>
                     }/>
                 </aside>
             }

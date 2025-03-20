@@ -1,16 +1,16 @@
 import React from "react";
 import styles from "./UserItem.module.scss"
-import iUserBrief from "../../model/types/iUserBrief";
+import IUserSummary from "../../model/types/iUserSummary";
 
 interface iUserProps{
-    user: iUserBrief;
+    user: IUserSummary;
 }
 
 const UserItem: React.FC<iUserProps> = ({ user }) => {
     return (
         <article className={styles["user-item"]}>
             {user.avatar && (
-                <img className={styles["user-item__item"]}
+                <img className={styles["user-item__img"]}
                     src={user.avatar} 
                     alt="avatar" 
                     loading="lazy" />

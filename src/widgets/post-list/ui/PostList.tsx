@@ -47,8 +47,8 @@ const PostList: React.FC<IPosts> = observer(({ posts }) => {
                     Закрытые посты
                 </ButtonDefault>
             </div>
-            {PostFilterStore.filteredPosts.map((postItem: iPost, index) => (
-                <PostItem user={postItem.user} content={postItem.post} key={index} />
+            {PostFilterStore.filteredPosts.map((postItem: iPost) => (
+                <PostItem user={postItem.user} post={postItem.post} key={postItem.post.postId} />
             ))}
         </section>
     );
