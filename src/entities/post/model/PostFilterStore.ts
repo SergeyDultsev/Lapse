@@ -12,8 +12,8 @@ class PostFilterStore{
     }
 
     /*
-        Метод фильтрации постов
-     */
+    *  Метод фильтрации постов
+    */
     filterPosts(postsData: iPost[], methodFilter: string): void {
         this.filteredFlag = methodFilter;
 

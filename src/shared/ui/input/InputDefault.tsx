@@ -2,13 +2,16 @@ import React from "react";
 import styles from "./InputDefault.module.scss";
 
 interface IInputDefault {
+    id?: string,
+    name?: string,
     placeholder?: string,
     type?: string,
+    value?: string | number
 }
 
-const InputDefault: React.FC<IInputDefault> = ({placeholder, type}) => {
+const InputDefault: React.FC<IInputDefault> = ({id, name, placeholder, type, value}) => {
     return (
-        <input className={styles['input__item']} placeholder={placeholder} type={type}/>
+        <input className={styles['form__input']} id={id} name={name} placeholder={placeholder} type={type} value={value}/>
     );
 }
 
