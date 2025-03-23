@@ -1,5 +1,5 @@
 import {makeAutoObservable} from "mobx";
-import iUserSummary from "./types/iUserSummary";
+import iUserSummary from "../types/iUserSummary";
 
 class UserStore{
     usersSummaryData:iUserSummary[] = [];

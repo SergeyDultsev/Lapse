@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./UserBriefList.module.scss";
+import styles from "./UserSummaryList.module.scss";
 import UserItem from "@/entities/user/ui/user-item/UserItem";
 import IUserSummary from "@/entities/user/model/types/iUserSummary";
 

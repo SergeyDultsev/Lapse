@@ -1,10 +1,10 @@
 import React from "react";
-import styles from "@/pages/create-page/ui/form/CreateForm.module.scss";
+import styles from "./CreateTierForm.module.scss";
 import InputDefault from "@/shared/ui/input/InputDefault";
 import TextareaDefault from "@/shared/ui/textarea/TextareaDefault";
 import ButtonDefault from "@/shared/ui/button/ButtonDefault";
 
-const CreateTier: React.FC = () => {
+const CreateTierForm: React.FC = () => {
     return (
         <form className={styles["create-form"]}>
             <InputDefault placeholder={"Заголовок подписки"} type={'text'}/>
@@ -20,4 +20,4 @@ const CreateTier: React.FC = () => {
     );
 }
 
-export default CreateTier;
+export default CreateTierForm;

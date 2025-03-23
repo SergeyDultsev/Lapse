@@ -1,5 +1,5 @@
 import {action, makeAutoObservable} from "mobx";
-import iTier from "./types/iTier";
+import iTier from "@/entities/tier/model/types/iTier";
 
 class TierStore{
     tierData: iTier[] = [];

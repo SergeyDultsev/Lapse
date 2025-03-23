@@ -4,7 +4,7 @@ import styles from "./PostList.module.scss";
 import PostItem from "@/entities/post/ui/post-item/PostItem";
 import ButtonDefault from "@/shared/ui/button/ButtonDefault";
 import iPost from "@/entities/post/model/types/iPost";
-import PostFilterStore from "@/entities/post/model/PostFilterStore";
+import PostFilterStore from "@/entities/post/model/store/PostFilterStore";
 
 interface IPosts  {
     posts: iPost[];

@@ -3,12 +3,12 @@
 import React from "react";
 import styles from "./CraetePage.module.scss";
 import ButtonDefault from "@/shared/ui/button/ButtonDefault";
-import CreatePageStore from "./store/CreatePageStore";
+import CreatePageStore from "@/features/post/create-post/model/store/CreatePageStore";
 import {observer} from "mobx-react-lite";
-import CreatePost from "./ui/form/create-post/CreatePost";
-import CreateTier from "./ui/form/create-tier/CreateTier";
+import CreatePost from "@/features/post/create-post/ui/create-post/CreatePostForm";
+import CreateTier from "@/features/tier/create-tier/ui/CreateTierForm";
 import CartInfo from "@/widgets/cart-info/CartInfo";
-import VisibilityPost from "./ui/form/visibility-post/VisibilityPost";
+import VisibilityOption from "./ui/visibility-option/VisibilityOption";
 
 const CreatePage: React.FC = observer(() => {
     /*
@@ -53,7 +53,7 @@ const CreatePage: React.FC = observer(() => {
             {CreatePageStore.stateForm === "post" && (
                 <aside className="aside">
                     <CartInfo nameCart={"Видимость"} children={
-                        <VisibilityPost/>
+                        <VisibilityOption/>
                     }/>
                 </aside>
             )}

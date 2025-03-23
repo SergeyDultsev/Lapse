@@ -1,0 +1,13 @@
+.visibility-option{ 
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+
+    &__radio-btns{
+        display: flex;
+        flex-direction: column;
+
+        gap: 10px;
+    }
+}

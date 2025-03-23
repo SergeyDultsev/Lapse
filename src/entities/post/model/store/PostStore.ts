@@ -1,5 +1,5 @@
 import {makeAutoObservable} from "mobx";
-import iPost from "./types/iPost";
+import iPost from "../types/iPost";
 
 class PostStore{
     postsData:iPost[] = [];

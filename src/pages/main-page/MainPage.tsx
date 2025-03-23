@@ -3,11 +3,11 @@
 import React from "react";
 import CartInfo from "@/widgets/cart-info/CartInfo";
 import PostList from "@/widgets/post-list/ui/PostList";
-import UserSummaryList from "@/widgets/cart-info/user-summary-list/UserBriefList";
+import UserSummaryList from "@/widgets/cart-info/user-summary-list/UserSummaryList";
 import iPost from "@/entities/post/model/types/iPost";
 import IUserSummary from "@/entities/user/model/types/iUserSummary";
-import postStore from "@/entities/post/model/PostStore";
-import userStore from "@/entities/user/model/UserStore";
+import postStore from "@/entities/post/model/store/PostStore";
+import userStore from "@/entities/user/model/store/UserSummaryStore";
 import AlertBlock from "@/widgets/alert-block/AlertBlock";
 
 const MainPage: React.FC = (() => {
