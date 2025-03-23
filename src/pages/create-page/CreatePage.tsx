@@ -24,7 +24,7 @@ const CreatePage: React.FC = observer(() => {
                 <div className={styles["create__options"]}>
                     <ButtonDefault
                         onClick={() => changeForm("post")}
-                        active={CreatePageStore.stateForm === "post"} 
+                        active={CreatePageStore.stateCreateForm === "post"} 
                         type="button" 
                         style={{ width: "100%" }}
                     >
@@ -32,7 +32,7 @@ const CreatePage: React.FC = observer(() => {
                     </ButtonDefault>
                     <ButtonDefault 
                         onClick={() => changeForm("tier")}
-                        active={CreatePageStore.stateForm === "tier"} 
+                        active={CreatePageStore.stateCreateForm === "tier"} 
                         type="button" 
                         style={{ width: "100%" }}
                     >
@@ -40,17 +40,17 @@ const CreatePage: React.FC = observer(() => {
                     </ButtonDefault>
                 </div>
 
-                {CreatePageStore.stateForm === "post" && (
+                {CreatePageStore.stateCreateForm === "post" && (
                     <CreatePost/>
                 )}
 
-                {CreatePageStore.stateForm === "tier" && (
+                {CreatePageStore.stateCreateForm === "tier" && (
                     <CreateTier/>
                 )}
 
             </section>
 
-            {CreatePageStore.stateForm === "post" && (
+            {CreatePageStore.stateCreateForm === "post" && (
                 <aside className="aside">
                     <CartInfo nameCart={"Видимость"} children={
                         <VisibilityOption/>
