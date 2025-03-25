@@ -9,9 +9,14 @@ class Tier extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'tier_id';
+    public $incrementing = false;
+    public $keyType = 'string';
+
     protected $fillable = [
-        'favorite_id', 
-        'post_id',
-        'user_id',
+        'tier_id', 
+        'title',
+        'description',
+        'price'
     ];
 }

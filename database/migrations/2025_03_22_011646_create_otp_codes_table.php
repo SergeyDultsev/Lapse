@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('otp_codes', function (Blueprint $table) {
-            $table->uuid('otp_code_id');
+            $table->uuid('otp_code_id')->primary();
             $table->string('phone')->unique();
             $table->string('code');
             $table->timestamp('expires_at');

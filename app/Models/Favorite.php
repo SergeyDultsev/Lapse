@@ -9,8 +9,13 @@ class Favorite extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'favorite_id';
+    public $incrementing = false;
+    public $keyType = 'string';
+
     protected $fillable = [
-        'phone', 
-        'code'
+        'favorite_id',
+        'post_id',
+        'user_id',
     ];
 }

@@ -9,6 +9,10 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'comment_id';
+    public $incrementing = false;
+    public $keyType = 'string';
+
     protected $fillable = [
         'comment_id', 
         'post_id',

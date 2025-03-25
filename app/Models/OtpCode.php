@@ -9,8 +9,14 @@ class OtpCode extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'otp_code_id';
+    public $incrementing = false;
+    public $keyType = 'string';
+
     protected $fillable = [
+        'otp_code_id',
         'phone', 
-        'code'
+        'code',
+        'expires_at'
     ];
 }
