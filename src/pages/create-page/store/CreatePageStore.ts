@@ -1,4 +1,3 @@
-import React from "react";
 import { makeAutoObservable, action } from "mobx";
 
 class CreatePageStore {

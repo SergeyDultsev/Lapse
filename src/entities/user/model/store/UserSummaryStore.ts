@@ -1,7 +1,7 @@
 import {makeAutoObservable} from "mobx";
 import iUserSummary from "../types/iUserSummary";
 
-class UserStore{
+class UserSummaryStore{
     usersSummaryData:iUserSummary[] = [];
 
     constructor() {
@@ -9,4 +9,4 @@ class UserStore{
     }
 }
 
-export default new UserStore;
+export default new UserSummaryStore;

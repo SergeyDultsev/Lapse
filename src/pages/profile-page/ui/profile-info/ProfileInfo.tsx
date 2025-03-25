@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./ProfileInfo.module.scss"
+import avatar from "@/assets/img/avatar.jpg";
 import ButtonDefault from "@/shared/ui/button/ButtonDefault";
 
 const ProfileInfo: React.FC = (() => {
@@ -7,7 +8,7 @@ const ProfileInfo: React.FC = (() => {
         <section className={styles['profile-info']}>
             <div className={styles['user-info']}>
                 <img className={styles['user-info__avatar']}
-                    src="#"
+                    src={avatar.src}
                     alt="avatar" 
                     loading="lazy" 
                 />

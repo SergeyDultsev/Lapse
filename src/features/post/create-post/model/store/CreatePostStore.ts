@@ -1,9 +1,9 @@
 import { makeAutoObservable, action } from "mobx";
 
-class AuthStore {
+class CreatePostStore {
     constructor () {
         makeAutoObservable(this, {})
     }
 }
 
-export default new AuthStore;
+export default new CreatePostStore;

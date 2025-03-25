@@ -8,7 +8,7 @@ interface iPost {
         title: string,
         content: string,
         prewiew: string | null,
-        status: "open" | "close",
+        status: "open" | "byTier",
         commentCount: number,
         saveCount: number
     }
