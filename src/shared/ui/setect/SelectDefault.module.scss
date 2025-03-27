@@ -1,0 +1,100 @@
+.select-default {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  margin-top: 20px;
+  
+  &__label {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  &__control {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    border-radius: var(--main-border-radius);
+    border: 1px solid var(--main-border-color);
+
+    font-size: 12px;
+    font-weight: 400;
+
+    padding: 12px 10px;
+
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--main-color);
+    }
+  
+    &:focus {
+      outline: none;
+    }
+
+    &__open {
+      border: 1px solid var(--main-border-color);
+    }
+
+    &__title{
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    &___price{
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
+
+  &__option {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    position: absolute;
+    top: 90px;
+    left: 0;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    width: 100%;
+    max-width: 275px;
+
+    background: var(--main-bg-color-block);
+    border-radius: var(--main-border-radius);
+    border: 1px solid var(--main-border-color);
+
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  &__item {
+    padding: 10px;
+
+    cursor: pointer;
+    
+    &:hover {
+      color: var(--text-color-hover);
+      background: var(--block-bg-color-hover);
+    }
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    
+    &__title{
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    &__price{
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
+}

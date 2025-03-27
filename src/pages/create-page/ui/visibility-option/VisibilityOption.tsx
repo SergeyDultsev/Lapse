@@ -3,6 +3,7 @@ import styles from "./VisibilityOption.module.scss"
 import CreatePageStore from "@/pages/create-page/store/CreatePageStore";
 import RadioDefault from "@/shared/ui/radio/RadioDefault";
 import { observer } from "mobx-react-lite";
+import SelectDefault from "@/shared/ui/setect/SelectDefault";
 
 const VisibilityOption: React.FC = observer(() => {
     let stateVisibility = CreatePageStore.stateVisibility;
@@ -27,10 +28,21 @@ const VisibilityOption: React.FC = observer(() => {
             </div>
 
             {stateVisibility === "byTier" && (
-                <form className={styles["visibility-option__tiers"]}>
-                    <div className={styles["visibility-option__tiers-title"]}>Уровни</div>
-                    
-                </form>
+                <SelectDefault 
+                    label={"Уровни подписок"} 
+                    options={[
+                        {
+                            id: "1",
+                            title: "Подписка 1",
+                            price: 120
+                        },
+                        {
+                            id: "2",
+                            title: "Подписка 2",
+                            price: 130
+                        }
+                    ]}
+                />
             )}
         </form>
     );
