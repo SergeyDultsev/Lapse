@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./UserItem.module.scss"
-import IUserSummary from "../../model/types/iUserSummary";
+import IUserSummary from "../../model/types/iUser";
 
 interface iUserProps{
     user: IUserSummary;

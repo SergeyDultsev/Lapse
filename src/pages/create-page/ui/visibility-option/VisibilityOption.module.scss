@@ -1,7 +1,8 @@
 .visibility-option{ 
     display: flex;
     flex-direction: column;
-
+    gap: 20px;
+    
     padding: 20px;
 
     &__radio-btns{

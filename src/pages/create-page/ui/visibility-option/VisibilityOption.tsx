@@ -1,12 +1,15 @@
 import React from "react";
-import styles from "./VisibilityOption.module.scss"
-import CreatePageStore from "@/pages/create-page/store/CreatePageStore";
-import RadioDefault from "@/shared/ui/radio/RadioDefault";
 import { observer } from "mobx-react-lite";
-import SelectDefault from "@/shared/ui/setect/SelectDefault";
+import styles from "./VisibilityOption.module.scss";
+import CreatePageStore from "@/pages/create-page/store/CreatePageStore";
+import TierStore from "@/entities/tier/model/store/TierStore";
+import RadioDefault from "@/shared/ui/radio/RadioDefault";
+import TierSelect from "../tier-select/TierSelect";
+import ButtonDefault from "@/shared/ui/button/ButtonDefault";
 
 const VisibilityOption: React.FC = observer(() => {
-    let stateVisibility = CreatePageStore.stateVisibility;
+    const stateVisibility = CreatePageStore.stateVisibility;
+    const tierData = TierStore.tierData;
 
     return (
         <form className={styles["visibility-option"]}>
@@ -27,21 +30,20 @@ const VisibilityOption: React.FC = observer(() => {
                     checked={stateVisibility === "byTier"}/>
             </div>
 
-            {stateVisibility === "byTier" && (
-                <SelectDefault 
+            {tierData.length === 0 && stateVisibility === "byTier" && (
+                <ButtonDefault 
+                    onClick={() => CreatePageStore.changeFormState("tier")}
+                    type="button"
+                    active={false}
+                    >
+                    Добавить подписку
+                </ButtonDefault>
+            )}
+
+            {tierData.length !== 0 && (
+                <TierSelect 
                     label={"Уровни подписок"} 
-                    options={[
-                        {
-                            id: "1",
-                            title: "Подписка 1",
-                            price: 120
-                        },
-                        {
-                            id: "2",
-                            title: "Подписка 2",
-                            price: 130
-                        }
-                    ]}
+                    options={tierData}
                 />
             )}
         </form>

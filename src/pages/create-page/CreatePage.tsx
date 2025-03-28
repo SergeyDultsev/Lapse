@@ -2,37 +2,32 @@
 
 import React from "react";
 import styles from "./CraetePage.module.scss";
+import {observer} from "mobx-react-lite";
 import ButtonDefault from "@/shared/ui/button/ButtonDefault";
 import CreatePageStore from "@/pages/create-page/store/CreatePageStore";
-import {observer} from "mobx-react-lite";
 import CreatePost from "@/features/post/create-post/ui/create-post/CreatePostForm";
 import CreateTier from "@/features/tier/create-tier/ui/CreateTierForm";
 import CartInfo from "@/widgets/cart-info/CartInfo";
 import VisibilityOption from "./ui/visibility-option/VisibilityOption";
 
 const CreatePage: React.FC = observer(() => {
-    /*
-    * Функция принимает новое сотояние формы
-    */
-    const changeForm = ((state: string) => {
-        CreatePageStore.changeFormState(state);
-    })
+    const stateForm = CreatePageStore.stateCreateForm;
 
     return (
         <main className="main">
             <section className={styles["create"]}>
                 <div className={styles["create__options"]}>
                     <ButtonDefault
-                        onClick={() => changeForm("post")}
-                        active={CreatePageStore.stateCreateForm === "post"} 
+                        onClick={() => CreatePageStore.changeFormState("post")}
+                        active={stateForm === "post"} 
                         type="button" 
                         style={{ width: "100%" }}
                     >
                         Пост
                     </ButtonDefault>
                     <ButtonDefault 
-                        onClick={() => changeForm("tier")}
-                        active={CreatePageStore.stateCreateForm === "tier"} 
+                        onClick={() => CreatePageStore.changeFormState("tier")}
+                        active={stateForm === "tier"} 
                         type="button" 
                         style={{ width: "100%" }}
                     >
@@ -40,17 +35,17 @@ const CreatePage: React.FC = observer(() => {
                     </ButtonDefault>
                 </div>
 
-                {CreatePageStore.stateCreateForm === "post" && (
+                {stateForm === "post" && (
                     <CreatePost/>
                 )}
 
-                {CreatePageStore.stateCreateForm === "tier" && (
+                {stateForm === "tier" && (
                     <CreateTier/>
                 )}
 
             </section>
 
-            {CreatePageStore.stateCreateForm === "post" && (
+            {stateForm === "post" && (
                 <aside className="aside">
                     <CartInfo nameCart={"Видимость"} children={
                         <VisibilityOption/>

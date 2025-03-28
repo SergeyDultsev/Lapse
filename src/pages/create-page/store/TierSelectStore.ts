@@ -1,14 +1,9 @@
+import ITier from "@/entities/tier/model/types/iTier";
 import { makeAutoObservable, action } from "mobx";
-
-interface SelectedItem {
-    id: string;
-    title: string;
-    price: number;
-}
 
 class SelectStore {
     isOpen: boolean = false;
-    selected: SelectedItem = { id: '', title: '', price: 0 };
+    selected: ITier = { tierId: '', title: '', price: 0, description: '' };
 
     constructor () {
         makeAutoObservable(this, {
@@ -27,7 +22,7 @@ class SelectStore {
     /*
     * Метод меняет выбранный элемент
     */
-    setSelected(newSelected: {id: string, title: string, price: number}): void {
+    setSelected(newSelected: ITier): void {
         this.selected = newSelected;
     }
 }

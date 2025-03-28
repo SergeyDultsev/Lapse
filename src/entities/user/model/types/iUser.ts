@@ -1,7 +1,7 @@
-interface IUserSummary {
+interface IUser {
     userId: string,
     avatar: string | null,
     username: string
 }
 
-export default IUserSummary;
+export default IUser;

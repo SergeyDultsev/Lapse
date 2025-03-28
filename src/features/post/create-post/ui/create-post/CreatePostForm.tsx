@@ -9,6 +9,7 @@ const CreatePostForm: React.FC = () => {
     return (
         <form className={styles["create-form"]}>
             <InputDefault placeholder={"Заголовок поста"} type={'text'}/>
+            
             <TextareaDefault placeholder={"Тело поста"}/>
             <ButtonDefault 
                 active={false} 

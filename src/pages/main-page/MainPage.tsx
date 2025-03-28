@@ -5,14 +5,14 @@ import CartInfo from "@/widgets/cart-info/CartInfo";
 import PostList from "@/widgets/post-list/ui/PostList";
 import UserSummaryList from "@/widgets/cart-info/user-summary-list/UserSummaryList";
 import iPost from "@/entities/post/model/types/iPost";
-import IUserSummary from "@/entities/user/model/types/iUserSummary";
+import IUser from "@/entities/user/model/types/iUser";
 import postStore from "@/entities/post/model/store/PostStore";
-import userStore from "@/entities/user/model/store/UserSummaryStore";
+import userStore from "@/entities/user/model/store/UserStore";
 import AlertBlock from "@/widgets/alert-block/AlertBlock";
 
 const MainPage: React.FC = (() => {
     const postsData: iPost[] = postStore?.postsData || [];
-    const users: IUserSummary[] = userStore?.usersSummaryData || [];
+    const users: IUser[] = userStore?.usersData || [];
 
     return (
         <main className="main">

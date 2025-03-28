@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./UserSummaryList.module.scss";
 import UserItem from "@/entities/user/ui/user-item/UserItem";
-import IUserSummary from "@/entities/user/model/types/iUserSummary";
+import IUserSummary from "@/entities/user/model/types/iUser";
 
 interface iUserProps{
     users: IUserSummary[];

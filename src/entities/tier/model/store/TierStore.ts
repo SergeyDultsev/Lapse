@@ -1,4 +1,4 @@
-import {action, makeAutoObservable} from "mobx";
+import { makeAutoObservable} from "mobx";
 import iTier from "@/entities/tier/model/types/iTier";
 
 class TierStore{
