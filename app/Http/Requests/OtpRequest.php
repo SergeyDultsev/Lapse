@@ -22,13 +22,16 @@ class OtpRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'otp_code' => "require|min:4"
+            'phone' => ['required', 'regex:/^\+?[0-9]{10,15}$/'],
+            'otp_code' => "required|min:4"
         ];
     }
 
     public function messages(): array
     {
         return [
+            'phone.required' => 'Phone number is required.',
+            'phone.regex' => 'Enter a valid phone number.',
             'otp_code.required' => 'Otp_code is required.',
             'otp_code.min' => 'Otp_code must be at least 4 characters long.',
         ];

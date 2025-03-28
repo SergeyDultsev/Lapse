@@ -106,13 +106,13 @@ class AuthServices
      *
      * Если код совпадает и не истёк, пользователь получает токен авторизации.
      *
-     * @param array $data Данные с телефона и OTP-кода.
+     * @param array $data Данные телефона и OTP-кода.
      * @return array Ответ с токеном и данными пользователя, либо ошибкой.
      */
-    public function verifyCode(array $data): array
+    public function verifyCodeAuth(array $data): array
     {
         $phone = $data['phone'];
-        $code = $data['code'];
+        $code = $data['otp_code'];
 
         $otp = OtpCode::where('phone', $phone)
                       ->where('code', $code)
@@ -129,14 +129,28 @@ class AuthServices
         $otp->delete();
 
         $user = User::where('phone', $phone)->first();
+
+        if (!$user) {
+            return [
+                'status' => 404, 
+                'message' => 'Use not found.'
+            ];
+        }
+
         $token = $user->createToken('auth_token')->plainTextToken;
         return [
-            'token' => $token,
-            'user_id' => $user->user_id,
-            'full_name' => $user->name,
-            'email' => $user->email,
             'status' => 200,
-            'message' => 'User logged in successfully.'
+            'message' => 'User logged in successfully.',
+            'token' => $token,
+            'data' => [
+                'user_id' => $user->user_id,
+                'full_name' => $user->full_name,
+                'phone' => $user->phone,
+                'about' => $user->about,
+                'avatar_url' => $user->avatar_url,
+                'subscriptions_count' => $user->subscriptions_count,
+                'subscriber_count' => $user->subscriber_count,
+            ]
         ];
     } 
 }

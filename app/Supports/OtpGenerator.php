@@ -2,13 +2,14 @@
 
 namespace App\Supports;
 
+use App\Events\OtpRequested;
 use App\Models\OtpCode;
 use Ramsey\Uuid\Uuid;
 
 class OtpGenerator 
 {
     /**
-     * Генерирует и сохраняет OTP-код.
+     * Генерирует, сохраняет и передает в событие OTP-код.
      *
      * @param string $phone номер телефона.
      */
@@ -23,5 +24,7 @@ class OtpGenerator
                 'expires_at' => now()->addMinutes(5)
             ],
         );
+
+        event(new OtpRequested($code, $phone));
     }
 }

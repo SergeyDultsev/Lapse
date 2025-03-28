@@ -7,6 +7,7 @@ use App\Services\AuthServices;
 use App\Http\Requests\AuthRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\OtpRequest;
+use App\Http\Resources\AuthResource;
 
 class AuthController extends Controller
 {
@@ -69,17 +70,13 @@ class AuthController extends Controller
      */
     public function verifyOtpAuth(OtpRequest $request): object
     {
-        $data = $this->authService->verifyCode($request->all());
+        $data = $this->authService->verifyCodeAuth($request->all());
 
-        if ($data['status'] === 422) {
+        if ($data['status'] !== 200 || !isset($data['data'])) {
             return $this->jsonResponse([], $data['status'], $data['message']);
         }
 
-        return $this->jsonResponse([
-            'user_id' => $data['user_id'],
-            'full_name' => $data['name'],
-            'email' => $data['email'],
-        ], $data['status'], $data['message'])
+        return $this->jsonResponse(new AuthResource((object) $data['data']), $data['status'], $data['message'])
             ->cookie(
                 'auth_token',
                 $data['token'] ?? '',
