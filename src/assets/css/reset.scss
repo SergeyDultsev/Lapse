@@ -18,6 +18,10 @@ select {
   background: none;
 }
 
+input[type="file"]{
+  display: none;
+}
+
 img {
   max-width: 100%;
   height: auto;
