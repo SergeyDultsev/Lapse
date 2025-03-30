@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Supports\OtpGenerator;
+use App\Supports\OtpSend;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\OtpCode;
@@ -11,113 +11,71 @@ use Ramsey\Uuid\Uuid;
 
 class AuthServices
 {
-    /**
-     * @var OtpGenerator Генератор OTP-кода.
-     */
-    protected $otpGenerator;
+    protected $otpSend;
 
     /**
      * Создаёт экземпляр сервиса и внедряет генератор OTP-кода.
      *
-     * @param OtpGenerator $otpGenerator Экземпляр генератора OTP-кода.
+     * @param OtpSend $otpSend Экземпляр отправки OTP-кода.
      */
-    public function __construct(OtpGenerator $otpGenerator) {
-        $this->otpGenerator = $otpGenerator;
+    public function __construct(OtpSend $otpSend) {
+        $this->otpSend = $otpSend;
     }
 
     /**
-     * Выполняет аутентификацию пользователя.
+     * Инициализация процесса входа — отправка OTP-кода.
      *
-     * Если пользователь уже существует и пароль совпадает, отправляется OTP-код.
-     *
-     * @param array $data Данные пользователя (телефон, пароль).
+     * @param array $data Данные пользователя (почта и пароль).
      * @return array Ответ с кодом состояния и сообщением.
      */
-    public function authorize(array $data): array 
+    public function initiateLogin(array $data): array 
     {
-        $phone = $data['phone'];
+        $email = $data['email'];
         $password = $data['password'];
         
-        $user = User::where('phone', $phone)->first();
-
+        $user = User::where('email', $email)->first();
+    
         if (!$user) {
-            return [
-                'status' => 404, 
-                'message' => 'Not Fount.'
-            ];
+            return $this->otpSend->send($email);
         }
-
+    
         if (!Hash::check($password, $user->password)) {
             return [
                 'status' => 403, 
                 'message' => 'Invalid password.'
             ];
         }
-
-        $this->otpGenerator->generator($phone);
-        return [
-            'status' => 200, 
-            'message' => 'OTP-code sent.'
-        ];
+    
+        return $this->otpSend->send($email);
     }
 
     /**
-     * Выполняет регистрацию пользователя.
+     * Регистрация или авторизация пользователя с OTP-кодом.
      *
-     * Если пользователя нет, создаётся новый аккаунт с указанной ролью.
-     *
-     * @param array $data Данные пользователя (телефон, пароль, имя, фамилия).
-     * @return array Ответ с кодом состояния и сообщением.
+     * @param array $data Данные пользователя (почта, код, пароль, имя и фамилия.).
+     * @return array Ответ с токеном и данными пользователя.
      */
-    public function createUser(array $data): array 
+    public function registerOrLoginWithOtp(array $data): array
     {
-        $phone = $data['phone'];
+        $email = $data['email'];
+        $code = $data['otp_code'];
         $password = $data['password'];
         $name = $data['name'];
         $surname = $data['surname'];
 
         $userRole = Role::where('name', 'user')->first();
 
-        if(!$userRole) {
+        if (!$userRole) {
             return [
                 'status' => 500, 
                 'message' => 'Role "user" not found.'
             ];
         }
 
-        $user = new User;
-        $user->user_id = Uuid::uuid4()->toString();
-        $user->role_id = $userRole->role_id;
-        $user->name = $name;
-        $user->surname = $surname;
-        $user->phone = $phone;
-        $user->password = Hash::make($password);
-        $user->save();
-
-        $this->otpGenerator->generator($phone);
-        return [
-            'status' => 201, 
-            'message' => 'OTP-code sent.'
-        ];
-    }
-
-    /**
-     * Проверяет введённый пользователем OTP-код.
-     *
-     * Если код совпадает и не истёк, пользователь получает токен авторизации.
-     *
-     * @param array $data Данные телефона и OTP-кода.
-     * @return array Ответ с токеном и данными пользователя, либо ошибкой.
-     */
-    public function verifyCodeAuth(array $data): array
-    {
-        $phone = $data['phone'];
-        $code = $data['otp_code'];
-
-        $otp = OtpCode::where('phone', $phone)
-                      ->where('code', $code)
-                      ->where('expires_at', '>', now())
-                      ->first();
+        $otp = OtpCode::where('email', $email)
+                    ->where('code', $code)
+                    ->where('expires_at', '>', now())
+                    ->first();
 
         if (!$otp) {
             return [
@@ -128,13 +86,15 @@ class AuthServices
 
         $otp->delete();
 
-        $user = User::where('phone', $phone)->first();
+        $user = User::firstOrNew(['email' => $email]);
 
-        if (!$user) {
-            return [
-                'status' => 404, 
-                'message' => 'Use not found.'
-            ];
+        if (!$user->exists) {
+            $user->user_id = Uuid::uuid4()->toString();
+            $user->role_id = $userRole->role_id;
+            $user->name = $name;
+            $user->surname = $surname;
+            $user->password = Hash::make($password);
+            $user->save();
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;
@@ -145,12 +105,12 @@ class AuthServices
             'data' => [
                 'user_id' => $user->user_id,
                 'full_name' => $user->full_name,
-                'phone' => $user->phone,
+                'email' => $user->email,
                 'about' => $user->about,
                 'avatar_url' => $user->avatar_url,
                 'subscriptions_count' => $user->subscriptions_count,
                 'subscriber_count' => $user->subscriber_count,
             ]
         ];
-    } 
+    }
 }

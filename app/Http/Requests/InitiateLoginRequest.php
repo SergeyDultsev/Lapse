@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AuthRequest extends FormRequest
+class InitiateLoginRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -14,7 +14,7 @@ class AuthRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'phone' => ['required', 'regex:/^\+?[0-9]{10,15}$/'],
+            'email' => 'required|email',
             'password' => [
                 'required',
                 'string',
@@ -27,8 +27,9 @@ class AuthRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'phone.required' => 'Phone number is required.',
-            'phone.regex' => 'Enter a valid phone number.',
+            'email.required' => 'Email is required',
+            'email.email' => 'The email must be a valid email address.',
+            'email.unique' => 'This email is already registered.',
             'password.required' => 'Password is required.',
             'password.min' => 'Password must be at least 8 characters long.',
             'password.max' => 'Password cannot exceed 100 characters.',

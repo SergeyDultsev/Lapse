@@ -15,7 +15,7 @@ class OtpCode extends Model
 
     protected $fillable = [
         'otp_code_id',
-        'phone', 
+        'email', 
         'code',
         'expires_at'
     ];

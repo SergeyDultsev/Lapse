@@ -11,13 +11,13 @@ class OtpGenerator
     /**
      * Генерирует, сохраняет и передает в событие OTP-код.
      *
-     * @param string $phone номер телефона.
+     * @param string $email почта.
      */
-    public function generator(string $phone): void
+    public function generator(string $email): void
     {
         $code = rand(1000, 9999);
         OtpCode::updateOrCreate(
-            ['phone' => $phone],
+            ['email' => $email],
             [
                 'otp_code_id' => Uuid::uuid4()->toString(), 
                 'code' => $code, 
@@ -25,6 +25,6 @@ class OtpGenerator
             ],
         );
 
-        event(new OtpRequested($code, $phone));
+        event(new OtpRequested($code, $email));
     }
 }

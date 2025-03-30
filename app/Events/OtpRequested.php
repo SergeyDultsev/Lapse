@@ -9,18 +9,18 @@ class OtpRequested
 {
     use Dispatchable, SerializesModels;
 
-    public string $phone;
-    public string $code;
+    public $code;
+    public $email;
 
     /**
-     * Создаёт экземпляр слушателя.
+     * Создает событие для отправки OTP-кода.
      *
-     * @param string $code - OTP-кода.
-     * @param string $phone - телефон получателя кода.
+     * @param string $code OTP-код
+     * @param string $email почта получателя
      */
-    public function __construct(string $code, string $phone)
+    public function __construct($code, $email)
     {
-        $this->phone = $phone;
         $this->code = $code;
+        $this->email = $email;
     }
 }

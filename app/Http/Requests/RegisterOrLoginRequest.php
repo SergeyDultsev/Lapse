@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterRequest extends FormRequest
+class RegisterOrLoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,14 @@ class RegisterRequest extends FormRequest
         return [
             'name' => 'nullable|string|min:2|max:100',
             'surname' => 'nullable|string|min:2|max:100',
-            'phone' => ['required', 'regex:/^\+?[0-9]{10,15}$/'],
+            'email' => 'required|email',
             'password' => [
                 'required',
-                'confirmed',
                 'string',
                 'min:8',
                 'max:100',
             ],
+            'otp_code' => "required|min:4"
         ];
     }
 
@@ -46,12 +46,14 @@ class RegisterRequest extends FormRequest
             'surname.string' => 'Surname must be a string.',
             'surname.min' => 'Surname must be at least 2 characters long.',
             'surname.max' => 'Surname cannot exceed 100 characters.',
-            'phone.required' => 'Phone number is required.',
-            'phone.regex' => 'Enter a valid phone number (it may start with +).',
+            'email.required' => 'Email is required',
+            'email.email' => 'The email must be a valid email address.',
+            'email.unique' => 'This email is already registered.',
             'password.required' => 'Password is required.',
             'password.min' => 'Password must be at least 8 characters long.',
             'password.max' => 'Password cannot exceed 100 characters.',
-            'password.confirmed' => 'Passwords do not match.',
+            'otp_code.required' => 'Otp_code is required.',
+            'otp_code.min' => 'Otp_code must be at least 4 characters long.',
         ];
     }
 }

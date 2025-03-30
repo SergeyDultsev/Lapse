@@ -2,30 +2,20 @@
 
 namespace App\Listeners;
 
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 use App\Events\OtpRequested;
-use App\Clients\SmsClient;
+use App\Mail\User\OtpMail;
 
-
-class SendOtpSms implements ShouldQueue
+class SendOtpSms
 {
     /**
-     * @var SmsClient Класс запроса к API SMS.ru.
-     */
-    protected $smsClient;
-
-    /**
-     * Создаем экземпляр класса и внедряем класс SmsClient.
+     * Обрабатывает событие запроса OTP-кода и отправляет его на email.
      * 
-     * @param SmsClient $smsClient Экземпляр класса запроса к API SMS.ru.
+     * @param OtpRequested $event Событие, содержащее OTP-код и email пользователя.
      */
-    public function __construct(SmsClient $smsClient)
-    {
-        $this->smsClient = $smsClient;
-    }
-
     public function handle(OtpRequested $event): void
     {
-        $this->smsClient->sendOtp($event->code, $event->phone);
+        Mail::to($event->email)->send(new OtpMail($event->code));
     }
 }
