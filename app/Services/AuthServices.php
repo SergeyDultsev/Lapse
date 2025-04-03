@@ -25,34 +25,19 @@ class AuthServices
     /**
      * Инициализация процесса входа — отправка OTP-кода.
      *
-     * @param array $data Данные пользователя (почта и пароль).
+     * @param array $data Электронная почта пользователя.
      * @return array Ответ с кодом состояния и сообщением.
      */
     public function initiateLogin(array $data): array 
     {
         $email = $data['email'];
-        $password = $data['password'];
-        
-        $user = User::where('email', $email)->first();
-    
-        if (!$user) {
-            return $this->otpSend->send($email);
-        }
-    
-        if (!Hash::check($password, $user->password)) {
-            return [
-                'status' => 403, 
-                'message' => 'Invalid password.'
-            ];
-        }
-    
         return $this->otpSend->send($email);
     }
 
     /**
      * Регистрация или авторизация пользователя с OTP-кодом.
      *
-     * @param array $data Данные пользователя (почта, код, пароль, имя и фамилия.).
+     * @param array $data Данные пользователя (Электронная почта, код, пароль, имя и фамилия.).
      * @return array Ответ с токеном и данными пользователя.
      */
     public function registerOrLoginWithOtp(array $data): array
@@ -95,6 +80,13 @@ class AuthServices
             $user->surname = $surname;
             $user->password = Hash::make($password);
             $user->save();
+        } else {
+            if (!Hash::check($password, $user->password)) {
+                return [
+                    'status' => 403, 
+                    'message' => 'Invalid password.'
+                ];
+            }
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;
