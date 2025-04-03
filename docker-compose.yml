@@ -12,7 +12,7 @@ services:
             - /var/www/node_modules
             - /var/www/vendor
         environment:
-            - APP_ENV=local
+            APP_ENV: ${APP_ENV}
         env_file:
             -   .env
         networks:
