@@ -12,5 +12,7 @@ Route::prefix('/auth')->group(function () {
 });
 
 Route::prefix('/user')->group(function () {
-    Route::post('/update', [UserController::class, 'update'])->middleware('auth:sanctum');
+    Route::get('/{user_id}', [UserController::class, 'show']);
+    Route::patch('/update', [UserController::class, 'update'])->middleware('auth:sanctum');
+    Route::delete('/delete', [UserController::class, 'destroy'])->middleware('auth:sanctum');
 });

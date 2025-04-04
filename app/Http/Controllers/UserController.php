@@ -39,6 +39,16 @@ class UserController extends Controller
     }
 
     /**
+     * Вывод пользователя.
+     *
+     */
+    public function show(string $user_id): object 
+    {
+        $data = $this->userServices->showUser($user_id);
+        return $this->jsonResponse([new UserResource((object) $data['data'])], $data['status'], $data['message']);
+    }
+
+    /**
      * Изменение данных пользователя.
      *
      */

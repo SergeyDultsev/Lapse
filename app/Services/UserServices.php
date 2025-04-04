@@ -6,6 +6,15 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class UserServices {
+    public function showUser(string $user_id): array {
+        $user = User::find($user_id);
+        return [
+            'data' => $user, 
+            'status' => 200, 
+            'message' => 'User show successfully'
+        ];
+    }
+
     public function updateUser(array $data): array
     {
         $name = $data['name'];
