@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Http\Request;
 use App\Services\UserServices;
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
@@ -45,7 +45,7 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request): object 
     {
         $data = $this->userServices->updateUser($request->all());
-        return $this->jsonResponse($data['data'], $data['status'], $data['message']);
+        return $this->jsonResponse(new UserResource((object) $data['data']), $data['status'], $data['message']);
     }
 
     /**

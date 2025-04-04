@@ -27,6 +27,10 @@ class UserServices {
         $user->about = $about;
         $user->save();
 
+        if(isset($data['avatar_url']) && $data['avatar_url']){
+            $user->addMediaFromRequest('avatar_url')->toMediaCollection('users');
+        }
+
         return [
             'data' => $user, 
             'status' => 200, 

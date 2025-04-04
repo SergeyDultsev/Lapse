@@ -12,13 +12,13 @@ services:
             - /var/www/node_modules
             - /var/www/vendor
         environment:
-            APP_ENV: ${APP_ENV}
+            - APP_ENV=local
         env_file:
-            -   .env
+            - .env
         networks:
-            -  backend_network
+            - backend_network
         depends_on:
-            -   db
+            - db
 
     db:
       image: postgres:16

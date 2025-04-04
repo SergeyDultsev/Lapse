@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\HasMedia;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasFactory, Notifiable, HasApiTokens, InteractsWithMedia;
 
     protected $primaryKey = 'user_id';
     public $incrementing = false;
@@ -46,5 +48,12 @@ class User extends Authenticatable
     public function getFullNameAttribute(): string
     {
         return "$this->name $this->surname";
+    }
+
+    public function getAvatarUrlAttribute(): string|null
+    {
+        $avatar = $this->getFirstMedia('users');
+        if(!$avatar) return null;
+        return $avatar->getUrl();
     }
 }

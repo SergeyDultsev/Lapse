@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\AuthServices;
 use App\Http\Requests\InitiateLoginRequest;
 use App\Http\Requests\RegisterOrLoginRequest;
-use App\Http\Resources\AuthResource;
+use App\Http\Resources\UserResource;
 
 class AuthController extends Controller
 {
@@ -51,7 +51,7 @@ class AuthController extends Controller
             return $this->jsonResponse([], $data['status'], $data['message']);
         }
 
-        return $this->jsonResponse(new AuthResource((object) $data['data']), $data['status'], $data['message'])
+        return $this->jsonResponse(new UserResource((object) $data['data']), $data['status'], $data['message'])
             ->cookie(
                 'auth_token',
                 $data['token'] ?? '',

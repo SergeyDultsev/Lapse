@@ -16,6 +16,7 @@ class SendOtpSms
      */
     public function handle(OtpRequested $event): void
     {
-        Mail::to($event->email)->send(new OtpMail($event->code));
+        // Mail::to($event->email)->send(new OtpMail($event->code));
+        Log::info('Код '. $event->code);
     }
 }
