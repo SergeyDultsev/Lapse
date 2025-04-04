@@ -26,21 +26,25 @@ class UserController extends Controller
     /**
      * Вывод пользователей.
      *
+     * @param string $user_id идентификатор пользователя.
      */
-    public function index(Request $request): object 
+    public function index(Request $request, string $user_id): object 
     {
-        if($request->routeIs('subscription')){
-            // TODO: Написать логику
+        if($request->routeIs('subscriptions')){
+            $data = $this->userServices->getSubscription($user_id);
+            return $this->jsonResponse([UserResource::collection((object) $data['data'])], $data['status'], $data['message']);
         } elseif ($request->routeIs('subscribers')) {
-            // TODO: Написать логику
+            $data = $this->userServices->getSubscribers($user_id);
+            return $this->jsonResponse([UserResource::collection((object) $data['data'])], $data['status'], $data['message']);
         }
 
-        return $this->jsonResponse([], 200, "messages");
+        return $this->jsonResponse([], 500, 'Internal Server Error');
     }
 
     /**
      * Вывод пользователя.
      *
+     * @param string $user_id идентификатор пользователя.
      */
     public function show(string $user_id): object 
     {
@@ -51,6 +55,7 @@ class UserController extends Controller
     /**
      * Изменение данных пользователя.
      *
+     * @param UserUpdateRequest валидатор данных.
      */
     public function update(UserUpdateRequest $request): object 
     {

@@ -3,11 +3,57 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Models\Subscription;
 use Illuminate\Support\Facades\Auth;
 
 class UserServices {
+    /**
+     * Вывод подписчиков пользователя.
+     *
+     * @param string $user_id идентификатор пользователя.
+     * @return array Ответ с данными пользователей.
+     */
+    public function getSubscription(string $user_id): array {
+        $userData = Subscription::where('subscriber_id', $user_id)->get();
+        return [
+            'data' => $userData, 
+            'status' => 200, 
+            'message' => 'User subscriptions retrieved successfully'
+        ];
+    }
+
+    /**
+     * Вывод подписок пользователя.
+     *
+     * @param string $user_id идентификатор пользователя.
+     * @return array Ответ с данными пользователей.
+     */
+    public function getSubscribers(string $user_id): array {
+        $userData = Subscription::where('target_id', $user_id)->get();
+        return [
+            'data' => $userData, 
+            'status' => 200, 
+            'message' => 'User subscribers retrieved successfully'
+        ];
+    }
+
+    /**
+     * Вывод конкретного пользователя.
+     *
+     * @param string $user_id идентификатор пользователя.
+     * @return array Ответ с данными пользователя.
+     */
     public function showUser(string $user_id): array {
         $user = User::find($user_id);
+
+        if(!$user){
+            return [
+                'data' => [], 
+                'status' => 404, 
+                'message' => 'User not fount'
+            ];
+        }
+
         return [
             'data' => $user, 
             'status' => 200, 
@@ -15,6 +61,12 @@ class UserServices {
         ];
     }
 
+     /**
+     * Редактирование пользователя.
+     *
+     * @param string $data новые данные пользователя.
+     * @return array Ответ с данными пользователя.
+     */
     public function updateUser(array $data): array
     {
         $name = $data['name'];
