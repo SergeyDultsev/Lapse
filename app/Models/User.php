@@ -6,13 +6,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\HasMedia;
 
 class User extends Authenticatable implements HasMedia
 {
-    use HasFactory, Notifiable, HasApiTokens, InteractsWithMedia;
+    use HasFactory, Notifiable, HasApiTokens, InteractsWithMedia, SoftDeletes;
 
     protected $primaryKey = 'user_id';
     public $incrementing = false;
@@ -32,6 +33,8 @@ class User extends Authenticatable implements HasMedia
         'is_deleted'
     ];
 
+    protected $dates = ['deleted_at'];
+
     protected $hidden = [
         'password',
         'remember_token',
@@ -43,6 +46,11 @@ class User extends Authenticatable implements HasMedia
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'user_id', 'user_id');
     }
 
     public function getFullNameAttribute(): string

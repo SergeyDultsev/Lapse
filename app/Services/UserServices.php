@@ -98,4 +98,32 @@ class UserServices {
             'message' => 'User updated successfully'
         ];
     }
+
+    /**
+     * Удаление пользователя.
+     *
+     * @return array Ответ.
+     */
+    public function deleteUser(): array
+    {
+        $user = auth::user();
+
+        if(!$user) 
+        {
+            return [
+                'data' => [], 
+                'status' => 403, 
+                'message' => 'Forbidden'
+            ];
+        }
+
+        $user->delete();
+
+        return [
+            'data' => [], 
+            'status' => 200, 
+            'message' => 'User delete successfully'
+        ];
+    }
+
 }

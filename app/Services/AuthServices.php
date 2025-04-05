@@ -71,22 +71,28 @@ class AuthServices
 
         $otp->delete();
 
-        $user = User::firstOrNew(['email' => $email]);
+        $user = User::withTrashed()->where('email', $email)->first();
 
-        if (!$user->exists) {
+        if ($user) {
+            if ($user->trashed()) {
+                $user->restore();
+            }
+        
+            if (!Hash::check($password, $user->password)) {
+                return [
+                    'status' => 403,
+                    'message' => 'Invalid password.'
+                ];
+            }
+        } else {
+            $user = new User;
             $user->user_id = Uuid::uuid4()->toString();
             $user->role_id = $userRole->role_id;
             $user->name = $name;
             $user->surname = $surname;
+            $user->email = $email;
             $user->password = Hash::make($password);
             $user->save();
-        } else {
-            if (!Hash::check($password, $user->password)) {
-                return [
-                    'status' => 403, 
-                    'message' => 'Invalid password.'
-                ];
-            }
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;

@@ -25,7 +25,7 @@ class CustomPathGenerator implements PathGenerator
         return 'media/' . $nameFolder . '/responsive/';
     }
 
-    /*
+    /**
      * Метод создает папку для конкретной модели и избавляет от префикса 'App\Models\'
      */
     protected function createFolder(string $path): string

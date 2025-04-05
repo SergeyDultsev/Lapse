@@ -6,6 +6,7 @@ use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Http\Request;
 use App\Services\UserServices;
 use App\Http\Resources\UserResource;
+use GuzzleHttp\Psr7\Response;
 
 class UserController extends Controller
 {
@@ -65,11 +66,25 @@ class UserController extends Controller
 
     /**
      * Удаление пользователя.
-     *
      */
-    public function destroy(): object 
+    public function destroy(Request $request): object 
     {
-        // TODO: Написать логику
-        return $this->jsonResponse([], 200, "messages");
+        $data = $this->userServices->deleteUser();
+
+        if($data['status'] === 200){
+            $request->user()->tokens()->delete();
+            return $this->jsonResponse([], $data['status'], $data['message'])
+                ->cookie(
+                    'auth_token',
+                    '',
+                    -1,
+                    '/',
+                    null,
+                    false,
+                    false
+                );
+        } 
+
+        return $this->jsonResponse($data['data'], $data['status'], $data['message']);
     }
 }
