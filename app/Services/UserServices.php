@@ -125,5 +125,4 @@ class UserServices {
             'message' => 'User delete successfully'
         ];
     }
-
 }

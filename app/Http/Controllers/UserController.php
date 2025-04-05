@@ -6,7 +6,6 @@ use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Http\Request;
 use App\Services\UserServices;
 use App\Http\Resources\UserResource;
-use GuzzleHttp\Psr7\Response;
 
 class UserController extends Controller
 {
