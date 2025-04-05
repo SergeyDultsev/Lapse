@@ -25,6 +25,7 @@ class OtpSend
         $this->otpGenerator->generator($email);
 
         return [
+            'data' => [],
             'status' => 200, 
             'message' => 'OTP-code sent.'
         ];

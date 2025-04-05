@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Supports\OtpSend;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\OtpCode;
@@ -11,29 +10,6 @@ use Ramsey\Uuid\Uuid;
 
 class AuthServices
 {
-    protected $otpSend;
-
-    /**
-     * Создаёт экземпляр сервиса и внедряет генератор OTP-кода.
-     *
-     * @param OtpSend $otpSend Экземпляр отправки OTP-кода.
-     */
-    public function __construct(OtpSend $otpSend) {
-        $this->otpSend = $otpSend;
-    }
-
-    /**
-     * Инициализация процесса входа — отправка OTP-кода.
-     *
-     * @param array $data Электронная почта пользователя.
-     * @return array Ответ с кодом состояния и сообщением.
-     */
-    public function initiateLogin(array $data): array 
-    {
-        $email = $data['email'];
-        return $this->otpSend->send($email);
-    }
-
     /**
      * Регистрация или авторизация пользователя с OTP-кодом.
      *

@@ -2,14 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OtpController;
 use App\Http\Controllers\UserController;
 
 Route::prefix('/auth')->group(function () {
-    Route::post('/request-auth', [AuthController::class, 'initiateLogin']);
     Route::post('/verify-auth', [AuthController::class, 'registerOrLoginWithOtp']);
     Route::post('/check', [AuthController::class, 'check'])->middleware('auth:sanctum');
     Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 });
+
+Route::post('/opt-request', [OtpController::class, 'OtpRequest']);
 
 Route::prefix('/user')->group(function () {
     Route::get('/subscriptions/{user_id}', [UserController::class, 'index'])->name('subscriptions');

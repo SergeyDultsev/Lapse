@@ -26,18 +26,6 @@ class AuthController extends Controller
     }
 
     /**
-     * Инициализация входа — отправка OTP.
-     *
-     * @param AuthRequest $request Запрос с данными пользователя.
-     * @return object JSON-ответ с результатом.
-     */
-    public function initiateLogin(InitiateLoginRequest $request): object
-    {
-        $data = $this->authService->initiateLogin($request->all());
-        return $this->jsonResponse([], $data['status'], $data['message']);
-    }
-
-    /**
      * Логин или регистрация через OTP.
      *
      * @param OtpRequest $request Запрос с данными для авторизации.
