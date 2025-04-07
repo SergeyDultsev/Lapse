@@ -9,68 +9,98 @@ use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
-    /**
-     * @var UserServices Сервис для работы с посльзователем.
-     */
+    // Сервис для работы с пользователями
     protected $userServices;
 
     /**
-     * Создаёт экземпляр контроллера и внедряет сервис пользователей.
+     * Конструктор контроллера пользователей.
+     *
+     * Внедряет зависимость UserServices.
      *
      * @param UserServices $userServices Экземпляр сервиса пользователей.
      */
-    public function __construct(UserServices $userServices) {
+    public function __construct(UserServices $userServices)
+    {
         $this->userServices = $userServices;
     }
 
     /**
-     * Вывод пользователей.
+     * Получение подписок или подписчиков пользователя.
      *
-     * @param string $user_id идентификатор пользователя.
+     * Обрабатывает маршрут в зависимости от имени: 'subscriptions' или 'subscribers'.
+     *
+     * @param Request $request HTTP-запрос.
+     * @param string $user_id Идентификатор пользователя.
+     * @return object JSON-ответ с коллекцией пользователей или сообщение об ошибке.
      */
     public function index(Request $request, string $user_id): object 
     {
-        if($request->routeIs('subscriptions')){
+        if ($request->routeIs('subscriptions')) {
             $data = $this->userServices->getSubscription($user_id);
-            return $this->jsonResponse([UserResource::collection((object) $data['data'])], $data['status'], $data['message']);
+            return $this->jsonResponse(
+                UserResource::collection(collect($data['data'])),
+                $data['status'],
+                $data['message']
+            );
         } elseif ($request->routeIs('subscribers')) {
             $data = $this->userServices->getSubscribers($user_id);
-            return $this->jsonResponse([UserResource::collection((object) $data['data'])], $data['status'], $data['message']);
+            return $this->jsonResponse(
+                UserResource::collection(collect($data['data'])),
+                $data['status'],
+                $data['message']
+            );
         }
 
+        // Если маршрут не соответствует ожиданиям
         return $this->jsonResponse([], 500, 'Internal Server Error');
     }
 
     /**
-     * Вывод пользователя.
+     * Получение информации о конкретном пользователе.
      *
-     * @param string $user_id идентификатор пользователя.
+     * @param string $user_id Идентификатор пользователя.
+     * @return object JSON-ответ с данными пользователя.
      */
     public function show(string $user_id): object 
     {
         $data = $this->userServices->showUser($user_id);
-        return $this->jsonResponse([new UserResource((object) $data['data'])], $data['status'], $data['message']);
+        return $this->jsonResponse(
+            new UserResource((object) $data['data']),
+            $data['status'],
+            $data['message']
+        );
     }
 
     /**
-     * Изменение данных пользователя.
+     * Обновление данных пользователя.
      *
-     * @param UserUpdateRequest валидатор данных.
+     * @param UserUpdateRequest $request Валидированный запрос с данными пользователя.
+     * @return object JSON-ответ с обновлёнными данными пользователя.
      */
     public function update(UserUpdateRequest $request): object 
     {
         $data = $this->userServices->updateUser($request->all());
-        return $this->jsonResponse(new UserResource((object) $data['data']), $data['status'], $data['message']);
+        return $this->jsonResponse(
+            new UserResource((object) $data['data']),
+            $data['status'],
+            $data['message']
+        );
     }
 
     /**
-     * Удаление пользователя.
+     * Удаление текущего пользователя и его токенов.
+     *
+     * При успешном удалении также удаляет cookie с auth_token.
+     *
+     * @param Request $request HTTP-запрос.
+     * @return object JSON-ответ с результатом удаления.
      */
     public function destroy(Request $request): object 
     {
         $data = $this->userServices->deleteUser();
 
-        if($data['status'] === 200){
+        if ($data['status'] === 200) {
+            // Удаление всех токенов пользователя и сброс куки
             $request->user()->tokens()->delete();
             return $this->jsonResponse([], $data['status'], $data['message'])
                 ->cookie(
@@ -82,7 +112,7 @@ class UserController extends Controller
                     false,
                     false
                 );
-        } 
+        }
 
         return $this->jsonResponse($data['data'], $data['status'], $data['message']);
     }

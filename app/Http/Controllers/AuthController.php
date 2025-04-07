@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\AuthServices;
-use App\Http\Requests\InitiateLoginRequest;
 use App\Http\Requests\RegisterOrLoginRequest;
 use App\Http\Resources\UserResource;
 

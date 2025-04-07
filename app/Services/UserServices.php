@@ -13,7 +13,8 @@ class UserServices {
      * @param string $user_id идентификатор пользователя.
      * @return array Ответ с данными пользователей.
      */
-    public function getSubscription(string $user_id): array {
+    public function getSubscription(string $user_id): array 
+    {
         $userData = Subscription::where('subscriber_id', $user_id)->get();
         return [
             'data' => $userData, 
@@ -28,7 +29,8 @@ class UserServices {
      * @param string $user_id идентификатор пользователя.
      * @return array Ответ с данными пользователей.
      */
-    public function getSubscribers(string $user_id): array {
+    public function getSubscribers(string $user_id): array 
+    {
         $userData = Subscription::where('target_id', $user_id)->get();
         return [
             'data' => $userData, 
@@ -43,7 +45,8 @@ class UserServices {
      * @param string $user_id идентификатор пользователя.
      * @return array Ответ с данными пользователя.
      */
-    public function showUser(string $user_id): array {
+    public function showUser(string $user_id): array 
+    {
         $user = User::find($user_id);
 
         if(!$user){

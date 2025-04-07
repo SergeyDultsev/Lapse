@@ -7,6 +7,7 @@ use App\Supports\OtpSend;
 
 class OtpController extends Controller
 {
+    // Класс для отправки OTP
     protected $otpSend;
 
     /**

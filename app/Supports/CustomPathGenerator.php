@@ -9,19 +9,19 @@ class CustomPathGenerator implements PathGenerator
 {
     public function getPath(Media $media): string
     {
-        $nameFolder = $this->createFolder($media->model_type);
+        $nameFolder = $this->createFolder($media->collection_name);
         return 'media/' . $nameFolder . '/';
     }
 
     public function getPathForConversions(Media $media): string
     {
-        $nameFolder = $this->createFolder($media->model_type);
+        $nameFolder = $this->createFolder($media->collection_name);
         return 'media/' . $nameFolder . '/conversions/';
     }
 
     public function getPathForResponsiveImages(Media $media): string
     {
-        $nameFolder = $this->createFolder($media->model_type);
+        $nameFolder = $this->createFolder($media->collection_name);
         return 'media/' . $nameFolder . '/responsive/';
     }
 

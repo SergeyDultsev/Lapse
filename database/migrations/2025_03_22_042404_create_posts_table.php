@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('post_id')->primary();
             $table->uuid('user_id');
             $table->uuid('tier_id')->nullable();
+            $table->text('title');
             $table->text('content');
             $table->text('preview_url')->nullable();
             $table->integer('save_count')->default(0);
