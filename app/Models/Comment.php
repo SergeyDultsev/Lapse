@@ -17,6 +17,17 @@ class Comment extends Model
         'comment_id', 
         'post_id',
         'user_id',
-        'target_comment_id'
+        'target_comment_id',
+        'content'
     ];
+
+    public function kids()
+    {
+        return $this->hasMany(Comment::class, 'target_comment_id', 'comment_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
+    }
 }

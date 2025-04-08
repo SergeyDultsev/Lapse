@@ -25,7 +25,7 @@ class PostController extends Controller
     /**
      * Создание нового поста
      *
-     * @param Request $request
+     * @param PostCreateRequest $request
      * @return object JSON-ответ с результатом создания
      */
     public function store(PostCreateRequest $request): object

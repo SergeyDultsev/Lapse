@@ -44,7 +44,7 @@ class PostServices
      */
     public function getPosts(string $user_id): array
     {
-        $user = User::where('user_id', $user_id)->first();
+        $user = User::find($user_id);
         $postData = $user->posts;
 
         if($postData->isEmpty()){

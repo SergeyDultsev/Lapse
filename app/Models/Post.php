@@ -26,6 +26,11 @@ class Post extends Model implements HasMedia
         'comment_count'
     ];
 
+    public function comments() 
+    {
+        return $this->hasMany(Comment::class, 'post_id', 'post_id');
+    }
+
     public function getPreviewUrlAttribute(): string|null
     {
         $preview_url = $this->getFirstMedia('posts');
