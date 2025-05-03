@@ -1,22 +1,26 @@
 import React from "react";
+import clsx from "clsx";
 import styles from "./InputDefault.module.scss";
 
 interface IInputDefault {
     id?: string,
+    className?: string; 
     name?: string,
     placeholder?: string,
     type?: string,
     value?: string | number,
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputDefault: React.FC<IInputDefault> = ({id, name, placeholder, type, value}) => {
+const InputDefault: React.FC<IInputDefault> = ({id, className, name, placeholder, type, value, onChange}) => {
     return (
         <input 
-            className={styles['form__input']} 
+            className={clsx(styles['form__input'], className)}
             id={id} 
             name={name} 
             placeholder={placeholder} 
             type={type} value={value} 
+            onChange={onChange}
         />
     );
 }

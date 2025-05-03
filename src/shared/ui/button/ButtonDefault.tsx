@@ -9,6 +9,7 @@ interface IButtonDefault {
     type: "button" | "reset" | "submit",
     disabled?: boolean,
     active: boolean
+    className?: string;
 }
 
 const ButtonDefault: React.FC<IButtonDefault> = ({ children, onClick, name, type, disabled, active, style }) => {

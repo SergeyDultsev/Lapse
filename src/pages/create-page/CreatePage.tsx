@@ -5,8 +5,8 @@ import styles from "./CraetePage.module.scss";
 import {observer} from "mobx-react-lite";
 import ButtonDefault from "@/shared/ui/button/ButtonDefault";
 import CreatePageStore from "@/pages/create-page/store/CreatePageStore";
-import CreatePost from "@/features/post/create-post/ui/create-post/CreatePostForm";
-import CreateTier from "@/features/tier/create-tier/ui/CreateTierForm";
+import CreatePostForm from "@/features/post/create-post/ui/create-post/CreatePostForm";
+import CreateTierForm from "@/features/tier/create-tier/ui/CreateTierForm";
 import CartInfo from "@/widgets/cart-info/CartInfo";
 import VisibilityOption from "./ui/visibility-option/VisibilityOption";
 
@@ -36,11 +36,11 @@ const CreatePage: React.FC = observer(() => {
                 </div>
 
                 {stateForm === "post" && (
-                    <CreatePost/>
+                    <CreatePostForm/>
                 )}
 
                 {stateForm === "tier" && (
-                    <CreateTier/>
+                    <CreateTierForm/>
                 )}
 
             </section>
