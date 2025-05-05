@@ -46,4 +46,16 @@ class CommentController extends Controller
         $data = $this->commentService->indexComment($post_id);
         return $this->jsonResponse(CommentResource::collection(collect($data['data'])), $data['status'], $data['message']);
     }
+
+    /**
+     * Удаление комментария поста
+     *
+     * @param string $comment_id
+     * @return object JSON-ответ с результатом создания
+     */
+    public function destroy(string $comment_id): object
+    {
+        $data = $this->commentService->deleteComment($comment_id);
+        return $this->jsonResponse(new CommentResource((object) $data['data']), $data['status'], $data['message']);
+    }
 }

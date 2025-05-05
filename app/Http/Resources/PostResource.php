@@ -17,6 +17,7 @@ class PostResource extends JsonResource
             'content'=> $this->content,
             'preview_url'=> $this->preview_url,
             'save_count' => $this->save_count,
+            'is_favorite' => $this->is_favorite,
             'comment_count'=> $this->comment_count,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

@@ -36,7 +36,7 @@ class CommentServices{
         $comment->save();
         $comment->load('user');
 
-        $post->comment_count += 1;
+        $post->increment('comment_count');
         $post->save();
 
         return [
@@ -56,7 +56,7 @@ class CommentServices{
     {
         $post = Post::find($post_id);
         $comments = $post->comments;
-        $kids = $post->comments->load("kids");
+        $post->comments->load("kids");
 
         if($comments->isEmpty()) {
             return [
@@ -68,8 +68,47 @@ class CommentServices{
         
         return [
             'data' => $comments,
-            'status' => 201,
-            'message' => 'Comment successfully created',
+            'status' => 200,
+            'message' => 'Comment successfully received',
+        ];
+    }
+
+    /**
+     * Удаление комментария
+     * 
+     * @param string $comment_id идентификатор комментария.
+     * @return array созданный комментарий.
+     */
+    public function deleteComment(string $comment_id): array
+    {
+        $comment = Comment::find($comment_id);
+
+        if (!$comment) {
+            return [
+                'data' => [],
+                'status' => 404,
+                'message' => 'Comment not found',
+            ];
+        }
+
+        $user = Auth::user();
+        $post = Post::where('post_id', $comment->post_id)->where('user_id', $user->user_id);
+
+        if (!$post) {
+            return [
+                'data' => [],
+                'status' => 403,
+                'message' => 'Access denied to this post',
+            ];
+        }    
+
+        $comment->delete();
+        $post->decrement('comment_count');
+
+        return [
+            'data' => $comment,
+            'status' => 200,
+            'message' => 'Comment successfully deleted',
         ];
     }
 }

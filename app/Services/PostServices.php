@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Favorite;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,7 +38,7 @@ class PostServices
     }
 
     /**
-     * Получение постов пользовотеля
+     * Получение постов пользователя
      * 
      * @param string $user_id идентификатор пользователя.
      * @return array пост.
@@ -53,6 +54,10 @@ class PostServices
                 'status' => 404,
                 'message' => 'Posts Not Fount'
             ];
+        }
+
+        foreach ($postData as $post) {
+            $post->is_favorite = Favorite::isFavorite($post->post_id, $user_id);
         }
 
         return [
