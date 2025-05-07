@@ -1,6 +1,6 @@
 import { makeAutoObservable, action } from "mobx";
 
-class AuthPageStore{
+class AuthorizePageModel {
     stateForm: string = "auth";
 
     constructor () {
@@ -14,4 +14,4 @@ class AuthPageStore{
     }
 }
 
-export default new AuthPageStore;
+export default new AuthorizePageModel;

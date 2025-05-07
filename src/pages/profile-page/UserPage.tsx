@@ -11,7 +11,7 @@ import TierList from "@/widgets/cart-info/tier-list/TierList"
 import AlertBlock from "@/widgets/alert-block/AlertBlock";
 import CartInfo from "@/widgets/cart-info/CartInfo";
 
-const ProfilePage: React.FC = (() => {
+const UserPage: React.FC = (() => {
     const postsData: iPost[] = postStore?.postsData || [];
     const tierData: iTier[] = tierStore?.tierData || [];
 
@@ -23,8 +23,8 @@ const ProfilePage: React.FC = (() => {
 
             {postsData.length === 0 &&
                 <AlertBlock
-                    alertTitle={"Вы ещё не публиковали посты"}
-                    alertDescr={"Добавьте пост и он отобразиться тут."}
+                    alertTitle={"Пользователь ещё не публиковали посты"}
+                    alertDescr={null}
                 />
             }
 
@@ -33,8 +33,8 @@ const ProfilePage: React.FC = (() => {
 
                 {tierData.length === 0 ? (
                     <AlertBlock
-                        alertTitle={"Вы ещё не добавили свои VIP-подпсики"}
-                        alertDescr={"VIP-подпсики будут отображаться тут."}
+                        alertTitle={"Пользователь ещё не добавили свои VIP-подпсики"}
+                        alertDescr={null}
                     />
                 ) : (
                     <CartInfo
@@ -47,4 +47,4 @@ const ProfilePage: React.FC = (() => {
     );
 });
 
-export default ProfilePage;
+export default UserPage;

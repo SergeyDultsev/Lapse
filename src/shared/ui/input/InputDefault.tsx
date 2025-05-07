@@ -10,9 +10,11 @@ interface IInputDefault {
     type?: string,
     value?: string | number,
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    maxlength?: number,
+    minlength?: number
 }
 
-const InputDefault: React.FC<IInputDefault> = ({id, className, name, placeholder, type, value, onChange}) => {
+const InputDefault: React.FC<IInputDefault> = ({id, className, name, placeholder, type, value, onChange, maxlength, minlength}) => {
     return (
         <input 
             className={clsx(styles['form__input'], className)}
@@ -21,6 +23,8 @@ const InputDefault: React.FC<IInputDefault> = ({id, className, name, placeholder
             placeholder={placeholder} 
             type={type} value={value} 
             onChange={onChange}
+            maxLength={maxlength}
+            minLength={minlength}
         />
     );
 }

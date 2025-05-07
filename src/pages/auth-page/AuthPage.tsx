@@ -2,24 +2,28 @@
 
 import React from "react";
 import { observer } from "mobx-react-lite";
-import AuthPageStore from "./store/AuthPageStore";
-import AuthForm from "@/features/user/authorize/ui/form/AuthForm";
+import AuthorizePageModel from '@/pages/auth-page/model/AuthorizePageModel';
+import LoginForm from "@/features/user/authorize/ui/form/LoginForm";
 import RegisterForm from "@/features/user/authorize/ui/form/RegisterForm";
-import ConfirmForm from "@/features/user/authorize/ui/form/ConfirmForm";
+import OtpForm from "@/features/user/authorize/ui/form/OtpForm";
+import ForgotForm from "@/features/user/authorize/ui/form/ForgotForm";
 
 const AuthPage: React.FC = observer(() => {
-    const stateForm = AuthPageStore.stateForm;
+    const stateForm = AuthorizePageModel.stateForm;
 
     return (
         <main className="main">
             {stateForm === "auth" && (
-                <AuthForm />
+                <LoginForm />
             )}
             {stateForm === "register" && (
                 <RegisterForm />
             )}
             {stateForm === "confirm" && (
-                <ConfirmForm />
+                <OtpForm />
+            )}
+            {stateForm === "forgot" && (
+                <ForgotForm />
             )}
         </main>
     );

@@ -3,7 +3,14 @@ import styles from "./ProfileInfo.module.scss"
 import avatar from "@/assets/img/avatar.jpg";
 import ButtonDefault from "@/shared/ui/button/ButtonDefault";
 
-const ProfileInfo: React.FC = (() => {
+interface iProfileInfo {
+    full_name: string,
+    followers: number,
+    readers: number,
+    about: string
+}
+
+const ProfileInfo: React.FC<iProfileInfo> = ({full_name, followers, readers, about}) => {
     return (
         <section className={styles['profile-info']}>
             <div className={styles['user-info']}>
@@ -13,14 +20,14 @@ const ProfileInfo: React.FC = (() => {
                     loading="lazy" 
                 />
                 <h2 className={styles['user-info__username']}>
-                    Сергей Дульцев
+                    {full_name}
                 </h2>
                 <div className={styles['user-info__subs']}>
-                    <p className={styles['user-info__subs-count']}>1000 подписок</p>
-                    <p className={styles['user-info__subs-count']}>1000 подписчиков</p>
+                    <p className={styles['user-info__subs-count']}>{followers} подписок</p>
+                    <p className={styles['user-info__subs-count']}>{readers} подписчиков</p>
                 </div>
                 <p className={styles['user-info__descr']}>
-                    Описание профиля
+                    {about}
                 </p>
 
                 <ButtonDefault 
@@ -33,6 +40,6 @@ const ProfileInfo: React.FC = (() => {
             </div>
         </section>
     );
-});
+};
 
 export default ProfileInfo;

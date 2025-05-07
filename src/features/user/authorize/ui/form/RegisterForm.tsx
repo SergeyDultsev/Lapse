@@ -1,17 +1,18 @@
 'use client'
 
 import React from "react";
-import styles from "./AuthorizeForm.module.scss";
+import styles from "./style/AuthorizeForm.module.scss";
 import { observer } from "mobx-react-lite"; 
-import AuthStore from "@/features/user/authorize/model/AuthStore";
-import AuthPageStore from "@/pages/auth-page/store/AuthPageStore";
+import RegisterFormModel from "@/features/user/authorize/model/RegisterFormModel";
+import AuthorizePageModel from "@/pages/auth-page/model/AuthorizePageModel";
 import InputDefault from "@/shared/ui/input/InputDefault";
 import ButtonDefault from "@/shared/ui/button/ButtonDefault";
 
 const RegisterForm: React.FC = observer(() => {
 
     const handleRegister = (): void => {
-        AuthPageStore.changeFormState('confirm');
+        AuthorizePageModel.changeFormState('confirm');
+        RegisterFormModel.cleanRegisterForm();
     }
 
     return (
@@ -21,32 +22,32 @@ const RegisterForm: React.FC = observer(() => {
             <InputDefault 
                 placeholder={"Имя"} 
                 type={'text'}
-                value={AuthStore.firstName}
-                onChange={(e) => AuthStore.setFirstName(e.target.value)}
+                value={RegisterFormModel.registerForm.name}
+                onChange={(e) => RegisterFormModel.setRegisterName(e.target.value)}
             />
             <InputDefault 
                 placeholder={"Фамилия"} 
                 type={'text'}
-                value={AuthStore.lastName}
-                onChange={(e) => AuthStore.setLastName(e.target.value)}
+                value={RegisterFormModel.registerForm.surname}
+                onChange={(e) => RegisterFormModel.setRegisterSurname(e.target.value)}
             />
             <InputDefault 
                 placeholder={"Почта"} 
                 type={'text'}
-                value={AuthStore.email}
-                onChange={(e) => AuthStore.setEmail(e.target.value)}
+                value={RegisterFormModel.registerForm.email}
+                onChange={(e) => RegisterFormModel.setRegisterEmail(e.target.value)}
             />
             <InputDefault 
                 placeholder={"Пароль"} 
                 type={'password'}
-                value={AuthStore.password}
-                onChange={(e) => AuthStore.setPassword(e.target.value)}
+                value={RegisterFormModel.registerForm.password}
+                onChange={(e) => RegisterFormModel.setRegisterPassword(e.target.value)}
             />
-            <InputDefault 
+            <InputDefault
                 placeholder={"Повтор пароля"} 
                 type={'password'}
-                value={AuthStore.repeatPassword}
-                onChange={(e) => AuthStore.setRepeatPassword(e.target.value)}
+                value={RegisterFormModel.registerForm.repeatPassword}
+                onChange={(e) => RegisterFormModel.setRegisterRepeatPassword(e.target.value)}
             />
             </div>
             <ButtonDefault
@@ -60,8 +61,8 @@ const RegisterForm: React.FC = observer(() => {
             <p className={styles["form-notice"]}>Уже есть аккаунт? 
                 <span 
                     className={styles['form-notice__span']}
-                    onClick={() => AuthPageStore.changeFormState("auth")}>
-
+                    onClick={() => AuthorizePageModel.changeFormState("auth")}
+                >
                     Авторизация
                 </span>
             </p>
