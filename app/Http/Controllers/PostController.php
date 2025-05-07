@@ -56,9 +56,21 @@ class PostController extends Controller
      * @param string $post_id
      * @return object JSON-ответ с данными поста
      */
-    public function show(string $post_id): object 
+    public function show(string $post_id): object
     {
         $data = $this->postService->showPost($post_id);
+        return $this->jsonResponse(new PostResource((object) $data['data']), $data['status'], $data['message']);
+    }
+
+    /**
+     * Удаление поста по его ID
+     *
+     * @param string $post_id
+     * @return object JSON-ответ с данными поста
+     */
+    public function destroy(string $post_id): object
+    {
+        $data = $this->postService->deletePost($post_id);
         return $this->jsonResponse(new PostResource((object) $data['data']), $data['status'], $data['message']);
     }
 }

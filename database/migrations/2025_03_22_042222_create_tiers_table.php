@@ -13,10 +13,14 @@ return new class extends Migration
     {
         Schema::create('tiers', function (Blueprint $table) {
             $table->uuid('tier_id')->primary();
+            $table->uuid('user_id');
             $table->string('title', 255);
+            $table->text('preview_url')->nullable();
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2)->check('price >= 0');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('user_id')->on('users');
         });
     }
 

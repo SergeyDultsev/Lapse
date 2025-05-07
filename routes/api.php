@@ -7,6 +7,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TierController;
 
 Route::prefix('/auth')->group(function () {
     Route::post('/verify-auth', [AuthController::class, 'registerOrLoginWithOtp']);
@@ -46,10 +47,18 @@ Route::prefix('post')->group(function () {
 });
 
 Route::prefix('posts/{post_id}/comments')->group(function () {
-    Route::get('/', [CommentController::class, 'index'])->middleware('auth:sanctum');
+    Route::get('/', [CommentController::class, 'index']);
     Route::post('/', [CommentController::class, 'store'])->middleware('auth:sanctum');
     Route::delete('/', [CommentController::class, 'destroy'])->middleware('auth:sanctum');
 })->middleware('throttle:40,1');
 
 Route::post('favorites/toggle/{post_id}', [FavoriteController::class, 'storeOrDelete'])
     ->middleware('auth:sanctum', 'throttle:20,1');
+
+Route::prefix('tier')->group(function () {
+    Route::get('/{user_id}', [TierController::class, 'index']);
+    Route::get('/{tier_id}', [TierController::class, 'show']);
+    Route::get('/{tier_id}', [TierController::class, 'update']);
+    Route::post('/', [TierController::class, 'store'])->middleware('auth:sanctum');
+    Route::delete('/{tier_id}', [TierController::class, 'destroy'])->middleware('auth:sanctum');
+})->middleware('throttle:40,1');

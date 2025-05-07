@@ -11,8 +11,18 @@ class PostResource extends JsonResource
     {
         return [
             'post_id' => $this->post_id,
-            'user_id' => $this->user_id,
-            'tier_id' => $this->tier_id,
+            'user' => [
+                'user_id' => $this->user->user_id,
+                'full_name' => $this->user->full_name,
+                'avatar_url' => $this->user->avatar_url,
+            ],
+            'tier' => [
+                'tier_id' => $this->tier->tier_id ?? null,
+                'title' => $this->tier->title ?? null,
+                'description' => $this->tier->description ?? null,
+                'preview_url' => $this->tier->preview_url ?? null,
+                'price' => $this->tier->price ?? null,
+            ],
             'title'=> $this->title,
             'content'=> $this->content,
             'preview_url'=> $this->preview_url,

@@ -12,7 +12,7 @@ class PostServices
 {
     /**
      * Создание поста
-     * 
+     *
      * @param array $data данные поста.
      * @return array созданный пост.
      */
@@ -39,7 +39,7 @@ class PostServices
 
     /**
      * Получение постов пользователя
-     * 
+     *
      * @param string $user_id идентификатор пользователя.
      * @return array пост.
      */
@@ -50,7 +50,7 @@ class PostServices
 
         if($postData->isEmpty()){
             return [
-                'data' => [], 
+                'data' => [],
                 'status' => 404,
                 'message' => 'Posts Not Fount'
             ];
@@ -61,7 +61,7 @@ class PostServices
         }
 
         return [
-            'data' => $postData, 
+            'data' => $postData,
             'status' => 200,
             'message' => 'Posts successfully received'
         ];
@@ -69,7 +69,7 @@ class PostServices
 
     /**
      * Получение ленты постов пользовотеля
-     * 
+     *
      * @param string $user_id идентификатор пользователя.
      * @return array пост.
      */
@@ -85,7 +85,7 @@ class PostServices
 
     /**
      * Получение поста
-     * 
+     *
      * @param string $post_id идентификатор поста.
      * @return array пост.
      */
@@ -105,6 +105,33 @@ class PostServices
             'data' => $post,
             'status' => 200,
             'message' => 'Post successfully received'
+        ];
+    }
+
+    /**
+     * Удаление поста
+     *
+     * @param string $post_id идентификатор поста.
+     * @return array пост.
+     */
+    public function deletePost(string $post_id): array
+    {
+        $post = Post::find($post_id);
+
+        if (!$post) {
+            return [
+                'data' => [],
+                'status' => 404,
+                'message' => 'Post Not Found',
+            ];
+        }
+
+        $post->delete();
+
+        return [
+            'data' => $post,
+            'status' => 200,
+            'message' => 'Post successfully delete'
         ];
     }
 }

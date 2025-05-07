@@ -16,7 +16,7 @@ class Post extends Model implements HasMedia
     public $keyType = 'string';
 
     protected $fillable = [
-        'post_id', 
+        'post_id',
         'user_id',
         'tier_id',
         'title',
@@ -26,9 +26,19 @@ class Post extends Model implements HasMedia
         'comment_count'
     ];
 
-    public function comments() 
+    public function comments()
     {
         return $this->hasMany(Comment::class, 'post_id', 'post_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
+    }
+
+    public function tier()
+    {
+        return $this->belongsTo(Tier::class, 'tier_id', 'tier_id');
     }
 
     public function getPreviewUrlAttribute(): string|null
