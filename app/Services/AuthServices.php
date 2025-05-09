@@ -28,7 +28,7 @@ class AuthServices
 
         if (!$userRole) {
             return [
-                'status' => 500, 
+                'status' => 500,
                 'message' => 'Role "user" not found.'
             ];
         }
@@ -40,7 +40,7 @@ class AuthServices
 
         if (!$otp) {
             return [
-                'status' => 422, 
+                'status' => 422,
                 'message' => 'Invalid code or code is outdated.'
             ];
         }
@@ -53,7 +53,7 @@ class AuthServices
             if ($user->trashed()) {
                 $user->restore();
             }
-        
+
             if (!Hash::check($password, $user->password)) {
                 return [
                     'status' => 403,
@@ -73,18 +73,9 @@ class AuthServices
 
         $token = $user->createToken('auth_token')->plainTextToken;
         return [
+            'data' => $token,
             'status' => 200,
             'message' => 'User logged in successfully.',
-            'token' => $token,
-            'data' => [
-                'user_id' => $user->user_id,
-                'full_name' => $user->full_name,
-                'email' => $user->email,
-                'about' => $user->about,
-                'avatar_url' => $user->avatar_url,
-                'subscriptions_count' => $user->subscriptions_count,
-                'subscriber_count' => $user->subscriber_count,
-            ]
         ];
     }
 }

@@ -19,7 +19,7 @@ class AuthController extends Controller
      *
      * @param AuthServices $authService Экземпляр сервиса аутентификации.
      */
-    public function __construct(AuthServices $authService) 
+    public function __construct(AuthServices $authService)
     {
         $this->authService = $authService;
     }
@@ -38,10 +38,10 @@ class AuthController extends Controller
             return $this->jsonResponse([], $data['status'], $data['message']);
         }
 
-        return $this->jsonResponse(new UserResource((object) $data['data']), $data['status'], $data['message'])
+        return $this->jsonResponse($data['data'], $data['status'], $data['message'])
             ->cookie(
                 'auth_token',
-                $data['token'] ?? '',
+                $data['data'] ?? '',
                 60 * 24,
                 '/',
                 null,
@@ -82,6 +82,8 @@ class AuthController extends Controller
             return $this->jsonResponse(['authorized' => false], 200, 'User not authorized');
         }
 
-        return $this->jsonResponse(['authorized' => true], 200, 'User authorized.');
+        $user = auth()->user();
+
+        return $this->jsonResponse(new UserResource($user), 200, 'User authorized.');
     }
 }

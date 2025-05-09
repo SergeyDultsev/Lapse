@@ -33,7 +33,7 @@ class UserController extends Controller
      * @param string $user_id Идентификатор пользователя.
      * @return object JSON-ответ с коллекцией пользователей или сообщение об ошибке.
      */
-    public function index(Request $request, string $user_id): object 
+    public function index(Request $request, string $user_id): object
     {
         if ($request->routeIs('subscriptions')) {
             $data = $this->userServices->getSubscription($user_id);
@@ -61,7 +61,7 @@ class UserController extends Controller
      * @param string $user_id Идентификатор пользователя.
      * @return object JSON-ответ с данными пользователя.
      */
-    public function show(string $user_id): object 
+    public function show(string $user_id): object
     {
         $data = $this->userServices->showUser($user_id);
         return $this->jsonResponse(
@@ -77,7 +77,7 @@ class UserController extends Controller
      * @param UserUpdateRequest $request Валидированный запрос с данными пользователя.
      * @return object JSON-ответ с обновлёнными данными пользователя.
      */
-    public function update(UserUpdateRequest $request): object 
+    public function update(UserUpdateRequest $request): object
     {
         $data = $this->userServices->updateUser($request->all());
         return $this->jsonResponse(
@@ -95,12 +95,11 @@ class UserController extends Controller
      * @param Request $request HTTP-запрос.
      * @return object JSON-ответ с результатом удаления.
      */
-    public function destroy(Request $request): object 
+    public function destroy(Request $request): object
     {
         $data = $this->userServices->deleteUser();
 
         if ($data['status'] === 200) {
-            // Удаление всех токенов пользователя и сброс куки
             $request->user()->tokens()->delete();
             return $this->jsonResponse([], $data['status'], $data['message'])
                 ->cookie(
