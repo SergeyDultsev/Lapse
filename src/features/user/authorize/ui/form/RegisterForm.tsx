@@ -2,17 +2,17 @@
 
 import React from "react";
 import styles from "./style/AuthorizeForm.module.scss";
-import { observer } from "mobx-react-lite"; 
-import RegisterFormModel from "@/features/user/authorize/model/RegisterFormModel";
+import { observer } from "mobx-react-lite";
 import AuthorizePageModel from "@/pages/auth-page/model/AuthorizePageModel";
 import InputDefault from "@/shared/ui/input/InputDefault";
 import ButtonDefault from "@/shared/ui/button/ButtonDefault";
+import LoginOrRegisterFormModel from "@/features/user/authorize/model/LoginOrRegisterFormModel";
 
 const RegisterForm: React.FC = observer(() => {
 
     const handleRegister = (): void => {
         AuthorizePageModel.changeFormState('confirm');
-        RegisterFormModel.cleanRegisterForm();
+        LoginOrRegisterFormModel.cleanForm();
     }
 
     return (
@@ -22,32 +22,26 @@ const RegisterForm: React.FC = observer(() => {
             <InputDefault 
                 placeholder={"Имя"} 
                 type={'text'}
-                value={RegisterFormModel.registerForm.name}
-                onChange={(e) => RegisterFormModel.setRegisterName(e.target.value)}
+                value={LoginOrRegisterFormModel.dataForm.name}
+                onChange={(e) => LoginOrRegisterFormModel.setFormData('name', e.target.value)}
             />
             <InputDefault 
                 placeholder={"Фамилия"} 
                 type={'text'}
-                value={RegisterFormModel.registerForm.surname}
-                onChange={(e) => RegisterFormModel.setRegisterSurname(e.target.value)}
+                value={LoginOrRegisterFormModel.dataForm.surname}
+                onChange={(e) => LoginOrRegisterFormModel.setFormData('surname', e.target.value)}
             />
             <InputDefault 
-                placeholder={"Почта"} 
+                placeholder={"Почта"}
                 type={'text'}
-                value={RegisterFormModel.registerForm.email}
-                onChange={(e) => RegisterFormModel.setRegisterEmail(e.target.value)}
+                value={LoginOrRegisterFormModel.dataForm.email}
+                onChange={(e) => LoginOrRegisterFormModel.setFormData('email', e.target.value)}
             />
             <InputDefault 
                 placeholder={"Пароль"} 
                 type={'password'}
-                value={RegisterFormModel.registerForm.password}
-                onChange={(e) => RegisterFormModel.setRegisterPassword(e.target.value)}
-            />
-            <InputDefault
-                placeholder={"Повтор пароля"} 
-                type={'password'}
-                value={RegisterFormModel.registerForm.repeatPassword}
-                onChange={(e) => RegisterFormModel.setRegisterRepeatPassword(e.target.value)}
+                value={LoginOrRegisterFormModel.dataForm.password}
+                onChange={(e) => LoginOrRegisterFormModel.setFormData('password', e.target.value)}
             />
             </div>
             <ButtonDefault

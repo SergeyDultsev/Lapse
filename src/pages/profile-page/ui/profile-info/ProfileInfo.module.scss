@@ -3,10 +3,8 @@
     flex-direction: column;
     gap: 20px;
     align-self: self-start;
-
     width: 100%;
     max-width: 275px;
-
     border: 1px solid var(--main-border-color);
     border-radius: var(--main-border-radius);
 
@@ -14,26 +12,20 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-
         background-color: var(--main-bg-color-block);
-
         padding: 20px 0;
 
         &__avatar{
             width: 125px;
             height: 125px;
-
             padding-bottom: 20px;
-
             border-radius: var(--main-border-radius);
-
             object-fit: cover;
         }
 
         &__username{
             font-size: 16px;
             font-weight: 700;
-
             padding-bottom: 20px;
         }
 
@@ -41,11 +33,8 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-
             padding: 20px;
-
             width: 100%;
-
             border-top: 1px solid var(--main-border-color);
             border-bottom: 1px solid var(--main-border-color);
 
@@ -57,11 +46,8 @@
         
         &__descr{
             border-bottom: 1px solid var(--main-border-color);
-
             width: 100%;
-
             padding: 20px;
-            
             font-size: 14px;
             font-weight: 400;
         }

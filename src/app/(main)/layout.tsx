@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {JetBrains_Mono} from "next/font/google";
 import "@/assets/css/global.scss";
 import Navigation from "@/widgets/navigation/navigation";
+import UserStore from "@/entities/user/model/store/UserStore";
 
 export const metadata: Metadata = {
   title: "DiplomaFrontend",

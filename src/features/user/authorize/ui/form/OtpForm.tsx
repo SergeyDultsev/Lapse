@@ -3,12 +3,22 @@ import { observer } from "mobx-react-lite";
 import styles from "./style/AuthorizeForm.module.scss";
 import ButtonDefault from "@/shared/ui/button/ButtonDefault";
 import InputDefault from "@/shared/ui/input/InputDefault";
-import OtpFormModel from "@/features/user/authorize/model/OtpFormModel";
+import UserStore from "@/entities/user/model/store/UserStore";
+import LoginOrRegisterFormModel from "@/features/user/authorize/model/LoginOrRegisterFormModel";
+import useRouterToPage from "@/shared/utils/useRouterToPage.tx";
 
 
 const OtpForm: React.FC = observer(() => {
-    const handleOtp = (): void => {
-        //
+    const navigateTo = useRouterToPage();
+
+    const handleAuthorize = async (): Promise<void> => {
+        await UserStore.loginOrRegisterUser();
+        console.log("Страница OTP", UserStore.userAuthorized);
+        navigateTo('/profile');
+    }
+
+    const sendOtpCodeRepeat = async (): Promise<void> => {
+        await UserStore.getOtpCode();
     }
 
     return (
@@ -19,21 +29,21 @@ const OtpForm: React.FC = observer(() => {
                 <InputDefault
                     placeholder={"Код подтверждения"}
                     type={'text'}
-                    value={OtpFormModel.otpForm}
-                    onChange={(event) => OtpFormModel.setOtpCode(event.target.value)}
+                    value={LoginOrRegisterFormModel.dataForm.otp_code}
+                    onChange={(event) => LoginOrRegisterFormModel.setFormData('otp_code', event.target.value)}
                     maxlength={4}
                     minlength={4}
                 />
             </div>
             <ButtonDefault
-                onClick={handleOtp}
+                onClick={handleAuthorize}
                 style={{width: "100%"}}
                 active={true}
                 type="submit"
             >
                 Подтвердить
             </ButtonDefault>
-            <p className={styles["form-notice"]}>
+            <p className={styles["form-notice"]} onClick={sendOtpCodeRepeat}>
                 <span className={styles['form-notice__span']}>
                     Отправить повторно
                 </span>

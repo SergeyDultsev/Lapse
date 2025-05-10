@@ -9,23 +9,23 @@ const PostItem: React.FC<IPost> = ({ user, post }) => {
         <article className={styles["post"]}>
 
             <div className={styles["user-info"]}>
-                {user.avatar && (
-                    <img 
-                        className={styles["user_info__avatar"]} 
-                        src={user.avatar} 
-                        alt="avatar" 
+                {user.avatar_url && (
+                    <img
+                        className={styles["user-info__avatar"]}
+                        srcSet={`${user.avatar_url} 1x, ${user.avatar_url.replace('.jpg', '@2x.jpg')} 2x`}
+                        alt="avatar"
                         loading="lazy" />
                 )}
-                <h2 className={styles["user-info__name"]}>{user.username}</h2>
+                <h2 className={styles["user-info__name"]}>{user.full_name}</h2>
             </div>
-            
+
             <div className={styles["post-content"]}>
                 <h2 className={styles["post-content__title"]}>{post.title}</h2>
                 <p className={styles["post-content__content"]}>{post.content} </p>
-                {post.prewiew && (
+                {post.preview_url && (
                         <img 
                             className={styles["post-content__prewiew"]} 
-                            src={post.prewiew}
+                            src={post.preview_url}
                             alt="avatar" 
                             loading="lazy" />
                 )}
@@ -34,13 +34,13 @@ const PostItem: React.FC<IPost> = ({ user, post }) => {
             <div className={styles["post-option__list"]}>
                 <div className={styles["post-option__item"]}>
                     <div className={styles["post-option__item__counter"]}>
-                        {post.commentCount}
+                        {post.comment_count}
                     </div>
                     <CommentIcon/>
                 </div>
                 <div className={styles["post-option__item"]}>
                     <div className={styles["post-option__item__counter"]}>
-                        {post.saveCount}
+                        {post.save_count}
                     </div>
                     <SaveIcon/>
                 </div>
