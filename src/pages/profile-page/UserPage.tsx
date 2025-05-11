@@ -17,29 +17,16 @@ import PostStore from "@/entities/post/model/store/PostStore";
 import TierStore from "@/entities/tier/model/store/TierStore";
 import IUser from "@/entities/user/model/types/iUser";
 import UserStore from "@entities/user/model/store/UserStore";
-import routerMiddleware from "@/middleware/useRouterMiddleware";
 
 const UserPage: React.FC = observer(() => {
-    const router = useRouter();
     const { user_id } = useParams();
     const userData: IUser | null = toJS(UserStore.userData);
     const postsData: iPost[] = postStore?.postsData || [];
     const tierData: iTier[] = tierStore?.tierData || [];
 
-    routerMiddleware();
-
     useEffect(() => {
-        if (user_id) {
-            UserStore.getUserData(user_id);
-        }
+        if (user_id) UserStore.getUserData(user_id);
     }, [user_id]);
-
-    useEffect(() => {
-        if (user_id && UserStore.userAuthorized?.user_id === user_id) {
-            router.push('/profile');
-        }
-    }, [user_id, router]);
-
 
     return (
         <main className="main">

@@ -43,7 +43,7 @@ const ProfileInfo: React.FC<iProfileInfo> = ({avatar, full_name, subscriber, sub
                 <p className={styles['user-info__descr']}>
                     {about}
                 </p>
-                {userAuthorizedData?.user_id ? (
+                {userAuthorizedData?.user_id === userData?.user_id ? (
                     <ButtonDefault
                         style={{ padding: "11px 29px", margin: "20px 0 0 0"  }}
                         children={"Редактировать профиль"}

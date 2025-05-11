@@ -14,7 +14,7 @@ import ProfileInfo from "./ui/profile-info/ProfileInfo";
 import TierList from "@/widgets/cart-info/tier-list/TierList"
 import AlertBlock from "@/widgets/alert-block/AlertBlock";
 import CartInfo from "@/widgets/cart-info/CartInfo";
-import useRouterMiddleware  from "@/middleware/useRouterMiddleware";
+import useRouterMiddleware from "@/middleware/useRouterMiddleware";
 
 const ProfilePage: React.FC = observer(() => {
     const userData: IUser | null = toJS(UserStore.userAuthorized);
