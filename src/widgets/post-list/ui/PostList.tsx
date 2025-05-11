@@ -23,6 +23,7 @@ const PostList: React.FC<IPosts> = observer(({ posts }) => {
         <section className={styles["posts"]}>
             <div className={styles["posts-btns"]}>
                 <ButtonDefault
+                    style={{ width: "158px" }}
                     onClick={() => filterPostsHandle("allPost")}
                     name="allPost"
                     active={PostFilterStore.filteredFlag == "allPost"}
@@ -31,6 +32,7 @@ const PostList: React.FC<IPosts> = observer(({ posts }) => {
                     Все посты
                 </ButtonDefault>
                 <ButtonDefault
+                    style={{ width: "158px" }}
                     onClick={() => filterPostsHandle("open")}
                     name="openPost"
                     active={PostFilterStore.filteredFlag == true}
@@ -39,6 +41,7 @@ const PostList: React.FC<IPosts> = observer(({ posts }) => {
                     Открытые посты
                 </ButtonDefault>
                 <ButtonDefault
+                    style={{ width: "158px" }}
                     onClick={() => filterPostsHandle("close")}
                     name="closePost"
                     active={PostFilterStore.filteredFlag == false}
