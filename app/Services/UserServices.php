@@ -92,6 +92,8 @@ class UserServices {
         $user->save();
 
         if(isset($data['avatar_url']) && $data['avatar_url']){
+            $user->clearMediaCollection('users');
+            $user->save();
             $user->addMediaFromRequest('avatar_url')->toMediaCollection('users');
         }
 
