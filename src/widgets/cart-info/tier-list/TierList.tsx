@@ -8,12 +8,12 @@ const TierList: React.FC<{ tiers: iTier[] }> = ({ tiers }) => {
         <section className={styles['tier-list']}>
             {tiers.map((tier: iTier) => (
                 <TierItem
-                    tierId={tier.tierId}
-                    userId={tier.userId}
+                    tier_id={tier.tier_id}
+                    user_id={tier.user_id}
                     title={tier.title}
                     price={tier.price}
                     description={tier.description}
-                    key={tier.tierId}
+                    key={tier.tier_id}
                 />
             ))}
         </section>
