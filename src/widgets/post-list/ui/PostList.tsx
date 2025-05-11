@@ -15,7 +15,7 @@ const PostList: React.FC<IPosts> = observer(({ posts }) => {
         PostFilterStore.filterPosts(posts, "allPost");
     }, [posts]);
 
-    const filterPostsHandle = (filterFlag: string): void => {
+    const filterPostsHandle = (filterFlag: string | boolean): void => {
         PostFilterStore.filterPosts(posts, filterFlag);
     };
 
@@ -33,7 +33,7 @@ const PostList: React.FC<IPosts> = observer(({ posts }) => {
                 <ButtonDefault
                     onClick={() => filterPostsHandle("open")}
                     name="openPost"
-                    active={PostFilterStore.filteredFlag == "open"}
+                    active={PostFilterStore.filteredFlag == true}
                     type="button"
                 >
                     Открытые посты
@@ -41,7 +41,7 @@ const PostList: React.FC<IPosts> = observer(({ posts }) => {
                 <ButtonDefault
                     onClick={() => filterPostsHandle("close")}
                     name="closePost"
-                    active={PostFilterStore.filteredFlag == "close"}
+                    active={PostFilterStore.filteredFlag == false}
                     type="button"
                 >
                     Закрытые посты

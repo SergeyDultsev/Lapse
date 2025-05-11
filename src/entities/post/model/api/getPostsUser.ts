@@ -13,7 +13,6 @@ async function getPostsUser(user_id: string): Promise<void>{
         cache: 'no-store'
     });
 
-    console.log('API Response:', response);
     if(response?.data) return { data: response.data.data };
 
     return { };

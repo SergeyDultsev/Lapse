@@ -4,6 +4,7 @@ import getAuthOtpCode from "@/features/user/authorize/model/api/getAuthOtpCode";
 import loginOrRegister from "@/features/user/authorize/model/api/loginOrRegister";
 import authCheck from "@/features/user/authorize/model/api/authCheck";
 import getUser from "@/entities/user/model/api/getUser";
+import { redirect } from 'next/navigation';
 
 class UserStore{
     usersData:iUser[] = [];
@@ -17,6 +18,8 @@ class UserStore{
             getOtpCode: action,
             loginOrRegisterUser: action,
         });
+
+        this.authorizationCheck();
     }
 
     async getOtpCode(): Promise<void> {
@@ -25,7 +28,6 @@ class UserStore{
 
     async loginOrRegisterUser(): Promise<void> {
         const response: boolean = await loginOrRegister();
-
         runInAction(() => {
             if (response) this.userIsAuth = true;
         });

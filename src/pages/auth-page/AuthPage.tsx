@@ -7,9 +7,12 @@ import LoginForm from "@/features/user/authorize/ui/form/LoginForm";
 import RegisterForm from "@/features/user/authorize/ui/form/RegisterForm";
 import OtpForm from "@/features/user/authorize/ui/form/OtpForm";
 import ForgotForm from "@/features/user/authorize/ui/form/ForgotForm";
+import useRouterMiddleware from "@/middleware/useRouterMiddleware";
 
 const AuthPage: React.FC = observer(() => {
     const stateForm = AuthorizePageModel.stateForm;
+
+    useRouterMiddleware();
 
     return (
         <main className="main">

@@ -54,6 +54,25 @@
         cursor: pointer;
         transition: all .3s ease-out;
 
+        &__active{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #FFFFFF;
+            fill: #FFFFFF;
+            gap: 10px;
+            padding: 8px 14px;
+            border: 1px solid var(--main-border-color);
+            border-radius: var(--main-border-radius);
+            background-color: var(--main-color);
+            cursor: pointer;
+
+            & > svg > path{
+                fill: #FFFFFF;
+                transition: all .3s ease-out;
+            }
+        }
+
         &:hover{
             background-color: var(--main-color);
             transition: all .3s ease-out;
@@ -79,7 +98,7 @@
 .user-info{
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 
     &__avatar{
         width: 36px;

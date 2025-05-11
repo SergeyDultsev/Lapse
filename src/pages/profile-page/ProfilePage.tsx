@@ -14,14 +14,16 @@ import ProfileInfo from "./ui/profile-info/ProfileInfo";
 import TierList from "@/widgets/cart-info/tier-list/TierList"
 import AlertBlock from "@/widgets/alert-block/AlertBlock";
 import CartInfo from "@/widgets/cart-info/CartInfo";
+import useRouterMiddleware  from "@/middleware/useRouterMiddleware";
 
 const ProfilePage: React.FC = observer(() => {
     const userData: IUser | null = toJS(UserStore.userAuthorized);
     const postsData: iPost[] = toJS(PostStore?.postsData) || [];
     const tierData: iTier[] = TierStore?.tierData || [];
 
+    useRouterMiddleware();
+
     useEffect(() => {
-        UserStore.authorizationCheck()
         if(userData?.user_id) PostStore.getPostsByUserId(userData?.user_id);
     }, [userData?.user_id])
 

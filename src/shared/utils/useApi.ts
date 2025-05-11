@@ -8,7 +8,6 @@ const useApi = async (url: string, option?: RequestInit) => {
         data = await response.json();
 
         if (!response.ok) {
-            console.error('Ошибка сервера:', data);
             return;
         }
     } catch (e) {

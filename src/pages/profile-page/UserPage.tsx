@@ -1,7 +1,7 @@
 "use client";
 
 import React, {useEffect} from "react";
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { toJS } from "mobx";
 import { observer } from "mobx-react-lite";
 import iPost from "@/entities/post/model/types/iPost";
@@ -16,23 +16,30 @@ import CartInfo from "@/widgets/cart-info/CartInfo";
 import PostStore from "@/entities/post/model/store/PostStore";
 import TierStore from "@/entities/tier/model/store/TierStore";
 import IUser from "@/entities/user/model/types/iUser";
-import useRouterToPage from "@/shared/utils/useRouterToPage.tx";
-import { useUserStore } from "@/providers/UserStoreContext";
+import UserStore from "@entities/user/model/store/UserStore";
+import routerMiddleware from "@/middleware/useRouterMiddleware";
 
 const UserPage: React.FC = observer(() => {
-    const navigateTo = useRouterToPage();
-    const UserStore = useUserStore();
+    const router = useRouter();
     const { user_id } = useParams();
     const userData: IUser | null = toJS(UserStore.userData);
     const postsData: iPost[] = postStore?.postsData || [];
     const tierData: iTier[] = tierStore?.tierData || [];
 
-    if (UserStore.userAuthorized?.userId === user_id) navigateTo('/profile');
-    console.log(UserStore.userAuthorized?.userId);
+    routerMiddleware();
 
     useEffect(() => {
-        if(user_id) UserStore.getUserData(user_id);
+        if (user_id) {
+            UserStore.getUserData(user_id);
+        }
     }, [user_id]);
+
+    useEffect(() => {
+        if (user_id && UserStore.userAuthorized?.user_id === user_id) {
+            router.push('/profile');
+        }
+    }, [user_id, router]);
+
 
     return (
         <main className="main">
@@ -51,6 +58,7 @@ const UserPage: React.FC = observer(() => {
 
                     <aside className="aside">
                         <ProfileInfo
+                            avatar={userData.avatar_url}
                             full_name={userData.full_name}
                             subscriber={userData.subscriber_count}
                             subscriptions={userData.subscriptions_count}

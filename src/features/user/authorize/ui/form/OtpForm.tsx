@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { observer } from "mobx-react-lite";
 import styles from "./style/AuthorizeForm.module.scss";
@@ -5,16 +7,11 @@ import ButtonDefault from "@/shared/ui/button/ButtonDefault";
 import InputDefault from "@/shared/ui/input/InputDefault";
 import UserStore from "@/entities/user/model/store/UserStore";
 import LoginOrRegisterFormModel from "@/features/user/authorize/model/LoginOrRegisterFormModel";
-import useRouterToPage from "@/shared/utils/useRouterToPage.tx";
 
 
 const OtpForm: React.FC = observer(() => {
-    const navigateTo = useRouterToPage();
-
     const handleAuthorize = async (): Promise<void> => {
         await UserStore.loginOrRegisterUser();
-        console.log("Страница OTP", UserStore.userAuthorized);
-        navigateTo('/profile');
     }
 
     const sendOtpCodeRepeat = async (): Promise<void> => {

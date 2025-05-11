@@ -3,10 +3,10 @@ interface iPost {
     title: string,
     content: string,
     preview_url: string | null,
-    status: "open" | "byTier",
-    is_favorite: boolean
     comment_count: number,
-    save_count: number
+    save_count: number,
+    is_favorite: false,
+    is_open: true,
     user: {
         user_id: string | null,
         full_name: string,

@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./ProfileInfo.module.scss"
 import AvatarDefault from "@/assets/img/avatar.jpg";
 import ButtonDefault from "@/shared/ui/button/ButtonDefault";
+import UserStore from "@entities/user/model/store/UserStore";
+import IUser from "@entities/user/model/types/iUser";
 
 interface iProfileInfo {
     avatar: string,
@@ -12,6 +14,9 @@ interface iProfileInfo {
 }
 
 const ProfileInfo: React.FC<iProfileInfo> = ({avatar, full_name, subscriber, subscriptions, about}) => {
+    const userAuthorizedData: IUser | null = UserStore.userAuthorized;
+    const userData: IUser | null = UserStore.userData;
+
     return (
         <section className={styles['profile-info']}>
             <div className={styles['user-info']}>
@@ -21,7 +26,7 @@ const ProfileInfo: React.FC<iProfileInfo> = ({avatar, full_name, subscriber, sub
                          alt="avatar"
                          loading="lazy"
                     />
-                ): (
+                ) : (
                     <img className={styles['user-info__avatar']}
                          src={AvatarDefault.src}
                          alt="avatar"
@@ -38,14 +43,23 @@ const ProfileInfo: React.FC<iProfileInfo> = ({avatar, full_name, subscriber, sub
                 <p className={styles['user-info__descr']}>
                     {about}
                 </p>
-
-                <ButtonDefault 
-                    style={{ padding: "11px 29px", margin: "20px 0 0 0"  }} 
-                    children={"Редактировать профиль"} 
-                    name={"editUser"} 
-                    type={"button"} 
-                    active={false}
-                />
+                {userAuthorizedData?.user_id ? (
+                    <ButtonDefault
+                        style={{ padding: "11px 29px", margin: "20px 0 0 0"  }}
+                        children={"Редактировать профиль"}
+                        name={"editUser"}
+                        type={"button"}
+                        active={false}
+                    />
+                ) : (
+                    <ButtonDefault
+                        style={{ padding: "11px 29px", margin: "20px 0 0 0"  }}
+                        children={"Подписаться"}
+                        name={"editUser"}
+                        type={"button"}
+                        active={false}
+                    />
+                )}
             </div>
         </section>
     );
