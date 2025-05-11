@@ -41,7 +41,7 @@ Route::prefix('post')->group(function () {
         ->middleware('auth:sanctum', 'throttle:20,1');
     Route::post('/', [PostController::class, 'store'])->middleware('auth:sanctum');
     Route::get('/{post_id}', [PostController::class, 'show'])
-        ->middleware( 'throttle:60,1');
+        ->middleware('throttle:60,1');
     Route::delete('/{post_id}', [PostController::class, 'destroy'])
         ->middleware('auth:sanctum', 'throttle:20,1');
 });

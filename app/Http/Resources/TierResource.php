@@ -16,6 +16,7 @@ class TierResource extends JsonResource
     {
         return [
             'tier_id' => $this->tier_id,
+            'user_id' => $this->user_id,
             'title' => $this->title,
             'description' => $this->description,
             'preview_url' => $this->preview_url,
