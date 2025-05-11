@@ -4,7 +4,6 @@ import getAuthOtpCode from "@/features/user/authorize/model/api/getAuthOtpCode";
 import loginOrRegister from "@/features/user/authorize/model/api/loginOrRegister";
 import authCheck from "@/features/user/authorize/model/api/authCheck";
 import getUser from "@/entities/user/model/api/getUser";
-import { redirect } from 'next/navigation';
 
 class UserStore{
     usersData:iUser[] = [];
@@ -17,6 +16,8 @@ class UserStore{
         makeAutoObservable(this, {
             getOtpCode: action,
             loginOrRegisterUser: action,
+            getUsersData: action,
+            getUserData: action,
         });
 
         this.authorizationCheck();
@@ -47,14 +48,13 @@ class UserStore{
         }
     }
 
-    getUsers(): void {
+    async getUsersData(): Promise<void> {
         //
     }
 
-    async getUserData(user_id: string): void {
+    async getUserData(user_id: string): Promise<void> {
         try {
             const response = await getUser(user_id);
-
             runInAction(() => {
                 if (response?.data) this.userData = response.data;
             });

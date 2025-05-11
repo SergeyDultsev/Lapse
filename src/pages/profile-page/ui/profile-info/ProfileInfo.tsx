@@ -6,6 +6,7 @@ import UserStore from "@entities/user/model/store/UserStore";
 import IUser from "@entities/user/model/types/iUser";
 
 interface iProfileInfo {
+    user_id: string,
     avatar: string,
     full_name: string,
     subscriber: number,
@@ -13,9 +14,8 @@ interface iProfileInfo {
     about: string
 }
 
-const ProfileInfo: React.FC<iProfileInfo> = ({avatar, full_name, subscriber, subscriptions, about}) => {
+const ProfileInfo: React.FC<iProfileInfo> = ({user_id, avatar, full_name, subscriber, subscriptions, about}) => {
     const userAuthorizedData: IUser | null = UserStore.userAuthorized;
-    const userData: IUser | null = UserStore.userData;
 
     return (
         <section className={styles['profile-info']}>
@@ -43,7 +43,7 @@ const ProfileInfo: React.FC<iProfileInfo> = ({avatar, full_name, subscriber, sub
                 <p className={styles['user-info__descr']}>
                     {about}
                 </p>
-                {userAuthorizedData?.user_id === userData?.user_id ? (
+                {userAuthorizedData?.user_id === user_id ? (
                     <ButtonDefault
                         style={{ padding: "11px 29px", margin: "20px 0 0 0"  }}
                         children={"Редактировать профиль"}

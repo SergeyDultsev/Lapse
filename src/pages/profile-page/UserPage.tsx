@@ -45,6 +45,7 @@ const UserPage: React.FC = observer(() => {
 
                     <aside className="aside">
                         <ProfileInfo
+                            user_id={userData.user_id}
                             avatar={userData.avatar_url}
                             full_name={userData.full_name}
                             subscriber={userData.subscriber_count}

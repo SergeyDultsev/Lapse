@@ -24,7 +24,10 @@ const ProfilePage: React.FC = observer(() => {
     useRouterMiddleware();
 
     useEffect(() => {
-        if(userData?.user_id) PostStore.getPostsByUserId(userData?.user_id);
+        if(userData?.user_id) {
+            PostStore.getPostsByUserId(userData?.user_id);
+            TierStore.getTiers(userData?.user_id);
+        }
     }, [userData?.user_id])
 
     return (
@@ -44,6 +47,7 @@ const ProfilePage: React.FC = observer(() => {
 
                     <aside className="aside">
                         <ProfileInfo
+                            user_id={userData.user_id}
                             avatar={userData.avatar_url}
                             full_name={userData.full_name}
                             subscriber={userData.subscriber_count}
@@ -59,7 +63,7 @@ const ProfilePage: React.FC = observer(() => {
                         ) : (
                             <CartInfo
                                 nameCart={"Уровни подписок"}
-                                children={<TierList tiers={TierStore.tierData}/>}
+                                children={<TierList tiers={toJS(TierStore.tierData)}/>}
                             />
                         )}
                     </aside>
