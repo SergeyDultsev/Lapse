@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import {action, makeAutoObservable} from "mobx";
 
 class ForgotFormModel {
     wasSubmit: boolean = false;
@@ -8,7 +8,10 @@ class ForgotFormModel {
     };
 
     constructor() {
-        makeAutoObservable(this);
+        makeAutoObservable(this,{
+            setForgotEmail: action,
+            cleanForgotForm: action
+        });
     }
 
     setForgotEmail(email: string) {

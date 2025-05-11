@@ -3,7 +3,7 @@ import { makeAutoObservable, action } from "mobx";
 
 class SelectStore {
     isOpen: boolean = false;
-    selected: ITier = { tierId: '', title: '', price: 0, description: '' };
+    selected: ITier = { userId: '', tierId: '', title: '', price: 0, description: '' };
 
     constructor () {
         makeAutoObservable(this, {

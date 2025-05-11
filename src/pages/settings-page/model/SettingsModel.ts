@@ -1,18 +1,18 @@
 import {action, makeAutoObservable} from "mobx";
 
-class LoginOrRegisterFormModel {
+class SettingsModel {
     wasSubmit: boolean = false;
 
     dataForm = {
         name: '',
         surname: '',
         email: '',
-        password: '',
-        otp_code: '',
+        abort: '',
+        avatar_url: '',
     };
 
     constructor() {
-        makeAutoObservable(this, {
+        makeAutoObservable(this,  {
             setFormData: action,
             cleanForm: action
         });
@@ -26,10 +26,10 @@ class LoginOrRegisterFormModel {
         this.dataForm.name = '';
         this.dataForm.surname = '';
         this.dataForm.email = '';
-        this.dataForm.password = '';
-        this.dataForm.otp_code = '';
+        this.dataForm.abort = '';
+        this.dataForm.avatar_url = '';
         this.wasSubmit = false;
     }
 }
 
-export default new LoginOrRegisterFormModel;
+export default new SettingsModel;

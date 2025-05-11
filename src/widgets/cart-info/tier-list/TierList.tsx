@@ -9,6 +9,7 @@ const TierList: React.FC<{ tiers: iTier[] }> = ({ tiers }) => {
             {tiers.map((tier: iTier) => (
                 <TierItem
                     tierId={tier.tierId}
+                    userId={tier.userId}
                     title={tier.title}
                     price={tier.price}
                     description={tier.description}

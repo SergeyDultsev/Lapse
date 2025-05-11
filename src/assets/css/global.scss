@@ -1,6 +1,10 @@
 @use "reset";
 @use "variables";
 
+html{
+  scrollbar-gutter: stable;
+}
+
 body{
   height: 100%;
   color: var(--text-color);
