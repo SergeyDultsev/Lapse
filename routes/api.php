@@ -8,6 +8,7 @@ use App\Http\Controllers\OtpController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TierController;
+use App\Http\Controllers\SearchController;
 
 Route::prefix('/auth')->group(function () {
     Route::post('/verify-auth', [AuthController::class, 'registerOrLoginWithOtp']);
@@ -62,3 +63,7 @@ Route::prefix('tier')->group(function () {
     Route::post('/', [TierController::class, 'store'])->middleware('auth:sanctum');
     Route::delete('/{tier_id}', [TierController::class, 'destroy'])->middleware('auth:sanctum');
 })->middleware('throttle:40,1');
+
+Route::prefix('search')->group(function () {
+    Route::get('/user', [SearchController::class, 'index']);
+});
