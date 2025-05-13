@@ -53,6 +53,16 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(Post::class, 'user_id', 'user_id');
     }
 
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class, 'subscriber_id', 'user_id');
+    }
+
+    public function subscribers()
+    {
+        return $this->hasMany(Subscription::class, 'target_id', 'user_id');
+    }
+
     public function getFullNameAttribute(): string
     {
         return "$this->name $this->surname";

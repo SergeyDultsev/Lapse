@@ -36,7 +36,7 @@ class UserController extends Controller
     public function index(Request $request, string $user_id): object
     {
         if ($request->routeIs('subscriptions')) {
-            $data = $this->userServices->getSubscription($user_id);
+            $data = $this->userServices->getSubscriptions($user_id);
             return $this->jsonResponse(
                 UserResource::collection(collect($data['data'])),
                 $data['status'],

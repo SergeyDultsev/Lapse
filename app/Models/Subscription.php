@@ -14,8 +14,18 @@ class Subscription extends Model
     public $keyType = 'string';
 
     protected $fillable = [
-        'subscription_id', 
+        'subscription_id',
         'subscriber_id',
         'target_id',
     ];
+
+    public function subscriber()
+    {
+        return $this->belongsTo(User::class, 'subscriber_id', 'user_id');
+    }
+
+    public function target()
+    {
+        return $this->belongsTo(User::class, 'target_id', 'user_id');
+    }
 }

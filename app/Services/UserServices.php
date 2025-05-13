@@ -13,13 +13,15 @@ class UserServices {
      * @param string $user_id идентификатор пользователя.
      * @return array Ответ с данными пользователей.
      */
-    public function getSubscription(string $user_id): array 
+    public function getSubscriptions(string $user_id): array
     {
-        $userData = Subscription::where('subscriber_id', $user_id)->get();
+        $user = User::where('user_id', $user_id)->firstOrFail();
+        $subscriptions = $user->subscriptions()->with('target')->get()->pluck('target'); // т.е. на кого подписан
+
         return [
-            'data' => $userData, 
-            'status' => 200, 
-            'message' => 'User subscriptions retrieved successfully'
+            'data' => $subscriptions,
+            'status' => 200,
+            'message' => 'Subscriptions retrieved successfully',
         ];
     }
 
@@ -29,13 +31,15 @@ class UserServices {
      * @param string $user_id идентификатор пользователя.
      * @return array Ответ с данными пользователей.
      */
-    public function getSubscribers(string $user_id): array 
+    public function getSubscribers(string $user_id): array
     {
-        $userData = Subscription::where('target_id', $user_id)->get();
+        $user = User::where('user_id', $user_id)->firstOrFail();
+        $subscribers = $user->subscribers()->with('subscriber')->get()->pluck('subscriber'); // кто подписан
+
         return [
-            'data' => $userData, 
-            'status' => 200, 
-            'message' => 'User subscribers retrieved successfully'
+            'data' => $subscribers,
+            'status' => 200,
+            'message' => 'Subscribers retrieved successfully',
         ];
     }
 
@@ -45,21 +49,21 @@ class UserServices {
      * @param string $user_id идентификатор пользователя.
      * @return array Ответ с данными пользователя.
      */
-    public function showUser(string $user_id): array 
+    public function showUser(string $user_id): array
     {
         $user = User::find($user_id);
 
         if(!$user){
             return [
-                'data' => [], 
-                'status' => 404, 
+                'data' => [],
+                'status' => 404,
                 'message' => 'User not fount'
             ];
         }
 
         return [
-            'data' => $user, 
-            'status' => 200, 
+            'data' => $user,
+            'status' => 200,
             'message' => 'User show successfully'
         ];
     }
@@ -80,8 +84,8 @@ class UserServices {
 
         if(!$user){
             return [
-                'data' => [], 
-                'status' => 404, 
+                'data' => [],
+                'status' => 404,
                 'message' => 'User not fount'
             ];
         }
@@ -98,8 +102,8 @@ class UserServices {
         }
 
         return [
-            'data' => $user, 
-            'status' => 200, 
+            'data' => $user,
+            'status' => 200,
             'message' => 'User updated successfully'
         ];
     }
@@ -113,11 +117,11 @@ class UserServices {
     {
         $user = auth::user();
 
-        if(!$user) 
+        if(!$user)
         {
             return [
-                'data' => [], 
-                'status' => 403, 
+                'data' => [],
+                'status' => 403,
                 'message' => 'Forbidden'
             ];
         }
@@ -125,8 +129,8 @@ class UserServices {
         $user->delete();
 
         return [
-            'data' => [], 
-            'status' => 200, 
+            'data' => [],
+            'status' => 200,
             'message' => 'User delete successfully'
         ];
     }
