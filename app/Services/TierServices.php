@@ -149,7 +149,7 @@ class TierServices{
         $tier->delete();
 
         return [
-            'data' => [],
+            'data' => $tier,
             'status' => 200,
             'message' => 'Tier delete successfully'
         ];
