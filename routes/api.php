@@ -37,7 +37,7 @@ Route::prefix('post')->group(function () {
         ->name('posts')
         ->middleware('throttle:60,1');
     Route::get('/feed', [PostController::class, 'index'])
-        ->name('posts')
+        ->name('feed')
         ->middleware('auth:sanctum', 'throttle:20,1');
     Route::post('/', [PostController::class, 'store'])->middleware('auth:sanctum');
     Route::get('/{post_id}', [PostController::class, 'show'])

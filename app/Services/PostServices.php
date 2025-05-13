@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Post;
+use App\Models\Subscription;
 use App\Models\User;
 use App\Models\Favorite;
 use Ramsey\Uuid\Uuid;
@@ -73,11 +74,24 @@ class PostServices
      * @param string $user_id идентификатор пользователя.
      * @return array пост.
      */
-    public function getFeed(string $user_id): array
+    public function getFeed(array $data): array
     {
-        // TODO: Написать логику
+        $userId = Auth::id();
+        $targetIds = Subscription::where('subscriber_id', $userId)
+            ->pluck('target_id');
+
+        $postData = Post::whereIn('user_id', $targetIds)->get();
+
+        if ($postData->isEmpty()) {
+            return [
+                'data' => [],
+                'status' => 404,
+                'message' => 'Posts Not Found'
+            ];
+        }
+
         return [
-            'data' => [],
+            'data' => $postData,
             'status' => 200,
             'message' => 'Posts successfully received'
         ];

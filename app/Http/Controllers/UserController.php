@@ -51,7 +51,6 @@ class UserController extends Controller
             );
         }
 
-        // Если маршрут не соответствует ожиданиям
         return $this->jsonResponse([], 500, 'Internal Server Error');
     }
 

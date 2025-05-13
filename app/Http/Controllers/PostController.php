@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Services\PostServices;
 use App\Http\Requests\PostCreateRequest;
@@ -35,13 +36,21 @@ class PostController extends Controller
     }
 
     /**
-     * Получение всех постов пользователя
+     * Получение всех постов подписок
      *
      * @param string $user_id
      * @return object JSON-ответ со списком постов
      */
-    public function index(string $user_id): object
+    public function index(Request $request, ?string $user_id = null): object
     {
+        if($request->routeIs('feed')){
+            $data = $this->postService->getFeed($request->all());
+            return $this->jsonResponse(
+                PostResource::collection(collect($data['data'])),
+                $data['status'],
+                $data['message']
+            );
+        }
         $data = $this->postService->getPosts($user_id);
         return $this->jsonResponse(
             PostResource::collection(collect($data['data'])),
