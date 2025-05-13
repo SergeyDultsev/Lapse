@@ -21,7 +21,10 @@ class FavoriteServices{
             ];
         }
 
-        $isFavorite = Favorite::where('post_id', $post_id)->where('user_id', $user->user_id)->first();
+        $isFavorite = Favorite::where([
+            ['post_id', '=', $post_id],
+            ['user_id', '=', $user->user_id]
+        ])->first();
 
         if(!$isFavorite){
             $favorite = new Favorite();

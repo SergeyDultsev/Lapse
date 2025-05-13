@@ -26,7 +26,7 @@ class Favorite extends Model
      * @param string $user_id
      * @return bool
      */
-    public static  function isFavorite(string $post_id, string $user_id): bool
+    public static function isFavorite(string $post_id, string $user_id): bool
     {
         return Favorite::where('post_id', $post_id)
             ->where('user_id', $user_id)

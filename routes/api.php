@@ -9,6 +9,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TierController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SubscriptionController;
 
 Route::prefix('/auth')->group(function () {
     Route::post('/verify-auth', [AuthController::class, 'registerOrLoginWithOtp']);
@@ -52,6 +53,9 @@ Route::prefix('posts/{post_id}/comments')->group(function () {
     Route::post('/', [CommentController::class, 'store'])->middleware('auth:sanctum');
     Route::delete('/', [CommentController::class, 'destroy'])->middleware('auth:sanctum');
 })->middleware('throttle:40,1');
+
+Route::post('follow/toggle/{user_id}', [SubscriptionController::class, 'storeOrDelete'])
+    ->middleware('auth:sanctum', 'throttle:20,1');
 
 Route::post('favorites/toggle/{post_id}', [FavoriteController::class, 'storeOrDelete'])
     ->middleware('auth:sanctum', 'throttle:20,1');
