@@ -21,7 +21,7 @@ const ProfilePage: React.FC = observer(() => {
     const postsData: iPost[] = toJS(PostStore?.postsData) || [];
     const tierData: iTier[] = TierStore?.tierData || [];
 
-    useRouterMiddleware();
+    if (!userData?.isAuth) useRouterMiddleware();
 
     useEffect(() => {
         if(userData?.user_id) {

@@ -10,7 +10,8 @@ class UserStore{
     userData:iUser | null = null;
     userAuthorized:iUser | null = null;
 
-    userIsAuth:boolean = false;
+    isAuth:boolean = false;
+    isLoadingAuth:boolean = true;
 
     constructor() {
         makeAutoObservable(this, {
@@ -30,7 +31,7 @@ class UserStore{
     async loginOrRegisterUser(): Promise<void> {
         const response: boolean = await loginOrRegister();
         runInAction(() => {
-            if (response) this.userIsAuth = true;
+            if (response) this.isAuth = true;
         });
     }
 
@@ -39,11 +40,15 @@ class UserStore{
             const response = await authCheck();
             runInAction(() => {
                 this.userAuthorized = response.data;
-                this.userIsAuth = true;
+                this.isAuth = true;
             });
         } catch (error) {
             runInAction(() => {
-                this.userIsAuth = false;
+                this.isAuth = false;
+            });
+        } finally {
+            runInAction(() => {
+                this.isLoadingAuth = false;
             });
         }
     }

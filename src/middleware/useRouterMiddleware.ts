@@ -14,9 +14,11 @@ const routesToPage = [
 
 const useRouterMiddleware  = (): void => {
     const currentPath = usePathname();
-    const isAuth = UserStore.userIsAuth;
+    const { isAuth, isLoadingAuth } = UserStore;
 
     useEffect(() => {
+        if (isLoadingAuth) return;
+
         const sortedRoutes = [...routesToPage].sort((a, b) => b.url.length - a.url.length);
         const route = sortedRoutes.find(route => currentPath?.startsWith(route.url));
 
@@ -24,7 +26,7 @@ const useRouterMiddleware  = (): void => {
             redirect('/authorize');
         }
 
-        if(route?.url == '/authorize'){
+        if(route?.url == '/authorize' && isAuth){
             redirect('/');
         }
 
