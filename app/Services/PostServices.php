@@ -49,6 +49,7 @@ class PostServices
         $user = User::find($user_id);
         $postData = $user->posts;
 
+
         if($postData->isEmpty()){
             return [
                 'data' => [],

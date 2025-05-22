@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\FeedController;
+use App\Http\Controllers\PurchasedTierController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
@@ -65,9 +67,12 @@ Route::prefix('tier')->group(function () {
     Route::get('/{tier_id}', [TierController::class, 'show']);
     Route::get('/{tier_id}', [TierController::class, 'update']);
     Route::post('/', [TierController::class, 'store'])->middleware('auth:sanctum');
+    Route::post('/pay/{tier_id}', [PurchasedTierController::class, 'store'])->middleware('auth:sanctum');
     Route::delete('/{tier_id}', [TierController::class, 'destroy'])->middleware('auth:sanctum');
 })->middleware('throttle:40,1');
 
 Route::prefix('search')->group(function () {
     Route::get('/user', [SearchController::class, 'index']);
 });
+
+Route::get('/feed', [FeedController::class, 'index'])->middleware('auth:sanctum');

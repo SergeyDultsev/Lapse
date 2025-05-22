@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\HasMedia;
@@ -66,6 +67,22 @@ class User extends Authenticatable implements HasMedia
     public function getFullNameAttribute(): string
     {
         return "$this->name $this->surname";
+    }
+
+    public function isFollow(string $user_id): bool | string
+    {
+        if(auth()->id() === $user_id) return 'you';
+        return Subscription::where('subscriber_id', auth()->id())
+            ->where('target_id', $user_id)
+            ->exists();
+    }
+
+    public function recommendations(): object
+    {
+        return User::where('user_id', '!=', Auth::id())
+        ->whereDoesntHave('subscribers', function ($query) {
+            $query->where('subscriber_id', Auth::id());
+        })->get();
     }
 
     public function getAvatarUrlAttribute(): string|null

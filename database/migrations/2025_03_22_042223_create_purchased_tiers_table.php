@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('purchased_tier_id')->primary();
             $table->uuid('tier_id');
             $table->uuid('user_id');
+            $table->boolean('status')->default(false);
             $table->timestamps();
 
             $table->foreign('tier_id')->references('tier_id')->on('tiers')->onDelete('cascade');

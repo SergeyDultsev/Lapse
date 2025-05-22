@@ -17,29 +17,47 @@ class UserSeeder extends Seeder
 
         User::create([
             'user_id' => Uuid::uuid4()->toString(),
-            'role_id' => $userRoleId,
-            'name' => 'Иван',
-            'surname' => 'Иванов',
-            'email' => 'ivan1234@gmail.com',
-            'password' => Hash::make('ivan1234')
-        ]);
-
-        User::create([
-            'user_id' => Uuid::uuid4()->toString(),
-            'role_id' => $userRoleId,
+            'role_id' => $adminRoleId,
             'name' => 'Сергей',
-            'surname' => 'Сергеев',
-            'email' => 'sergey1234@gmail.com',
-            'password' => Hash::make('sergey1234')
+            'surname' => 'Дульцев',
+            'email' => 'dultsev010904@gmail.com',
+            'password' => Hash::make('Serejka1')
         ]);
 
         User::create([
             'user_id' => Uuid::uuid4()->toString(),
             'role_id' => $userRoleId,
-            'name' => 'Петр',
-            'surname' => 'Петров',
-            'email' => 'peter1234@gmail.com',
-            'password' => Hash::make('peter1234')
+            'name' => 'Какой-то мужик',
+            'surname' => '1',
+            'email' => 'man1@gmail.com',
+            'password' => Hash::make('password1')
+        ]);
+
+        User::create([
+            'user_id' => Uuid::uuid4()->toString(),
+            'role_id' => $userRoleId,
+            'name' => 'Какой-то мужик',
+            'surname' => '2',
+            'email' => 'man2@gmail.com',
+            'password' => Hash::make('password2')
+        ]);
+
+        User::create([
+            'user_id' => Uuid::uuid4()->toString(),
+            'role_id' => $userRoleId,
+            'name' => 'Какой-то мужик',
+            'surname' => '3',
+            'email' => 'man3@gmail.com',
+            'password' => Hash::make('password3')
+        ]);
+
+        User::create([
+            'user_id' => Uuid::uuid4()->toString(),
+            'role_id' => $userRoleId,
+            'name' => 'Какой-то мужик',
+            'surname' => '4',
+            'email' => 'man4@gmail.com',
+            'password' => Hash::make('password4')
         ]);
     }
 }
