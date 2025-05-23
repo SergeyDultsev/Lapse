@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Post;
 
+use App\Http\Controllers\Controller;
 use App\Services\FavoriteServices;
 
 class FavoriteController extends Controller
 {
-    // Сервис для работы с избранными постами
     protected $favoriteService;
 
     public function __construct(FavoriteServices $favoriteService)

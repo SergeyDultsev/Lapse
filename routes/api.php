@@ -1,17 +1,17 @@
 <?php
 
-use App\Http\Controllers\FeedController;
-use App\Http\Controllers\PurchasedTierController;
+use App\Http\Controllers\Comment\CommentController;
+use App\Http\Controllers\Post\FavoriteController;
+use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\Tier\PurchasedTierController;
+use App\Http\Controllers\Tier\TierController;
+use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\FeedController;
+use App\Http\Controllers\User\OtpController;
+use App\Http\Controllers\User\SearchController;
+use App\Http\Controllers\User\SubscriptionController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\FavoriteController;
-use App\Http\Controllers\OtpController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\TierController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\SubscriptionController;
 
 Route::prefix('/auth')->group(function () {
     Route::post('/verify-auth', [AuthController::class, 'registerOrLoginWithOtp']);

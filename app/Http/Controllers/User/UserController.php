@@ -1,38 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\UserUpdateRequest;
-use Illuminate\Http\Request;
-use App\Services\UserServices;
 use App\Http\Resources\UserResource;
+use App\Services\UserServices;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    // Сервис для работы с пользователями
     protected $userServices;
 
-    /**
-     * Конструктор контроллера пользователей.
-     *
-     * Внедряет зависимость UserServices.
-     *
-     * @param UserServices $userServices Экземпляр сервиса пользователей.
-     */
     public function __construct(UserServices $userServices)
     {
         $this->userServices = $userServices;
     }
 
-    /**
-     * Получение подписок или подписчиков пользователя.
-     *
-     * Обрабатывает маршрут в зависимости от имени: 'subscriptions' или 'subscribers'.
-     *
-     * @param Request $request HTTP-запрос.
-     * @param string $user_id Идентификатор пользователя.
-     * @return object JSON-ответ с коллекцией пользователей или сообщение об ошибке.
-     */
     public function index(Request $request, string $user_id): object
     {
         if ($request->routeIs('subscriptions')) {
@@ -54,12 +38,6 @@ class UserController extends Controller
         return $this->jsonResponse([], 500, 'Internal Server Error');
     }
 
-    /**
-     * Получение информации о конкретном пользователе.
-     *
-     * @param string $user_id Идентификатор пользователя.
-     * @return object JSON-ответ с данными пользователя.
-     */
     public function show(string $user_id): object
     {
         $data = $this->userServices->showUser($user_id);
@@ -70,12 +48,6 @@ class UserController extends Controller
         );
     }
 
-    /**
-     * Обновление данных пользователя.
-     *
-     * @param UserUpdateRequest $request Валидированный запрос с данными пользователя.
-     * @return object JSON-ответ с обновлёнными данными пользователя.
-     */
     public function update(UserUpdateRequest $request): object
     {
         $data = $this->userServices->updateUser($request->all());
@@ -86,14 +58,6 @@ class UserController extends Controller
         );
     }
 
-    /**
-     * Удаление текущего пользователя и его токенов.
-     *
-     * При успешном удалении также удаляет cookie с auth_token.
-     *
-     * @param Request $request HTTP-запрос.
-     * @return object JSON-ответ с результатом удаления.
-     */
     public function destroy(Request $request): object
     {
         $data = $this->userServices->deleteUser();

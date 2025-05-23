@@ -1,35 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use Illuminate\Http\Request;
-use App\Services\AuthServices;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\OtpRequest;
 use App\Http\Requests\RegisterOrLoginRequest;
 use App\Http\Resources\UserResource;
+use App\Services\AuthServices;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    /**
-     * @var AuthServices Сервис для работы с авторизацией.
-     */
     protected $authService;
 
-    /**
-     * Создаёт экземпляр контроллера и внедряет сервис аутентификации.
-     *
-     * @param AuthServices $authService Экземпляр сервиса аутентификации.
-     */
     public function __construct(AuthServices $authService)
     {
         $this->authService = $authService;
     }
 
-    /**
-     * Логин или регистрация через OTP.
-     *
-     * @param OtpRequest $request Запрос с данными для авторизации.
-     * @return object JSON-ответ с информацией о пользователе и токеном.
-     */
     public function registerOrLoginWithOtp(RegisterOrLoginRequest $request): object
     {
         $data = $this->authService->registerOrLoginWithOtp($request->all());
@@ -50,12 +38,6 @@ class AuthController extends Controller
             );
     }
 
-    /**
-     * Завершает сессию пользователя (выход из системы).
-     *
-     * @param Request $request Запрос с текущим пользователем.
-     * @return object JSON-ответ о выходе пользователя.
-     */
     public function logout(Request $request): object
     {
         $request->user()->tokens()->delete();
@@ -71,11 +53,6 @@ class AuthController extends Controller
             );
     }
 
-    /**
-     * Проверяет, авторизован ли пользователь.
-     *
-     * @return object JSON-ответ с флагом авторизации.
-     */
     public function check(): object
     {
         if (!auth()->check()) {

@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
 use App\Http\Resources\UserResource;
 use App\Models\Post;
 use App\Models\Subscription;
-use App\Models\User;
-use Illuminate\Http\Request;
 
-class FeedController extends Controller
-{
-    public function index(){
+class FeedServices{
+    public function getFeed(): array
+    {
         $subscriptions = Subscription::where('subscriber_id', auth()->id())->get();
         $posts = collect();
 
@@ -22,14 +20,14 @@ class FeedController extends Controller
 
         $recommendations = UserResource::collection(auth()->user()->recommendations());
 
-
-        return $this->jsonResponse(
-            [
+        return [
+            'data' => [
                 'subscriptions' => $subscriptions,
                 'posts' => $posts,
                 'recommendations' => $recommendations
             ],
-            200,
-            'success');
+            'status' => '200',
+            'message' => 'Success',
+        ];
     }
 }

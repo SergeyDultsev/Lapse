@@ -1,30 +1,29 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
 use App\Models\PurchasedTier;
 use App\Models\Tier;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
-class PurchasedTierController extends Controller
-{
-    public function store(Request $request, string $tier_id): object
+class PurchasedTierServices{
+    public function createPurchasedTier(array $data, string $tier_id): array
     {
         $shopId = env('YOOKASSA_SHOP_ID');
         $secretKey = env('YOOKASSA_SECRET_KEY');
 
-        $description = $request->input('description');
-        $return_url = $request->input('return_url');
+        $description = $data['description'];
+        $return_url = $data['return_url'];
 
         $isMyTier = Tier::where('tier_id', $tier_id)->where('user_id', Auth::id())->exists();
 
         if($isMyTier) {
-            return $this->jsonResponse(
+            return [
                 [],
                 403,
-                'You buy your own subscription');
+                'You buy your own subscription'
+            ];
         }
 
         $tier = Tier::where('tier_id', $tier_id)->first();
@@ -43,8 +42,8 @@ class PurchasedTierController extends Controller
                     'currency' => 'RUB',
                 ],
                 'confirmation' => [
-                  'type' => 'redirect',
-                  'return_url' => $return_url,
+                    'type' => 'redirect',
+                    'return_url' => $return_url,
                 ],
                 'description' => $description,
             ]);
@@ -56,15 +55,23 @@ class PurchasedTierController extends Controller
             $purchasedTier->user_id = Auth::id();
             $purchasedTier->save();
 
-            return $this->jsonResponse(
+            return [
                 $response['confirmation']['confirmation_url'],
                 201,
-                'Success');
+                'Success'
+            ];
         } else {
-            return $this->jsonResponse(
+            return [
                 $response->body(),
                 400,
-                'Error');
+                'Error'
+            ];
         }
+    }
+
+    public function confirmPurchasedTier(array $data): array
+    {
+        // TODO
+        return [];
     }
 }

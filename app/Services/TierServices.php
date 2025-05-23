@@ -7,12 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use Ramsey\Uuid\Uuid;
 
 class TierServices{
-    /**
-     * Создание уровней подписок.
-     *
-     * @param string $user_id идентификатор пользователя.
-     * @return array Ответ с данными пользователей.
-     */
     public function createTier(array $data): array
     {
         $userId = Auth::id();
@@ -46,12 +40,6 @@ class TierServices{
         ];
     }
 
-    /**
-     * Вывод уровней подписок.
-     *
-     * @param string $user_id идентификатор пользователя.
-     * @return array Ответ с данными пользователей.
-     */
     public function getTiers(string $user_id): array
     {
         $tierData = Tier::where('user_id', $user_id)->get();
@@ -62,12 +50,6 @@ class TierServices{
         ];
     }
 
-    /**
-     * Вывод уровня подписок.
-     *
-     * @param string $tier_id идентификатор пользователя.
-     * @return array Ответ с данными пользователя.
-     */
     public function showTier(string $tier_id): array
     {
         $tier = Tier::find($tier_id);
@@ -87,12 +69,6 @@ class TierServices{
         ];
     }
 
-    /**
-     * Редактирование пользователя.
-     *
-     * @param string $data новые данные пользователя.
-     * @return array Ответ с данными пользователя.
-     */
     public function updateTier(array $data, string $tier_id): array
     {
         $title = $data['title'];
@@ -128,11 +104,6 @@ class TierServices{
         ];
     }
 
-    /**
-     * Удаление пользователя.
-     *
-     * @return array Ответ.
-     */
     public function deleteTier($tier_id): array
     {
         $tier = Tier::find($tier_id);

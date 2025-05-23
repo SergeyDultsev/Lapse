@@ -1,20 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\OtpRequest;
 use App\Supports\OtpSend;
 
 class OtpController extends Controller
 {
-    // Класс для отправки OTP
     protected $otpSend;
 
-    /**
-     * Создаёт экземпляр сервиса и внедряет генератор OTP-кода.
-     *
-     * @param OtpSend $otpSend Экземпляр отправки OTP-кода.
-     */
     public function __construct(OtpSend $otpSend) {
         $this->otpSend = $otpSend;
     }
