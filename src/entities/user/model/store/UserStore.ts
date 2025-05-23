@@ -4,10 +4,12 @@ import getAuthOtpCode from "@/features/user/authorize/model/api/getAuthOtpCode";
 import loginOrRegister from "@/features/user/authorize/model/api/loginOrRegister";
 import authCheck from "@/features/user/authorize/model/api/authCheck";
 import getUser from "@/entities/user/model/api/getUser";
+import logout from "@entities/user/model/api/logout";
 
 class UserStore{
-    usersData:iUser[] = [];
     userData:iUser | null = null;
+    usersSubscribers:iUser[] = [];
+    usersTarget:iUser[] = [];
     userAuthorized:iUser | null = null;
 
     isAuth:boolean = false;
@@ -17,7 +19,10 @@ class UserStore{
         makeAutoObservable(this, {
             getOtpCode: action,
             loginOrRegisterUser: action,
-            getUsersData: action,
+            authorizationCheck: action,
+            logout: action,
+            getUsersSubscribers: action,
+            getUsersTarget: action,
             getUserData: action,
         });
 
@@ -38,12 +43,20 @@ class UserStore{
     async authorizationCheck(): Promise<void> {
         try {
             const response = await authCheck();
-            runInAction(() => {
-                this.userAuthorized = response.data;
-                this.isAuth = true;
-            });
+            if(response?.data.status === 401) {
+                runInAction(() => {
+                    this.userAuthorized = null;
+                    this.isAuth = false;
+                });
+            } else {
+                runInAction(() => {
+                    this.userAuthorized = response?.data.data;
+                    this.isAuth = true;
+                });
+            }
         } catch (error) {
             runInAction(() => {
+                this.userAuthorized = null;
                 this.isAuth = false;
             });
         } finally {
@@ -53,7 +66,25 @@ class UserStore{
         }
     }
 
-    async getUsersData(): Promise<void> {
+    async logout(): Promise<void> {
+        try {
+            const response = await logout();
+            runInAction(() => {
+                this.userAuthorized = null;
+                this.isAuth = false;
+            });
+        } catch (error) {
+            runInAction(() => {
+                this.isAuth = false;
+            });
+        }
+    }
+
+    async getUsersSubscribers(): Promise<void> {
+        //
+    }
+
+    async getUsersTarget(): Promise<void> {
         //
     }
 

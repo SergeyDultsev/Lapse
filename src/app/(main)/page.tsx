@@ -1,7 +1,7 @@
-import MainPage from "@/pages/main-page/MainPage";
+import FeedPage from "@pages/feed-page/FeedPage";
 
 export default function Home() {
     return (
-        <MainPage/>
+        <FeedPage/>
     );
 }

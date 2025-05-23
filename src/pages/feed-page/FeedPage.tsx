@@ -9,10 +9,16 @@ import IUser from "@/entities/user/model/types/iUser";
 import postStore from "@/entities/post/model/store/PostStore";
 import userStore from "@/entities/user/model/store/UserStore";
 import AlertBlock from "@/widgets/alert-block/AlertBlock";
+import {useRouterMiddleware} from "@/middleware/useRouterMiddleware";
+import {toJS} from "mobx";
+import UserStore from "@entities/user/model/store/UserStore";
 
-const MainPage: React.FC = (() => {
+const FeedPage: React.FC = (() => {
+    const isAuth: Boolean = toJS(UserStore.isAuth);
     const postsData: iPost[] = postStore?.postsData || [];
     const users: IUser[] = userStore?.usersData || [];
+
+    if (!isAuth) useRouterMiddleware();
 
     return (
         <main className="main">
@@ -38,4 +44,4 @@ const MainPage: React.FC = (() => {
     );
 });
 
-export default MainPage;
+export default FeedPage;

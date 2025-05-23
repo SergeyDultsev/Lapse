@@ -15,9 +15,9 @@ async function authCheck(): Promise<void>{
         cache: 'no-store'
     });
 
-    if(response?.data) return { data: response.data.data };
+    if(response?.data) return { data: response.data };
 
-    return { };
+    return false;
 }
 
 export default authCheck;

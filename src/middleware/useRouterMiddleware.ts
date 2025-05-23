@@ -12,7 +12,7 @@ const routesToPage = [
     { url: '/post/', protected: false },
 ];
 
-const useRouterMiddleware  = (): void => {
+export const useRouterMiddleware = (): void => {
     const currentPath = usePathname();
     const { isAuth, isLoadingAuth } = UserStore;
 
@@ -32,5 +32,3 @@ const useRouterMiddleware  = (): void => {
 
     }, [currentPath, isAuth]);
 }
-
-export default useRouterMiddleware ;
