@@ -1,6 +1,5 @@
-import {action, makeAutoObservable, runInAction, toJS} from "mobx";
+import {action, makeAutoObservable, runInAction} from "mobx";
 import iUser from "@entities/user/model/types/iUser";
-import iPost from "@entities/post/model/types/iPost";
 import getFeed from "@pages/feed-page/model/api/getFeed";
 import postStore from "@entities/post/model/store/PostStore";
 

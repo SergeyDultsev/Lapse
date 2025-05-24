@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./ProfileInfo.module.scss"
+import {useRouter} from "next/navigation";
 import AvatarDefault from "@/assets/img/avatar.jpg";
 import ButtonDefault from "@/shared/ui/button/ButtonDefault";
-import {router} from "next/client";
+import UserStore from "@entities/user/model/store/UserStore";
 
 interface iProfileInfo {
     user_id: string,
@@ -16,11 +17,11 @@ interface iProfileInfo {
 }
 
 const ProfileInfo: React.FC<iProfileInfo> = ({user_id, avatar, full_name, subscriber, subscriptions, about, is_self, is_follow}) => {
+    const router = useRouter();
 
     const toRouteSetting = () => {
         router.push('/settings')
     }
-
 
     return (
         <section className={styles['profile-info']}>
@@ -56,7 +57,13 @@ const ProfileInfo: React.FC<iProfileInfo> = ({user_id, avatar, full_name, subscr
 
                 {is_follow && !is_self && (
                     <ButtonDefault
-                        style={{ padding: "11px 29px", margin: "20px 0 0 0" }}
+                        style={{
+                            padding: "11px 29px",
+                            margin: "20px 0 0 0",
+                            width: "100%",
+                            maxWidth: "235px"
+                        }}
+                        onClick={e => UserStore.subscribeToUser(user_id)}
                         children={"Отписаться"}
                         name={"editUser"}
                         type={"button"}
@@ -66,7 +73,13 @@ const ProfileInfo: React.FC<iProfileInfo> = ({user_id, avatar, full_name, subscr
 
                 {!is_follow && !is_self && (
                     <ButtonDefault
-                        style={{ padding: "11px 29px", margin: "20px 0 0 0" }}
+                        style={{
+                            padding: "11px 29px",
+                            margin: "20px 0 0 0",
+                            width: "100%",
+                            maxWidth: "235px"
+                        }}
+                        onClick={e => UserStore.subscribeToUser(user_id)}
                         children={"Подписаться"}
                         name={"editUser"}
                         type={"button"}
@@ -76,7 +89,12 @@ const ProfileInfo: React.FC<iProfileInfo> = ({user_id, avatar, full_name, subscr
 
                 {is_self && (
                     <ButtonDefault
-                        style={{ padding: "11px 29px", margin: "20px 0 0 0" }}
+                        style={{
+                            padding: "11px 29px",
+                            margin: "20px 0 0 0",
+                            width: "100%",
+                            maxWidth: "235px"
+                        }}
                         children={"Редактировать профиль"}
                         onClick={toRouteSetting}
                         name={"editUser"}

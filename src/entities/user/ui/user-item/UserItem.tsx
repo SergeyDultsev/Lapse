@@ -7,6 +7,7 @@ import {useRouter} from "next/navigation";
 import ButtonDefault from "@shared/ui/button/ButtonDefault";
 import UserRemove from "@assets/icon/UserRemove";
 import UserAdd from "@assets/icon/UserAdd";
+import UserStore from "@entities/user/model/store/UserStore";
 
 interface iUserProps{
     user: iUser;
@@ -45,6 +46,7 @@ const UserItem: React.FC<iUserProps> = ({ user }) => {
                         height: '36px',
                         padding: '8px',
                     }}
+                    onClick={e => UserStore.subscribeToUser(user.user_id)}
                     type={"button"}
                     active={true}
                 >
@@ -58,6 +60,7 @@ const UserItem: React.FC<iUserProps> = ({ user }) => {
                         padding: '8px',
                         color: 'write'
                     }}
+                    onClick={e => UserStore.subscribeToUser(user.user_id)}
                     type={"button"}
                     active={false}
                 >

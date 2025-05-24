@@ -22,10 +22,16 @@ class PostStore{
     }
 
     async deletePostById(post_id: string): Promise<void> {
-        const response = await deletePost(post_id);
-        if(response.data) {
+        try {
+            const response = await deletePost(post_id);
+            if(response.data) {
+                runInAction(() => {
+                    this.postsData = this.postsData.filter((post: iPost) => post.post_id !== post_id);
+                })
+            }
+        } catch (error) {
             runInAction(() => {
-                this.postsData = this.postsData.filter((post: iPost) => post.post_id !== post_id);
+                this.postsData = [];
             })
         }
     }
