@@ -37,8 +37,8 @@ const Navigation: React.FC = observer(() => {
                         <HomeIcon/>
                         <p className={styles["nav-item__descr"]}>Главная</p>
                     </Link>
-                    <Link href="/profile"
-                          className={`${currentRoute === '/profile' ? styles["nav-item__active"] : styles["nav-item"]}`}>
+                    <Link href="/user/profile"
+                          className={`${currentRoute === '/user/profile' ? styles["nav-item__active"] : styles["nav-item"]}`}>
                         <ProfileIcon/>
                         <p className={styles["nav-item__descr"]}>Профиль</p>
                     </Link>

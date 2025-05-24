@@ -5,7 +5,7 @@ import {observer} from "mobx-react-lite";
 
 const routesToPage = [
     { url: '/', protected: true },
-    { url: '/profile', protected: true },
+    { url: '/user/profile', protected: true },
     { url: '/user/{user_id}', protected: false },
     { url: '/authorize', protected: false },
     { url: '/create', protected: true },
