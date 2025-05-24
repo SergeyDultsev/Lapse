@@ -1,24 +1,33 @@
 import React from "react";
 import styles from "./PostItem.module.scss";
+import AvatarDefault from "@assets/img/avatar.jpg";
 import SaveIcon from "@/assets/icon/SaveIcon";
 import CommentIcon from "@/assets/icon/CommentIcon";
 import IPost from "@/entities/post/model/types/iPost";
 import IUser from "@entities/user/model/types/iUser";
 import UserStore from "@entities/user/model/store/UserStore";
 import PostStore from "@entities/post/model/store/PostStore";
+import {toJS} from "mobx";
 
 const PostItem: React.FC<IPost> = ({ user, post }) => {
-    const userAuthorizedData: IUser | null = UserStore.userAuthorized;
+    const userAuthorizedData: IUser | null = toJS(UserStore.userAuthorized);
 
     return (
         <article className={styles["post"]}>
             <div className={styles["user-info"]}>
-                {user.avatar_url && (
+                {user.avatar_url ? (
                     <img
                         className={styles["user-info__avatar"]}
                         srcSet={`${user.avatar_url} 1x, ${user.avatar_url.replace('.jpg', '@2x.jpg')} 2x`}
                         alt="avatar"
-                        loading="lazy"/>
+                        loading="lazy"
+                    />
+                ) : (
+                    <img className={styles['user-info__avatar']}
+                         src={AvatarDefault.src}
+                         alt="avatar"
+                         loading="lazy"
+                    />
                 )}
                 <h2 className={styles["user-info__name"]}>{user.full_name}</h2>
             </div>
@@ -48,13 +57,13 @@ const PostItem: React.FC<IPost> = ({ user, post }) => {
                     </div>
                     <SaveIcon/>
                 </div>
-                {userAuthorizedData?.user_id && (
+                {userAuthorizedData?.user_id === post.user.user_id ? (
                     <div className={styles["post-option__item"]} onClick={() => PostStore.deletePostById(post.post_id)}>
                         <div className={styles["post-option__item__counter"]}>
                             Удалить пост
                         </div>
                     </div>
-                )}
+                ) : ''}
             </div>
         </article>
     );

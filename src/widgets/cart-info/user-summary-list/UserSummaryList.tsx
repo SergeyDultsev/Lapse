@@ -1,17 +1,17 @@
 import React from "react";
 import styles from "./UserSummaryList.module.scss";
 import UserItem from "@/entities/user/ui/user-item/UserItem";
-import IUserSummary from "@/entities/user/model/types/iUser";
+import iUser from "@/entities/user/model/types/iUser";
 
 interface iUserProps{
-    users: IUserSummary[];
+    users: iUser[];
 }
 
 const UserSummaryList: React.FC<iUserProps> = ({users}) => {
     return (
         <section className={styles["user-list"]}>
-            {users.map((user: IUserSummary ) =>
-                <UserItem user={user} key={user.userId}/>
+            {users.map((user: iUser ) =>
+                <UserItem user={user} key={user.user_id}/>
             )}
         </section>
     )

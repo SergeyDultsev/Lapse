@@ -9,6 +9,7 @@ import CreatePostForm from "@/features/post/create-post/ui/create-post/CreatePos
 import CreateTierForm from "@/features/tier/create-tier/ui/CreateTierForm";
 import CartInfo from "@/widgets/cart-info/CartInfo";
 import VisibilityOption from "./ui/visibility-option/VisibilityOption";
+import {useRouterMiddleware} from "@/middleware/useRouterMiddleware";
 
 const CreatePage: React.FC = observer(() => {
     const stateForm = CreatePageStore.stateCreateForm;
@@ -56,4 +57,4 @@ const CreatePage: React.FC = observer(() => {
     );
 });
 
-export default CreatePage;
+export default useRouterMiddleware(CreatePage);

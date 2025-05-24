@@ -1,9 +1,10 @@
 "use client";
 
 import React, {useEffect} from "react";
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { toJS } from "mobx";
 import { observer } from "mobx-react-lite";
+import { useRouterMiddleware } from "@/middleware/useRouterMiddleware";
 import iPost from "@/entities/post/model/types/iPost";
 import iTier from "@/entities/tier/model/types/iTier";
 import postStore from "@/entities/post/model/store/PostStore";
@@ -71,4 +72,4 @@ const UserPage: React.FC = observer(() => {
     );
 });
 
-export default UserPage;
+export default useRouterMiddleware(UserPage);

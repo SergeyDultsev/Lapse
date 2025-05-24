@@ -3,30 +3,28 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { toJS } from "mobx";
+import { useRouterMiddleware } from "@/middleware/useRouterMiddleware";
 import iPost from "@/entities/post/model/types/iPost";
 import iTier from "@/entities/tier/model/types/iTier";
 import IUser from "@/entities/user/model/types/iUser";
-import UserStore from "@entities/user/model/store/UserStore";
-import PostStore from "@/entities/post/model/store/PostStore";
-import TierStore from "@/entities/tier/model/store/TierStore";
+import userStore from "@entities/user/model/store/UserStore";
+import postStore from "@/entities/post/model/store/PostStore";
+import tierStore from "@/entities/tier/model/store/TierStore";
 import PostList from "@/widgets/post-list/ui/PostList";
 import ProfileInfo from "./ui/profile-info/ProfileInfo";
 import TierList from "@/widgets/cart-info/tier-list/TierList"
 import AlertBlock from "@/widgets/alert-block/AlertBlock";
 import CartInfo from "@/widgets/cart-info/CartInfo";
-import { useRouterMiddleware } from "@/middleware/useRouterMiddleware";
 
 const ProfilePage: React.FC = observer(() => {
-    const userData: IUser | null = toJS(UserStore.userAuthorized);
-    const postsData: iPost[] = toJS(PostStore?.postsData) || [];
-    const tierData: iTier[] = TierStore?.tierData || [];
-
-    if (!userData?.isAuth) useRouterMiddleware();
+    const userData: IUser | null = toJS(userStore.userAuthorized);
+    const postsData: iPost[] = toJS(postStore?.postsData) || [];
+    const tierData: iTier[] = tierStore?.tierData || [];
 
     useEffect(() => {
         if(userData?.user_id) {
-            PostStore.getPostsByUserId(userData?.user_id);
-            TierStore.getTiers(userData?.user_id);
+            postStore.getPostsByUserId(userData?.user_id);
+            tierStore.getTiers(userData?.user_id);
         }
     }, [userData?.user_id])
 
@@ -63,7 +61,7 @@ const ProfilePage: React.FC = observer(() => {
                         ) : (
                             <CartInfo
                                 nameCart={"Уровни подписок"}
-                                children={<TierList tiers={toJS(TierStore.tierData)}/>}
+                                children={<TierList tiers={toJS(tierStore.tierData)}/>}
                             />
                         )}
                     </aside>
@@ -73,4 +71,4 @@ const ProfilePage: React.FC = observer(() => {
     );
 });
 
-export default ProfilePage;
+export default useRouterMiddleware(ProfilePage);

@@ -3,6 +3,7 @@
 import React from "react";
 import styles from './SettingsPage.module.scss';
 import { observer } from "mobx-react-lite";
+import { useRouterMiddleware } from "@/middleware/useRouterMiddleware";
 import ButtonDefault from "@shared/ui/button/ButtonDefault";
 import InputDefault from "@shared/ui/input/InputDefault";
 import FileUpload from "@shared/ui/file/FileUpload";
@@ -47,4 +48,4 @@ const SettingsPage: React.FC = observer(() => {
     );
 })
 
-export default SettingsPage;
+export default useRouterMiddleware(SettingsPage);
