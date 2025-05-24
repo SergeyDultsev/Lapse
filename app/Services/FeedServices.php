@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use App\Http\Resources\UserResource;
-use App\Models\Post;
 use App\Models\Subscription;
+use App\Models\Post;
+use App\Models\User;
 
 class FeedServices{
     public function getFeed(): array
@@ -18,16 +18,16 @@ class FeedServices{
             );
         }
 
-        $recommendations = UserResource::collection(auth()->user()->recommendations());
+        // Рекомендации
+        $recommendations = auth()->user()->recommendations();
+
+        // Получаем пользователей, на кого подписан пользователь
+        $subscribedUsers = User::whereIn('user_id', $subscriptions->pluck('target_id'))->get();
 
         return [
-            'data' => [
-                'subscriptions' => $subscriptions,
-                'posts' => $posts,
-                'recommendations' => $recommendations
-            ],
-            'status' => '200',
-            'message' => 'Success',
+            'subscriptions' => $subscribedUsers,
+            'recommendations' => $recommendations,
+            'posts' => $posts,
         ];
     }
 }

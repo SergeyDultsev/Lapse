@@ -42,10 +42,10 @@ class SubscriptionServices{
             $subscribe->target_id = $user_id;
             $subscribe->save();
 
-            $userAuth->increment('subscriptions_count');
+            $userAuth->increment('subscriber_count');
             $userAuth->save();
 
-            $user->increment('subscriber_count');
+            $user->increment('subscriptions_count');
             $user->save();
 
             return [
@@ -56,10 +56,10 @@ class SubscriptionServices{
         } else {
             $isSubscribe->delete();
 
-            $userAuth->decrement('subscriptions_count');
+            $userAuth->decrement('subscriber_count');
             $userAuth->save();
 
-            $user->decrement('subscriber_count');
+            $user->decrement('subscriptions_count');
             $user->save();
 
             return [

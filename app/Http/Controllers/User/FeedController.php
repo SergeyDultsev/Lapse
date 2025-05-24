@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Services\FeedServices;
+use App\Http\Resources\UserResource;
+use App\Http\Resources\PostResource;
 
 class FeedController extends Controller
 {
@@ -16,12 +18,16 @@ class FeedController extends Controller
 
     public function index(): object
     {
-        $data = $this->feedService->getFeed();
+        $feed = $this->feedService->getFeed();
 
         return $this->jsonResponse(
-            $data['data'],
-            $data['status'],
-            $data['message']
+            [
+                'subscriptions' => UserResource::collection($feed['subscriptions']),
+                'recommendations' => UserResource::collection($feed['recommendations']),
+                'posts' => PostResource::collection($feed['posts']),
+            ],
+            200,
+            'Success'
         );
     }
 }
