@@ -8,11 +8,12 @@ class TierStore{
 
     constructor(){
         makeAutoObservable(this,{
-            getTiers: action
+            getTiersById: action,
+            deleteTierById: action
         });
     }
 
-    async getTiers(user_id: string): Promise<void> {
+    async getTiersById(user_id: string): Promise<void> {
         try {
             const response: iTier = await getTierUser(user_id);
             if(response) {

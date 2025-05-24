@@ -5,28 +5,30 @@ import { useParams } from 'next/navigation';
 import { toJS } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useRouterMiddleware } from "@/middleware/useRouterMiddleware";
+import iUser from "@/entities/user/model/types/iUser";
 import iPost from "@/entities/post/model/types/iPost";
 import iTier from "@/entities/tier/model/types/iTier";
-import postStore from "@/entities/post/model/store/PostStore";
-import tierStore from "@/entities/tier/model/store/TierStore";
+import UserStore from "@entities/user/model/store/UserStore";
+import PostStore from "@/entities/post/model/store/PostStore";
+import TierStore from "@/entities/tier/model/store/TierStore";
 import ProfileInfo from "./ui/profile-info/ProfileInfo";
 import PostList from "@/widgets/post-list/ui/PostList";
 import TierList from "@/widgets/cart-info/tier-list/TierList"
 import AlertBlock from "@/widgets/alert-block/AlertBlock";
 import CartInfo from "@/widgets/cart-info/CartInfo";
-import PostStore from "@/entities/post/model/store/PostStore";
-import TierStore from "@/entities/tier/model/store/TierStore";
-import IUser from "@/entities/user/model/types/iUser";
-import UserStore from "@entities/user/model/store/UserStore";
 
 const UserPage: React.FC = observer(() => {
     const { user_id } = useParams();
-    const userData: IUser | null = toJS(UserStore.userData);
-    const postsData: iPost[] = postStore?.postsData || [];
-    const tierData: iTier[] = tierStore?.tierData || [];
+    const userData: iUser | null = toJS(UserStore.userData);
+    const postsData: iPost[] = PostStore?.postsData || [];
+    const tierData: iTier[] = TierStore?.tierData || [];
 
     useEffect(() => {
-        if (user_id) UserStore.getUserData(user_id);
+        if (user_id) {
+            UserStore.getUserData(user_id);
+            PostStore.getPostsByUserId(user_id);
+            TierStore.getTiersById(user_id);
+        }
     }, [user_id]);
 
     return (
@@ -52,6 +54,8 @@ const UserPage: React.FC = observer(() => {
                             subscriber={userData.subscriber_count}
                             subscriptions={userData.subscriptions_count}
                             about={userData.about}
+                            is_self={userData.is_self}
+                            is_follow={userData.is_follow}
                         />
 
                         {tierData.length === 0 ? (

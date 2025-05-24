@@ -1,35 +1,23 @@
 .user-item{
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 12px;
 
-    cursor: pointer;
+    &__info{
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
 
-    transition: all .3s ease-out;
+        &__avatar{
+            width: 36px;
+            height: 36px;
+            border-radius: 50px;
+        }
 
-    &:hover {
-        padding: 10px;
-
-        border-radius: var(--main-border-radius);
-        background-color: var(--main-color);
-        
-        transition: all .3s ease-out;
-    }
-
-    &__avatar{
-        width: 36px;
-        height: 36px;
-        border-radius: 50px;
-    }
-
-    &__username{
-        font-size: 12px;
-        font-weight: 400;
-    }
-
-    &:hover >  &__username{
-        color: #FFFFFF;
-
-        transition: all .3s ease-out;
+        &__username{
+            font-size: 12px;
+            font-weight: 400;
+        }
     }
 }

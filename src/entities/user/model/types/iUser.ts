@@ -6,7 +6,8 @@ interface IUser {
     about: string,
     subscriptions_count: number,
     subscriber_count: number,
-    stateSubscribe?: boolean,
+    is_self: boolean,
+    is_follow: boolean,
     isAuth?: boolean
 }
 

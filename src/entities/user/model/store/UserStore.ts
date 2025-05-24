@@ -68,7 +68,7 @@ class UserStore{
 
     async logout(): Promise<void> {
         try {
-            const response = await logout();
+            await logout();
             runInAction(() => {
                 this.userAuthorized = null;
                 this.isAuth = false;

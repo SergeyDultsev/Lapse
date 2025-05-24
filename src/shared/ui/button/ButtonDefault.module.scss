@@ -11,6 +11,11 @@
     cursor: pointer;
     transition: all .3s ease-out;
 
+    &:hover > svg > path{
+        fill: #FFFFFF;
+        transition: all .3s ease-out;
+    }
+
     &:hover{
         border: none;
         color: var(--btn-text-color-hover);
@@ -19,17 +24,23 @@
         font-weight: 600;
         transition: all .3s ease-out;
     }
-}
 
-.btn__active{
-    padding: 11px 20px;
-    border-radius: var(--main-border-radius);
-    background-color: var(--btn-bg-color-hover);
-    color: var(--btn-text-color-hover);
-    font-family: 'JetBrains Mono', 'JetBrains Mono Fallback';
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
+    &__active{
+        padding: 11px 20px;
+        border-radius: var(--main-border-radius);
+        background-color: var(--btn-bg-color-hover);
+        color: var(--btn-text-color-hover);
+        font-family: 'JetBrains Mono', 'JetBrains Mono Fallback';
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    &__active > svg > path{
+        fill: #FFFFFF;
+        transition: all .3s ease-out;
+    }
+
 }
 
 

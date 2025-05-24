@@ -1,9 +1,10 @@
-import React from "react";
+import React, {CSSProperties} from "react";
 import clsx from "clsx";
 import styles from "./InputDefault.module.scss";
 
 interface IInputDefault {
     id?: string,
+    style?: CSSProperties
     className?: string; 
     name?: string,
     placeholder?: string,
@@ -14,10 +15,11 @@ interface IInputDefault {
     minlength?: number
 }
 
-const InputDefault: React.FC<IInputDefault> = ({id, className, name, placeholder, type, value, onChange, maxlength, minlength}) => {
+const InputDefault: React.FC<IInputDefault> = ({id, style, className, name, placeholder, type, value, onChange, maxlength, minlength}) => {
     return (
         <input 
             className={clsx(styles['form__input'], className)}
+            style={style}
             id={id} 
             name={name} 
             placeholder={placeholder} 

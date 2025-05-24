@@ -7,9 +7,9 @@ import { useRouterMiddleware } from "@/middleware/useRouterMiddleware";
 import iPost from "@/entities/post/model/types/iPost";
 import iTier from "@/entities/tier/model/types/iTier";
 import IUser from "@/entities/user/model/types/iUser";
-import userStore from "@entities/user/model/store/UserStore";
-import postStore from "@/entities/post/model/store/PostStore";
-import tierStore from "@/entities/tier/model/store/TierStore";
+import UserStore from "@entities/user/model/store/UserStore";
+import PostStore from "@/entities/post/model/store/PostStore";
+import TierStore from "@/entities/tier/model/store/TierStore";
 import PostList from "@/widgets/post-list/ui/PostList";
 import ProfileInfo from "./ui/profile-info/ProfileInfo";
 import TierList from "@/widgets/cart-info/tier-list/TierList"
@@ -17,14 +17,14 @@ import AlertBlock from "@/widgets/alert-block/AlertBlock";
 import CartInfo from "@/widgets/cart-info/CartInfo";
 
 const ProfilePage: React.FC = observer(() => {
-    const userData: IUser | null = toJS(userStore.userAuthorized);
-    const postsData: iPost[] = toJS(postStore?.postsData) || [];
-    const tierData: iTier[] = tierStore?.tierData || [];
+    const userData: IUser | null = toJS(UserStore.userAuthorized);
+    const postsData: iPost[] = toJS(PostStore?.postsData) || [];
+    const tierData: iTier[] = TierStore?.tierData || [];
 
     useEffect(() => {
         if(userData?.user_id) {
-            postStore.getPostsByUserId(userData?.user_id);
-            tierStore.getTiers(userData?.user_id);
+            PostStore.getPostsByUserId(userData?.user_id);
+            TierStore.getTiersById(userData?.user_id);
         }
     }, [userData?.user_id])
 
@@ -51,6 +51,8 @@ const ProfilePage: React.FC = observer(() => {
                             subscriber={userData.subscriber_count}
                             subscriptions={userData.subscriptions_count}
                             about={userData.about}
+                            is_self={userData.is_self}
+                            is_follow={userData.is_follow}
                         />
 
                         {tierData.length === 0 ? (
@@ -61,7 +63,7 @@ const ProfilePage: React.FC = observer(() => {
                         ) : (
                             <CartInfo
                                 nameCart={"Уровни подписок"}
-                                children={<TierList tiers={toJS(tierStore.tierData)}/>}
+                                children={<TierList tiers={toJS(TierStore.tierData)}/>}
                             />
                         )}
                     </aside>

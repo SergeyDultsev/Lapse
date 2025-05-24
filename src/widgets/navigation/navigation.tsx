@@ -69,11 +69,6 @@ const Navigation: React.FC = observer(() => {
                 </nav>
             ) : (
                 <nav className={styles["nav-list"]}>
-                    <Link href="/"
-                          className={`${currentRoute === '/' ? styles["nav-item__active"] : styles["nav-item"]}`}>
-                        <HomeIcon/>
-                        <p className={styles["nav-item__descr"]}>Главная</p>
-                    </Link>
                     <Link href="/search"
                           className={`${currentRoute === '/search' ? styles["nav-item__active"] : styles["nav-item"]}`}>
                         <SearchIcon/>
