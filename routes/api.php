@@ -12,6 +12,7 @@ use App\Http\Controllers\User\SearchController;
 use App\Http\Controllers\User\SubscriptionController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\OptionalAuthMiddleware;
 
 Route::prefix('/auth')->group(function () {
     Route::post('/verify-auth', [AuthController::class, 'registerOrLoginWithOtp']);
@@ -24,16 +25,16 @@ Route::post('/otp/send', [OtpController::class, 'OtpRequest'])->middleware('thro
 Route::prefix('/user')->group(function () {
     Route::get('/{user_id}/subscriptions', [UserController::class, 'index'])
         ->name('subscriptions')
-        ->middleware('throttle:60,1');
+        ->middleware('throttle:60,1')->middleware('auth:sanctum');
     Route::get('/{user_id}/subscribers', [UserController::class, 'index'])
         ->name('subscribers')
-        ->middleware('throttle:5,1');
+        ->middleware('throttle:5,1')->middleware('auth:sanctum', 'throttle:5,1');
     Route::get('/{user_id}', [UserController::class, 'show'])
         ->middleware('throttle:60,1');
     Route::post('/update', [UserController::class, 'update'])
-        ->middleware('auth:sanctum', 'throttle:5,1');
+        ->middleware('auth:sanctum', 'throttle:5,1')->middleware('auth:sanctum');
     Route::delete('/delete', [UserController::class, 'destroy'])
-        ->middleware('auth:sanctum', 'throttle:20,1');
+        ->middleware('auth:sanctum', 'throttle:20,1')->middleware('auth:sanctum');
 });
 
 Route::prefix('post')->group(function () {

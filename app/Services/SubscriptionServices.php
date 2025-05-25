@@ -49,9 +49,10 @@ class SubscriptionServices{
             $user->save();
 
             return [
-                'data' => $user,
+                'user' => $user,
+                'auth_user' => $userAuth,
                 'status' => 201,
-                'message' => 'User added to subscription',
+                'message' => 'Subscription removed',
             ];
         } else {
             $isSubscribe->delete();
@@ -63,7 +64,8 @@ class SubscriptionServices{
             $user->save();
 
             return [
-                'data' => $user,
+                'user' => $user,
+                'auth_user' => $userAuth,
                 'status' => 200,
                 'message' => 'Subscription removed',
             ];

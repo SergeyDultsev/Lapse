@@ -18,6 +18,13 @@ class SubscriptionController extends Controller
     public function storeOrDelete(string $user_id): object
     {
         $data = $this->subscriptionServices->toggleSubscription($user_id);
-        return $this->jsonResponse(new UserResource($data['data']), $data['status'], $data['message']);
+        return $this->jsonResponse(
+            [
+                'user' => new UserResource($data['user']),
+                'auth_user' => new UserResource($data['auth_user']),
+            ],
+            $data['status'], 
+            $data['message']
+        );
     }
 }

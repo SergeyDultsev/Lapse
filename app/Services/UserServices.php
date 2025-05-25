@@ -7,12 +7,6 @@ use App\Models\Subscription;
 use Illuminate\Support\Facades\Auth;
 
 class UserServices {
-    /**
-     * Вывод подписчиков пользователя.
-     *
-     * @param string $user_id идентификатор пользователя.
-     * @return array Ответ с данными пользователей.
-     */
     public function getSubscriptions(string $user_id): array
     {
         $user = User::where('user_id', $user_id)->firstOrFail();
@@ -25,12 +19,6 @@ class UserServices {
         ];
     }
 
-    /**
-     * Вывод подписок пользователя.
-     *
-     * @param string $user_id идентификатор пользователя.
-     * @return array Ответ с данными пользователей.
-     */
     public function getSubscribers(string $user_id): array
     {
         $user = User::where('user_id', $user_id)->firstOrFail();
@@ -43,15 +31,10 @@ class UserServices {
         ];
     }
 
-    /**
-     * Вывод конкретного пользователя.
-     *
-     * @param string $user_id идентификатор пользователя.
-     * @return array Ответ с данными пользователя.
-     */
     public function showUser(string $user_id): array
     {
         $user = User::find($user_id);
+        $user_auth = Auth::user();
 
         if(!$user){
             return [
@@ -68,12 +51,6 @@ class UserServices {
         ];
     }
 
-     /**
-     * Редактирование пользователя.
-     *
-     * @param string $data новые данные пользователя.
-     * @return array Ответ с данными пользователя.
-     */
     public function updateUser(array $data): array
     {
         $name = $data['name'];
@@ -108,11 +85,6 @@ class UserServices {
         ];
     }
 
-    /**
-     * Удаление пользователя.
-     *
-     * @return array Ответ.
-     */
     public function deleteUser(): array
     {
         $user = auth::user();
