@@ -1,18 +1,15 @@
 import {action, makeAutoObservable, runInAction} from "mobx";
-import iUser from "../types/iUser";
-import getAuthOtpCode from "@/features/user/authorize/model/api/getAuthOtpCode";
-import loginOrRegister from "@/features/user/authorize/model/api/loginOrRegister";
-import authCheck from "@/features/user/authorize/model/api/authCheck";
+import IUser from "../types/iUser";
+import getAuthOtpCode from "@features/user/authorize/api/getAuthOtpCode";
+import loginOrRegister from "@features/user/authorize/api/loginOrRegister";
+import authCheck from "@features/user/authorize/api/authCheck";
 import getUser from "@/entities/user/model/api/getUser";
 import logout from "@entities/user/model/api/logout";
-import subscribe from "@entities/user/model/api/subscribe";
-import iPost from "@entities/post/model/types/iPost";
+
 
 class UserStore{
-    userData:iUser | null = null;
-    usersSubscribers:iUser[] = [];
-    usersTarget:iUser[] = [];
-    userAuthorized:iUser | null = null;
+    userData:IUser | null = null;
+    userAuthorized:IUser | null = null;
 
     isAuth:boolean = false;
     isLoadingAuth:boolean = true;
@@ -23,8 +20,6 @@ class UserStore{
             loginOrRegisterUser: action,
             authorizationCheck: action,
             logout: action,
-            getUsersSubscribers: action,
-            getUsersTarget: action,
             getUserData: action,
         });
 
@@ -36,10 +31,16 @@ class UserStore{
     }
 
     async loginOrRegisterUser(): Promise<void> {
-        const response: boolean = await loginOrRegister();
-        runInAction(() => {
-            if (response) this.isAuth = true;
-        });
+        try {
+            const response: boolean = await loginOrRegister();
+            runInAction(() => {
+                if (response) this.isAuth = true;
+            });
+        } catch (error) {
+            runInAction(() => {
+                this.isAuth = false;
+            });
+        }
     }
 
     async authorizationCheck(): Promise<void> {
@@ -80,33 +81,6 @@ class UserStore{
                 this.isAuth = false;
             });
         }
-    }
-
-    async subscribeToUser(user_id: string): Promise<void> {
-        const response = await subscribe(user_id);
-        if (response?.data) {
-            if (response?.is_follow === true) {
-                runInAction(() => {
-                    this.usersSubscribers = this.usersSubscribers.filter((user: iUser) => user.user_id !== user_id);
-                    this.usersTarget.push(response?.data);
-                    this.userData = response?.data;
-                })
-            } else {
-                runInAction(() => {
-                    this.usersTarget = this.usersTarget.filter((user: iUser) => user.user_id !== user_id);
-                    this.usersSubscribers.push(response?.data);
-                    this.userData = response?.data;
-                })
-            }
-        }
-    }
-
-    async getUsersSubscribers(): Promise<void> {
-        //
-    }
-
-    async getUsersTarget(): Promise<void> {
-        //
     }
 
     async getUserData(user_id: string): Promise<void> {

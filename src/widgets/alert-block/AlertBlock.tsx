@@ -3,7 +3,7 @@ import styles from "./AlertBlock.module.scss"
 
 interface iAlertBlock {
     alertTitle: string | null;
-    alertDescr: string | null;
+    alertDescr?: string | null;
 }
 
 const AlertBlock: React.FC<iAlertBlock> = ({alertTitle, alertDescr}) => {

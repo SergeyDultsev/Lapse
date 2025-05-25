@@ -19,7 +19,7 @@ import CartInfo from "@/widgets/cart-info/CartInfo";
 const ProfilePage: React.FC = observer(() => {
     const userData: IUser | null = toJS(UserStore.userAuthorized);
     const postsData: iPost[] = toJS(PostStore?.postsData) || [];
-    const tierData: iTier[] = TierStore?.tierData || [];
+    const tierData: iTier[] =  toJS(TierStore?.tierData) || [];
 
     useEffect(() => {
         if(userData?.user_id) {
@@ -48,11 +48,10 @@ const ProfilePage: React.FC = observer(() => {
                             user_id={userData.user_id}
                             avatar={userData.avatar_url}
                             full_name={userData.full_name}
-                            subscriber={userData.subscriber_count}
-                            subscriptions={userData.subscriptions_count}
+                            subscriber_count={userData.subscriber_count}
+                            subscriptions_count={userData.subscriptions_count}
                             about={userData.about}
                             is_self={userData.is_self}
-                            is_follow={userData.is_follow}
                         />
 
                         {tierData.length === 0 ? (
@@ -63,7 +62,7 @@ const ProfilePage: React.FC = observer(() => {
                         ) : (
                             <CartInfo
                                 nameCart={"Уровни подписок"}
-                                children={<TierList tiers={toJS(TierStore.tierData)}/>}
+                                children={<TierList tiers={tierData}/>}
                             />
                         )}
                     </aside>

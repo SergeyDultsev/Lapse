@@ -6,7 +6,7 @@ import styles from "./style/AuthorizeForm.module.scss";
 import ButtonDefault from "@/shared/ui/button/ButtonDefault";
 import InputDefault from "@/shared/ui/input/InputDefault";
 import UserStore from "@/entities/user/model/store/UserStore";
-import LoginOrRegisterFormModel from "@/features/user/authorize/model/LoginOrRegisterFormModel";
+import LoginOrRegisterFormModel from "@features/user/authorize/LoginOrRegisterFormModel";
 
 
 const OtpForm: React.FC = observer(() => {

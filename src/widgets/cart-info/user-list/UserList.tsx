@@ -1,13 +1,16 @@
+'use client'
+
 import React from "react";
-import styles from "./UserSummaryList.module.scss";
+import {observer} from "mobx-react-lite";
+import styles from "./UserList.module.scss";
 import UserItem from "@/entities/user/ui/user-item/UserItem";
-import iUser from "@/entities/user/model/types/iUser";
+import iUser from "@/entities/user/model/types/iUser"
 
 interface iUserProps{
     users: iUser[];
 }
 
-const UserSummaryList: React.FC<iUserProps> = ({users}) => {
+const UserList: React.FC<iUserProps> = observer(({users}) => {
     return (
         <section className={styles["user-list"]}>
             {users.map((user: iUser ) =>
@@ -15,6 +18,6 @@ const UserSummaryList: React.FC<iUserProps> = ({users}) => {
             )}
         </section>
     )
-};
+});
 
-export default UserSummaryList;
+export default UserList;

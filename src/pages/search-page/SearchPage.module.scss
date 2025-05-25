@@ -12,8 +12,7 @@
   }
 
   &__body{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    border-radius: var(--main-border-radius);
+    border: 1px solid var(--main-border-color);
   }
 }

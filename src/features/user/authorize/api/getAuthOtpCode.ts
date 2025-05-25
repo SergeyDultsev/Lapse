@@ -1,5 +1,5 @@
-import useApi from "@/shared/utils/useApi";
-import LoginOrRegisterFormModel from "@/features/user/authorize/model/LoginOrRegisterFormModel";
+import useApi from "@shared/utils/useApi";
+import LoginOrRegisterFormModel from "@features/user/authorize/LoginOrRegisterFormModel";
 
 async function getOtpCode(): Promise<void>{
     const API_URL : string = `${process.env.NEXT_PUBLIC_API_URL}/otp/send`;

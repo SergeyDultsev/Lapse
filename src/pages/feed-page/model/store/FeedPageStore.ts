@@ -1,15 +1,17 @@
 import {action, makeAutoObservable, runInAction} from "mobx";
-import iUser from "@entities/user/model/types/iUser";
 import getFeed from "@pages/feed-page/model/api/getFeed";
 import postStore from "@entities/post/model/store/PostStore";
+import subscribe from "@entities/user/model/api/subscribe";
+import IUser from "@entities/user/model/types/iUser";
 
 class FeedPageStore{
-    usersRecommendations:iUser[] = [];
-    usersSubscriptions:iUser[] = [];
+    usersRecommendations:IUser[] = [];
+    usersSubscriptions:IUser[] = [];
 
     constructor() {
         makeAutoObservable(this, {
-            getFeedData: action
+            getFeedData: action,
+            subscribeToUser: action
         });
     }
 
@@ -18,15 +20,30 @@ class FeedPageStore{
             const response = await getFeed();
             runInAction(() => {
                 this.usersRecommendations = response?.data.recommendations;
-                this.usersSubscriptions = response?.data.subscriptions;
                 postStore.postsData = response?.data.posts;
             });
         } catch (error) {
             runInAction(() => {
                 this.usersRecommendations = [];
-                this.usersSubscriptions = [];
                 postStore.postsData = [];
             });
+        }
+    }
+
+    async subscribeToUser(user_id: string): Promise<void> {
+        try {
+            const response = await subscribe(user_id);
+            const updatedUser = response?.user;
+            if (response?.user && response?.user.is_follow === true) {
+                runInAction(() => {
+                    this.usersRecommendations = this.usersRecommendations.filter((user: IUser) => user.user_id !== user_id);
+                    this.usersSubscriptions.push(updatedUser);
+                })
+            }
+        } catch (error) {
+            runInAction(() => {
+                this.usersSubscriptions = this.usersSubscriptions.filter((user: IUser) => user.user_id !== user_id);
+            })
         }
     }
 }

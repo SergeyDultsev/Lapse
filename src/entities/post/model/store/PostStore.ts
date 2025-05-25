@@ -1,7 +1,7 @@
 import {makeAutoObservable, runInAction} from "mobx";
 import iPost from "../types/iPost";
 import getPostsUser from "@/entities/post/model/api/getPostsUser";
-import deletePost from "@entities/post/model/api/deletePost";
+import deletePost from "@features/post/delete-post/api/deletePost";
 
 class PostStore{
     postsData:iPost[] = [];

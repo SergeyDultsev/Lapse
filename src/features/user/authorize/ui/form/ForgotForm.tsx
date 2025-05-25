@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite";
 import styles from "./style/AuthorizeForm.module.scss";
 import ButtonDefault from "@/shared/ui/button/ButtonDefault";
 import InputDefault from "@/shared/ui/input/InputDefault";
-import ForgotFormModel from "@/features/user/authorize/model/ForgotFormModel";
+import ForgotFormModel from "@features/user/authorize/ForgotFormModel";
 
 const ForgotForm: React.FC = observer(() => {
     const handleForgot = (): void => {

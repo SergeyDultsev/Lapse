@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./CreatePostForm.module.scss";
-import CreatePostStore from "../../model/store/CreatePostStore";
+import CreatePostStore from "@features/post/create-post/store/CreatePostStore";
 import InputDefault from "@/shared/ui/input/InputDefault";
 import TextareaDefault from "@/shared/ui/textarea/TextareaDefault";
 import ButtonDefault from "@/shared/ui/button/ButtonDefault";

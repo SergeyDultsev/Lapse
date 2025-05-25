@@ -51,8 +51,8 @@ const UserPage: React.FC = observer(() => {
                             user_id={userData.user_id}
                             avatar={userData.avatar_url}
                             full_name={userData.full_name}
-                            subscriber={userData.subscriber_count}
-                            subscriptions={userData.subscriptions_count}
+                            subscriber_count={userData.subscriber_count}
+                            subscriptions_count={userData.subscriptions_count}
                             about={userData.about}
                             is_self={userData.is_self}
                             is_follow={userData.is_follow}

@@ -1,10 +1,10 @@
 import useApi from "@/shared/utils/useApi";
 import {getCookie} from "cookies-next";
 
-async function subscribe(user_id: string): Promise<void>{
-    const API_URL : string = `${process.env.NEXT_PUBLIC_API_URL}/follow/toggle/${user_id}`;
+async function getSubscribers(user_id: string): Promise<void>{
+    const API_URL : string = `${process.env.NEXT_PUBLIC_API_URL}/user/${user_id}/subscriptions`;
     const response = await useApi(API_URL, {
-        method: 'POST',
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -20,4 +20,4 @@ async function subscribe(user_id: string): Promise<void>{
     return { };
 }
 
-export default subscribe;
+export default getSubscribers;

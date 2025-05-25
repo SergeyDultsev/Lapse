@@ -3,7 +3,7 @@
 import React from "react";
 import styles from "./style/AuthorizeForm.module.scss";
 import { observer } from "mobx-react-lite";
-import LoginOrRegisterFormModel from "@/features/user/authorize/model/LoginOrRegisterFormModel";
+import LoginOrRegisterFormModel from "@features/user/authorize/LoginOrRegisterFormModel";
 import AuthorizePageModel from '@/pages/auth-page/model/AuthorizePageModel';
 import InputDefault from "@/shared/ui/input/InputDefault";
 import ButtonDefault from "@/shared/ui/button/ButtonDefault";

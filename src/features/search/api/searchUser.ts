@@ -1,10 +1,10 @@
 import useApi from "@/shared/utils/useApi";
-import { getCookie } from 'cookies-next';
+import {getCookie} from "cookies-next";
 
-async function authCheck(): Promise<void>{
-    const API_URL : string = `${process.env.NEXT_PUBLIC_API_URL}/auth/auth-check`;
+async function searchUser(query: string): Promise<void>{
+    const API_URL : string = `${process.env.NEXT_PUBLIC_API_URL}/search/user?query=${query}`;
     const response = await useApi(API_URL, {
-        method: 'POST',
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -15,9 +15,9 @@ async function authCheck(): Promise<void>{
         cache: 'no-store'
     });
 
-    if(response?.data) return { data: response.data };
+    if (response?.data) return { data: response.data.data };
 
-    return false;
+    return { };
 }
 
-export default authCheck;
+export default searchUser;

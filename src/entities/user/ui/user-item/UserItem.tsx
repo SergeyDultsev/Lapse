@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 import styles from "./UserItem.module.scss"
 import iUser from "@/entities/user/model/types/iUser";
@@ -7,14 +9,14 @@ import {useRouter} from "next/navigation";
 import ButtonDefault from "@shared/ui/button/ButtonDefault";
 import UserRemove from "@assets/icon/UserRemove";
 import UserAdd from "@assets/icon/UserAdd";
-import UserStore from "@entities/user/model/store/UserStore";
+import {observer} from "mobx-react-lite";
 
 interface iUserProps{
     user: iUser;
 }
 
-const UserItem: React.FC<iUserProps> = ({ user }) => {
-    const router = useRouter()
+const UserItem: React.FC<iUserProps> = observer(({ user }) => {
+    const router = useRouter();
     const userAuthorized: iUser | null = userStore.userAuthorized;
 
     const toRouteUserPage = (user_id: string) => {
@@ -46,7 +48,7 @@ const UserItem: React.FC<iUserProps> = ({ user }) => {
                         height: '36px',
                         padding: '8px',
                     }}
-                    onClick={e => UserStore.subscribeToUser(user.user_id)}
+                    onClick={e => subscribeToUserHandle()}
                     type={"button"}
                     active={true}
                 >
@@ -58,9 +60,8 @@ const UserItem: React.FC<iUserProps> = ({ user }) => {
                         width: '36px',
                         height: '36px',
                         padding: '8px',
-                        color: 'write'
                     }}
-                    onClick={e => UserStore.subscribeToUser(user.user_id)}
+                    onClick={e => subscribeToUserHandle()}
                     type={"button"}
                     active={false}
                 >
@@ -69,6 +70,6 @@ const UserItem: React.FC<iUserProps> = ({ user }) => {
             )}
         </article>
     )
-};
+});
 
 export default UserItem;

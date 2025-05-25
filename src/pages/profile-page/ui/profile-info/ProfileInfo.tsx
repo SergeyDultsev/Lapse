@@ -4,19 +4,31 @@ import {useRouter} from "next/navigation";
 import AvatarDefault from "@/assets/img/avatar.jpg";
 import ButtonDefault from "@/shared/ui/button/ButtonDefault";
 import UserStore from "@entities/user/model/store/UserStore";
+import {observer} from "mobx-react-lite";
+import SubscriptionStore from "@entities/subscription/model/store/SubscriptionStore";
 
 interface iProfileInfo {
     user_id: string,
     avatar: string,
     full_name: string,
-    subscriber: number,
-    subscriptions: number,
+    subscriber_count: number,
+    subscriptions_count: number,
     about: string,
     is_self: boolean,
-    is_follow: boolean
+    is_follow?: boolean
 }
 
-const ProfileInfo: React.FC<iProfileInfo> = ({user_id, avatar, full_name, subscriber, subscriptions, about, is_self, is_follow}) => {
+const ProfileInfo: React.FC<iProfileInfo> = observer((
+    {
+        user_id,
+        avatar,
+        full_name,
+        subscriber_count,
+        subscriptions_count,
+        about,
+        is_self,
+        is_follow}
+) => {
     const router = useRouter();
 
     const toRouteSetting = () => {
@@ -43,8 +55,8 @@ const ProfileInfo: React.FC<iProfileInfo> = ({user_id, avatar, full_name, subscr
                     {full_name}
                 </h2>
                 <div className={styles['user-info__subs']}>
-                    <p className={styles['user-info__subs-count']}>{subscriber} подписок</p>
-                    <p className={styles['user-info__subs-count']}>{subscriptions} подписчиков</p>
+                    <p className={styles['user-info__subs-count']}>{subscriber_count} подписок</p>
+                    <p className={styles['user-info__subs-count']}>{subscriptions_count} подписчиков</p>
                 </div>
 
                 {about ? (
@@ -63,7 +75,7 @@ const ProfileInfo: React.FC<iProfileInfo> = ({user_id, avatar, full_name, subscr
                             width: "100%",
                             maxWidth: "235px"
                         }}
-                        onClick={e => UserStore.subscribeToUser(user_id)}
+                        onClick={e => SubscriptionStore.subscribe(user_id)}
                         children={"Отписаться"}
                         name={"editUser"}
                         type={"button"}
@@ -79,7 +91,7 @@ const ProfileInfo: React.FC<iProfileInfo> = ({user_id, avatar, full_name, subscr
                             width: "100%",
                             maxWidth: "235px"
                         }}
-                        onClick={e => UserStore.subscribeToUser(user_id)}
+                        onClick={e => SubscriptionStore.subscribe(user_id)}
                         children={"Подписаться"}
                         name={"editUser"}
                         type={"button"}
@@ -105,6 +117,6 @@ const ProfileInfo: React.FC<iProfileInfo> = ({user_id, avatar, full_name, subscr
             </div>
         </section>
     );
-};
+});
 
 export default ProfileInfo;
