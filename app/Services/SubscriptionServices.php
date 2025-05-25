@@ -64,8 +64,7 @@ class SubscriptionServices{
             $user->save();
 
             return [
-                'user' => $user,
-                'auth_user' => $userAuth,
+                'data' => $user,
                 'status' => 200,
                 'message' => 'Subscription removed',
             ];

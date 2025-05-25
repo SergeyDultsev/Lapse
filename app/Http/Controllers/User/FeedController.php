@@ -22,7 +22,6 @@ class FeedController extends Controller
 
         return $this->jsonResponse(
             [
-                'subscriptions' => UserResource::collection($feed['subscriptions']),
                 'recommendations' => UserResource::collection($feed['recommendations']),
                 'posts' => PostResource::collection($feed['posts']),
             ],

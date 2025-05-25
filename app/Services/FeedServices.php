@@ -18,14 +18,9 @@ class FeedServices{
             );
         }
 
-        // Рекомендации
         $recommendations = auth()->user()->recommendations();
 
-        // Получаем пользователей, на кого подписан пользователь
-        $subscribedUsers = User::whereIn('user_id', $subscriptions->pluck('target_id'))->get();
-
         return [
-            'subscriptions' => $subscribedUsers,
             'recommendations' => $recommendations,
             'posts' => $posts,
         ];

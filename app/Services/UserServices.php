@@ -10,7 +10,7 @@ class UserServices {
     public function getSubscriptions(string $user_id): array
     {
         $user = User::where('user_id', $user_id)->firstOrFail();
-        $subscriptions = $user->subscriptions()->with('target')->get()->pluck('target'); // т.е. на кого подписан
+        $subscriptions = $user->subscriptions()->with('target')->get()->pluck('target');
 
         return [
             'data' => $subscriptions,
@@ -22,7 +22,7 @@ class UserServices {
     public function getSubscribers(string $user_id): array
     {
         $user = User::where('user_id', $user_id)->firstOrFail();
-        $subscribers = $user->subscribers()->with('subscriber')->get()->pluck('subscriber'); // кто подписан
+        $subscribers = $user->subscribers()->with('subscriber')->get()->pluck('subscriber');
 
         return [
             'data' => $subscribers,
@@ -34,7 +34,6 @@ class UserServices {
     public function showUser(string $user_id): array
     {
         $user = User::find($user_id);
-        $user_auth = Auth::user();
 
         if(!$user){
             return [
