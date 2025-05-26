@@ -19,8 +19,8 @@ class FavoriteServices{
 
         return [
             'data' => $postData,
-            'status' => 201,
-            'message' => 'Post added to favorites',
+            'status' => 200,
+            'message' => 'Post successfully received',
         ];
     }
 
