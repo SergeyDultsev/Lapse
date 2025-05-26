@@ -6,13 +6,13 @@ import {observer} from "mobx-react-lite";
 import searchStore from "@features/search/store/SearchStore";
 import InputDefault from "@shared/ui/input/InputDefault";
 import ButtonDefault from "@shared/ui/button/ButtonDefault";
-import UserList from "@widgets/cart-info/user-list/UserList";
-import iUser from "@/entities/user/model/types/iUser";
+import IUser from "@/entities/user/model/types/iUser";
 import SearchStore from "@features/search/store/SearchStore";
+import AvatarDefault from "@assets/img/avatar.jpg";
 
 
 const SearchPage: React.FC = observer(() => {
-    const users: iUser[] = searchStore.searchUserData;
+    const users: IUser[] = searchStore.searchUserData;
 
     return (
         <main className="main">
@@ -33,9 +33,30 @@ const SearchPage: React.FC = observer(() => {
                         Найти
                     </ButtonDefault>
                 </div>
-                <div className={styles['search__body']}>
-                    <UserList users={users}/>
-                </div>
+                <section className={styles['search-list']}>
+                    {users.map((user: IUser) =>
+                        <article className={styles['search-item']}>
+                            <div className={styles["search-item__info"]}>
+                                {user.avatar_url ? (
+                                    <img className={styles["search-item__info__avatar"]}
+                                         src={user.avatar_url}
+                                         alt="avatar"
+                                         loading="lazy"
+                                    />
+                                ) : (
+                                    <img className={styles["search-item__info__avatar"]}
+                                         src={AvatarDefault.src}
+                                         alt="avatar"
+                                         loading="lazy"
+                                    />
+                                )}
+                                <h2 className={styles["search-item__info__item"]}>{user.full_name}</h2>
+                                <p className={styles["search-item__info__item"]}>{user.subscriber_count} подписок</p>
+                                <p className={styles["search-item__info__item"]}>{user.subscriptions_count} подписчиков</p>
+                            </div>
+                        </article>
+                    )}
+                </section>
             </section>
         </main>
     );

@@ -13,7 +13,7 @@ interface iUserProps{
 const UserList: React.FC<iUserProps> = observer(({users}) => {
     return (
         <section className={styles["user-list"]}>
-            {users.map((user: iUser ) =>
+            {users.map((user: iUser) =>
                 <UserItem user={user} key={user.user_id}/>
             )}
         </section>
