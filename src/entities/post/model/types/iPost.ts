@@ -5,8 +5,8 @@ interface iPost {
     preview_url: string | null,
     comment_count: number,
     save_count: number,
-    is_favorite: false,
-    is_open: true,
+    is_favorite: boolean,
+    is_open: boolean,
     user: {
         user_id: string | null,
         full_name: string,

@@ -4,19 +4,19 @@ import styles from "./PostList.module.scss";
 import PostItem from "@/entities/post/ui/post-item/PostItem";
 import ButtonDefault from "@/shared/ui/button/ButtonDefault";
 import iPost from "@/entities/post/model/types/iPost";
-import PostFilterStore from "@/entities/post/model/store/PostFilterStore";
+import PostStore from "@entities/post/model/store/PostStore";
+import filterPosts from "@shared/utils/filterPosts";
+import IPost from "@entities/post/model/types/iPost";
 
 interface IPosts  {
     posts: iPost[];
 }
 
 const PostList: React.FC<IPosts> = observer(({ posts }) => {
-    useEffect((): void => {
-        PostFilterStore.filterPosts(posts, "allPost");
-    }, [posts]);
+    let postsData: IPost[] = filterPosts(posts, PostStore.filteredFlag);
 
     const filterPostsHandle = (filterFlag: string | boolean): void => {
-        PostFilterStore.filterPosts(posts, filterFlag);
+        PostStore.changeFilteredFlag(filterFlag);
     };
 
     return (
@@ -26,31 +26,31 @@ const PostList: React.FC<IPosts> = observer(({ posts }) => {
                     style={{ width: "158px" }}
                     onClick={() => filterPostsHandle("allPost")}
                     name="allPost"
-                    active={PostFilterStore.filteredFlag == "allPost"}
+                    active={PostStore.filteredFlag == "allPost"}
                     type="button"
                 >
                     Все посты
                 </ButtonDefault>
                 <ButtonDefault
                     style={{ width: "158px" }}
-                    onClick={() => filterPostsHandle("open")}
+                    onClick={() => filterPostsHandle(true)}
                     name="openPost"
-                    active={PostFilterStore.filteredFlag == true}
+                    active={PostStore.filteredFlag == true}
                     type="button"
                 >
                     Открытые посты
                 </ButtonDefault>
                 <ButtonDefault
                     style={{ width: "158px" }}
-                    onClick={() => filterPostsHandle("close")}
+                    onClick={() => filterPostsHandle(false)}
                     name="closePost"
-                    active={PostFilterStore.filteredFlag == false}
+                    active={PostStore.filteredFlag == false}
                     type="button"
                 >
                     Закрытые посты
                 </ButtonDefault>
             </div>
-            {PostFilterStore.filteredPosts.map((postItem: iPost) => (
+            {postsData.map((postItem: iPost) => (
                 <PostItem user={postItem.user} post={postItem} key={postItem.post_id} />
             ))}
         </section>

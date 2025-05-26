@@ -1,13 +1,22 @@
-import {makeAutoObservable, runInAction} from "mobx";
+import {action, makeAutoObservable, runInAction} from "mobx";
 import iPost from "../types/iPost";
 import getPostsUser from "@/entities/post/model/api/getPostsUser";
 import deletePost from "@features/post/delete-post/api/deletePost";
 
 class PostStore{
     postsData:iPost[] = [];
+    filteredFlag: string | boolean = "allPost";
 
     constructor() {
-        makeAutoObservable(this);
+        makeAutoObservable(this, {
+            changeFilteredFlag: action,
+            getPostsByUserId: action,
+            deletePostById: action
+        });
+    }
+
+    changeFilteredFlag(newMethodFilter: boolean | string): void {
+        this.filteredFlag = newMethodFilter;
     }
 
     async getPostsByUserId(user_id: string): Promise<void> {
@@ -20,6 +29,7 @@ class PostStore{
             this.postsData = [];
         }
     }
+
 
     async deletePostById(post_id: string): Promise<void> {
         try {

@@ -9,10 +9,19 @@ import ButtonDefault from "@shared/ui/button/ButtonDefault";
 import IUser from "@/entities/user/model/types/iUser";
 import SearchStore from "@features/search/store/SearchStore";
 import AvatarDefault from "@assets/img/avatar.jpg";
+import {useRouter} from "next/navigation";
+import iUser from "@entities/user/model/types/iUser";
+import userStore from "@entities/user/model/store/UserStore";
 
 
 const SearchPage: React.FC = observer(() => {
+    const router = useRouter();
+    const userAuthorized: iUser | null = userStore.userAuthorized;
     const users: IUser[] = searchStore.searchUserData;
+
+    const toRouteUserPage = (user_id: string) => {
+        userAuthorized?.user_id !== user_id ? router.push(`/user/${user_id}`) : router.push('/user/profile');
+    }
 
     return (
         <main className="main">
@@ -35,7 +44,7 @@ const SearchPage: React.FC = observer(() => {
                 </div>
                 <section className={styles['search-list']}>
                     {users.map((user: IUser) =>
-                        <article className={styles['search-item']}>
+                        <article className={styles['search-item']} onClick={e => toRouteUserPage(user.user_id)}>
                             <div className={styles["search-item__info"]}>
                                 {user.avatar_url ? (
                                     <img className={styles["search-item__info__avatar"]}

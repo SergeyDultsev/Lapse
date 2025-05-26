@@ -9,14 +9,13 @@ import UserList from "@widgets/cart-info/user-list/UserList";
 import IUser from "@/entities/user/model/types/iUser";
 import IPost from "@/entities/post/model/types/iPost";
 import AlertBlock from "@/widgets/alert-block/AlertBlock";
-import postStore from "@entities/post/model/store/PostStore";
 import FeedPageStore from "@pages/feed-page/model/store/FeedPageStore";
 import SubscriptionStore from "@entities/subscription/model/store/SubscriptionStore";
 import UserStore from "@entities/user/model/store/UserStore";
 
 const FeedPage: React.FC = observer(() => {
     const usersSubscriptions: IUser[] = SubscriptionStore?.usersSubscriptions || [];
-    const feedPosts: IPost[] = postStore?.postsData || [];
+    const feedPosts: IPost[] = FeedPageStore?.feedPosts || [];
 
     useEffect(() => {
         FeedPageStore.getFeedData();

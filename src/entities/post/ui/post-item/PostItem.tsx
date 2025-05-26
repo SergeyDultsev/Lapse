@@ -7,11 +7,14 @@ import IPost from "@/entities/post/model/types/iPost";
 import IUser from "@entities/user/model/types/iUser";
 import UserStore from "@entities/user/model/store/UserStore";
 import PostStore from "@entities/post/model/store/PostStore";
+import FavoriteStore from "@entities/favorite/model/store/FavoriteStore";
 import {toJS} from "mobx";
+import {observer} from "mobx-react-lite";
 
-const PostItem: React.FC<IPost> = ({ user, post }) => {
+const PostItem: React.FC<IPost> = observer(({ user, post }) => {
     const userAuthorizedData: IUser | null = toJS(UserStore.userAuthorized);
 
+    console.log(post)
     return (
         <article className={styles["post"]}>
             <div className={styles["user-info"]}>
@@ -51,7 +54,9 @@ const PostItem: React.FC<IPost> = ({ user, post }) => {
                     </div>
                     <CommentIcon/>
                 </div>
-                <div className={!post.is_favorite ? styles["post-option__item"] : styles["post-option__item__active"]}>
+                <div
+                    className={!post.is_favorite ? styles["post-option__item"] : styles["post-option__item__active"]}
+                    onClick={() => FavoriteStore.isFavoriteById(post.post_id)}>
                     <div className={styles["post-option__item__counter"]}>
                         {post.save_count}
                     </div>
@@ -67,6 +72,6 @@ const PostItem: React.FC<IPost> = ({ user, post }) => {
             </div>
         </article>
     );
-}
+})
 
 export default PostItem;

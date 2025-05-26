@@ -1,8 +1,10 @@
 import {action, makeAutoObservable, runInAction} from "mobx";
 import getFeed from "@pages/feed-page/model/api/getFeed";
-import postStore from "@entities/post/model/store/PostStore";
+import iPost from "@entities/post/model/types/iPost";
 
 class FeedPageStore{
+    feedPosts: iPost[] = [];
+
     constructor() {
         makeAutoObservable(this, {
             getFeedData: action,
@@ -13,11 +15,11 @@ class FeedPageStore{
         try {
             const response = await getFeed();
             runInAction(() => {
-                postStore.postsData = response?.data;
+                this.feedPosts = response?.data;
             });
         } catch (error) {
             runInAction(() => {
-                postStore.postsData = [];
+                this.feedPosts = [];
             });
         }
     }
