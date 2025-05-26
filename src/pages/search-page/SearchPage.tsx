@@ -9,7 +9,7 @@ import ButtonDefault from "@shared/ui/button/ButtonDefault";
 import UserList from "@widgets/cart-info/user-list/UserList";
 import iUser from "@/entities/user/model/types/iUser";
 import SearchStore from "@features/search/store/SearchStore";
-import AlertBlock from "@widgets/alert-block/AlertBlock";
+
 
 const SearchPage: React.FC = observer(() => {
     const users: iUser[] = searchStore.searchUserData;
@@ -33,15 +33,9 @@ const SearchPage: React.FC = observer(() => {
                         Найти
                     </ButtonDefault>
                 </div>
-                {users.length !== 0 ? (
-                    <div className={styles['search__body']}>
-                        <UserList users={users}/>
-                    </div>
-                ) : (
-                    <AlertBlock
-                        alertTitle={"Пользователей не найдено"}
-                    />
-                )}
+                <div className={styles['search__body']}>
+                    <UserList users={users}/>
+                </div>
             </section>
         </main>
     );

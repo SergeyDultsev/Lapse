@@ -2,7 +2,6 @@
 
 import React, {useEffect} from "react";
 import {observer} from "mobx-react-lite";
-import {toJS} from "mobx";
 import { useRouterMiddleware } from "@/middleware/useRouterMiddleware";
 import CartInfo from "@/widgets/cart-info/CartInfo";
 import PostList from "@/widgets/post-list/ui/PostList";
@@ -17,7 +16,6 @@ import UserStore from "@entities/user/model/store/UserStore";
 
 const FeedPage: React.FC = observer(() => {
     const usersSubscriptions: IUser[] = SubscriptionStore?.usersSubscriptions || [];
-    const usersRecommendations: IUser[] = FeedPageStore?.usersRecommendations || [];
     const feedPosts: IPost[] = postStore?.postsData || [];
 
     useEffect(() => {
@@ -35,10 +33,6 @@ const FeedPage: React.FC = observer(() => {
                 <aside className="aside">
                     <CartInfo nameCart={"Подписки"} children={
                         <UserList users={usersSubscriptions}/>
-                    }/>
-
-                    <CartInfo nameCart={"Рекомендации"} children={
-                        <UserList users={usersRecommendations}/>
                     }/>
                 </aside>
             }

@@ -23,7 +23,6 @@ class SearchStore{
             runInAction(() => {
                 if (response?.data) this.searchUserData = response.data;
             });
-            console.log(this.searchUserData)
         } catch (error) {
             this.searchUserData = [];
         }

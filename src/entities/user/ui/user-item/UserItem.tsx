@@ -10,6 +10,7 @@ import ButtonDefault from "@shared/ui/button/ButtonDefault";
 import UserRemove from "@assets/icon/UserRemove";
 import UserAdd from "@assets/icon/UserAdd";
 import {observer} from "mobx-react-lite";
+import SubscriptionStore from "@entities/subscription/model/store/SubscriptionStore";
 
 interface iUserProps{
     user: iUser;
@@ -21,6 +22,10 @@ const UserItem: React.FC<iUserProps> = observer(({ user }) => {
 
     const toRouteUserPage = (user_id: string) => {
         userAuthorized?.user_id !== user_id ? router.push(`/user/${user_id}`) : router.push('/user/profile');
+    }
+
+    const subscribeHandle = (user_id: string) => {
+        SubscriptionStore.subscribe(user_id);
     }
 
     return (
@@ -48,7 +53,7 @@ const UserItem: React.FC<iUserProps> = observer(({ user }) => {
                         height: '36px',
                         padding: '8px',
                     }}
-                    onClick={e => subscribeToUserHandle()}
+                    onClick={e => subscribeHandle(user.user_id)}
                     type={"button"}
                     active={true}
                 >
@@ -61,7 +66,7 @@ const UserItem: React.FC<iUserProps> = observer(({ user }) => {
                         height: '36px',
                         padding: '8px',
                     }}
-                    onClick={e => subscribeToUserHandle()}
+                    onClick={e => subscribeHandle(user.user_id)}
                     type={"button"}
                     active={false}
                 >
