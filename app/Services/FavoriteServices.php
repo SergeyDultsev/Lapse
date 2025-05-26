@@ -51,6 +51,7 @@ class FavoriteServices{
 
             $post->increment('save_count');
             $post->save();
+            $post->is_favorite = Favorite::isFavorite($post->post_id, $user->user_id);
 
             return [
                 'data' => $post,
@@ -62,6 +63,7 @@ class FavoriteServices{
 
             $post->decrement('save_count');
             $post->save();
+            $post->is_favorite = Favorite::isFavorite($post->post_id, $user->user_id);
 
             return [
                 'data' => $post,
