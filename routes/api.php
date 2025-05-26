@@ -12,7 +12,6 @@ use App\Http\Controllers\User\SearchController;
 use App\Http\Controllers\User\SubscriptionController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\OptionalAuthMiddleware;
 
 Route::prefix('/auth')->group(function () {
     Route::post('/verify-auth', [AuthController::class, 'registerOrLoginWithOtp']);
@@ -41,9 +40,6 @@ Route::prefix('post')->group(function () {
     Route::get('/user/{user_id}', [PostController::class, 'index'])
         ->name('posts')
         ->middleware('throttle:60,1');
-    Route::get('/feed', [PostController::class, 'index'])
-        ->name('feed')
-        ->middleware('auth:sanctum', 'throttle:20,1');
     Route::post('/', [PostController::class, 'store'])->middleware('auth:sanctum');
     Route::get('/{post_id}', [PostController::class, 'show'])
         ->middleware('throttle:60,1');
@@ -60,8 +56,10 @@ Route::prefix('posts/{post_id}/comments')->group(function () {
 Route::post('follow/toggle/{user_id}', [SubscriptionController::class, 'storeOrDelete'])
     ->middleware('auth:sanctum', 'throttle:20,1');
 
-Route::post('favorites/toggle/{post_id}', [FavoriteController::class, 'storeOrDelete'])
-    ->middleware('auth:sanctum', 'throttle:20,1');
+Route::prefix('favorites')->group(function () {
+    Route::get('/', [FavoriteController::class, 'index'])->middleware('auth:sanctum');
+    Route::post('/toggle/{post_id}', [FavoriteController::class, 'storeOrDelete'])->middleware('auth:sanctum');
+})->middleware('throttle:40,1');
 
 Route::prefix('tier')->group(function () {
     Route::get('/{user_id}', [TierController::class, 'index']);
@@ -74,6 +72,6 @@ Route::prefix('tier')->group(function () {
 
 Route::prefix('search')->group(function () {
     Route::get('/user', [SearchController::class, 'index']);
-});
+})->middleware('throttle:40,1');
 
-Route::get('/feed', [FeedController::class, 'index'])->middleware('auth:sanctum');
+Route::get('/feed', [FeedController::class, 'index'])->middleware('auth:sanctum')->middleware('throttle:40,1');

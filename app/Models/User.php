@@ -64,9 +64,19 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(Subscription::class, 'target_id', 'user_id');
     }
 
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class, 'user_id', 'user_id');
+    }
+
     public function getFullNameAttribute(): string
     {
         return "$this->name $this->surname";
+    }
+
+    public function favoritePosts()
+    {
+        return $this->belongsToMany(Post::class, 'favorites', 'user_id', 'post_id');
     }
 
     public function isFollow(string $user_id): bool | string

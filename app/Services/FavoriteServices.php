@@ -8,6 +8,22 @@ use Illuminate\Support\Facades\Auth;
 use Ramsey\Uuid\Uuid;
 
 class FavoriteServices{
+    public function getFavorite(): array
+    {
+        $user = Auth::user();
+        $postData = $user->favoritePosts()->get();
+
+        foreach ($postData as $post) {
+            $post->is_favorite = Favorite::isFavorite($post->post_id, $user->user_id);
+        }
+
+        return [
+            'data' => $postData,
+            'status' => 201,
+            'message' => 'Post added to favorites',
+        ];
+    }
+
     public function toggleFavorite(string $post_id): array
     {
         $user = Auth::user();

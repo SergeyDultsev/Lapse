@@ -18,11 +18,10 @@ class FeedServices{
             );
         }
 
-        $recommendations = auth()->user()->recommendations();
-
         return [
-            'recommendations' => $recommendations,
             'posts' => $posts,
+            'status' => 200,
+            'message' => 'Feed successfully received',
         ];
     }
 }

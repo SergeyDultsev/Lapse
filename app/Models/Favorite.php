@@ -19,13 +19,6 @@ class Favorite extends Model
         'user_id',
     ];
 
-    /**
-     * Проверка, находится ли пост в избранном у пользователя.
-     *
-     * @param string $post_id
-     * @param string $user_id
-     * @return bool
-     */
     public static function isFavorite(string $post_id, string $user_id): bool
     {
         return Favorite::where('post_id', $post_id)

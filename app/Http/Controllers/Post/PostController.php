@@ -23,16 +23,8 @@ class PostController extends Controller
         return $this->jsonResponse(new PostResource((object) $data['data']), $data['status'], $data['message']);
     }
 
-    public function index(Request $request, ?string $user_id = null): object
+    public function index(string $user_id): object
     {
-        if($request->routeIs('feed')){
-            $data = $this->postService->getFeed($request->all());
-            return $this->jsonResponse(
-                PostResource::collection(collect($data['data'])),
-                $data['status'],
-                $data['message']
-            );
-        }
         $data = $this->postService->getPosts($user_id);
         return $this->jsonResponse(
             PostResource::collection(collect($data['data'])),

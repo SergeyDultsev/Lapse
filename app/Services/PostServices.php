@@ -11,12 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class PostServices
 {
-    /**
-     * Создание поста
-     *
-     * @param array $data данные поста.
-     * @return array созданный пост.
-     */
     public function createPost(array $data): array
     {
         $post = new Post;
@@ -38,12 +32,6 @@ class PostServices
         ];
     }
 
-    /**
-     * Получение постов пользователя
-     *
-     * @param string $user_id идентификатор пользователя.
-     * @return array пост.
-     */
     public function getPosts(string $user_id): array
     {
         $user = User::find($user_id);
@@ -69,41 +57,6 @@ class PostServices
         ];
     }
 
-    /**
-     * Получение ленты постов пользовотеля
-     *
-     * @param string $user_id идентификатор пользователя.
-     * @return array пост.
-     */
-    public function getFeed(array $data): array
-    {
-        $userId = Auth::id();
-        $targetIds = Subscription::where('subscriber_id', $userId)
-            ->pluck('target_id');
-
-        $postData = Post::whereIn('user_id', $targetIds)->get();
-
-        if ($postData->isEmpty()) {
-            return [
-                'data' => [],
-                'status' => 404,
-                'message' => 'Posts Not Found'
-            ];
-        }
-
-        return [
-            'data' => $postData,
-            'status' => 200,
-            'message' => 'Posts successfully received'
-        ];
-    }
-
-    /**
-     * Получение поста
-     *
-     * @param string $post_id идентификатор поста.
-     * @return array пост.
-     */
     public function showPost(string $post_id): array
     {
         $post = Post::find($post_id);
@@ -123,12 +76,6 @@ class PostServices
         ];
     }
 
-    /**
-     * Удаление поста
-     *
-     * @param string $post_id идентификатор поста.
-     * @return array пост.
-     */
     public function deletePost(string $post_id): array
     {
         $post = Post::find($post_id);

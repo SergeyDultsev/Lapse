@@ -21,12 +21,9 @@ class FeedController extends Controller
         $feed = $this->feedService->getFeed();
 
         return $this->jsonResponse(
-            [
-                'recommendations' => UserResource::collection($feed['recommendations']),
-                'posts' => PostResource::collection($feed['posts']),
-            ],
-            200,
-            'Success'
+            PostResource::collection($feed['posts']),
+            $feed['status'],
+            $feed['message']
         );
     }
 }
