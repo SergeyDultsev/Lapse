@@ -19,7 +19,7 @@ class SubscriptionController extends Controller
     {
         $data = $this->subscriptionServices->toggleSubscription($user_id);
         return $this->jsonResponse(
-            new UserResource($data['user']),
+            new UserResource($data['data']),
             $data['status'], 
             $data['message']
         );

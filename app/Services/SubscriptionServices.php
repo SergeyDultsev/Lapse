@@ -24,7 +24,7 @@ class SubscriptionServices{
 
         if (!$user) {
             return [
-                'data' => [],
+                'data' => null,
                 'status' => 404,
                 'message' => 'Post not found',
             ];
@@ -49,8 +49,7 @@ class SubscriptionServices{
             $user->save();
 
             return [
-                'user' => $user,
-                'auth_user' => $userAuth,
+                'data' => $user,
                 'status' => 201,
                 'message' => 'Subscription removed',
             ];
