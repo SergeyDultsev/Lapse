@@ -19,4 +19,9 @@ class PurchasedTier extends Model
         'user_id',
         'status'
     ];
+
+    public function tier()
+    {
+        return $this->belongsTo(Tier::class, 'tier_id');
+    }
 }

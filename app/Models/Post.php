@@ -41,6 +41,11 @@ class Post extends Model implements HasMedia
         return $this->belongsTo(Tier::class, 'tier_id', 'tier_id');
     }
 
+    public function purchasedTier()
+    {
+        return $this->belongsTo(PurchasedTier::class, 'tier_id', 'tier_id');
+    }
+
     public function favorite()
     {
         return $this->belongsTo(Favorite::class, 'post_id', 'post_id');
@@ -51,12 +56,18 @@ class Post extends Model implements HasMedia
         if($this->tier_id === null) return true;
         if(!$user) return false;
 
-        $tier = $user->tier();
+        $purchasedTiers = PurchasedTier::where('user_id', $user->user_id)
+            ->where('status', true)
+            ->get();
 
-        foreach ($tier as $tierItem) {
-            if($tierItem->tier && $tierItem->tier->price >= $this->tier->price){
-                return true;
-            }
+        if ($purchasedTiers->isEmpty()) return false;
+
+        foreach ($purchasedTiers as $tierItem) {
+            $tier = $tierItem->tier;
+
+            if(!$tier) continue;
+
+            if($tier->user > $this->user_id && $tier->price = $this->tier->price) return true;
         }
 
         return false;
