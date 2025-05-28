@@ -40,7 +40,7 @@ const VisibilityOption: React.FC = observer(() => {
                 </ButtonDefault>
             )}
 
-            {tierData.length !== 0 && (
+            {tierData.length !== 0 && stateVisibility !== "open" && (
                 <TierSelect 
                     label={"Уровни подписок"} 
                     options={tierData}

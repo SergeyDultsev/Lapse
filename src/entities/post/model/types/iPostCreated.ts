@@ -1,8 +1,8 @@
 interface iPostCreated {
+    tier_id: string,
     title: string,
     content: string,
-    prewiew: string | null,
-    status: "open" | "byTier",
+    preview_url: string | null,
 }
 
 export default iPostCreated;

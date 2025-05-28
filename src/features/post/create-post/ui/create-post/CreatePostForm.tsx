@@ -6,33 +6,33 @@ import TextareaDefault from "@/shared/ui/textarea/TextareaDefault";
 import ButtonDefault from "@/shared/ui/button/ButtonDefault";
 import FileUpload from "@/shared/ui/file/FileUpload";
 import { observer } from "mobx-react-lite";
+import PostStore from "@entities/post/model/store/PostStore";
 
 const CreatePostForm: React.FC = observer(() => {
-    const store = CreatePostStore;
-
     const handlePublish = () => {
-        store.resetForm();
+        PostStore.createPost();
+        CreatePostStore.resetForm();
     };
 
     return (
         <form className={styles["create-form"]} onSubmit={(e) => e.preventDefault()}>
-            <FileUpload 
-                placeholder={"Загрузить превью поста"} 
-                onChange={(event) => store.setPreview(event)} 
+            <FileUpload
+                placeholder={"Загрузить превью поста"}
+                onChange={(event) => CreatePostStore.setPreview(event)}
             />
             <InputDefault 
                 placeholder={"Заголовок поста"} 
                 type="text" 
-                value={store.title}
-                onChange={(event) => store.setTitle(event.target.value)}
+                value={CreatePostStore.dataForm.title}
+                onChange={(event) => CreatePostStore.setTitle(event.target.value)}
             />
             <TextareaDefault 
                 placeholder={"Тело поста"} 
-                value={store.body}
-                onChange={(event) => store.setBody(event.target.value)}
+                value={CreatePostStore.dataForm.content}
+                onChange={(event) => CreatePostStore.setContent(event.target.value)}
             />
             <ButtonDefault 
-                active={!!store.title && !!store.body}
+                active={!!CreatePostStore.dataForm.title && !!CreatePostStore.dataForm.content}
                 type="button" 
                 onClick={handlePublish}
             >

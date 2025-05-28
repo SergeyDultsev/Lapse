@@ -1,9 +1,9 @@
 import ITier from "@/entities/tier/model/types/iTier";
 import { makeAutoObservable, action } from "mobx";
 
-class SelectStore {
+class TierSelectStore {
     isOpen: boolean = false;
-    selected: ITier = { userId: '', tierId: '', title: '', price: 0, description: '' };
+    selected: ITier = { tier_id: '', user_id: '', title: '', price: 0, description: '' };
 
     constructor () {
         makeAutoObservable(this, {
@@ -12,19 +12,13 @@ class SelectStore {
         })
     }
 
-    /*
-    * Открывает выпадающее меню
-    */
     setIsOpen(state: boolean) {
         this.isOpen = state;
     }
 
-    /*
-    * Метод меняет выбранный элемент
-    */
     setSelected(newSelected: ITier): void {
         this.selected = newSelected;
     }
 }
 
-export default new SelectStore;
+export default new TierSelectStore;

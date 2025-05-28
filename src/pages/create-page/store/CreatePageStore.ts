@@ -11,16 +11,10 @@ class CreatePageStore {
         })
     }
 
-    /*
-    * Метод меняет сотояние формы на странице "Создать"
-    */
     changeFormState(state: string): void {
         this.stateCreateForm = state;
     }
 
-    /*
-    * Метод меняет сотояние формы видимости поста (радиокнопки)
-    */
     changeVisibility(state: string): void {
         this.stateVisibility = state;
     }

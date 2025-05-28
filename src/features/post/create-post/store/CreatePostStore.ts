@@ -1,34 +1,42 @@
 import { makeAutoObservable, action } from "mobx";
+import TierSelectStore from "@pages/create-page/store/TierSelectStore";
 
 class CreatePostStore {
-    title: string = "";
-    body: string = "";
-    preview: File | null = null;
+    selectedTier = TierSelectStore.selected;
+
+    dataForm = {
+        tier_id: this.selectedTier.tier_id,
+        title: '',
+        content: '',
+        preview_url: null as File | null,
+    };
 
     constructor () {
         makeAutoObservable(this, {
             setTitle: action,
-            setBody: action,
+            setContent: action,
             setPreview: action,
         });
     }
 
     setTitle(title: string) {
-        this.title = title;
+        this.dataForm.title = title;
     }
 
-    setBody(body: string) {
-        this.body = body;
+    setContent(body: string) {
+        this.dataForm.content = body;
     }
 
-    setPreview(preview: File | null) {
-        this.preview = preview;
+    setPreview(event: React.ChangeEvent<HTMLInputElement>) {
+        const file = event.target.files?.[0] || null;
+        this.dataForm.preview_url = file;
     }
 
     resetForm() {
-        this.title = "";
-        this.body = "";
-        this.preview = null;
+        this.dataForm.tier_id = "";
+        this.dataForm.title = "";
+        this.dataForm.content = "";
+        this.dataForm.preview_url = null;
     }
 }
 

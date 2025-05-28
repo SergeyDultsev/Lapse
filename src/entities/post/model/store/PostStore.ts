@@ -1,6 +1,7 @@
 import {action, makeAutoObservable, runInAction} from "mobx";
 import iPost from "../types/iPost";
 import getPostsUser from "@/entities/post/model/api/getPostsUser";
+import createPost from "@features/post/create-post/api/createPost"
 import deletePost from "@features/post/delete-post/api/deletePost";
 
 class PostStore{
@@ -11,6 +12,7 @@ class PostStore{
         makeAutoObservable(this, {
             changeFilteredFlag: action,
             getPostsByUserId: action,
+            createPost: action,
             deletePostById: action
         });
     }
@@ -30,6 +32,14 @@ class PostStore{
         }
     }
 
+    async createPost(): Promise<void> {
+        const response = await createPost();
+        if(response.data) {
+            runInAction(() => {
+                this.postsData.push(response.data);
+            })
+        }
+    }
 
     async deletePostById(post_id: string): Promise<void> {
         try {

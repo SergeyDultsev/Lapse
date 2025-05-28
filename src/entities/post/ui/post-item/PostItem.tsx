@@ -14,7 +14,6 @@ import {observer} from "mobx-react-lite";
 const PostItem: React.FC<IPost> = observer(({ user, post }) => {
     const userAuthorizedData: IUser | null = toJS(UserStore.userAuthorized);
 
-    console.log(post)
     return (
         <article className={styles["post"]}>
             <div className={styles["user-info"]}>
