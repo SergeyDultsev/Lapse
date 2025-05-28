@@ -15,6 +15,7 @@ class PurchasedTier extends Model
 
     protected $fillable = [
         'purchased_tier_id',
+        'yookassa_id',
         'tier_id',
         'user_id',
         'status'

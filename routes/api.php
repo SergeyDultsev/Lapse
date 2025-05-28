@@ -66,8 +66,9 @@ Route::prefix('tier')->group(function () {
     Route::get('/{tier_id}', [TierController::class, 'show']);
     Route::get('/{tier_id}', [TierController::class, 'update']);
     Route::post('/', [TierController::class, 'store'])->middleware('auth:sanctum');
-    Route::post('/pay/{tier_id}', [PurchasedTierController::class, 'store'])->middleware('auth:sanctum');
     Route::delete('/{tier_id}', [TierController::class, 'destroy'])->middleware('auth:sanctum');
+    Route::post('/pay/{tier_id}', [PurchasedTierController::class, 'store'])->middleware('auth:sanctum');
+    Route::post('/pay-confirm/{tier_id}', [PurchasedTierController::class, 'update'])->middleware('auth:sanctum');
 })->middleware('throttle:40,1');
 
 Route::prefix('search')->group(function () {

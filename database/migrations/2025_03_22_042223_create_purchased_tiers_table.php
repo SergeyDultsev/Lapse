@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('purchased_tier_id')->primary();
             $table->uuid('tier_id');
             $table->uuid('user_id');
+            $table->uuid('yookassa_id');
             $table->boolean('status')->default(false);
             $table->timestamps();
 

@@ -6,6 +6,7 @@ use App\Models\PurchasedTier;
 use App\Models\Tier;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Ramsey\Uuid\Uuid;
 
 class PurchasedTierServices{
     public function createPurchasedTier(array $data, string $tier_id): array
@@ -18,17 +19,13 @@ class PurchasedTierServices{
 
         $isMyTier = Tier::where('tier_id', $tier_id)->where('user_id', Auth::id())->exists();
 
-        if($isMyTier) {
-            return [
-                [],
-                403,
-                'You buy your own subscription'
-            ];
-        }
+        if($isMyTier) return ['data' => [], 'status' => 403, 'message' => 'You buy your own tier'];
 
         $tier = Tier::where('tier_id', $tier_id)->first();
 
         if (!$tier) return $this->jsonResponse([], 404, 'Tier not found');
+
+        $purchasedTierId = Uuid::uuid4()->toString();
 
         $response = Http::withBasicAuth($shopId, $secretKey)
             ->withHeaders([
@@ -46,32 +43,55 @@ class PurchasedTierServices{
                     'return_url' => $return_url,
                 ],
                 'description' => $description,
+                'metadata' => [
+                    'purchased_tier_id' => $purchasedTierId,
+                    'user_id' => Auth::id(),
+                    'tier_id' => $tier_id,
+                ],
             ]);
 
         if($response->successful()){
             $purchasedTier = new PurchasedTier();
-            $purchasedTier->purchased_tier_id = $response->json()['id'];
+            $purchasedTier->purchased_tier_id = $purchasedTierId;
+            $purchasedTier->yookassa_id = $response->json()['id'];
             $purchasedTier->tier_id = $tier_id;
             $purchasedTier->user_id = Auth::id();
             $purchasedTier->save();
 
             return [
-                $response['confirmation']['confirmation_url'],
-                201,
-                'Success'
+                'data' => $response['confirmation']['confirmation_url'],
+                'status' => 201,
+                'message' => 'PurchasedTier successfully created'
             ];
         } else {
             return [
-                $response->body(),
-                400,
-                'Error'
+                'data' => $response->body(),
+                'status' => 400,
+                'message' => 'PurchasedTier failed created'
             ];
         }
     }
 
     public function confirmPurchasedTier(array $data): array
     {
-        // TODO
-        return [];
+        $event = $data['event'];
+        $object = $data['object'];
+
+        if ($event === 'payment.succeeded') {
+            $metadata = $object['metadata'];
+            $purchasedTierId = $metadata['purchased_tier_id'];
+
+            $purchasedTier = PurchasedTier::find($purchasedTierId);
+            if ($purchasedTier) {
+                $purchasedTier->status = true;
+                $purchasedTier->save();
+            }
+        }
+
+        return [
+            'data' => [],
+            'status' => 200,
+            'message' => 'PurchasedTier status successfully changed'
+        ];
     }
 }

@@ -20,4 +20,10 @@ class PurchasedTierController extends Controller
         $data = $this->purchasedTierServices->createPurchasedTier($request->all(), $tier_id);
         return $this->jsonResponse($data['data'], $data['status'], $data['message']);
     }
+
+    public function update(Request $request): object
+    {
+        $data = $this->purchasedTierServices->confirmPurchasedTier($request->all());
+        return $this->jsonResponse($data['data'], $data['status'], $data['message']);
+    }
 }
