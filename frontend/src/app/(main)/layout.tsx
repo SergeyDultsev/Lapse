@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import {JetBrains_Mono} from "next/font/google";
+import { Manrope as FontManrope } from "next/font/google";
 import "@/assets/css/global.scss";
-import Navigation from "@/widgets/navigation/navigation";
+import { NavBar } from "@widgets";
 
 export const metadata: Metadata = {
   title: "DiplomaFrontend",
   description: "Дипломный проект",
 };
 
-const JetBrainsMono = JetBrains_Mono({
+const Manrope = FontManrope({
   weight: ['400', '600', '700'],
-  style: ['normal', 'italic'],
+  style: ['normal'],
   subsets: ['latin'],
 });
 
@@ -21,9 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={JetBrainsMono.className}>
+      <body className={Manrope.className}>
         <section className="container">
-            <Navigation/>
+            <NavBar/>
             {children}
         </section>
       </body>

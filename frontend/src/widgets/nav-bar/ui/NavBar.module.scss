@@ -1,0 +1,36 @@
+.nav-bar{
+  max-width: 200px;
+}
+
+.nav-list{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.nav-item{
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+  color: var(--text-color);
+  border-radius: var(--main-border-radius);
+  transition: color 0.3s ease, background-color 0.3s ease;
+
+  &:hover{
+    color: var(--main-color);
+    background-color: var(--main-color-second);
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+
+  &__icon {
+    color: inherit;
+    display: flex;
+    align-items: center;
+  }
+
+  &__description {
+    font-size: 13px;
+  }
+}

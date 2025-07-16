@@ -3,10 +3,21 @@ import React from "react";
 const HomeIcon: React.FC = () => {
     return (
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fillRule="evenodd" clipRule="evenodd"
-                  d="M5.83333 18.3333C4.45262 18.3333 3.33333 17.214 3.33333 15.8333V10.8333H2.5C1.75758 10.8333 1.38577 9.93571 1.91075 9.41074L9.41075 1.91074C9.73618 1.58531 10.2638 1.58531 10.5893 1.91074L18.0893 9.41074C18.6142 9.93571 18.2424 10.8333 17.5 10.8333H16.6667V15.8333C16.6667 17.214 15.5474 18.3333 14.1667 18.3333H5.83333ZM10 3.67851L4.45909 9.21942C4.77508 9.33785 5 9.64266 5 10V15.8333C5 16.2936 5.3731 16.6667 5.83333 16.6667L7.5 16.6658L7.5 13.3333C7.5 12.4129 8.24619 11.6667 9.16667 11.6667H10.8333C11.7538 11.6667 12.5 12.4129 12.5 13.3333L12.5 16.6658L14.1667 16.6667C14.6269 16.6667 15 16.2936 15 15.8333V10C15 9.64266 15.2249 9.33785 15.5409 9.21942L10 3.67851ZM10.8333 13.3333H9.16667L9.16666 16.6658H10.8333L10.8333 13.3333Z"
-                  fill="currentColor"/>
+            <g clip-path="url(#clip0_938_329)">
+                <path d="M20 0H0V20H20V0Z" fill="white" />
+                <path d="M3.74996 17.5V7.5L1.66663 9.16667L9.99996 2.5L18.3333 9.16667L16.25 7.5V17.5H3.74996Z"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7.91663 12.0835V17.5002H12.0833V12.0835H7.91663Z" stroke="currentColor" stroke-width="2"
+                      stroke-linejoin="round"/>
+                <path d="M3.75 17.5H16.25" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </g>
+            <defs>
+                <clipPath id="clip0_938_329">
+                    <rect width="20" height="20" fill="white"/>
+                </clipPath>
+            </defs>
         </svg>
+
     );
 }
 

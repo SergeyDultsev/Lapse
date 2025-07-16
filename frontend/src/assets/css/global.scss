@@ -15,54 +15,10 @@ body{
 */
 .container {
   position: relative;
-
   width: 100%;
-  max-width: 1020px;
   min-height: 100%;
-
+  padding: 80px 0 0 20px;
   margin: 0 auto;
-
-  display: grid;
-  grid-template-columns: 210px 1fr;
-  gap: 20px;
-}
-
-/**
-* Контейнер для (auth)
-*/
-.container-auth {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.main{
-  display: flex;
-  gap: 20px;
-  padding: 20px 0;
-}
-
-.aside{
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-
-  width: 100%;
-  max-width: 275px;
-}
-
-@media (max-width: 600px) {
-  .container{
-      display: flex;
-      flex-direction: column-reverse;
-
-      height: 100%;
-  }
-
-  .main {
-    flex: 1 0 auto;
-    margin: 20px;
-  }
 }
 
 svg > path{

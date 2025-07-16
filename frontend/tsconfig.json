@@ -18,15 +18,22 @@
         "name": "next"
       }
     ],
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["./src/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@entities/*": ["./src/entities/*"],
-      "@features/*": ["./src/features/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@providers/*": ["./src/providers/*"],
-      "@shared/*": ["./src/shared/*"],
-      "@widgets/*": ["./src/widgets/*"]
+      "@/*": ["*"],
+      "@assets/*": ["assets/*"],
+      "@entities": ["entities/index.ts"],
+      "@entities/*": ["entities/*"],
+      "@features": ["features/index.ts"],
+      "@features/*": ["features/*"],
+      "@pages": ["pages/index.ts"],
+      "@pages/*": ["pages/*"],
+      "@providers": ["providers/index.ts"],
+      "@providers/*": ["providers/*"],
+      "@shared": ["shared/index.ts"],
+      "@shared/*": ["shared/*"],
+      "@widgets": ["widgets/index.ts"],
+      "@widgets/*": ["widgets/*"]
     }
   },
   "include": [
