@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope as FontManrope } from "next/font/google";
 import "@/assets/css/global.scss";
-import { NavBar } from "@widgets";
+import { NavBar, HeaderApp } from "@widgets";
 
 export const metadata: Metadata = {
   title: "DiplomaFrontend",
@@ -23,6 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={Manrope.className}>
         <section className="container">
+            <HeaderApp/>
             <NavBar/>
             {children}
         </section>

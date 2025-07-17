@@ -6,6 +6,7 @@ import ExitIcon from "@assets/icon/ExitIcon";
 import WriteIcon from "@assets/icon/WriteIcon";
 import AnalyticsIcon from "@assets/icon/AnalyticsIcon";
 import TagsIcon from "@assets/icon/TagsIcon";
+import HistoryIcon from "@assets/icon/HistoryIcon";
 
 
 const navLinks: INavLinks[] = [
@@ -33,6 +34,11 @@ const navLinks: INavLinks[] = [
         name: "Написать пост",
         icon: <WriteIcon />,
         url: "/create-post",
+    },
+    {
+        name: "История",
+        icon: <HistoryIcon />,
+        url: "/history",
     },
     {
         name: "Настройки",
