@@ -1,5 +1,7 @@
-import DefaultButton from "@shared/ui/buttons/default-button/DefaultButton";
+import BaseButton from "@shared/ui/buttons/base-button/BaseButton";
+import BaseInput from "@shared/ui/inputs/base-input/BaseInput";
 
 export {
-    DefaultButton
+    BaseButton,
+    BaseInput,
 };

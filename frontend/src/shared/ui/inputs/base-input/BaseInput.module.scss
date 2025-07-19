@@ -1,0 +1,22 @@
+.base-input{
+  padding: 11px 20px;
+  background-color: var(--main-bg-color);
+  border-radius: var(--main-border-radius);
+  border: 1px solid var(--main-border-color);
+  transition: all .2s ease-in-out;
+  font-family: 'Manrope';
+  font-size: 13px;
+  color: var(--text-color);
+
+  &:hover{
+    cursor: pointer;
+    border: 1px solid var(--main-color);
+    transition: all .2s ease-in-out;
+  }
+
+  &::placeholder{
+    font-family: 'Manrope';
+    font-size: 13px;
+    color: var(--text-color);
+  }
+}

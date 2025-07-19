@@ -1,0 +1,26 @@
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  height: 60px;
+  width: 100%;
+  border-bottom: 1px solid var(--main-border-color);
+  background-color: var(--main-bg-color-opacity);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__search{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 470px;
+  }
+
+  &__write-post{
+    display: flex;
+    align-items: flex-end;
+  }
+}

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "classnames": "^2.5.1",
     "clsx": "^2.1.1",
     "cookies-next": "^4.3.0",
     "mobx": "^6.13.6",
