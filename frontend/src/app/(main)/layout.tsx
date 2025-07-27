@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { Manrope as FontManrope } from "next/font/google";
 import "@/assets/css/global.scss";
 import { NavBar, HeaderApp } from "@widgets";
+import { ReactQueryProvider } from '@/shared';
+import { ThemeProvider } from "@providers";
 
 export const metadata: Metadata = {
-  title: "DiplomaFrontend",
-  description: "Дипломный проект",
+  title: "Dultsev",
+  description: "Платформа подписок на авторский контент",
 };
 
 const Manrope = FontManrope({
@@ -22,11 +24,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={Manrope.className}>
-        <section className="container">
-            <HeaderApp/>
-            <NavBar/>
-            {children}
-        </section>
+          <ReactQueryProvider>
+              <ThemeProvider>
+                  <section className="container">
+                      <HeaderApp/>
+                      <NavBar/>
+                      {children}
+                  </section>
+              </ThemeProvider>
+          </ReactQueryProvider>
       </body>
     </html>
   );

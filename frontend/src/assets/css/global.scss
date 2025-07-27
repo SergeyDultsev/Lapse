@@ -1,8 +1,10 @@
 @use "reset";
 @use "variables";
+@use 'themes/theme';
 
 html{
   scrollbar-gutter: stable;
+  background-color: var(--main-bg-color);
 }
 
 body{

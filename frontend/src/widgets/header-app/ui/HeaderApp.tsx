@@ -1,11 +1,10 @@
 'use client'
 
 import React from "react";
-import {observer} from "mobx-react-lite";
 import styles from "./HeaderApp.module.scss";
 import { BaseButton, BaseInput } from '@shared';
 
-const HeaderApp: React.FC = observer(() => {
+const HeaderApp: React.FC = () => {
     return (
         <header className={styles['header']}>
             <div></div>
@@ -20,6 +19,6 @@ const HeaderApp: React.FC = observer(() => {
             />
         </header>
     );
-});
+};
 
 export default HeaderApp;

@@ -1,12 +1,11 @@
 'use client'
 
 import React from "react";
-import {observer} from "mobx-react-lite";
 import {usePathname} from "next/navigation";
 import styles from "./NavBar.module.scss";
 import NavLinks from "@widgets/nav-bar/model/navLinks";
 
-const NavBar: React.FC = observer(() => {
+const NavBar: React.FC = () => {
     const currentRoute: string | null = usePathname();
 
     return (
@@ -26,6 +25,6 @@ const NavBar: React.FC = observer(() => {
             </ul>
         </nav>
     );
-});
+};
 
 export default NavBar;
