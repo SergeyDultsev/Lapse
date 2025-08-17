@@ -1,0 +1,9 @@
+.dropdown-menu{
+  display: none;
+
+  &__active{
+    padding: 10px;
+    border-radius: var(--main-border-radius);
+    border: 1px solid var(--main-border-color);
+  }
+}

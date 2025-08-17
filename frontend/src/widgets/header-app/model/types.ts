@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 
-export default interface INavLink {
+export default interface IMenuItem {
     name: string;
     icon: ReactNode | null;
     url?: string;
-    isProtected?: boolean;
+    event?: () => void;
 }

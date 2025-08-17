@@ -4,6 +4,9 @@ import React from "react";
 import styles from "./HeaderApp.module.scss";
 import { BaseButton, BaseInput } from '@shared';
 import { SwitcherTheme } from "@features";
+import MenuItems from "@widgets/header-app/model/menuItems";
+import Link from "next/link";
+import DropdownMenu from "@widgets/dropdown-menu/DropdownMenu";
 
 const HeaderApp: React.FC = () => {
     return (
@@ -18,11 +21,20 @@ const HeaderApp: React.FC = () => {
 
             <div className={styles['header__right']}>
                 <SwitcherTheme />
-                <BaseButton
-                    className={styles['header__write-post']}
-                    description={'Написать пост'}
-                />
+
+                <Link href={'/create-post'}>
+                    <BaseButton
+                        className={styles['header__write-post']}
+                        description={'Написать пост'}
+                    />
+                </Link>
+
+                <div className={styles['header__avatar']}>
+
+                </div>
             </div>
+
+            <DropdownMenu className={styles['header_dropdown__menu']} visible={true} menu={MenuItems}/>
         </header>
     );
 };
