@@ -1,5 +1,5 @@
 import ProfilePage from "@pages/profile-page/ProfilePage";
-import type {Metadata} from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Профиль",

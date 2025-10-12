@@ -1,7 +1,7 @@
 .base-button{
   padding: 11px 16px;
-  background-color: var(--main-color);
-  border-radius: var(--main-border-radius);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-md);
   color: #FFFFFF;
   transition: all .2s ease-in-out;
   font-family: 'Manrope';
@@ -9,8 +9,8 @@
 
   &:hover{
     cursor: pointer;
-    color: #7855F6;
-    background-color: var(--main-color-second);
+    color: var(--color-primary);
+    background-color: var(-color-primary-hover);
     transition: all .2s ease-in-out;
   }
 }

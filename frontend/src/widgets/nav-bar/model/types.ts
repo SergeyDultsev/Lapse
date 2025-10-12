@@ -5,4 +5,5 @@ export default interface INavLink {
     icon: ReactNode | null;
     url?: string;
     isProtected?: boolean;
+    isLogout?: boolean;
 }

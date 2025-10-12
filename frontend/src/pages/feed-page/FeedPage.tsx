@@ -1,10 +1,11 @@
 "use client";
 
-import React, {useEffect} from "react";
+import React from "react";
 
 const FeedPage: React.FC = () => {
     return (
         <main className="main">
+            <div>Главная</div>
         </main>
     );
 };

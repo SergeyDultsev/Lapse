@@ -3,11 +3,17 @@ import React from "react";
 const SearchIcon: React.FC = () => {
     return (
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g>
-                <path
-                    d="M12.9953 5.67304C10.9733 3.65103 7.69498 3.65103 5.67298 5.67304C3.65097 7.69505 3.65097 10.9734 5.67298 12.9954C7.69498 15.0174 10.9733 15.0174 12.9953 12.9954C15.0173 10.9734 15.0173 7.69505 12.9953 5.67304ZM4.49447 4.49453C7.16735 1.82165 11.5009 1.82165 14.1738 4.49453C16.6472 6.96794 16.8318 10.8635 14.7276 13.5491L18.1658 16.9873C18.4912 17.3128 18.4912 17.8404 18.1658 18.1659C17.8404 18.4913 17.3127 18.4913 16.9873 18.1659L13.5491 14.7276C10.8634 16.8319 6.96788 16.6473 4.49447 14.1739C1.82159 11.501 1.82159 7.16741 4.49447 4.49453Z"
-                    fill="currentColor"/>
+            <g clip-path="url(#clip0_1133_537)">
+                <path d="M20 0H0V20H20V0Z" fill="currentColor" fill-opacity="0.01"/>
+                <path d="M8.74984 15.8332C12.6618 15.8332 15.8332 12.6618 15.8332 8.74984C15.8332 4.83784 12.6618 1.6665 8.74984 1.6665C4.83784 1.6665 1.6665 4.83784 1.6665 8.74984C1.6665 12.6618 4.83784 15.8332 8.74984 15.8332Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M11.1071 5.97629C10.5039 5.37308 9.67057 5 8.75011 5C7.82965 5 6.99632 5.37308 6.39307 5.97629" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M13.8423 13.8423L17.3778 17.3778" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </g>
+            <defs>
+                <clipPath id="clip0_1133_537">
+                    <rect width="20" height="20" fill="white"/>
+                </clipPath>
+            </defs>
         </svg>
     );
 }

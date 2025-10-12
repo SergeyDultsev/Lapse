@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope as FontManrope } from "next/font/google";
 import "@/assets/css/global.scss";
-import { NavBar, HeaderApp } from "@widgets";
+import { NavBar } from "@widgets";
 import { ReactQueryProvider } from '@/shared';
 import { ThemeProvider } from "@providers";
 
@@ -27,9 +27,8 @@ export default function RootLayout({
           <ReactQueryProvider>
               <ThemeProvider>
                   <section className="container">
-                      <HeaderApp/>
-                      <NavBar/>
                       {children}
+                      <NavBar/>
                   </section>
               </ThemeProvider>
           </ReactQueryProvider>

@@ -1,16 +1,17 @@
 :root[data-theme="light"] {
-  --main-color: rgb(120, 85, 246);
-  --main-color-second: #EEEAFF;
-  --main-bg-color: #FFFFFF;
-  --bg-header: rgba(255, 255, 255, 0.8);
-  --main-bg-color-block: #FFFFFF;
-  --main-border-color: #DCDBE1;
-  --icon: #171717;
-  --icon-hover: #FFFFFF;
-  --text-color: #171717;
-  --text-color-hover: #FFFFFF;
-  --btn-text-color: #7855F6;
-  --btn-text-color-hover: #FFFFFF;
-  --btn-bg-color-hover: #7855F6;
-  --block-bg-color-hover: #7855F6;
+  /* Primary */
+  --color-primary: #7855F6;
+  --color-primary-hover: #6A46EA;
+  --color-primary-light: #E8E1FF;
+
+  /* Text */
+  --color-text-primary: #1E1E1E;
+  --color-text-secondary: #5C5C6C;
+
+  /* Backgrounds */
+  --color-bg-main: #F9F9FC;
+  --color-bg-surface: #FFFFFF;
+
+  /* Border */
+  --color-border: #E3E3EE;
 }
