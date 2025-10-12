@@ -1,13 +1,13 @@
-.nav-bar{
-  position: fixed;
-  top: 0;
-  right: 195px;
-  padding: 30px;
-  width: 100%;
-  max-width: 200px;
+.nav-bar {
+  position: sticky;
+  top: 30px;
+  width: 200px;
+  flex-shrink: 0;
+  align-self: flex-start;
+  height: fit-content;
 }
 
-.nav-list{
+.nav-list {
   display: flex;
   flex-direction: column;
   gap: 10px;

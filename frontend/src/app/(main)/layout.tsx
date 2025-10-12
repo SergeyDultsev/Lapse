@@ -26,10 +26,10 @@ export default function RootLayout({
       <body className={Manrope.className}>
           <ReactQueryProvider>
               <ThemeProvider>
-                  <section className="container">
-                      {children}
-                      <NavBar/>
-                  </section>
+                  <div className="layout">
+                      <main className="container">{children}</main>
+                      <NavBar />
+                  </div>
               </ThemeProvider>
           </ReactQueryProvider>
       </body>
