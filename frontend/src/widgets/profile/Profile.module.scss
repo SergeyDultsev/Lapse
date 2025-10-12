@@ -21,4 +21,15 @@
       }
     }
   }
+
+  &__btns {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+}
+
+.profile__btn {
+  padding: 9px 16px !important;
 }
