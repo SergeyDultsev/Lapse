@@ -1,0 +1,71 @@
+version: '3.9'
+
+services:
+  backend:
+    build: ./backend
+    container_name: nestjs
+    restart: always
+    ports:
+      - '3000:3000'
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - db
+      - redis
+    networks:
+      - blog
+    command: npm run start:dev
+
+  frontend:
+    build: ./frontend
+    container_name: nextjs
+    restart: always
+    ports:
+      - '5000:5000'
+    env_file:
+      - ./frontend/.env
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - blog
+    command: npm run dev -- -H 0.0.0.0 -p 5000
+
+  db:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    env_file:
+      - ./backend/.env
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: blog
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - blog
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - '6379:6379'
+    volumes:
+      - ./redis_data:/data
+    networks:
+      - blog
+
+volumes:
+  db_data:
+  redis_data:
+
+networks:
+  blog:
