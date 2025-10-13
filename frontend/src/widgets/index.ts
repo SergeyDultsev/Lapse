@@ -1,4 +1,4 @@
-import NavBar from "@widgets/nav-bar/ui/NavBar";
+import NavBar from "@widgets/nav-bar/NavBar";
 
 export {
     NavBar,

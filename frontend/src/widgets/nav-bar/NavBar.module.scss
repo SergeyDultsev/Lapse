@@ -1,0 +1,20 @@
+.nav-bar {
+  position: sticky;
+  top: 30px;
+  width: 200px;
+  flex-shrink: 0;
+  align-self: flex-start;
+  height: fit-content;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-border {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 8px 0;
+}
