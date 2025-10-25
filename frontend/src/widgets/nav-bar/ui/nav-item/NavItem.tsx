@@ -9,14 +9,25 @@ interface NavItemProps {
     name: string;
     url?: string;
     icon: ReactNode;
+    onClick?: () => void;
 }
 
-const NavItem: React.FC<NavItemProps> = ({ name, url, icon }) => {
+const NavItem: React.FC<NavItemProps> = ({ name, url, icon, onClick }) => {
     const currentRoute = usePathname();
+
+    const handleClick = (e: React.MouseEvent) => {
+        if (onClick) {
+            e.preventDefault();
+            onClick();
+        }
+    };
 
     if (!url) {
         return (
-            <li className={styles["nav-item"]}>
+            <li
+                className={styles["nav-item"]}
+                onClick={handleClick}
+            >
                 <span className={styles['nav-item__icon']}>{icon}</span>
                 <p className={styles['nav-item__description']}>{name}</p>
             </li>

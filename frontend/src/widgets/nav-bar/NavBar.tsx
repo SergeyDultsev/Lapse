@@ -4,22 +4,30 @@ import React from "react";
 import styles from "./NavBar.module.scss";
 import NavItem from "@widgets/nav-bar/ui/nav-item/NavItem";
 
-import HomeIcon from "@/assets/icon/HomeIcon";
 import ProfileIcon from "@/assets/icon/ProfileIcon";
-import SearchIcon from "@assets/icon/SearchIcon";
-import NotificationIcon from "@assets/icon/NotificationIcon";
-import HistoryIcon from "@assets/icon/HistoryIcon";
-import TagsIcon from "@assets/icon/TagsIcon";
+import ExploreIcon from "@assets/icon/ExploreIcon";
 import SettingsIcon from "@assets/icon/SettingsIcon";
 import ExitIcon from "@assets/icon/ExitIcon";
+import PaletteIcon from "@assets/icon/PaletteIcon";
+import PetsIcon from "@assets/icon/PetsIcon";
+import MemoryIcon from "@assets/icon/MemoryIcon";
+import DarkModeIcon from "@assets/icon/DarkModeIcon";
+import SportIcon from "@assets/icon/SportIcon";
+import MusicIcon from "@assets/icon/MusicIcon.";
+import FlightIcon from "@assets/icon/FlightIcon";
+import MoneyIcon from "@assets/icon/MoneyIcon";
+
+import { useThemeStore } from "@features";
 
 const NavBar: React.FC = () => {
+    const storeTheme = useThemeStore();
+
     return (
         <nav className={styles['nav-bar']}>
             <NavItem
-                name={'Главная'}
+                name={'Лента'}
                 url={'/'}
-                icon={<HomeIcon />}
+                icon={<ExploreIcon />}
             />
             <NavItem
                 name={'Профиль'}
@@ -27,27 +35,47 @@ const NavBar: React.FC = () => {
                 icon={<ProfileIcon />}
             />
             <NavItem
-                name={'Поиск'}
-                url={'/search'}
-                icon={<SearchIcon />}
-            />
+                 onClick={storeTheme.toggleTheme}
+                 name={'Тема'}
+                 icon={<DarkModeIcon />}
+             />
 
             <hr className={styles["nav-border"]} />
 
             <NavItem
-                name={'Уведомления'}
-                url={'/notifications'}
-                icon={<NotificationIcon />}
+                name={'Творчество'}
+                url={'/topic/creation'}
+                icon={<PaletteIcon />}
             />
             <NavItem
-                name={'Истории'}
-                url={'/history'}
-                icon={<HistoryIcon />}
+                name={'Животные'}
+                url={'/topic/animals'}
+                icon={<PetsIcon />}
             />
             <NavItem
-                name={'Теги'}
-                url={'/tags'}
-                icon={<TagsIcon />}
+                name={'Технологии'}
+                url={'/topic/technologies'}
+                icon={<MemoryIcon />}
+            />
+            <NavItem
+                name={'Спорт'}
+                url={'/topic/sport'}
+                icon={<SportIcon />}
+            />
+            <NavItem
+                name={'Финансы'}
+                url={'/topic/finance'}
+                icon={<MoneyIcon />}
+            />
+            <NavItem
+                name={'Музыка'}
+                url={'/topic/music'}
+                icon={<MusicIcon />}
+            />
+            <NavItem
+                name={'Путешествия'}
+                url={'/topic/trips'}
+                icon={<FlightIcon />}
             />
 
             <hr className={styles["nav-border"]} />
