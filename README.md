@@ -1,5 +1,5 @@
-# BLOG
-Реализация сайта приложения блога с использованием современного fullstack-стека.
+# Lapse
+Lapse - пет-проект блога с использованием современного fullstack-стека.
 
 ## Содержание
 - [Технологии](#Технологии)
@@ -15,6 +15,10 @@
 - [TypeScript](https://www.typescriptlang.org/)
 - [SCSS](https://sass-lang.com/)
 - [Redis](https://redis.io/)
+
+## Методологии
+- [FSD](https://feature-sliced.design/ru/docs/get-started/tutorial)
+- [BEM](https://ru.bem.info/)
 
 ## Установка
 Для установки и запуска проекта, необходим [NodeJS](https://nodejs.org/) v20+.

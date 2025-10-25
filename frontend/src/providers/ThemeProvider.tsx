@@ -3,7 +3,7 @@
 import { ReactNode, useEffect } from "react";
 import { initTheme } from "@shared/lib/theme/initTheme";
 
-export function ThemeProvider({ children }: { children: ReactNode}) {
+export function ThemeProvider({ children }: { children: ReactNode }) {
     useEffect(() => {
         initTheme();
     }, []);

@@ -19,11 +19,19 @@ import MoneyIcon from "@assets/icon/MoneyIcon";
 
 import { useThemeStore } from "@features";
 
+import Logo from "@assets/img/Logo";
+
 const NavBar: React.FC = () => {
     const storeTheme = useThemeStore();
 
     return (
         <nav className={styles['nav-bar']}>
+            <div
+                className={styles['nav-logo']}
+            >
+                  <Logo  />
+            </div>
+
             <NavItem
                 name={'Лента'}
                 url={'/'}

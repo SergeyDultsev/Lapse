@@ -7,6 +7,11 @@
   height: fit-content;
 }
 
+.nav-logo {
+  padding: 10px 10px;
+  cursor: pointer;
+}
+
 .nav-list {
   display: flex;
   flex-direction: column;
