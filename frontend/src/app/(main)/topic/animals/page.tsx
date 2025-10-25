@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
+import TopicPage from "@pages/topic-page/TopicPage";
 
 export const metadata: Metadata = {
-    title: "Животные",
+    title: 'Животные',
+    description: 'Тема про животных',
 };
 
 export default function Animals() {
     return (
-        <div>Животные</div>
+        <TopicPage
+            id={'animals'}
+            title={'Животные'}
+            description={'Тема про животных'}
+            countPosts={2000}
+            countReaders={100}
+        />
     );
 }

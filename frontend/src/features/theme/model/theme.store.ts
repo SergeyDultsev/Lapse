@@ -1,7 +1,7 @@
 import { create } from "zustand/react";
-import { ThemeStore } from '@shared/types/theme';
+import { IThemeStore } from '@shared/types/ITheme';
 
-export const useThemeStore = create<ThemeStore>((set, get) => ({
+export const useThemeStore = create<IThemeStore>((set, get) => ({
     theme: 'light',
     setTheme: (theme) => {
         document.documentElement.setAttribute('data-theme', theme);
