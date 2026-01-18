@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
     experimental: {
       webpackBuildWorker: true
     },
+    turbopack: {},
+    sassOptions: {
+        includePaths: ["./styles"],
+    },
 };
 
 export default nextConfig;

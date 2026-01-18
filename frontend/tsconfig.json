@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -11,7 +15,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -20,20 +24,48 @@
     ],
     "baseUrl": "./src",
     "paths": {
-      "@/*": ["*"],
-      "@assets/*": ["assets/*"],
-      "@entities": ["entities/index.ts"],
-      "@entities/*": ["entities/*"],
-      "@features": ["features/index.ts"],
-      "@features/*": ["features/*"],
-      "@pages": ["pages/index.ts"],
-      "@pages/*": ["pages/*"],
-      "@providers": ["providers/index.ts"],
-      "@providers/*": ["providers/*"],
-      "@shared": ["shared/index.ts"],
-      "@shared/*": ["shared/*"],
-      "@widgets": ["widgets/index.ts"],
-      "@widgets/*": ["widgets/*"]
+      "@/*": [
+        "*"
+      ],
+      "@assets/*": [
+        "assets/*"
+      ],
+      "@entities": [
+        "entities/index.ts"
+      ],
+      "@entities/*": [
+        "entities/*"
+      ],
+      "@features": [
+        "features/index.ts"
+      ],
+      "@features/*": [
+        "features/*"
+      ],
+      "@pages": [
+        "pages/index.ts"
+      ],
+      "@pages/*": [
+        "pages/*"
+      ],
+      "@providers": [
+        "providers/index.ts"
+      ],
+      "@providers/*": [
+        "providers/*"
+      ],
+      "@shared": [
+        "shared/index.ts"
+      ],
+      "@shared/*": [
+        "shared/*"
+      ],
+      "@widgets": [
+        "widgets/index.ts"
+      ],
+      "@widgets/*": [
+        "widgets/*"
+      ]
     }
   },
   "include": [
@@ -41,7 +73,10 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "node_modules/next/dist/build/webpack/loaders/next-style-loader/runtime/injectStylesIntoLinkTag.d.ts"
+    "node_modules/next/dist/build/webpack/loaders/next-style-loader/runtime/injectStylesIntoLinkTag.d.ts",
+    ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
