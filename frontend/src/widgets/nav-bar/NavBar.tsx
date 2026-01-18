@@ -2,24 +2,24 @@
 
 import React from "react";
 import styles from "./NavBar.module.scss";
-import NavItem from "@widgets/nav-bar/ui/nav-item/NavItem";
+import NavItem from "@/widgets/nav-bar/ui/nav-item/NavItem";
 
 import ProfileIcon from "@/assets/icon/ProfileIcon";
-import ExploreIcon from "@assets/icon/ExploreIcon";
-import SettingsIcon from "@assets/icon/SettingsIcon";
-import ExitIcon from "@assets/icon/ExitIcon";
-import PaletteIcon from "@assets/icon/PaletteIcon";
-import PetsIcon from "@assets/icon/PetsIcon";
-import MemoryIcon from "@assets/icon/MemoryIcon";
-import DarkModeIcon from "@assets/icon/DarkModeIcon";
-import SportIcon from "@assets/icon/SportIcon";
-import MusicIcon from "@assets/icon/MusicIcon.";
-import FlightIcon from "@assets/icon/FlightIcon";
-import MoneyIcon from "@assets/icon/MoneyIcon";
+import ExploreIcon from "@/assets/icon/ExploreIcon";
+import SettingsIcon from "@/assets/icon/SettingsIcon";
+import ExitIcon from "@/assets/icon/ExitIcon";
+import PaletteIcon from "@/assets/icon/PaletteIcon";
+import PetsIcon from "@/assets/icon/PetsIcon";
+import MemoryIcon from "@/assets/icon/MemoryIcon";
+import DarkModeIcon from "@/assets/icon/DarkModeIcon";
+import SportIcon from "@/assets/icon/SportIcon";
+import MusicIcon from "@/assets/icon/MusicIcon.";
+import FlightIcon from "@/assets/icon/FlightIcon";
+import MoneyIcon from "@/assets/icon/MoneyIcon";
 
-import { useThemeStore } from "@features";
+import { useThemeStore } from "@/features";
 
-import Logo from "@assets/img/Logo";
+import Logo from "@/assets/img/Logo";
 
 const NavBar: React.FC = () => {
     const storeTheme = useThemeStore();

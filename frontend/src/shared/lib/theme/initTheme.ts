@@ -1,4 +1,4 @@
-import type { ITheme } from "@shared/types/ITheme";
+import type { ITheme } from "@/shared/types/ITheme";
 
 export function initTheme() {
     const saved = localStorage.getItem('theme');

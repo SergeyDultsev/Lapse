@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import TopicPage from "@pages/topic-page/TopicPage";
+import TopicPage from "@/pages/topic-page/TopicPage";
 
 export const metadata: Metadata = {
     title: 'Животные',

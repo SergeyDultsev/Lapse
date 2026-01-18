@@ -3,7 +3,7 @@
 import React from 'react';
 
 import Profile from '@/widgets/profile/Profile';
-import PostList from "@entities/post/ui/post-list/PostList";
+import PostList from "@/entities/post/ui/post-list/PostList";
 
 const ProfilePage: React.FC = () => {
     return (

@@ -1,0 +1,25 @@
+/* [project]/src/shared/ui/inputs/base-input/BaseInput.module.scss.module.css [app-client] (css) */
+.BaseInput-module-scss-module__QfRkYW__base-input {
+  background-color: var(--main-bg-color);
+  border-radius: var(--main-border-radius);
+  border: 1px solid var(--main-border-color);
+  color: var(--text-color);
+  padding: 11px 20px;
+  font-family: Manrope;
+  font-size: 13px;
+  transition: all .2s ease-in-out;
+}
+
+.BaseInput-module-scss-module__QfRkYW__base-input:hover {
+  cursor: pointer;
+  border: 1px solid var(--main-color);
+  transition: all .2s ease-in-out;
+}
+
+.BaseInput-module-scss-module__QfRkYW__base-input::placeholder {
+  color: var(--text-color);
+  font-family: Manrope;
+  font-size: 13px;
+}
+
+/*# sourceMappingURL=src_shared_ui_inputs_base-input_BaseInput_module_scss_module_css_bad6b30c._.single.css.map*/

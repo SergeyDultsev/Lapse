@@ -1,6 +1,6 @@
 import FeedPage from "@pages/feed-page/FeedPage";
 import type { Metadata } from "next";
-import LayoutWrapper from "@/app/(main)/layout-wrapper";
+import LayoutWrapper from "@app/(main)/layout-wrapper";
 
 export const metadata: Metadata = {
     title: "Главная",

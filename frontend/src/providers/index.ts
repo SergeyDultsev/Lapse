@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@providers/ThemeProvider";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 
 export {
     ThemeProvider

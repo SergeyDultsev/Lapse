@@ -1,5 +1,5 @@
 import { create } from "zustand/react";
-import { IThemeStore } from '@shared/types/ITheme';
+import { IThemeStore } from '@/shared/types/ITheme';
 
 export const useThemeStore = create<IThemeStore>((set, get) => ({
     theme: 'light',

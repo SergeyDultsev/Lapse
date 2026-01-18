@@ -1,0 +1,28 @@
+/* [project]/src/widgets/nav-bar/NavBar.module.scss.module.css [app-client] (css) */
+.NavBar-module-scss-module__TBuDLq__nav-bar {
+  flex-shrink: 0;
+  align-self: flex-start;
+  width: 200px;
+  height: fit-content;
+  position: sticky;
+  top: 30px;
+}
+
+.NavBar-module-scss-module__TBuDLq__nav-logo {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.NavBar-module-scss-module__TBuDLq__nav-list {
+  flex-direction: column;
+  gap: 10px;
+  display: flex;
+}
+
+.NavBar-module-scss-module__TBuDLq__nav-border {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 8px 0;
+}
+
+/*# sourceMappingURL=src_widgets_nav-bar_NavBar_module_scss_module_css_bad6b30c._.single.css.map*/

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LayoutWrapper from "@app/(main)/layout-wrapper";
 
 export const metadata: Metadata = {
     title: "Настройки",
@@ -6,6 +7,8 @@ export const metadata: Metadata = {
 
 export default function Settings() {
     return (
-        <div>Настройки</div>
+        <LayoutWrapper>
+            <div>Настройки</div>
+        </LayoutWrapper>
     );
 }

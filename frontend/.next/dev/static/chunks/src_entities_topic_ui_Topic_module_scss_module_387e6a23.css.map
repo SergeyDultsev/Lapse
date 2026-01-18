@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///D:/WebstormProjects/Lapse/frontend/src/entities/topic/ui/Topic.module.scss"],"sourcesContent":[".topic {\r\n  padding: 20px;\r\n  background-color: var(--color-bg-surface);\r\n  border-radius: var(--radius-md);\r\n}\r\n\r\n.topic-info {\r\n  display: flex;\r\n  align-items: center;\r\n  flex-direction: column;\r\n  gap: 10px;\r\n\r\n  &__title {\r\n    color: var(--color-text-primary);\r\n    font-weight: 600;\r\n    font-size: 18px;\r\n  }\r\n\r\n  &__description {\r\n    color: var(--color-text-primary);\r\n    font-size: 14px;\r\n  }\r\n\r\n  &__counts {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 6px;\r\n  }\r\n\r\n  &__count {\r\n    color: var(--color-text-primary);\r\n    font-size: 12px;\r\n  }\r\n}"],"names":[],"mappings":"AAAA;;;;;;AAMA;;;;;;;AAME;;;;;;AAMA;;;;;AAKA;;;;;;AAMA"}}]
+}

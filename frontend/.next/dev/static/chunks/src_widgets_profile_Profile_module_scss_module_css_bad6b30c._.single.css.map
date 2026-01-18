@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///D:/WebstormProjects/Lapse/frontend/src/widgets/profile/Profile.module.scss"],"sourcesContent":[".profile {\r\n  padding: 20px;\r\n  background: var(--color-bg-surface);\r\n  border-radius: var(--radius-md);\r\n\r\n  &-info {\r\n    display: flex;\r\n    align-items: center;\r\n\r\n    &__content {\r\n      display: flex;\r\n      flex-direction: column;\r\n      gap: 10px;\r\n\r\n      &__name {\r\n        color: var(--color-text-primary);\r\n        font-size: 16px;\r\n      }\r\n\r\n      &__data {\r\n        color: var(--color-text-primary);\r\n        font-size: 14px;\r\n      }\r\n    }\r\n  }\r\n\r\n  &__btns {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 10px;\r\n    margin-top: 20px;\r\n  }\r\n}\r\n\r\n.profile__btn {\r\n  padding: 9px 16px !important;\r\n}"],"names":[],"mappings":"AAAA;;;;;;AAKE;;;;;AAIE;;;;;;AAKE;;;;;AAKA;;;;;AAOJ;;;;;;;AAQF"}}]
+}

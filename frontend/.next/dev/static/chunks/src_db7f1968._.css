@@ -1,0 +1,61 @@
+/* [project]/src/widgets/profile/Profile.module.scss.module.css [app-client] (css) */
+.Profile-module-scss-module__xd_fzW__profile {
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.Profile-module-scss-module__xd_fzW__profile-info {
+  align-items: center;
+  display: flex;
+}
+
+.Profile-module-scss-module__xd_fzW__profile-info__content {
+  flex-direction: column;
+  gap: 10px;
+  display: flex;
+}
+
+.Profile-module-scss-module__xd_fzW__profile-info__content__name {
+  color: var(--color-text-primary);
+  font-size: 16px;
+}
+
+.Profile-module-scss-module__xd_fzW__profile-info__content__data {
+  color: var(--color-text-primary);
+  font-size: 14px;
+}
+
+.Profile-module-scss-module__xd_fzW__profile__btns {
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  display: flex;
+}
+
+.Profile-module-scss-module__xd_fzW__profile__btn {
+  padding: 9px 16px !important;
+}
+
+/* [project]/src/shared/ui/buttons/base-button/BaseButton.module.scss.module.css [app-client] (css) */
+.BaseButton-module-scss-module__Mkez6G__base-button {
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  color: var(--color-primary);
+  padding: 11px 16px;
+  font-family: Manrope;
+  font-size: 13px;
+  transition: all .2s ease-in-out;
+}
+
+.BaseButton-module-scss-module__Mkez6G__base-button:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: var(--color-primary-hover);
+  transition: all .2s ease-in-out;
+}
+
+/* [project]/src/entities/post/ui/post-list/PostList.module.scss.module.css [app-client] (css) */
+
+
+/*# sourceMappingURL=src_db7f1968._.css.map*/

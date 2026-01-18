@@ -1,4 +1,4 @@
-node_modules
+../../frontend_backup/node_modules
 dist
 .next
 .git

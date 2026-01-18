@@ -1,0 +1,97 @@
+/* [project]/src/assets/css/global.scss.css [app-client] (css) */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, textarea, select {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+}
+
+input, textarea {
+  font: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+:root {
+  --radius-md: 10px;
+  --success-color: #22c55e;
+  --error-color: #ef4444;
+  --warning-color: #eab308;
+}
+
+:root[data-theme="light"] {
+  --color-primary: #7855f6;
+  --color-primary-hover: #6a46ea;
+  --color-primary-light: #e8e1ff;
+  --color-text-primary: #1e1e1e;
+  --color-text-secondary: #5c5c6c;
+  --color-bg-main: #f9f9fc;
+  --color-bg-surface: #fff;
+  --color-border: #e3e3ee;
+}
+
+:root[data-theme="dark"] {
+  --color-primary: #8b6dff;
+  --color-primary-hover: #a48bff;
+  --color-primary-light: #3e2c8a;
+  --color-text-primary: #f4f4fa;
+  --color-text-secondary: #a1a1b5;
+  --color-bg-main: #0f0f14;
+  --color-bg-surface: #1a1a24;
+  --color-border: #2c2c3a;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  background: var(--color-bg-main);
+  height: 100%;
+}
+
+.layout {
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  max-width: 890px;
+  margin: 0 auto;
+  display: flex;
+  position: relative;
+}
+
+.container {
+  flex: 1;
+  max-width: 890px;
+  min-height: 100vh;
+  padding: 30px 0;
+}
+
+/*# sourceMappingURL=src_assets_css_global_scss_css_bad6b30c._.single.css.map*/

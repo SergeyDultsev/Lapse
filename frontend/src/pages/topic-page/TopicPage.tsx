@@ -2,9 +2,9 @@
 
 import React, {useEffect} from "react";
 
-import Topic from "@entities/topic/ui/Topic";
-import { ITopic } from "@entities/topic/model/ITopic";
-import { useTopicStore } from "@entities/topic/model/topic.store";
+import Topic from "@/entities/topic/ui/Topic";
+import { ITopic } from "@/entities/topic/model/ITopic";
+import { useTopicStore } from "@/entities/topic/model/topic.store";
 
 const TopicPage: React.FC<ITopic> = ({
     id,

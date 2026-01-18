@@ -1,0 +1,40 @@
+/* [project]/src/widgets/profile/Profile.module.scss.module.css [app-client] (css) */
+.Profile-module-scss-module__xd_fzW__profile {
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.Profile-module-scss-module__xd_fzW__profile-info {
+  align-items: center;
+  display: flex;
+}
+
+.Profile-module-scss-module__xd_fzW__profile-info__content {
+  flex-direction: column;
+  gap: 10px;
+  display: flex;
+}
+
+.Profile-module-scss-module__xd_fzW__profile-info__content__name {
+  color: var(--color-text-primary);
+  font-size: 16px;
+}
+
+.Profile-module-scss-module__xd_fzW__profile-info__content__data {
+  color: var(--color-text-primary);
+  font-size: 14px;
+}
+
+.Profile-module-scss-module__xd_fzW__profile__btns {
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  display: flex;
+}
+
+.Profile-module-scss-module__xd_fzW__profile__btn {
+  padding: 9px 16px !important;
+}
+
+/*# sourceMappingURL=src_widgets_profile_Profile_module_scss_module_css_bad6b30c._.single.css.map*/
