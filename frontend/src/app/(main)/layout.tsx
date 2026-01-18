@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope as FontManrope } from "next/font/google";
 import "@/assets/css/global.scss";
-import { NavBar } from "@widgets";
-import { ReactQueryProvider } from '@/shared';
-import { ThemeProvider } from "@providers";
 
 export const metadata: Metadata = {
   title: "Dultsev",
@@ -23,16 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={Manrope.className}>
-          <ReactQueryProvider>
-              <ThemeProvider>
-                  <div className="layout">
-                      <main className="container">{children}</main>
-                      <NavBar />
-                  </div>
-              </ThemeProvider>
-          </ReactQueryProvider>
-      </body>
+        <body>
+            {children}
+        </body>
     </html>
   );
 }

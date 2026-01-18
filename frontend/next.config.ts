@@ -11,9 +11,8 @@ const nextConfig: NextConfig = {
         return config;
     },
     experimental: {
-      webpackBuildWorker: true
+        webpackBuildWorker: true
     },
-    turbopack: {},
     sassOptions: {
         includePaths: ["./styles"],
     },
