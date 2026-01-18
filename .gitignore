@@ -1,3 +1,5 @@
 /.idea
 /.vscode
-/redis_data
+redis_data/
+dump.rdb
+appendonly.aof
