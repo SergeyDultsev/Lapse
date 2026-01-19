@@ -1,0 +1,19 @@
+.post-item {
+  padding: 10px;
+  background-color: var(--color-bg-surface);
+  border-radius: var(--radius-md);
+
+  &__title {
+    padding: 10px;
+  }
+
+  &__body {
+    padding: 10px;
+  }
+
+  &__control {
+    display: flex;
+    padding: 10px;
+    gap: 20px;
+  }
+}
