@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///D:/WebstormProjects/Lapse/frontend/src/shared/ui/buttons/base-button/BaseButton.module.scss"],"sourcesContent":[".base-button{\r\n  padding: 11px 16px;\r\n  border: 1px solid var(--color-primary);\r\n  border-radius: var(--radius-md);\r\n  color: var(--color-primary);\r\n  transition: all .2s ease-in-out;\r\n  font-family: 'Manrope';\r\n  font-size: 13px;\r\n\r\n  &:hover{\r\n    cursor: pointer;\r\n    color: #FFFFFF;\r\n    background-color: var(--color-primary-hover);\r\n    transition: all .2s ease-in-out;\r\n  }\r\n}"],"names":[],"mappings":"AAAA;;;;;;;;;;AASE"}}]
-}
