@@ -36,6 +36,10 @@ const NavBar: React.FC = () => {
             </div>
 
             <NavItem
+                name={'Создать пост'}
+                url={'/create'}
+            />
+            <NavItem
                 name={'Лента'}
                 url={'/'}
                 icon={<ExploreIcon />}

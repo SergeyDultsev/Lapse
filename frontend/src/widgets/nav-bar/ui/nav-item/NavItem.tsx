@@ -8,7 +8,7 @@ import Link from "next/link";
 interface NavItemProps {
     name: string;
     url?: string;
-    icon: ReactNode;
+    icon?: ReactNode;
     onClick?: () => void;
 }
 
