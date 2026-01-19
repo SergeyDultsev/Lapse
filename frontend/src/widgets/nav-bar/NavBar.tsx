@@ -4,18 +4,21 @@ import React from "react";
 import styles from "./NavBar.module.scss";
 import NavItem from "@/widgets/nav-bar/ui/nav-item/NavItem";
 
-import ProfileIcon from "@/assets/icon/ProfileIcon";
-import ExploreIcon from "@/assets/icon/ExploreIcon";
-import SettingsIcon from "@/assets/icon/SettingsIcon";
-import ExitIcon from "@/assets/icon/ExitIcon";
-import PaletteIcon from "@/assets/icon/PaletteIcon";
-import PetsIcon from "@/assets/icon/PetsIcon";
-import MemoryIcon from "@/assets/icon/MemoryIcon";
-import DarkModeIcon from "@/assets/icon/DarkModeIcon";
-import SportIcon from "@/assets/icon/SportIcon";
-import MusicIcon from "@/assets/icon/MusicIcon.";
-import FlightIcon from "@/assets/icon/FlightIcon";
-import MoneyIcon from "@/assets/icon/MoneyIcon";
+import {
+    ProfileIcon,
+    ExploreIcon,
+    SettingsIcon,
+    ExitIcon,
+    PaletteIcon,
+    PetsIcon,
+    MemoryIcon,
+    DarkModeIcon,
+    SportIcon,
+    MusicIcon,
+    FlightIcon,
+    MoneyIcon,
+    SaveIcon,
+} from "shared";
 
 import { useThemeStore } from "@/features";
 
@@ -43,12 +46,18 @@ const NavBar: React.FC = () => {
                 icon={<ProfileIcon />}
             />
             <NavItem
+                name={'Избранное'}
+                url={'/favorite'}
+                icon={<SaveIcon />}
+            />
+            <NavItem
                  onClick={storeTheme.toggleTheme}
                  name={'Тема'}
                  icon={<DarkModeIcon />}
              />
 
-            <hr className={styles["nav-border"]} />
+             {/*
+             <hr className={styles["nav-border"]} />
 
             <NavItem
                 name={'Творчество'}
@@ -93,6 +102,8 @@ const NavBar: React.FC = () => {
                 url={'/settings'}
                 icon={<SettingsIcon />}
             />
+            */}
+
             <NavItem
                 name={'Выход'}
                 icon={<ExitIcon />}

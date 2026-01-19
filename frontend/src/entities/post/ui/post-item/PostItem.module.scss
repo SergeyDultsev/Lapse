@@ -1,19 +1,44 @@
 .post-item {
-  padding: 10px;
+  padding: 20px;
   background-color: var(--color-bg-surface);
   border-radius: var(--radius-md);
 
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    &__username {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+    }
+  }
+
   &__title {
-    padding: 10px;
+    margin-top: 10px;
+    color: var(--color-text-primary);
   }
 
   &__body {
-    padding: 10px;
+    font-size: 16px;
+    margin-top: 16px;
+    font-weight: 600;
+    color: var(--color-text-primary);
   }
 
   &__control {
     display: flex;
-    padding: 10px;
+    margin-top: 20px;
     gap: 20px;
+    font-size: 15px;
+    font-weight: 400;
+
+    &__item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--color-text-primary);
+    }
   }
 }

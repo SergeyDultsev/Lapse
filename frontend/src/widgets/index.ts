@@ -1,5 +1,1 @@
-import NavBar from "@/widgets/nav-bar/NavBar";
-
-export {
-    NavBar,
-};
+export { default as NavBar } from "@/widgets/nav-bar/NavBar";

@@ -10,6 +10,11 @@ const posts: IPost[] = [
       id: '1',
       title: 'Заголовок',
       body: 'Текст',
+        author: {
+            id: '1',
+            username: 'Serejka',
+            email: 'email@'
+        },
         meta: {
           countLike: 12,
           countComment: 4,
@@ -20,6 +25,11 @@ const posts: IPost[] = [
         id: '2',
         title: 'Заголовок',
         body: 'Текст',
+        author: {
+            id: '1',
+            username: 'Serejka',
+            email: 'email@'
+        },
         meta: {
             countLike: 34,
             countComment: 42,
@@ -30,6 +40,11 @@ const posts: IPost[] = [
         id: '3',
         title: 'Заголовок',
         body: 'Текст',
+        author: {
+            id: '1',
+            username: 'Serejka',
+            email: 'email@'
+        },
         meta: {
             countLike: 23,
             countComment: 1,
@@ -44,6 +59,7 @@ const PostList: React.FC<IPost> = () => {
             {posts.map((item) => (
                 <PostItem
                     key={item.id}
+                    author={item.author }
                     title={item.title}
                     body={item.body}
                     meta={item.meta}
