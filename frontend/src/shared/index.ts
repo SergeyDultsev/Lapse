@@ -15,6 +15,9 @@ export { default as SaveIcon } from './icon/SaveIcon';
 export { default as CommentIcon } from './icon/CommentIcon';
 export { default as EyeIcon } from './icon/EyeIcon';
 export { default as FavoriteIcon } from './icon/FavoriteIcon';
+export { default as UserAdd } from './icon/UserAdd';
+export { default as AddIcon } from './icon/AddIcon';
+
 
 // UI Components
 export { BaseButton } from './ui/buttons/base-button/BaseButton';

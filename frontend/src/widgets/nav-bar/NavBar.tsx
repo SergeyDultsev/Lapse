@@ -18,6 +18,8 @@ import {
     FlightIcon,
     MoneyIcon,
     SaveIcon,
+    UserAdd,
+    AddIcon
 } from "shared";
 
 import { useThemeStore } from "@/features";
@@ -36,8 +38,19 @@ const NavBar: React.FC = () => {
             </div>
 
             <NavItem
+                name={'Авторизация'}
+                url={'/auth/login'}
+                icon={<ProfileIcon />}
+            />
+            <NavItem
+                name={'Регистрация'}
+                url={'/auth/register'}
+                icon={<UserAdd />}
+            />
+            <NavItem
                 name={'Создать пост'}
                 url={'/create'}
+                icon={<AddIcon />}
             />
             <NavItem
                 name={'Лента'}
