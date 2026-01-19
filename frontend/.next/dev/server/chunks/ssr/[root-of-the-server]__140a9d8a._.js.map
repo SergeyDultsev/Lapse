@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":["file:///D:/WebstormProjects/Lapse/frontend/src/app/%28main%29/settings/page.tsx"],"sourcesContent":["import type { Metadata } from \"next\";\r\n\r\nexport const metadata: Metadata = {\r\n    title: \"Настройки\",\r\n};\r\n\r\nexport default function Settings() {\r\n    return (\r\n        <div>Настройки</div>\r\n    );\r\n}\r\n"],"names":[],"mappings":";;;;;;;;AAEO,MAAM,WAAqB;IAC9B,OAAO;AACX;AAEe,SAAS;IACpB,qBACI,8OAAC;kBAAI;;;;;;AAEb"}}]
-}
