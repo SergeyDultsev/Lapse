@@ -1,0 +1,27 @@
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  height: 100vh;
+
+  &__title {
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--color-primary);
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--color-text-primary);
+  }
+
+  &__link {
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+}
