@@ -1,6 +1,5 @@
 import ProfilePage from "@/pages/profile-page/ProfilePage";
 import type { Metadata } from "next";
-import LayoutWrapper from "@app/(main)/layout-wrapper";
 
 export const metadata: Metadata = {
     title: "Профиль",
@@ -9,8 +8,6 @@ export const metadata: Metadata = {
 
 export default function Profile() {
     return (
-        <LayoutWrapper>
-            <ProfilePage />
-        </LayoutWrapper>
+        <ProfilePage />
     );
 }

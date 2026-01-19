@@ -1,28 +1,19 @@
-import type { Metadata } from "next";
-import { Manrope as FontManrope } from "next/font/google";
+'use client';
+
+import { ReactQueryProvider } from '@/shared';
+import { ThemeProvider } from "@/providers";
+import { NavBar } from "@/widgets";
 import "@/assets/css/global.scss";
 
-export const metadata: Metadata = {
-  title: "Dultsev",
-  description: "Платформа подписок на авторский контент",
-};
-
-const Manrope = FontManrope({
-  weight: ['400', '600', '700'],
-  style: ['normal'],
-  subsets: ['latin'],
-});
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-        <body>
-            {children}
-        </body>
-    </html>
-  );
+export default function Layout({ children }: { children: React.ReactNode }) {
+    return (
+        <ReactQueryProvider>
+            <ThemeProvider>
+                <div className="layout">
+                    <main className="container">{children}</main>
+                    <NavBar />
+                </div>
+            </ThemeProvider>
+        </ReactQueryProvider>
+    );
 }
