@@ -18,14 +18,13 @@ export { default as FavoriteIcon } from './icon/FavoriteIcon';
 export { default as UserAdd } from './icon/UserAdd';
 export { default as AddIcon } from './icon/AddIcon';
 
-
 // UI Components
-export { BaseButton } from './ui/buttons/base-button/BaseButton';
-export { BaseInput } from './ui/inputs/base-input/BaseInput';
+export { default as BaseButton } from './ui/buttons/base-button/BaseButton';
+export { default as BaseInput } from './ui/inputs/base-input/BaseInput';
 
 // Providers
 export { default as ReactQueryProvider } from './lib/react-query';
+export { useThemeStore, useTheme, useSetTheme, useToggleTheme } from './lib/theme/model/theme.store';
 
 // Theme
-export { initTheme } from './lib/theme/initTheme';
 export type { ITheme, IThemeStore } from './types/ITheme';

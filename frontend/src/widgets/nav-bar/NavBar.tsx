@@ -22,7 +22,7 @@ import {
     AddIcon
 } from "shared";
 
-import { useThemeStore } from "@/features";
+import { useThemeStore } from "@/shared";
 
 import Logo from "@/assets/img/Logo";
 
