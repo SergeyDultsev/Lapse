@@ -5,6 +5,7 @@ import styles from "./NavBar.module.scss";
 import NavItem from "@/widgets/nav-bar/ui/nav-item/NavItem";
 
 import {
+    // Icons
     ProfileIcon,
     ExploreIcon,
     SettingsIcon,
@@ -19,15 +20,16 @@ import {
     MoneyIcon,
     SaveIcon,
     UserAdd,
-    AddIcon
-} from "shared";
+    AddIcon,
 
-import { useThemeStore } from "@/shared";
+    // Theme
+    useToggleTheme
+} from "shared";
 
 import Logo from "@/assets/img/Logo";
 
 const NavBar: React.FC = () => {
-    const storeTheme = useThemeStore();
+    const toggleTheme = useToggleTheme();
 
     return (
         <nav className={styles['nav-bar']}>
@@ -68,7 +70,7 @@ const NavBar: React.FC = () => {
                 icon={<SaveIcon />}
             />
             <NavItem
-                 onClick={storeTheme.toggleTheme}
+                 onClick={toggleTheme}
                  name={'Тема'}
                  icon={<DarkModeIcon />}
              />
@@ -111,6 +113,7 @@ const NavBar: React.FC = () => {
                 url={'/topic/trips'}
                 icon={<FlightIcon />}
             />
+            */}
 
             <hr className={styles["nav-border"]} />
 
@@ -119,8 +122,6 @@ const NavBar: React.FC = () => {
                 url={'/settings'}
                 icon={<SettingsIcon />}
             />
-            */}
-
             <NavItem
                 name={'Выход'}
                 icon={<ExitIcon />}
