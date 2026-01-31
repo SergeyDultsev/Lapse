@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const AnalyticsIcon: React.FC = () => {
     return (
@@ -11,6 +11,6 @@ const AnalyticsIcon: React.FC = () => {
             </g>
         </svg>
     );
-}
+};
 
 export default AnalyticsIcon;

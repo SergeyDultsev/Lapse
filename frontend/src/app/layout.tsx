@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
-import { Manrope as FontManrope } from "next/font/google";
-import "@assets/css/global.scss";
+import type { Metadata } from 'next';
+import { Manrope as FontManrope } from 'next/font/google';
+import '@assets/css/global.scss';
 
 export const metadata: Metadata = {
-  title: "Dultsev",
-  description: "Платформа блог",
+  title: 'Dultsev',
+  description: 'Платформа блог',
 };
 
 const manrope = FontManrope({

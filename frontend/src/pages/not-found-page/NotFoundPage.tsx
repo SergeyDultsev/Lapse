@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 
 const NotFoundPage: React.FC = () => {
     return (
@@ -11,6 +11,6 @@ const NotFoundPage: React.FC = () => {
             <Link href={'/'} className="not-found__link">На главную</Link>
         </main>
     );
-}
+};
 
 export default NotFoundPage;

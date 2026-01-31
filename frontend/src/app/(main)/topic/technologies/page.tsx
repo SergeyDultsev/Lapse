@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
-import TopicPage from "@/pages/topic-page/TopicPage";
+import type { Metadata } from 'next';
+import TopicPage from '@/pages/topic-page/TopicPage';
 
 export const metadata: Metadata = {
     title: 'Технологии',
-    description: 'Тема про технологии'
+    description: 'Тема про технологии',
 };
 
 export default function Technologies() {

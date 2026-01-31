@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import React, {useEffect} from "react";
+import React, { useEffect } from 'react';
 
-import Topic from "@/entities/topic/ui/Topic";
-import { ITopic } from "@/entities/topic/model/ITopic";
-import { useTopicStore } from "@/entities/topic/model/topic.store";
+import Topic from '@/entities/topic/ui/Topic';
+import { ITopic } from '@/entities/topic/model/ITopic';
+import { useTopicStore } from '@/entities/topic/model/topic.store';
 
 const TopicPage: React.FC<ITopic> = ({
     id,
     title,
     description,
     countPosts,
-    countReaders
+    countReaders,
 }) => {
     const storeTopic = useTopicStore();
     const setTopic = storeTopic.setTopic;
@@ -25,6 +25,6 @@ const TopicPage: React.FC<ITopic> = ({
             <Topic />
         </main>
     );
-}
+};
 
 export default TopicPage;

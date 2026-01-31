@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const WriteIcon: React.FC = () => {
     return (
@@ -11,6 +11,6 @@ const WriteIcon: React.FC = () => {
         </svg>
 
     );
-}
+};
 
 export default WriteIcon;

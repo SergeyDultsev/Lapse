@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const DarkModeIcon: React.FC = () => {
     return (
@@ -10,6 +10,6 @@ const DarkModeIcon: React.FC = () => {
             </g>
         </svg>
     );
-}
+};
 
 export default DarkModeIcon;

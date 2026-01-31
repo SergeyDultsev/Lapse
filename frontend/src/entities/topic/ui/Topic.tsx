@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React from "react";
-import styles from './Topic.module.scss'
-import { useTopicStore } from "@/entities/topic/model/topic.store";
+import React from 'react';
+import styles from './Topic.module.scss';
+import { useTopicStore } from '@/entities/topic/model/topic.store';
 
 const Topic: React.FC = () => {
     const storeTopic = useTopicStore();
@@ -19,6 +19,6 @@ const Topic: React.FC = () => {
             </div>
         </section>
     );
-}
+};
 
 export default Topic;

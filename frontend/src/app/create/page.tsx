@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: "Создание поста",
-    description: "Создание поста",
+    title: 'Создание поста',
+    description: 'Создание поста',
 };
 
 export default function Home() {

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const SearchIcon: React.FC = () => {
     return (
@@ -16,6 +16,6 @@ const SearchIcon: React.FC = () => {
             </defs>
         </svg>
     );
-}
+};
 
 export default SearchIcon;

@@ -1,8 +1,8 @@
 'use client';
 
 import { ReactQueryProvider } from '@/shared';
-import { ThemeProvider } from "@/providers";
-import "@/assets/css/global.scss";
+import { ThemeProvider } from '@/providers';
+import '@/assets/css/global.scss';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (

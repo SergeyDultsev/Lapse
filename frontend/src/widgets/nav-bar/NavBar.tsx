@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React from "react";
-import styles from "./NavBar.module.scss";
-import NavItem from "@/widgets/nav-bar/ui/nav-item/NavItem";
+import React from 'react';
+import styles from './NavBar.module.scss';
+import NavItem from '@/widgets/nav-bar/ui/nav-item/NavItem';
 
 import {
     // Icons
@@ -23,10 +23,10 @@ import {
     AddIcon,
 
     // Theme
-    useToggleTheme
-} from "shared";
+    useToggleTheme,
+} from 'shared';
 
-import Logo from "@/assets/img/Logo";
+import Logo from '@/assets/img/Logo';
 
 const NavBar: React.FC = () => {
     const toggleTheme = useToggleTheme();
@@ -115,7 +115,7 @@ const NavBar: React.FC = () => {
             />
             */}
 
-            <hr className={styles["nav-border"]} />
+            <hr className={styles['nav-border']} />
 
             <NavItem
                 name={'Настройки'}

@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React from "react";
+import React from 'react';
 import styles from './BaseInput.module.scss';
-import classNames from "classnames";
+import classNames from 'classnames';
 
 interface IBaseInput {
     className: string,
@@ -12,7 +12,7 @@ interface IBaseInput {
 }
 
 const BaseInput: React.FC<IBaseInput> = (
-    {placeholder, type, className}
+    { placeholder, type, className }
 ) => {
     return (
         <input
@@ -21,6 +21,6 @@ const BaseInput: React.FC<IBaseInput> = (
             placeholder={placeholder}
         />
     );
-}
+};
 
 export default BaseInput;

@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import React from "react";
-import styles from "./PostItem.module.scss";
-import { IPost } from "@/entities/post/types";
+import React from 'react';
+import styles from './PostItem.module.scss';
+import { IPost } from '@/entities/post/types';
 import {
     FavoriteIcon,
     CommentIcon,
-    EyeIcon
-} from "shared";
+    EyeIcon,
+} from 'shared';
 
 const PostItem: React.FC<IPost> = ({ author, title, body, meta }) => {
     return (
@@ -30,6 +30,6 @@ const PostItem: React.FC<IPost> = ({ author, title, body, meta }) => {
             </div>
         </article>
     );
-}
+};
 
 export default PostItem;

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const UserAdd: React.FC = () => {
     return (
@@ -22,6 +22,6 @@ const UserAdd: React.FC = () => {
             </g>
         </svg>
     );
-}
+};
 
 export default UserAdd;

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const HomeIcon: React.FC = () => {
     return (
@@ -12,6 +12,6 @@ const HomeIcon: React.FC = () => {
             </g>
         </svg>
     );
-}
+};
 
 export default HomeIcon;

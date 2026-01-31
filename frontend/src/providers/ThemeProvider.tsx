@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
 import {
     ReactNode,
     useEffect,
-} from "react";
-import { useTheme, ITheme } from "shared";
+} from 'react';
+import { useTheme, ITheme } from 'shared';
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
     const theme: ITheme = useTheme();
@@ -20,5 +20,5 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         document.documentElement.setAttribute('data-theme', currentTheme);
     }, [theme]);
 
-    return <>{children}</>
+    return <>{children}</>;
 }

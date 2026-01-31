@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import React from "react";
-import styles from "./PostList.module.scss";
-import PostItem from "@/entities/post/ui/post-item/PostItem";
-import { IPost } from "@/entities/post/types";
+import React from 'react';
+import styles from './PostList.module.scss';
+import PostItem from '@/entities/post/ui/post-item/PostItem';
+import { IPost } from '@/entities/post/types';
 
 const posts: IPost[] = [
     {
@@ -13,7 +13,7 @@ const posts: IPost[] = [
         author: {
             id: '1',
             username: 'Serejka',
-            email: 'email@'
+            email: 'email@',
         },
         meta: {
           countLike: 12,
@@ -28,7 +28,7 @@ const posts: IPost[] = [
         author: {
             id: '1',
             username: 'Serejka',
-            email: 'email@'
+            email: 'email@',
         },
         meta: {
             countLike: 34,
@@ -43,7 +43,7 @@ const posts: IPost[] = [
         author: {
             id: '1',
             username: 'Serejka',
-            email: 'email@'
+            email: 'email@',
         },
         meta: {
             countLike: 23,
@@ -67,6 +67,6 @@ const PostList: React.FC<IPost> = () => {
             ))}
         </section>
     );
-}
+};
 
 export default PostList;

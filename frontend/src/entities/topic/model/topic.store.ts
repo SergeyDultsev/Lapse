@@ -1,5 +1,5 @@
-import { create } from "zustand/react";
-import { ITopic } from "@/entities/topic/model/ITopic";
+import { create } from 'zustand/react';
+import { ITopic } from '@/entities/topic/model/ITopic';
 
 interface ITopicState extends ITopic {
     setTopic: (topic: ITopic) => void;

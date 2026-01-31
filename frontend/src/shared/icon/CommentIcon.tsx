@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const CommentIcon: React.FC = () => {
     return (
@@ -10,6 +10,6 @@ const CommentIcon: React.FC = () => {
             </g>
         </svg>
     );
-}
+};
 
 export default CommentIcon;

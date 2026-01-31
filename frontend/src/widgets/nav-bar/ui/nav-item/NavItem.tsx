@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import React, { ReactNode } from "react";
-import { usePathname } from "next/navigation";
-import styles from "./NavItem.module.scss";
-import Link from "next/link";
+import React, { ReactNode } from 'react';
+import { usePathname } from 'next/navigation';
+import styles from './NavItem.module.scss';
+import Link from 'next/link';
 
 interface NavItemProps {
     name: string;
@@ -25,7 +25,7 @@ const NavItem: React.FC<NavItemProps> = ({ name, url, icon, onClick }) => {
     if (!url) {
         return (
             <li
-                className={styles["nav-item"]}
+                className={styles['nav-item']}
                 onClick={handleClick}
             >
                 <span className={styles['nav-item__icon']}>{icon}</span>
@@ -38,8 +38,8 @@ const NavItem: React.FC<NavItemProps> = ({ name, url, icon, onClick }) => {
         <Link href={url}>
             <li
                 className={`${currentRoute === url
-                    ? styles["nav-item__active"]
-                    : styles["nav-item"]
+                    ? styles['nav-item__active']
+                    : styles['nav-item']
                 }`}
             >
                 <span className={styles['nav-item__icon']}>{icon}</span>

@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: "Настройки",
+    title: 'Настройки',
 };
 
 export default function Settings() {

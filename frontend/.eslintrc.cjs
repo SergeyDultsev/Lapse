@@ -17,11 +17,8 @@ module.exports = {
         'eslint:recommended',
         'plugin:@typescript-eslint/recommended',
         'plugin:react/recommended',
-        'plugin:react-hooks',
+        'plugin:react-hooks/recommended',
         'plugin:jsx-a11y/recommended',
-        'plugin:prettier/recommended',
-        'next',
-        'next.core-web-vitals',
     ],
     plugins: [
         '@typescript-eslint',
@@ -35,12 +32,6 @@ module.exports = {
         },
     },
     rules: {
-        'prettier/prettier': ['error', {
-            singleQuote: true,
-            semi: true,
-            bracketSpacing: true,
-            trailingComma: 'all',
-        }],
         'no-unused-vars': 'off',
         'object-curly-spacing': ['error', 'always'],
         '@typescript-eslint/no-unused-vars': ['warn', {

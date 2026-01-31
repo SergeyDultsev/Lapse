@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const ExitIcon: React.FC = () => {
     return (
@@ -15,6 +15,6 @@ const ExitIcon: React.FC = () => {
         </svg>
 
     );
-}
+};
 
 export default ExitIcon;

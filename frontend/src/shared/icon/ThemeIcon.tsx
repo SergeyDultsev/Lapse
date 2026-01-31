@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const ThemeIcon: React.FC = () => {
     return (
@@ -25,6 +25,6 @@ const ThemeIcon: React.FC = () => {
             </defs>
         </svg>
     );
-}
+};
 
 export default ThemeIcon;

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const ProfileIcon: React.FC = () => {
     return (
@@ -16,6 +16,6 @@ const ProfileIcon: React.FC = () => {
             </g>
         </svg>
     );
-}
+};
 
 export default ProfileIcon;
