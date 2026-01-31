@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import Topic from '@/entities/topic/ui/Topic';
 import { ITopic } from '@/entities/topic/model/ITopic';
 import { useTopicStore } from '@/entities/topic/model/topic.store';
+import PostList from '@/entities/post/ui/post-list/PostList';
 
 const TopicPage: React.FC<ITopic> = ({
     id,
@@ -23,6 +24,7 @@ const TopicPage: React.FC<ITopic> = ({
     return (
         <main className="main">
             <Topic />
+            <PostList />
         </main>
     );
 };

@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactQueryProvider } from '@/shared';
+import { ReactQueryProvider } from '@/providers';
 import { ThemeProvider } from '@/providers';
 import { NavBar } from '@/widgets';
 import '@/assets/css/global.scss';

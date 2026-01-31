@@ -21,11 +21,9 @@ export { default as AddIcon } from './icon/AddIcon';
 // UI Components
 export { default as BaseButton } from './ui/buttons/base-button/BaseButton';
 export { default as BaseInput } from './ui/inputs/base-input/BaseInput';
+export { default as LoaderSpinner } from './ui/loader/LoaderSpinner/LoaderSpinner';
 
-// Providers
-export { default as ReactQueryProvider } from './lib/react-query';
-
-// Providers
+// stores
 export { useThemeStore, useTheme, useSetTheme, useToggleTheme } from '@shared/stores/theme.store';
 
 // Theme

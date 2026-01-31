@@ -4,21 +4,23 @@ import React from 'react';
 import styles from './PostList.module.scss';
 import PostItem from '@/entities/post/ui/post-item/PostItem';
 import { IPost } from '@/entities/post/types';
+import { useQuery } from '@tanstack/react-query';
+import { LoaderSpinner } from '@/shared';
 
 const posts: IPost[] = [
     {
-      id: '1',
-      title: 'Заголовок',
-      body: 'Текст',
+        id: '1',
+        title: 'Заголовок',
+        body: 'Текст',
         author: {
             id: '1',
             username: 'Serejka',
             email: 'email@',
         },
         meta: {
-          countLike: 12,
-          countComment: 4,
-          countView: 120,
+            countLike: 12,
+            countComment: 4,
+            countView: 120,
         },
     },
     {
@@ -53,10 +55,40 @@ const posts: IPost[] = [
     },
 ];
 
+const getPosts = () => {
+     return new Promise<IPost[]>(resolve => {
+         setTimeout(() => {
+             resolve(posts);
+         }, 1000);
+     });
+};
+
 const PostList: React.FC<IPost> = () => {
+
+    const { data, error, isPending } = useQuery({
+        queryKey: ['posts'],
+        queryFn: getPosts, 
+    });
+
+    if (isPending) {
+        return (
+            <section className={styles['post-list']}>
+                <LoaderSpinner />
+            </section>
+        );
+    }
+
+    if (error) {
+        return (
+            <section className={styles['post-list']}>
+                <div>error: { JSON.stringify(error) }</div>
+            </section>
+        );
+    }
+
     return (
         <section className={styles['post-list']}>
-            {posts.map((item) => (
+            {data.map((item) => (
                 <PostItem
                     key={item.id}
                     author={item.author }
