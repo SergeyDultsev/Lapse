@@ -1,5 +1,1 @@
-import { ThemeProvider } from '@/providers/ThemeProvider';
-
-export {
-    ThemeProvider,
-};
+export { default as ThemeProvider } from '@/providers/ThemeProvider';

@@ -3,10 +3,8 @@ FROM node:20
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
+RUN npm install --legacy-peer-deps
 
-COPY . .
-
-EXPOSE 3000
+EXPOSE 5000
 
 CMD ["npm", "run", "dev", "--", "-p", "5000"]

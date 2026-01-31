@@ -69,14 +69,8 @@ const NavBar: React.FC = () => {
                 url={'/favorite'}
                 icon={<SaveIcon />}
             />
-            <NavItem
-                 onClick={toggleTheme}
-                 name={'Тема'}
-                 icon={<DarkModeIcon />}
-             />
 
-             {/*
-             <hr className={styles["nav-border"]} />
+             <hr className={styles['nav-border']} />
 
             <NavItem
                 name={'Творчество'}
@@ -113,10 +107,14 @@ const NavBar: React.FC = () => {
                 url={'/topic/trips'}
                 icon={<FlightIcon />}
             />
-            */}
 
             <hr className={styles['nav-border']} />
 
+            <NavItem
+                onClick={toggleTheme}
+                name={'Тема'}
+                icon={<DarkModeIcon />}
+            />
             <NavItem
                 name={'Настройки'}
                 url={'/settings'}

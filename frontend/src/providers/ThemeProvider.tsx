@@ -1,12 +1,12 @@
 'use client';
 
-import {
+import React, {
     ReactNode,
     useEffect,
 } from 'react';
 import { useTheme, ITheme } from 'shared';
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
+const ThemeProvider = ({ children }: { children: ReactNode }) => {
     const theme: ITheme = useTheme();
 
     useEffect(() => {
@@ -21,4 +21,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }, [theme]);
 
     return <>{children}</>;
-}
+};
+
+export default ThemeProvider;

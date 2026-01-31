@@ -24,7 +24,9 @@ export { default as BaseInput } from './ui/inputs/base-input/BaseInput';
 
 // Providers
 export { default as ReactQueryProvider } from './lib/react-query';
-export { useThemeStore, useTheme, useSetTheme, useToggleTheme } from './lib/theme/model/theme.store';
+
+// Providers
+export { useThemeStore, useTheme, useSetTheme, useToggleTheme } from '@shared/stores/theme.store';
 
 // Theme
 export type { ITheme, IThemeStore } from './types/ITheme';
