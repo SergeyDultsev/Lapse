@@ -9,6 +9,7 @@ import {
     FavoriteIcon,
     CommentIcon,
     EyeIcon,
+    shortyNumber,
 } from 'shared';
 
 const PostItem: React.FC<IPost> = ({ author, title, body, meta }) => {
@@ -27,13 +28,13 @@ const PostItem: React.FC<IPost> = ({ author, title, body, meta }) => {
             <p className={styles['post-item__body']}>{ body }</p>
             <div className={styles['post-item__control']}>
                 <button className={styles['post-item__control__item']}>
-                    <FavoriteIcon /> { meta.countLike }
+                    <FavoriteIcon /> { shortyNumber(meta.countLike) }
                 </button>
                 <button className={styles['post-item__control__item']}>
-                    <CommentIcon /> { meta.countComment }
+                    <CommentIcon /> { shortyNumber(meta.countComment) }
                 </button>
                 <button className={styles['post-item__control__item']}>
-                    <EyeIcon /> { meta.countView }
+                    <EyeIcon /> { shortyNumber(meta.countView) }
                 </button>
             </div>
         </article>
