@@ -3,7 +3,6 @@
 import React from 'react';
 import PostList from '@/entities/post/ui/post-list/PostList';
 import { useQuery } from '@tanstack/react-query';
-import styles from '@/entities/post/ui/post-list/PostList.module.scss';
 import { LoaderSpinner } from '@/shared';
 import { IPost } from '@/entities/post/types';
 
@@ -72,7 +71,7 @@ const FeedPage: React.FC = () => {
 
     if (isPending) {
         return (
-            <section className={styles['post-list']}>
+            <section className="main">
                 <LoaderSpinner />
             </section>
         );
@@ -80,7 +79,7 @@ const FeedPage: React.FC = () => {
 
     if (!data) {
         return (
-            <section className={styles['post-list']}>
+            <section className="main">
                 <div>Нет данных</div>
             </section>
         );
