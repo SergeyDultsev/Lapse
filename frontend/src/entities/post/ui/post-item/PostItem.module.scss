@@ -6,12 +6,35 @@
   &__author {
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: space-between;
+
+    &__info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    &__avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+    }
 
     &__username {
       font-size: 14px;
       font-weight: 600;
       color: var(--color-text-primary);
+    }
+
+    &__option {
+      display: flex;
+      align-items: center;
+      color: var(--color-text-primary);
+    }
+
+    &__option:hover {
+      cursor: pointer;
+      color: var(--color-primary);
     }
   }
 
@@ -30,9 +53,11 @@
   &__control {
     display: flex;
     margin-top: 20px;
+    padding: 15px 0 0 0;
     gap: 20px;
     font-size: 15px;
     font-weight: 400;
+    border-top: 1px solid var(--color-border);
 
     &__item {
       display: flex;
