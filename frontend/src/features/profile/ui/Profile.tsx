@@ -3,7 +3,7 @@
 import React from 'react';
 
 import styles from './Profile.module.scss';
-import BaseButton from '@/shared/ui/buttons/base-button/BaseButton';
+import BaseButton from '@shared/ui/buttons/base-button/BaseButton';
 import { shortyNumber } from '@/shared';
 
 const Profile: React.FC = () => {
