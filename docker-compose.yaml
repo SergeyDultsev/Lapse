@@ -41,7 +41,6 @@ services:
           memory: 6g
     networks:
       - lapse_networks
-    command: npm run dev -- -p 5000
 
   db:
     image: postgres:latest
