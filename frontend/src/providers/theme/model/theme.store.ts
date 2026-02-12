@@ -3,7 +3,7 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 import {
     IThemeStore,
     IInitialState,
-} from '@shared/types/ITheme';
+} from '@providers/theme/types/ITheme';
 import { type StateCreator } from 'zustand';
 
 const initialState: IInitialState = {

@@ -1,2 +1,3 @@
-export { default as ThemeProvider } from '@/providers/ThemeProvider';
-export { default as ReactQueryProvider } from '@providers/ReactQueryProvider';
+export * from '@/providers/theme';
+
+export { default as ReactQueryProvider } from '@providers/react-query/ui/ReactQueryProvider';

@@ -1,0 +1,1 @@
+export { shortyNumber } from './shortyNumber';

@@ -4,8 +4,9 @@ import React from 'react';
 import styles from './NavBar.module.scss';
 import NavItem from '@/widgets/nav-bar/ui/nav-item/NavItem';
 
+import { useToggleTheme } from 'providers';
+
 import {
-    // Icons
     ProfileIcon,
     ExploreIcon,
     SettingsIcon,
@@ -21,9 +22,6 @@ import {
     SaveIcon,
     UserAdd,
     AddIcon,
-
-    // Theme
-    useToggleTheme,
 } from 'shared';
 
 import Logo from '@/assets/img/Logo';

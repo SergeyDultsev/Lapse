@@ -4,7 +4,7 @@ import React, {
     ReactNode,
     useEffect,
 } from 'react';
-import { useTheme, ITheme } from 'shared';
+import { useTheme, ITheme } from '@/providers';
 
 const ThemeProvider = ({ children }: { children: ReactNode }) => {
     const theme: ITheme = useTheme();
