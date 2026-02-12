@@ -10,7 +10,7 @@ export const getPosts = (): Promise<IPost[]> => {
     });
 };
 
-export const feedPosts = (): Promise<IPost[]> => {
+export const getPostsFeed = (): Promise<IPost[]> => {
     return new Promise<IPost[]>(resolve => {
         setTimeout(() => {
             resolve(postsFeed);
@@ -18,14 +18,26 @@ export const feedPosts = (): Promise<IPost[]> => {
     });
 };
 
-export const getPost = (id: string): Promise<IPost> =>  {
-
+export const getPostById = (id: string): Promise<IPost> =>  {
+    return new Promise<IPost[]>(resolve => {
+        setTimeout(() => {
+            resolve(postsFeed);
+        }, 1000);
+    });
 };
 
-export const deletePost = (id: string): Promise<IPost> =>  {
-
+export const deletePostById = (id: string): Promise<IPost> =>  {
+    return new Promise<IPost[]>(resolve => {
+        setTimeout(() => {
+            resolve(postsFeed);
+        }, 1000);
+    });
 };
 
-export const updatePost = (id: string): Promise<IPost> =>  {
-
+export const updatePostById = (id: string): Promise<IPost> =>  {
+    return new Promise<IPost[]>(resolve => {
+        setTimeout(() => {
+            resolve(postsFeed);
+        }, 1000);
+    });
 };
