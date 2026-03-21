@@ -3,6 +3,7 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 import {
     IThemeStore,
     IInitialState,
+    ITheme,
 } from '@providers/theme/types/ITheme';
 import { type StateCreator } from 'zustand';
 
@@ -16,7 +17,16 @@ const themeStore: StateCreator<IThemeStore> = (set, get) => ({
             set({ theme });
         },
         toggleTheme: () => {
-            const nextTheme = get().theme === 'dark' ? 'light' : 'dark';
+            const currentTheme = get().theme;
+            let nextTheme: ITheme;
+
+            if (currentTheme === 'system') {
+                const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                nextTheme = systemDark ? 'light' : 'dark';
+            } else {
+                nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            }
+
             set({ theme: nextTheme });
         },
     }

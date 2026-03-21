@@ -1,7 +1,48 @@
 @use "reset";
 @use "variables";
-@use 'themes/theme';
 @use 'not-fount';
+
+:root {
+  /* Primary */
+  --color-primary: #7855F6;
+  --color-primary-hover: #6A46EA;
+  --color-primary-light: #E8E1FF;
+
+  /* Text */
+  --color-text-primary: #1E1E1E;
+  --color-text-secondary: #5C5C6C;
+
+  /* Backgrounds */
+  --color-bg-main: #F9F9FC;
+  --color-bg-surface: #FFFFFF;
+
+  /* Border */
+  --color-border: #E3E3EE;
+
+  /* Hover */
+  --hover-nav: #3f3b3b
+}
+
+[data-theme="dark"] {
+  /* Primary */
+  --color-primary: #8B6DFF;
+  --color-primary-hover: #A48BFF;
+  --color-primary-light: #3E2C8A;
+
+  /* Text */
+  --color-text-primary: #F4F4FA;
+  --color-text-secondary: #A1A1B5;
+
+  /* Backgrounds */
+  --color-bg-main: #0F0F14;
+  --color-bg-surface: #1A1A24;
+
+  /* Border */
+  --color-border: #2C2C3A;
+
+  /* Hover */
+  --hover-nav: #b2b2b2
+}
 
 html{
   scrollbar-gutter: stable;
