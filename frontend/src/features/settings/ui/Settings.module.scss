@@ -1,0 +1,39 @@
+.settings-title {
+  color: var(--color-primary);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.settings-item {
+  display: flex;
+  justify-content: space-between;
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__title {
+    color: var(--color-text-primary);
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  &__descr {
+    color: var(--color-text-primary);
+    font-size: 12px;
+  }
+}
+
+.border {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 10px 0;
+}

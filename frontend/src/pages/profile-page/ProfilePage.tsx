@@ -12,7 +12,7 @@ const ProfilePage: React.FC = () => {
 
     if (isPending) {
         return (
-            <section className="main">
+            <section className="loader-spinner__block">
                 <LoaderSpinner />
             </section>
         );

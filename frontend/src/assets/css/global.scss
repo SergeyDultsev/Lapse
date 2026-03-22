@@ -91,6 +91,12 @@ body{
   position: relative;
 }
 
+.loader-spinner__block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
   flex: 1;
   max-width: 890px;
