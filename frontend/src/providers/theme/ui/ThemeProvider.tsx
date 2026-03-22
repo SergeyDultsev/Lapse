@@ -10,14 +10,12 @@ const ThemeProvider = ({ children }: { children: ReactNode }) => {
     const theme: ITheme = useTheme();
 
     useEffect(() => {
-        const currentTheme =
-            theme === 'system'
-                ? window.matchMedia('(prefers-color-scheme: dark)').matches
-                    ? 'dark'
-                    : 'light'
-                : theme;
+        if (theme === 'system') {
+            document.documentElement.removeAttribute('data-theme');
+            return;
+        }
 
-        document.documentElement.setAttribute('data-theme', currentTheme);
+        document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
 
     return <>{children}</>;
