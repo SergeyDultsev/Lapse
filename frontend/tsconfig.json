@@ -22,11 +22,14 @@
     "paths": {
       "@/*": ["*"],
       "@assets/*": ["assets/*"],
-      "@pages/*": ["pages/*"],
       "@app/*": ["app/*"],
-      "@widgets/*": ["widgets/*"],
+      "@entities/*": ["entities/*"],
+      "@features/*": ["features/*"],
+      "@libs/*": ["libs/*"],
+      "@pages/*": ["pages/*"],
       "@providers/*": ["providers/*"],
-      "@shared/*": ["shared/*"]
+      "@shared/*": ["shared/*"],
+      "@widgets/*": ["widgets/*"],
     }
   },
   "include": [

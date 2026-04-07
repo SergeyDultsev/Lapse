@@ -1,0 +1,1 @@
+export { default as TanstackQueryProvider } from '@libs/setup-tanstack-query/TanstackQueryProvider';
