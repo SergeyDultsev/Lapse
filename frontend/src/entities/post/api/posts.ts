@@ -1,6 +1,7 @@
 import { IPost } from '@/entities/post/types';
 import { postsUser } from '@/entities/post/mock/post.user';
 import { postsFeed } from '@/entities/post/mock/post.feed';
+import { postsTopic } from '@/entities/post/mock/post.topic';
 
 export const getPosts = (): Promise<IPost[]> => {
     return new Promise<IPost[]>(resolve => {
@@ -14,6 +15,14 @@ export const getPostsFeed = (): Promise<IPost[]> => {
     return new Promise<IPost[]>(resolve => {
         setTimeout(() => {
             resolve(postsFeed);
+        }, 1000);
+    });
+};
+
+export const getPostsTopic = (): Promise<IPost[]> => {
+    return new Promise<IPost[]>(resolve => {
+        setTimeout(() => {
+            resolve(postsTopic);
         }, 1000);
     });
 };

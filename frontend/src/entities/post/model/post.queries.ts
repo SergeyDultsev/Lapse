@@ -1,9 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { postKeys } from '@/entities/post/model/post.key';
 import {
+    getPosts,
+    getPostsFeed,
+    getPostsTopic,
     deletePostById,
-    feedPosts, getPostById,
-    getPosts, getPostsFeed, updatePostById,
+    updatePostById,
+    getPostById,
 } from '@/entities/post/api/posts';
 
 export const usePostsUser = () => {
@@ -17,6 +20,13 @@ export const usePostsFeed = () => {
     return useQuery({
         queryKey: postKeys.feed(),
         queryFn: getPostsFeed,
+    });
+};
+
+export const usePostsTopic = () => {
+    return useQuery({
+        queryKey: postKeys.topic(),
+        queryFn: getPostsTopic,
     });
 };
 
