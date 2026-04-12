@@ -3,7 +3,7 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 import {
     IThemeStore,
     IInitialState,
-    ITheme,
+    tTheme,
 } from '@providers/theme/types/ITheme';
 import { type StateCreator } from 'zustand';
 
@@ -18,7 +18,7 @@ const themeStore: StateCreator<IThemeStore> = (set, get) => ({
         },
         toggleTheme: () => {
             const currentTheme = get().theme;
-            let nextTheme: ITheme;
+            let nextTheme: tTheme;
 
             if (currentTheme === 'system') {
                 const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;

@@ -1,11 +1,11 @@
-export type ITheme = 'light' | 'dark' | 'system';
+export type tTheme = 'light' | 'dark' | 'system';
 
 export interface IInitialState {
-    theme: ITheme;
+    theme: tTheme;
 }
 
 export interface IActions {
-    setTheme: (theme: ITheme) => void;
+    setTheme: (theme: tTheme) => void;
     toggleTheme: () => void;
 }
 

@@ -4,7 +4,10 @@ import React from 'react';
 import styles from './NavBar.module.scss';
 import NavItem from '@/widgets/nav-bar/ui/nav-item/NavItem';
 
-import { useToggleTheme } from 'providers';
+import {
+     useToggleTheme, 
+     useSetModal 
+} from 'providers';
 
 import {
     ProfileIcon,
@@ -20,7 +23,6 @@ import {
     FlightIcon,
     MoneyIcon,
     SaveIcon,
-    UserAdd,
     AddIcon,
 } from 'shared';
 
@@ -28,6 +30,9 @@ import Logo from '@/assets/img/Logo';
 
 const NavBar: React.FC = () => {
     const toggleTheme = useToggleTheme();
+    const setModal = useSetModal();
+
+    const showAuthModal = () => setModal('auth');
 
     return (
         <nav className={styles['nav-bar']}>
@@ -38,14 +43,9 @@ const NavBar: React.FC = () => {
             </div>
 
             <NavItem
+                onClick={showAuthModal}
                 name={'Авторизация'}
-                url={'/auth/login'}
                 icon={<ProfileIcon />}
-            />
-            <NavItem
-                name={'Регистрация'}
-                url={'/auth/register'}
-                icon={<UserAdd />}
             />
             <NavItem
                 name={'Создать пост'}
