@@ -1,6 +1,6 @@
 'use client';
 
-import { TanstackQueryProvider } from '@/libs';
+import { TanstackQueryProvider } from '@shared/setup';
 import { ThemeProvider } from '@/providers';
 import '@/assets/css/global.scss';
 

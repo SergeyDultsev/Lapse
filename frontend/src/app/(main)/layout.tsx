@@ -1,9 +1,9 @@
 'use client';
 
-import { TanstackQueryProvider } from '@/libs';
+import { TanstackQueryProvider } from '@shared/setup';
 import { 
     ThemeProvider, 
-    ModalProvider 
+    ModalProvider, 
 } from '@/providers';
 import { NavBar } from '@/widgets';
 import '@/assets/css/global.scss';
@@ -14,8 +14,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <ThemeProvider>
                 <ModalProvider>
                     <div className="layout">
-                        <main className="container">{children}</main>
                         <NavBar />
+                        <main className="container">{children}</main>
                     </div>
                 </ModalProvider>
             </ThemeProvider>

@@ -26,8 +26,6 @@ import {
     AddIcon,
 } from 'shared';
 
-import Logo from '@/assets/img/Logo';
-
 const NavBar: React.FC = () => {
     const toggleTheme = useToggleTheme();
     const setModal = useSetModal();
@@ -36,12 +34,6 @@ const NavBar: React.FC = () => {
 
     return (
         <nav className={styles['nav-bar']}>
-            <div
-                className={styles['nav-logo']}
-            >
-                  <Logo  />
-            </div>
-
             <NavItem
                 onClick={showAuthModal}
                 name={'Авторизация'}
