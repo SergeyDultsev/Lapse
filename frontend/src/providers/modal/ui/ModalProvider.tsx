@@ -1,14 +1,26 @@
 'use client';
 
-import React from 'react';
+import React, { ReactNode } from 'react';
+import { useModalName, useCloseModal } from '@/providers/modal/model/modal.store';
+import styles from '../ui/ModalProvider.module.scss'
 
-const ModalProvider = () => {
+const ModalProvider = ({ children }: { children: ReactNode }) => {
+    const modalName = useModalName();
+    const closeModal = useCloseModal();
+
+    if (modalName === null) {
+        return <>{children}</>
+    }
+
     return (
-        <div 
-            className='modal-container'
-        >
-            Модалки
-        </div>
+        <>
+            {children}
+            <div 
+                className={styles['modal-wrapper']}
+                onClick={closeModal}
+            >
+            </div>
+        </>
     );
 };
 
