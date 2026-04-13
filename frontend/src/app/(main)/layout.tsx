@@ -14,8 +14,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <ThemeProvider>
                 <ModalProvider>
                     <div className="layout">
-                        <main className="container">{children}</main>
                         <NavBar />
+                        <main className="container">{children}</main>
                     </div>
                 </ModalProvider>
             </ThemeProvider>

@@ -1,21 +1,19 @@
 .nav-bar {
   position: sticky;
   top: 30px;
-  width: 200px;
+  left: 0;
+  width: 100%;
+  width: 100%;
+  max-width: 200px;
   flex-shrink: 0;
   align-self: flex-start;
   height: fit-content;
-}
 
-.nav-logo {
-  padding: 10px 10px;
-  cursor: pointer;
-}
-
-.nav-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  padding: 0 0 0 20px;
 }
 
 .nav-border {

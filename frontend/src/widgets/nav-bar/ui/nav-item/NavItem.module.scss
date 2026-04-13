@@ -5,10 +5,11 @@
   gap: 10px;
   cursor: pointer;
   color: var(--color-text-primary);
+  border-radius: var(--border-radius-small);
   transition: all .2s ease-in-out;
 
   &:hover{
-    color: var(--color-primary-hover);
+    background-color: var(--color-bg-nav);
     transition: all .2s ease-in-out;
   }
 
@@ -27,6 +28,8 @@
   display: flex;
   gap: 10px;
   cursor: pointer;
-  color: var(--color-primary);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-nav);
+  border-radius: var(--border-radius-small);
   transition: all .2s ease-in-out;
 }
