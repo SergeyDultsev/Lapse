@@ -1,7 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
 import { postKeys } from '@/entities/post/model/post.key';
 import {
-    getPosts,
+    getPostsUser,
     getPostsFeed,
     getPostsTopic,
     deletePostById,
@@ -9,10 +9,10 @@ import {
     getPostById,
 } from '@/entities/post/api/posts';
 
-export const usePostsUser = () => {
+export const usePostsUser = (userId: string) => {
     return useQuery({
         queryKey: postKeys.user(),
-        queryFn: getPosts,
+        queryFn: () => getPostsUser(userId),
     });
 };
 
@@ -30,23 +30,29 @@ export const usePostsTopic = () => {
     });
 };
 
-export const usePost = (userId: string ) => {
+export const usePost = (postId: string) => {
     return useQuery({
-        queryKey: postKeys.feed(),
-        queryFn: getPostById(userId),
+        queryKey: postKeys.detail(postId),
+        queryFn: () => getPostById(postId),
     });
 };
 
-export const usePostDelete = (postId: string ) => {
-    return useQuery({
-        queryKey: postKeys.feed(),
-        queryFn: deletePostById(postId),
+export const usePostCreate = () => {
+    return useMutation({
+        mutationFn: ({ data }: { data: unknown }) => console.log(data),
     });
 };
 
-export const usePostUpdate = (postId: string ) => {
-    return useQuery({
-        queryKey: postKeys.feed(),
-        queryFn: updatePostById(postId),
+export const usePostDelete = () => {
+    return useMutation({
+        mutationFn: ({ postId }: { postId: string }) => 
+            deletePostById(postId),
+    });
+};
+
+export const usePostUpdate = () => {
+    return useMutation({
+        mutationFn: ({ postId, data }: { postId: string, data: unknown }) => 
+            updatePostById(postId),
     });
 };

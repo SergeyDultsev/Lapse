@@ -3,7 +3,7 @@ import { postsUser } from '@/entities/post/mock/post.user';
 import { postsFeed } from '@/entities/post/mock/post.feed';
 import { postsTopic } from '@/entities/post/mock/post.topic';
 
-export const getPosts = (): Promise<IPost[]> => {
+export const getPostsUser = (userId: string): Promise<IPost[]> => {
     return new Promise<IPost[]>(resolve => {
         setTimeout(() => {
             resolve(postsUser);
