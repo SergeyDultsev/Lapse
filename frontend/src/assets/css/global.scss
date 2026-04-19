@@ -3,29 +3,45 @@
 @use 'not-fount';
 
 :root {
- color-scheme: light dark;
+  /* Primary */
+  --color-primary: #7855F6;
+  --color-primary-hover: #6A46EA;
+  --color-primary-light: #E8E1FF;
+
+  /* Text */
+  --color-text-primary: #1E1E1E;
+  --color-text-secondary: #5C5C6C;
+
+  /* Backgrounds */
+  --color-bg-main: #FFFFFF;
+  --color-bg-surface: #FAFAFA;
+
+  /* Border */
+  --color-border: #E3E3EE;
+
+  /* Hover */
+  --color-bg-nav: #F8F8F8;
 }
 
 @media  (prefers-color-scheme: dark) {
   :root {
-    /* Primary */
     --color-primary: #8B6DFF;
     --color-primary-hover: #A48BFF;
     --color-primary-light: #3E2C8A;
 
     /* Text */
-    --color-text-primary: #F4F4FA;
+    --color-text-primary: #D1D1D1;
     --color-text-secondary: #A1A1B5;
 
     /* Backgrounds */
-    --color-bg-main: #0F0F14;
-    --color-bg-surface: #1A1A24;
+    --color-bg-main: #131316;
+    --color-bg-surface: #16161A;
 
     /* Border */
     --color-border: #2C2C3A;
 
     /* Hover */
-    --hover-nav: #b2b2b2
+    --color-bg-nav: #1B1D22;
   }
 }
 
