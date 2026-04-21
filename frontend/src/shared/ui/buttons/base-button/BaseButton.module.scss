@@ -1,16 +1,43 @@
-.base-button{
-  padding: 11px 16px;
-  border: 1px solid var(--color-primary);
-  border-radius: var(--radius-md);
-  color: var(--color-primary);
+.base-button {
+  border-radius: var(--border-radius-medium);
   transition: all .2s ease-in-out;
-  font-family: 'Manrope';
+  font-family: 'Manrope', serif;
   font-size: 13px;
 
-  &:hover{
-    cursor: pointer;
-    color: #FFFFFF;
-    background-color: var(--color-primary-hover);
-    transition: all .2s ease-in-out;
+  &--sm {
+    padding: 7px 14px;
+  }
+
+  &--md {
+    padding: 9px 16px;
+  }
+
+  &--lg {
+    padding: 11px 0;
+    width: 100%;
+  }
+
+  &--primary {
+    color: var(--accent-primary);
+    border: 1px solid var(--accent-primary);
+
+    &:hover {
+      cursor: pointer;
+      color: #FFFFFF;
+      background-color: var(--accent-primary);
+      transition: all .2s ease-in-out;
+    }
+  }
+
+  &--danger {
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+
+    &:hover {
+      cursor: pointer;
+      color: #FFFFFF;
+      background-color: var(--error-color);
+      transition: all .2s ease-in-out;
+    }
   }
 }

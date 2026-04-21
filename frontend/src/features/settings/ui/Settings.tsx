@@ -26,7 +26,9 @@ const Settings: React.FC = () => {
                           Сергей Дульцев
                       </p>
                   </div>
-                  <BaseButton description={'Изменить имя'} />
+                  <BaseButton variant="primary" size={'sm'}>
+                      Изменить имя
+                  </BaseButton>
               </div>
 
               <div className={styles['settings-item']}>
@@ -38,7 +40,9 @@ const Settings: React.FC = () => {
                           dultsev@gmail.com
                       </p>
                   </div>
-                  <BaseButton description={'Изменить почту'} />
+                  <BaseButton variant="primary" size={'sm'}>
+                      Изменить почту
+                  </BaseButton>
               </div>
 
 
@@ -51,7 +55,9 @@ const Settings: React.FC = () => {
                           Как сайт выглядит на вашем устройстве
                       </p>
                   </div>
-                  <BaseButton description={'Светлая'} />
+                  <BaseButton variant="primary" size={'sm'}>
+                      Светлая
+                  </BaseButton>
               </div>
 
               <div className={styles['settings-item']}>
@@ -63,7 +69,9 @@ const Settings: React.FC = () => {
                           Вы можете восстановится аккаунт в течении 30 дней
                       </p>
                   </div>
-                  <BaseButton description={'Удалить'} />
+                  <BaseButton variant="danger" size={'sm'}>
+                      Удалить
+                  </BaseButton>
               </div>
 
           </div>

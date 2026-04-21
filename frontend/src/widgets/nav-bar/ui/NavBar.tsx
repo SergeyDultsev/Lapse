@@ -6,7 +6,7 @@ import NavItem from '@/widgets/nav-bar/ui/nav-item/NavItem';
 
 import {
      useToggleTheme, 
-     useSetModal 
+     useSetModal, 
 } from 'providers';
 
 import {
@@ -23,7 +23,6 @@ import {
     FlightIcon,
     MoneyIcon,
     SaveIcon,
-    AddIcon,
 } from 'shared';
 
 const NavBar: React.FC = () => {
@@ -38,11 +37,6 @@ const NavBar: React.FC = () => {
                 onClick={showAuthModal}
                 name={'Авторизация'}
                 icon={<ProfileIcon />}
-            />
-            <NavItem
-                name={'Создать пост'}
-                url={'/create'}
-                icon={<AddIcon />}
             />
             <NavItem
                 name={'Лента'}

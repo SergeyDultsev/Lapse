@@ -5,7 +5,7 @@ import {
     ThemeProvider, 
     ModalProvider, 
 } from '@/providers';
-import { NavBar } from '@/widgets';
+import { Header, NavBar } from '@/widgets';
 import '@/assets/css/global.scss';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -13,6 +13,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <TanstackQueryProvider>
             <ThemeProvider>
                 <ModalProvider>
+                    <Header />
                     <div className="layout">
                         <NavBar />
                         <main className="container">{children}</main>

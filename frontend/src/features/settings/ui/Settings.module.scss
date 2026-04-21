@@ -1,5 +1,5 @@
 .settings-title {
-  color: var(--color-primary);
+  color: var(--accent-primary);
   font-size: 20px;
   font-weight: bold;
 }
@@ -21,19 +21,19 @@
   }
 
   &__title {
-    color: var(--color-text-primary);
+    color: var(--text-primary);
     font-size: 16px;
     font-weight: 600;
   }
 
   &__descr {
-    color: var(--color-text-primary);
+    color: var(--text-primary);
     font-size: 12px;
   }
 }
 
 .border {
   border: none;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--border-default);
   margin: 10px 0;
 }

@@ -18,8 +18,12 @@ const Profile: React.FC = () => {
                 </div>
             </div>
             <div className={styles['profile__btns']}>
-                <BaseButton description={'Редактирование профиля'} className={styles['profile__btn']} />
-                <BaseButton description={'Подписаться'} className={styles['profile__btn']} />
+                <BaseButton variant={'primary'} size={'md'}>
+                    Редактирование профиля
+                </BaseButton>
+                <BaseButton variant={'primary'} size={'md'} >
+                    Подписаться
+                </BaseButton>
             </div>
         </section>
     );

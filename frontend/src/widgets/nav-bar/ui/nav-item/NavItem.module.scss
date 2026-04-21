@@ -4,12 +4,14 @@
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  color: var(--color-text-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
   border-radius: var(--border-radius-small);
   transition: all .2s ease-in-out;
 
   &:hover{
-    background-color: var(--color-bg-nav);
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-default);
     transition: all .2s ease-in-out;
   }
 
@@ -28,8 +30,9 @@
   display: flex;
   gap: 10px;
   cursor: pointer;
-  color: var(--color-text-primary);
-  background-color: var(--color-bg-nav);
+  color: var(--text-primary);
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-default);
   border-radius: var(--border-radius-small);
   transition: all .2s ease-in-out;
 }

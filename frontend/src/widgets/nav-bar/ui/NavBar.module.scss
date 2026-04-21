@@ -1,7 +1,10 @@
 .nav-bar {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  top: 60px;
   left: 0;
+
+  z-index: var(--z-content);
+
   width: 100%;
   max-width: 200px;
   flex-shrink: 0;
@@ -12,11 +15,11 @@
   flex-direction: column;
   gap: 10px;
 
-  padding: 30px 0 0 20px;
+  padding: 20px 0 0 20px;
 }
 
 .nav-border {
   border: none;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--border-default);
   margin: 8px 0;
 }

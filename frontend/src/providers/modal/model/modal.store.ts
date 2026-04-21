@@ -1,22 +1,21 @@
 import { create } from 'zustand/react';
-import { 
-    tModalNames,
+import {
     IInitialState, 
-    IModalStore 
+    IModalStore, 
 } from '@providers/modal/types/IModal';
 import type { StateCreator } from 'zustand';
 
 const initialState: IInitialState = {
     modalName: null,
-}
+};
 
 const modalStore: StateCreator<IModalStore> = (set, get) => ({
         ...initialState,
         setModal: (modalName) => {
-            set({ modalName })
+            set({ modalName });
         },
         closeModal: () => {
-            set({ modalName: null })
+            set({ modalName: null });
         },
     }
 );

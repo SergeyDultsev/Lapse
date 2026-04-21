@@ -1,7 +1,7 @@
 .profile {
   padding: 20px;
-  background: var(--color-bg-surface);
-  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius-medium);
   margin-bottom: 20px;
 
   &-info {
@@ -14,12 +14,12 @@
       gap: 10px;
 
       &__name {
-        color: var(--color-text-primary);
+        color: var(--text-primary);
         font-size: 16px;
       }
 
       &__data {
-        color: var(--color-text-primary);
+        color: var(--text-primary);
         font-size: 14px;
       }
     }
@@ -31,8 +31,4 @@
     gap: 10px;
     margin-top: 20px;
   }
-}
-
-.profile__btn {
-  padding: 9px 16px !important;
 }
