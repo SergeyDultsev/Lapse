@@ -1,4 +1,4 @@
-export type tModalNames = 'auth';
+export type tModalNames = 'login' | 'register';
 
 export interface IInitialState {
     modalName: tModalNames | null;

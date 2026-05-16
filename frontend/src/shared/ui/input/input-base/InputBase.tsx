@@ -1,26 +1,26 @@
 'use client';
 
 import React from 'react';
-import styles from './BaseInput.module.scss';
+import styles from './InputBase.module.scss';
 import classNames from 'classnames';
 
-interface IBaseInput {
+interface IInputBase {
     className: string,
     typeInput?: 'base' | 'auth' | 'search',
     type: string
     placeholder: string
 }
 
-const BaseInput: React.FC<IBaseInput> = (
+const InputBase: React.FC<IInputBase> = (
     { placeholder, type, className }
 ) => {
     return (
         <input
-            className={classNames(styles['base-input'], className)}
+            className={classNames(styles['input-base'], className)}
             type={type}
             placeholder={placeholder}
         />
     );
 };
 
-export default BaseInput;
+export default InputBase;

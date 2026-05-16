@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PostList from '@/entities/post/ui/post-list/PostList';
-import { LoaderSpinner } from '@/shared';
+import { LoaderBase } from '@/shared';
 import { usePostsFeed } from '@/entities/post/model/post.queries';
 
 const FeedPage: React.FC = () => {
@@ -11,7 +11,7 @@ const FeedPage: React.FC = () => {
     if (isPending) {
         return (
             <section className="loader-spinner__block">
-                <LoaderSpinner />
+                <LoaderBase />
             </section>
         );
     }

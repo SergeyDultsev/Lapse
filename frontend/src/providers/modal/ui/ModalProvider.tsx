@@ -1,8 +1,9 @@
 'use client';
 
 import React, { ReactNode } from 'react';
-import { useModalName, useCloseModal } from '@/providers/modal/model/modal.store';
 import styles from '../ui/ModalProvider.module.scss';
+import { useModalName, useCloseModal } from '@/providers/modal/model/modal.store';
+import { ModalManager } from '@/shared';
 
 const ModalProvider = ({ children }: { children: ReactNode }) => {
     const modalName = useModalName();
@@ -15,12 +16,12 @@ const ModalProvider = ({ children }: { children: ReactNode }) => {
     return (
         <>
             {children}
-            <div
+            <section
                 className={styles['modal-wrapper']}
                 onClick={closeModal}
             >
-                <div>Модалка</div>
-            </div>
+                <ModalManager name={modalName} />
+            </section>
         </>
     );
 };

@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import Topic from '@/entities/topic/ui/Topic';
 import { ITopic } from '@/entities/topic/model/ITopic';
 import { useTopicStore } from '@/entities/topic/model/topic.store';
-import { LoaderSpinner } from '@/shared';
+import { LoaderBase } from '@/shared';
 import { usePostsTopic } from '@/entities/post/model/post.queries';
 import PostList from '@/entities/post/ui/post-list/PostList';
 
@@ -27,7 +27,7 @@ const TopicPage: React.FC<ITopic> = ({
     if (isPending) {
         return (
             <section className="loader-spinner__block">
-                <LoaderSpinner />
+                <LoaderBase />
             </section>
         );
     }

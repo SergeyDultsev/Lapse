@@ -1,8 +1,9 @@
-.base-button {
+.button-base {
   border-radius: var(--border-radius-medium);
   transition: all .2s ease-in-out;
   font-family: 'Manrope', serif;
   font-size: 13px;
+  align-self: center;
 
   &--sm {
     padding: 7px 14px;

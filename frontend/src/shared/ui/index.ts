@@ -1,3 +1,4 @@
-export { default as BaseButton } from './buttons/base-button/BaseButton';
-export { default as BaseInput } from './inputs/base-input/BaseInput';
-export { default as LoaderSpinner } from './loader/LoaderSpinner/LoaderSpinner';
+export { default as ButtonBase } from './button/button-base/ButtonBase';
+export { default as InputBase } from './input/input-base/InputBase';
+export { default as LoaderBase } from './loader/loader-base/LoaderBase';
+export { default as ModalManager } from './modal/modal-manager/ModalManager';

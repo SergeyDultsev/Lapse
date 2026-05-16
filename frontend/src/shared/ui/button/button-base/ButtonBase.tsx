@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './BaseButton.module.scss';
+import styles from './ButtonBase.module.scss';
 import classNames from 'classnames';
 
 interface ButtonProps  {
@@ -12,15 +12,15 @@ interface ButtonProps  {
     onClick?: () => void;
 }
 
-const BaseButton: React.FC<ButtonProps > = (
+const ButtonBase: React.FC<ButtonProps > = (
     { children, className, size, variant, onClick }) => {
 
     return (
         <button
             className={classNames(
-                styles['base-button'],
-                styles[`base-button--${size}`],
-                styles[`base-button--${variant}`],
+                styles['button-base'],
+                styles[`button-base--${size}`],
+                styles[`button-base--${variant}`],
                 className
             )}
             onClick={onClick}
@@ -31,4 +31,4 @@ const BaseButton: React.FC<ButtonProps > = (
 
 };
 
-export default BaseButton;
+export default ButtonBase;

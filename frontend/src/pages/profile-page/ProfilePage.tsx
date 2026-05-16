@@ -2,10 +2,10 @@
 
 import React from 'react';
 
-import Profile from '@/features/profile/ui/Profile';
 import PostList from '@/entities/post/ui/post-list/PostList';
-import { LoaderSpinner } from '@/shared';
+import { LoaderBase } from '@/shared';
 import { usePostsUser } from '@/entities/post/model/post.queries';
+import { ProfileBar } from '@/widgets';
 
 const ProfilePage: React.FC = () => {
     const { data, isPending } = usePostsUser();
@@ -13,7 +13,7 @@ const ProfilePage: React.FC = () => {
     if (isPending) {
         return (
             <section className="loader-spinner__block">
-                <LoaderSpinner />
+                <LoaderBase />
             </section>
         );
     }
@@ -28,7 +28,7 @@ const ProfilePage: React.FC = () => {
     
     return (
         <main className="main">
-            <Profile />
+            <ProfileBar />
             <PostList posts={data} />
         </main>
     );

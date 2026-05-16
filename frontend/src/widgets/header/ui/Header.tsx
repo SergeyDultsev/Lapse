@@ -2,13 +2,13 @@
 
 import styles from './Header.module.scss';
 import Logo from '@assets/img/Logo';
-import { BaseButton } from '@/shared';
+import { ButtonBase } from '@/shared';
 import { useSetModal } from '@/providers';
 
 const Header: React.FC = () => {
     const setModal = useSetModal();
 
-    const showAuthModal = () => setModal('auth');
+    const showLoginModal = () => setModal('login');
 
     return (
         <header className={styles['header']}>
@@ -17,20 +17,19 @@ const Header: React.FC = () => {
             </div>
 
             <div className={styles['header-left']}>
-                <BaseButton
-                    onClick={showAuthModal}
+                <ButtonBase
+                    onClick={showLoginModal}
                     variant={'primary'}
                     size={'sm'}
                 >
                     Авторизация
-                </BaseButton>
-                <BaseButton
-                    onClick={showAuthModal}
+                </ButtonBase>
+                <ButtonBase
                     variant={'primary'}
                     size={'sm'}
                 >
                     Написать пост
-                </BaseButton>
+                </ButtonBase>
             </div>
         </header>
     );

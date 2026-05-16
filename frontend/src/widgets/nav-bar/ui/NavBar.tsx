@@ -5,8 +5,7 @@ import styles from './NavBar.module.scss';
 import NavItem from '@/widgets/nav-bar/ui/nav-item/NavItem';
 
 import {
-     useToggleTheme, 
-     useSetModal, 
+     useToggleTheme,
 } from 'providers';
 
 import {
@@ -27,17 +26,9 @@ import {
 
 const NavBar: React.FC = () => {
     const toggleTheme = useToggleTheme();
-    const setModal = useSetModal();
-
-    const showAuthModal = () => setModal('auth');
 
     return (
         <nav className={styles['nav-bar']}>
-            <NavItem
-                onClick={showAuthModal}
-                name={'Авторизация'}
-                icon={<ProfileIcon />}
-            />
             <NavItem
                 name={'Лента'}
                 url={'/'}

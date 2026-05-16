@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { LoaderSpinner } from '@/shared';
+import { LoaderBase } from '@/shared';
 import { usePostsUser } from '@/entities/post/model/post.queries';
 import PostList from '@/entities/post/ui/post-list/PostList';
 
@@ -12,7 +12,7 @@ const FavoritePage: React.FC = () => {
     if (isPending) {
         return (
             <section className="loader-spinner__block">
-                <LoaderSpinner />
+                <LoaderBase />
             </section>
         );
     }

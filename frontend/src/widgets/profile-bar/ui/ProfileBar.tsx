@@ -2,11 +2,11 @@
 
 import React from 'react';
 
-import styles from './Profile.module.scss';
-import BaseButton from '@shared/ui/buttons/base-button/BaseButton';
+import styles from './ProfileBar.module.scss';
+import ButtonBase from '@shared/ui/button/button-base/ButtonBase';
 import { shortyNumber } from '@/shared';
 
-const Profile: React.FC = () => {
+const ProfileBar: React.FC = () => {
     return (
         <section className={styles['profile']}>
             <div className={styles['profile-info']}>
@@ -18,15 +18,15 @@ const Profile: React.FC = () => {
                 </div>
             </div>
             <div className={styles['profile__btns']}>
-                <BaseButton variant={'primary'} size={'md'}>
+                <ButtonBase variant={'primary'} size={'md'}>
                     Редактирование профиля
-                </BaseButton>
-                <BaseButton variant={'primary'} size={'md'} >
+                </ButtonBase>
+                <ButtonBase variant={'primary'} size={'md'} >
                     Подписаться
-                </BaseButton>
+                </ButtonBase>
             </div>
         </section>
     );
 };
 
-export default Profile;
+export default ProfileBar;

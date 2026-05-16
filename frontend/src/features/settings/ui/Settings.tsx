@@ -3,7 +3,7 @@
 import React from 'react';
 import styles from './Settings.module.scss';
 import { 
-    BaseButton, 
+    ButtonBase, 
 } from '@/shared';
 
 const Settings: React.FC = () => {
@@ -26,9 +26,12 @@ const Settings: React.FC = () => {
                           Сергей Дульцев
                       </p>
                   </div>
-                  <BaseButton variant="primary" size={'sm'}>
+                  <ButtonBase
+                      variant="primary"
+                      size={'sm'}
+                  >
                       Изменить имя
-                  </BaseButton>
+                  </ButtonBase>
               </div>
 
               <div className={styles['settings-item']}>
@@ -40,9 +43,12 @@ const Settings: React.FC = () => {
                           dultsev@gmail.com
                       </p>
                   </div>
-                  <BaseButton variant="primary" size={'sm'}>
+                  <ButtonBase
+                      variant="primary"
+                      size={'sm'}
+                  >
                       Изменить почту
-                  </BaseButton>
+                  </ButtonBase>
               </div>
 
 
@@ -55,9 +61,12 @@ const Settings: React.FC = () => {
                           Как сайт выглядит на вашем устройстве
                       </p>
                   </div>
-                  <BaseButton variant="primary" size={'sm'}>
+                  <ButtonBase
+                      variant="primary"
+                      size={'sm'}
+                  >
                       Светлая
-                  </BaseButton>
+                  </ButtonBase>
               </div>
 
               <div className={styles['settings-item']}>
@@ -69,9 +78,12 @@ const Settings: React.FC = () => {
                           Вы можете восстановится аккаунт в течении 30 дней
                       </p>
                   </div>
-                  <BaseButton variant="danger" size={'sm'}>
+                  <ButtonBase
+                      variant="danger"
+                      size={'sm'}
+                  >
                       Удалить
-                  </BaseButton>
+                  </ButtonBase>
               </div>
 
           </div>
