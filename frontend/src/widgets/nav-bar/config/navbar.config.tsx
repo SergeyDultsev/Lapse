@@ -16,6 +16,7 @@ export interface INavbarItems {
     url?: string;
     icon?: ReactNode;
     onClick?: () => void;
+    keyFun?: string;
 }
 
 export const navbarItems: INavbarItems[] = [
@@ -41,6 +42,7 @@ export const navbarItems: INavbarItems[] = [
         name: 'Тема',
         layer: 'secondary',
         icon: <DarkModeIcon />,
+        keyFun: 'theme',
     },
     {
         name: 'Настройки',
@@ -53,5 +55,6 @@ export const navbarItems: INavbarItems[] = [
         layer: 'secondary',
         icon: <ExitIcon />,
         onClick: () => {},
+        keyFun: 'logout',
     },
 ];

@@ -5,14 +5,10 @@ import styles from './NavBar.module.scss';
 import NavItem from '@/widgets/nav-bar/ui/nav-item/NavItem';
 import { navbarItems } from '../config/navbar.config';
 
-import {
-     useToggleTheme,
-} from 'providers';
-
-import { TagIcon } from "@/shared";
+import { useNavCallbaks } from '@widgets/nav-bar/hooks/useNavCallbaks';
 
 const NavBar: React.FC = () => {
-    const toggleTheme = useToggleTheme();
+    const { getCallback } = useNavCallbaks();
 
     return (
         <nav className={styles['nav-bar']}>
@@ -24,22 +20,13 @@ const NavBar: React.FC = () => {
 
              <hr className={styles['nav-border']} />
 
-            <NavItem
-                name={'Тег'}
-                layer={'secondary'}
-                url={'/topic'}
-                icon={<TagIcon />}
-            />
-
-            <hr className={styles['nav-border']} />
-
             {navbarItems
                 .filter(item => item.layer !== 'main')
                 .map((item) => (
                     <NavItem
                         key={item.name}
                         {...item}
-                        onClick={item.name === 'Тема' ? toggleTheme : item.onClick}
+                        onClick={item.onClick || getCallback(item.keyFun)}
                     />
                 ))
             }
