@@ -6,12 +6,12 @@ export const metadata: Metadata = {
     description: 'Тема про животных',
 };
 
-export default function Animals() {
+export default function Topic() {
     return (
         <TopicPage
-            id={'animals'}
-            title={'Животные'}
-            description={'Тема про животных'}
+            id={'id'}
+            title={'Название'}
+            description={'Описание'}
             countPosts={2000}
             countReaders={100}
         />

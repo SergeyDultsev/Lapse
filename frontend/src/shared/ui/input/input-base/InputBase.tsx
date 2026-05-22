@@ -5,18 +5,22 @@ import styles from './InputBase.module.scss';
 import classNames from 'classnames';
 
 interface IInputBase {
-    className: string,
+    className?: string,
     typeInput?: 'base' | 'auth' | 'search',
     type: string
     placeholder: string
 }
 
 const InputBase: React.FC<IInputBase> = (
-    { placeholder, type, className }
+    { placeholder, typeInput, type, className }
 ) => {
     return (
         <input
-            className={classNames(styles['input-base'], className)}
+            className={classNames(
+                styles['input-base'],
+                styles[`input-base__${typeInput}`],
+                className
+            )}
             type={type}
             placeholder={placeholder}
         />

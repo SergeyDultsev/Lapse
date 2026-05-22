@@ -1,22 +1,29 @@
 .input-base{
   padding: 11px 20px;
-  background-color: var(--main-bg-color);
-  border-radius: var(--main-border-radius);
-  border: 1px solid var(--main-border-color);
+  border-radius: var(--border-radius-medium);
+  border: 1px solid var(--color-dark-600);
   transition: all .2s ease-in-out;
   font-family: 'Manrope';
   font-size: 13px;
-  color: var(--text-color);
+  color: var(--color-accent-100);
+
+  &__auth {
+    width: 100%;
+
+    &:focus {
+      color: var(--color-accent-500);
+      border: 1px solid var(--color-accent-500);
+    }
+  }
 
   &:hover{
     cursor: pointer;
-    border: 1px solid var(--main-color);
     transition: all .2s ease-in-out;
   }
 
   &::placeholder{
     font-family: 'Manrope';
     font-size: 13px;
-    color: var(--text-color);
+    color: var(--color-gray-400);
   }
 }

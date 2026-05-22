@@ -5,14 +5,12 @@
   gap: 10px;
   cursor: pointer;
   color: var(--text-primary);
-  border: 1px solid var(--border-default);
   border-radius: var(--border-radius-small);
   transition: all .2s ease-in-out;
 
   &:hover{
     color: var(--color-accent-100);
     background-color: var(--bg-tertiary);
-    border: 1px solid var(--border-default);
     transition: all .2s ease-in-out;
   }
 

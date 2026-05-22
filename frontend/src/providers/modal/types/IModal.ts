@@ -1,11 +1,9 @@
-export type tModalNames = 'login' | 'register';
-
 export interface IInitialState {
-    modalName: tModalNames | null;
+    modal: React.ReactElement | null;
 }
 
 export interface IActions {
-    setModal: (modal: tModalNames) => void,
+    openModal: (modal: React.ReactElement) => void,
     closeModal: () => void,
 }
 

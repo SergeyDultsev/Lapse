@@ -6,22 +6,22 @@ import {
 import type { StateCreator } from 'zustand';
 
 const initialState: IInitialState = {
-    modalName: null,
+    modal: null,
 };
 
 const modalStore: StateCreator<IModalStore> = (set, get) => ({
         ...initialState,
-        setModal: (modalName) => {
-            set({ modalName });
+        openModal: (modal) => {
+            set({ modal });
         },
         closeModal: () => {
-            set({ modalName: null });
+            set({ modal: null });
         },
     }
 );
 
 export const useModalStore = create<IModalStore>(modalStore);
 
-export const useSetModal = () => useModalStore(state => state.setModal);
+export const useOpenModal = () => useModalStore(state => state.openModal);
 export const useCloseModal = () => useModalStore(state => state.closeModal);
-export const useModalName = () => useModalStore(state => state.modalName);
+export const useModal = () => useModalStore(state => state.modal);

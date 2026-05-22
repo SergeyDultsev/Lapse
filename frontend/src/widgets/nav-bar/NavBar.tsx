@@ -13,15 +13,9 @@ import {
     ExploreIcon,
     SettingsIcon,
     ExitIcon,
-    PaletteIcon,
-    PetsIcon,
-    MemoryIcon,
     DarkModeIcon,
-    SportIcon,
-    MusicIcon,
-    FlightIcon,
-    MoneyIcon,
     SaveIcon,
+    TagIcon,
 } from 'shared';
 
 const NavBar: React.FC = () => {
@@ -48,39 +42,9 @@ const NavBar: React.FC = () => {
              <hr className={styles['nav-border']} />
 
             <NavItem
-                name={'Творчество'}
-                url={'/topic/creation'}
-                icon={<PaletteIcon />}
-            />
-            <NavItem
-                name={'Животные'}
-                url={'/topic/animals'}
-                icon={<PetsIcon />}
-            />
-            <NavItem
-                name={'Технологии'}
-                url={'/topic/technologies'}
-                icon={<MemoryIcon />}
-            />
-            <NavItem
-                name={'Спорт'}
-                url={'/topic/sport'}
-                icon={<SportIcon />}
-            />
-            <NavItem
-                name={'Финансы'}
-                url={'/topic/finance'}
-                icon={<MoneyIcon />}
-            />
-            <NavItem
-                name={'Музыка'}
-                url={'/topic/music'}
-                icon={<MusicIcon />}
-            />
-            <NavItem
-                name={'Путешествия'}
-                url={'/topic/trips'}
-                icon={<FlightIcon />}
+                name={'Тема'}
+                url={'/topic'}
+                icon={<TagIcon />}
             />
 
             <hr className={styles['nav-border']} />

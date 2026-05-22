@@ -1,1 +1,1 @@
-export { default as LoginModal } from './auth/login/ui/login-modal/LoginModal';
+export { default as AuthModal } from './auth/ui/auth-modal/AuthModal';

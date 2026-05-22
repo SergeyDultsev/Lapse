@@ -19,8 +19,8 @@ const ButtonBase: React.FC<ButtonProps > = (
         <button
             className={classNames(
                 styles['button-base'],
-                styles[`button-base--${size}`],
-                styles[`button-base--${variant}`],
+                styles[`button-base__${size}`],
+                styles[`button-base__${variant}`],
                 className
             )}
             onClick={onClick}
