@@ -35,12 +35,13 @@
 
   &__description {
     font-size: 14px;
-    color: var(--color-gray-300);
+    color: var(--text-primary);;
   }
 
   &__link {
     cursor: pointer;
     font-size: 14px;
     color: var(--color-accent-500);
+    text-decoration: underline;
   }
 }

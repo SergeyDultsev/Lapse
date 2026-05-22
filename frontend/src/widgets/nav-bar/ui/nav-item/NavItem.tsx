@@ -1,18 +1,12 @@
 'use client';
 
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { usePathname } from 'next/navigation';
 import styles from './NavItem.module.scss';
 import Link from 'next/link';
+import { INavbarItems } from '@widgets/nav-bar/config/navbar.config';
 
-interface NavItemProps {
-    name: string;
-    url?: string;
-    icon?: ReactNode;
-    onClick?: () => void;
-}
-
-const NavItem: React.FC<NavItemProps> = ({ name, url, icon, onClick }) => {
+const NavItem: React.FC<INavbarItems> = ({ name, url, icon, onClick }) => {
     const currentRoute = usePathname();
 
     const handleClick = (e: React.MouseEvent) => {
