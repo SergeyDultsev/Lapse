@@ -9,17 +9,18 @@ import {
     SaveIcon,
 } from 'shared';
 
-export interface INavbarItems {
+export interface INavbarItem {
     name: string;
     isHidden?: boolean;
     layer: 'main' | 'secondary';
     url?: string;
     icon?: ReactNode;
     onClick?: () => void;
-    keyFun?: string;
 }
 
-export const navbarItems: INavbarItems[] = [
+export const createNavbarItems = (fun: {
+    toggleTheme: () => void;
+}): INavbarItem[] => [
     {
         name: 'Лента',
         layer: 'main',
@@ -39,22 +40,20 @@ export const navbarItems: INavbarItems[] = [
         icon: <SaveIcon />,
     },
     {
-        name: 'Тема',
-        layer: 'secondary',
-        icon: <DarkModeIcon />,
-        keyFun: 'theme',
-    },
-    {
         name: 'Настройки',
         layer: 'secondary',
         url: '/settings',
         icon: <SettingsIcon />,
     },
     {
+        name: 'Тема',
+        layer: 'secondary',
+        icon: <DarkModeIcon />,
+        onClick: fun.toggleTheme,
+    },
+    {
         name: 'Выход',
         layer: 'secondary',
         icon: <ExitIcon />,
-        onClick: () => {},
-        keyFun: 'logout',
     },
 ];

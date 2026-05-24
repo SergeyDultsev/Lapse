@@ -1,18 +1,25 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import styles from './NavBar.module.scss';
 import NavItem from '@/widgets/nav-bar/ui/nav-item/NavItem';
-import { navbarItems } from '../config/navbar.config';
+import { createNavbarItems } from '../config/navbar.config';
 
-import { useNavCallbaks } from '@widgets/nav-bar/hooks/useNavCallbaks';
+import {
+    useToggleTheme,
+} from 'providers';
 
 const NavBar: React.FC = () => {
-    const { getCallback } = useNavCallbaks();
+    const toggleTheme = useToggleTheme();
+
+    const items = useMemo(
+        () => createNavbarItems({ toggleTheme }),
+        [toggleTheme]
+    );
 
     return (
         <nav className={styles['nav-bar']}>
-            {navbarItems
+            {items
                 .filter(item => item.layer !== 'secondary')
                 .map((item) => (
                 <NavItem key={item.name} {...item} />
@@ -20,13 +27,12 @@ const NavBar: React.FC = () => {
 
              <hr className={styles['nav-border']} />
 
-            {navbarItems
+            {items
                 .filter(item => item.layer !== 'main')
                 .map((item) => (
                     <NavItem
                         key={item.name}
                         {...item}
-                        onClick={item.onClick || getCallback(item.keyFun)}
                     />
                 ))
             }
