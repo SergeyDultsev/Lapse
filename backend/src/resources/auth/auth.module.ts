@@ -3,7 +3,7 @@ import { JwtModule, JwtModuleOptions } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { JwtStrategy } from '@commom/config/jwt.strategy';
+import { JwtStrategy } from '@resources/auth/strategies/jwt.strategy';
 import { PassportModule } from '@nestjs/passport';
 
 @Module({
@@ -13,11 +13,11 @@ import { PassportModule } from '@nestjs/passport';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService): JwtModuleOptions => {
-        const jwtSecret = configService.get<string>('JWT_SECRET');
-        const jwtExpiresIn = configService.get<number>('JWT_ACCESS_TOKEN');
+        const jwtSecret = configService.get<string>('jwt.secret');
+        const jwtExpiresIn = configService.get<number>('jwt.expiresIn');
 
-        if (!jwtSecret) {
-          throw new Error('JWT_SECRET is not defined');
+        if (!jwtSecret || !jwtExpiresIn) {
+          throw new Error('JWT is not defined');
         }
 
         return {

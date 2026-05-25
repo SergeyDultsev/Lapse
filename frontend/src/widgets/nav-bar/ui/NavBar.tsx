@@ -30,12 +30,8 @@ const NavBar: React.FC = () => {
             {items
                 .filter(item => item.layer !== 'main')
                 .map((item) => (
-                    <NavItem
-                        key={item.name}
-                        {...item}
-                    />
-                ))
-            }
+                <NavItem key={item.name} {...item} />
+            ))}
         </nav>
     );
 };

@@ -17,7 +17,8 @@
     "paths": {
       "@/*": ["*"],
       "@commom/*": ["commom/*"],
-      "@resources/*": ["resources/*"],
+      "@config/*": ["config/*"],
+      "@resources/*": ["resources/*"]
     },
     "incremental": true,
     "skipLibCheck": true,
