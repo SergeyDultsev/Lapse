@@ -10,6 +10,20 @@ const AuthForm: React.FC<{
 }> = ({ mode }) => {
     const [credentialsForm, setCredentialsForm] = useState<tCredentialsForm>(mode);
     const currentConfig = config[credentialsForm];
+    
+    const [authData, setAuthData] = useState({
+        username: '',
+        email: '',
+        password: '',
+        repeatPassword: '',
+    });
+
+    const setForm = (fieldName: string, value: string | number) => {
+        setAuthData(prevData => ({
+          ...prevData,
+          [fieldName]: value,
+      }));
+    };
 
     return (
         <div className={styles['auth-form']}>
@@ -33,16 +47,51 @@ const AuthForm: React.FC<{
             {credentialsForm === 'login' ?
                 (
                     <div className={styles['auth-form__inputs']}>
-                        <InputBase typeInput={'auth'} placeholder={'Почта'} />
-                        <InputBase typeInput={'auth'} placeholder={'Пароль'} />
+                        <InputBase
+                            name="email"
+                            typeInput={'auth'}
+                            placeholder={'Почта'}
+                            required={true}
+                            onChange={setForm}
+                        />
+                        <InputBase
+                            name="password"
+                            typeInput={'auth'}
+                            placeholder={'Пароль'}
+                            required={true}
+                            onChange={setForm}
+                        />
                     </div>
                 ) : (
-
                     <div className={styles['auth-form__inputs']}>
-                        <InputBase typeInput={'auth'} placeholder={'Имя пользвотеля'} />
-                        <InputBase typeInput={'auth'} placeholder={'Почта'} />
-                        <InputBase typeInput={'auth'} placeholder={'Пароль'} />
-                        <InputBase typeInput={'auth'} placeholder={'Повтор пароля'} />
+                        <InputBase
+                            name="username"
+                            typeInput={'auth'}
+                            placeholder={'Имя пользователя'}
+                            required={true}
+                            onChange={setForm}
+                        />
+                        <InputBase
+                            name="email"
+                            typeInput={'auth'}
+                            placeholder={'Почта'}
+                            required={true}
+                            onChange={setForm}
+                        />
+                        <InputBase
+                            name="password"
+                            typeInput={'auth'}
+                            placeholder={'Пароль'}
+                            required={true}
+                            onChange={setForm}
+                        />
+                        <InputBase
+                            name="repeatPassword"
+                            typeInput={'auth'}
+                            placeholder={'Повтор пароля'}
+                            required={true}
+                            onChange={setForm}
+                        />
                     </div>
                 )
             }

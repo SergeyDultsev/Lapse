@@ -5,14 +5,25 @@ import styles from './InputBase.module.scss';
 import classNames from 'classnames';
 
 interface IInputBase {
-    className?: string,
-    typeInput?: 'base' | 'auth' | 'search',
-    type: string
     placeholder: string
+    typeInput?: 'base' | 'auth' | 'search'
+    type: string
+    className?: string
+    required?: boolean
+    name?: string
+    onChange?: (name: string, value: string | number) => void
 }
 
 const InputBase: React.FC<IInputBase> = (
-    { placeholder, typeInput, type, className }
+    {
+        placeholder,
+        typeInput,
+        type,
+        className,
+        required,
+        name,
+        onChange,
+    }
 ) => {
     return (
         <input
@@ -23,6 +34,8 @@ const InputBase: React.FC<IInputBase> = (
             )}
             type={type}
             placeholder={placeholder}
+            required={required}
+            onChange={(e) =>onChange && onChange(name || e.target.value, e.target.value)}
         />
     );
 };
