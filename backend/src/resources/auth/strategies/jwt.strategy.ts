@@ -1,7 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { ConfigService } from '@nestjs/config';
+import { InjectRepository } from '@nestjs/typeorm';
+import { UserEntity } from '@resources/user/entites/user.entity';
+import { Repository } from 'typeorm';
 
 export type JwtPayload = {
   id: string;
@@ -10,7 +13,11 @@ export type JwtPayload = {
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(private configService: ConfigService) {
+  constructor(
+    private configService: ConfigService,
+    @InjectRepository(UserEntity)
+    private userRepository: Repository<UserEntity>,
+  ) {
     const secret = configService.get<string>('jwt.secret');
     if (!secret) throw new Error('JWT is not defined');
 
@@ -22,14 +29,18 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: JwtPayload) {
-    // TODO: Есть ли пользователь в БД
-    if (!payload) {
-      return null;
+    const user = await this.userRepository.findOne({
+      where: { id: payload.id },
+    });
+
+    if (!user) {
+      throw new UnauthorizedException();
     }
 
     return {
-      id: payload.id,
-      email: payload.email,
+      id: user.id,
+      email: user.email,
+      username: user.username,
     };
   }
 }

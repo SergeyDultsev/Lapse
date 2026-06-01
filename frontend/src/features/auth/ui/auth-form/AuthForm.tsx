@@ -2,29 +2,43 @@
 
 import styles from './AuthForm.module.scss';
 import { ButtonBase, InputBase } from '@/shared';
-import { useState } from 'react';
-import { tCredentialsForm, config } from '@features/auth/config/auth.configs';
+import { tCredentialsForm } from '@features/auth/config/auth.configs';
+import useAuthForm from '@features/auth/hooks/useAuthForm';
+import useAuth from '@features/auth/hooks/useAuth';
 
 const AuthForm: React.FC<{
     mode: tCredentialsForm
 }> = ({ mode }) => {
-    const [credentialsForm, setCredentialsForm] = useState<tCredentialsForm>(mode);
-    const currentConfig = config[credentialsForm];
-    
-    const [authData, setAuthData] = useState({
-        username: '',
-        email: '',
-        password: '',
-        repeatPassword: '',
-    });
 
-    const setForm = (fieldName: string, value: string | number) => {
-        setAuthData(prevData => ({
-          ...prevData,
-          [fieldName]: value,
-      }));
+    const {
+        credentialsForm,
+        authData,
+        currentConfig,
+        setForm,
+        setCredentialsForm,
+    } = useAuthForm(mode);
+
+    const {
+        login,
+        register,
+    } = useAuth();
+
+    const onSubmitLogin = () => {
+        login({
+            email: authData.email,
+            password: authData.password,
+        });
     };
 
+    const onSubmitRegister = () => {
+        register({
+            username: authData.username,
+            email: authData.email,
+            password: authData.password,
+            repeatPassword: authData.repeatPassword,
+        });
+    };
+    
     return (
         <div className={styles['auth-form']}>
 
@@ -50,15 +64,19 @@ const AuthForm: React.FC<{
                         <InputBase
                             name="email"
                             typeInput={'auth'}
+                            type={'email'}
                             placeholder={'Почта'}
                             required={true}
+                            value={authData['email']}
                             onChange={setForm}
                         />
                         <InputBase
                             name="password"
                             typeInput={'auth'}
+                            type={'password'}
                             placeholder={'Пароль'}
                             required={true}
+                            value={authData['password']}
                             onChange={setForm}
                         />
                     </div>
@@ -67,29 +85,37 @@ const AuthForm: React.FC<{
                         <InputBase
                             name="username"
                             typeInput={'auth'}
+                            type={'text'}
                             placeholder={'Имя пользователя'}
                             required={true}
+                            value={authData['username']}
                             onChange={setForm}
                         />
                         <InputBase
                             name="email"
                             typeInput={'auth'}
+                            type={'email'}
                             placeholder={'Почта'}
                             required={true}
+                            value={authData['email']}
                             onChange={setForm}
                         />
                         <InputBase
                             name="password"
                             typeInput={'auth'}
+                            type={'password'}
                             placeholder={'Пароль'}
                             required={true}
+                            value={authData['password']}
                             onChange={setForm}
                         />
                         <InputBase
                             name="repeatPassword"
                             typeInput={'auth'}
+                            type={'password'}
                             placeholder={'Повтор пароля'}
                             required={true}
+                            value={authData['repeatPassword']}
                             onChange={setForm}
                         />
                     </div>
@@ -101,6 +127,7 @@ const AuthForm: React.FC<{
                     <ButtonBase
                         size={'lg'}
                         variant={'secondary'}
+                        onClick={() => {onSubmitLogin()}}
                     >
                         { currentConfig.button }
                     </ButtonBase>
@@ -108,6 +135,7 @@ const AuthForm: React.FC<{
                     <ButtonBase
                         size={'lg'}
                         variant={'secondary'}
+                        onClick={() => {onSubmitRegister()}}
                     >
                         { currentConfig.button }
                     </ButtonBase>

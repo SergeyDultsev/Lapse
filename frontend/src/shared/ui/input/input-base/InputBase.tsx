@@ -11,6 +11,7 @@ interface IInputBase {
     className?: string
     required?: boolean
     name?: string
+    value?: string | number
     onChange?: (name: string, value: string | number) => void
 }
 
@@ -22,6 +23,7 @@ const InputBase: React.FC<IInputBase> = (
         className,
         required,
         name,
+        value,
         onChange,
     }
 ) => {
@@ -35,6 +37,7 @@ const InputBase: React.FC<IInputBase> = (
             type={type}
             placeholder={placeholder}
             required={required}
+            value={value}
             onChange={(e) =>onChange && onChange(name || e.target.value, e.target.value)}
         />
     );
