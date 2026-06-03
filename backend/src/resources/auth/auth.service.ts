@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { UserEntity } from '@resources/user/entites/user.entity';
@@ -14,7 +14,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async login(email: string, password: string) {
+  async login(email: string, password: string, res: Response) {
     const user = await this.userRepository.findOne({
       where: { email },
     });
@@ -23,7 +23,7 @@ export class AuthService {
       return {
         data: {},
         message: 'Invalid email or password',
-        statusCode: 401,
+        statusCode: HttpStatus.UNAUTHORIZED,
       };
     }
 
@@ -33,14 +33,21 @@ export class AuthService {
       return {
         data: {},
         message: 'Invalid email or password',
-        statusCode: 401,
+        statusCode: HttpStatus.UNAUTHORIZED,
       };
     }
 
     const payload: JwtPayload = { id: user.id, email: user.email };
+    const accessToken = await this.jwtService.sign(payload);
+
+    res.cookie('accessToken', accessToken, {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'strict',
+      maxAhe: 20 * 60 * 1000,
+    });
 
     return {
-      accessToken: this.jwtService.sign(payload),
       data: {
         id: user.id,
         username: user.username,
@@ -50,7 +57,7 @@ export class AuthService {
         countSubscriptions: user.countSubscriptions,
       },
       message: 'Successfully logged in',
-      statusCode: 200,
+      statusCode: HttpStatus.OK,
     };
   }
 
@@ -59,11 +66,12 @@ export class AuthService {
     email: string,
     password: string,
     repeatPassword: string,
+    res: Response,
   ) {
     if (password !== repeatPassword) {
       return {
         data: [],
-        statusCode: 404,
+        statusCode: HttpStatus.BAD_REQUEST,
         message: `The password and repeat password must match.`,
       };
     }
@@ -75,7 +83,7 @@ export class AuthService {
     if (existingUser) {
       return {
         data: [],
-        statusCode: 409,
+        statusCode: HttpStatus.CONFLICT,
         message: `User with this already exists.`,
       };
     }
@@ -97,14 +105,21 @@ export class AuthService {
       return {
         data: {},
         message: 'User not found',
-        statusCode: 401,
+        statusCode: HttpStatus.NOT_FOUND,
       };
     }
 
     const payload: JwtPayload = { id: user.id, email: user.email };
+    const accessToken = await this.jwtService.sign(payload);
+
+    res.cookie('accessToken', accessToken, {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'strict',
+      maxAhe: 20 * 60 * 1000,
+    });
 
     return {
-      accessToken: this.jwtService.sign(payload),
       data: {
         id: user.id,
         username: user.username,
@@ -114,7 +129,21 @@ export class AuthService {
         countSubscriptions: user.countSubscriptions,
       },
       message: 'Successfully registered',
-      statusCode: 201,
+      statusCode: HttpStatus.CREATED,
+    };
+  }
+
+  async loggout(res: Response) {
+    res.clearCookie('accessToken', {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'strict',
+    });
+
+    return {
+      data: {},
+      message: 'Logged out',
+      statusCode: HttpStatus.OK,
     };
   }
 }
