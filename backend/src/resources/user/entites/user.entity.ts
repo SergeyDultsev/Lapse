@@ -18,7 +18,9 @@ export class UserEntity {
   @Column()
   password: string;
 
-  @Column()
+  @Column({
+    default: '',
+  })
   bio: string;
 
   @Column({

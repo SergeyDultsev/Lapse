@@ -14,15 +14,12 @@ export class AuthController {
 
   @Post('/register')
   register(@Body() dto: RegisterDto) {
-    if (dto.password !== dto.repeatPassword) {
-      return {
-        data: [],
-        statusCode: 404,
-        message: `The password and repeat password must match.`,
-      };
-    }
-
-    return this.authService.register(dto.username, dto.email, dto.password);
+    return this.authService.register(
+      dto.username,
+      dto.email,
+      dto.password,
+      dto.repeatPassword,
+    );
   }
 
   // TODO: Доделать
