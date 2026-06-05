@@ -7,6 +7,7 @@ export const login = async (data: ILogin) => {
         headers: {
             'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(data),
     });
 

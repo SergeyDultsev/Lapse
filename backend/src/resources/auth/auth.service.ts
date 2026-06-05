@@ -1,10 +1,12 @@
-import { HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { UserEntity } from '@resources/user/entites/user.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { JwtPayload } from '@resources/auth/strategies/jwt.strategy';
+import { RegisterDto } from '@resources/auth/dto/register.dto';
+import { LoginDto } from '@resources/auth/dto/login.dto';
 
 @Injectable()
 export class AuthService {
@@ -14,136 +16,64 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async login(email: string, password: string, res: Response) {
+  async login(dto: LoginDto) {
     const user = await this.userRepository.findOne({
-      where: { email },
+      where: { email: dto.email },
     });
 
     if (!user) {
-      return {
-        data: {},
-        message: 'Invalid email or password',
-        statusCode: HttpStatus.UNAUTHORIZED,
-      };
+      throw new HttpException(
+        'Invalid email or password',
+        HttpStatus.UNAUTHORIZED,
+      );
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcrypt.compare(dto.password, user.password);
 
     if (!isPasswordValid) {
-      return {
-        data: {},
-        message: 'Invalid email or password',
-        statusCode: HttpStatus.UNAUTHORIZED,
-      };
+      throw new HttpException(
+        'Invalid email or password',
+        HttpStatus.UNAUTHORIZED,
+      );
     }
 
-    const payload: JwtPayload = { id: user.id, email: user.email };
-    const accessToken = await this.jwtService.sign(payload);
+    const accessToken = await this.setAuthCookie(user);
 
-    res.cookie('accessToken', accessToken, {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'strict',
-      maxAhe: 20 * 60 * 1000,
-    });
-
-    return {
-      data: {
-        id: user.id,
-        username: user.username,
-        email: user.email,
-        bio: user.bio,
-        countFollowers: user.countFollowers,
-        countSubscriptions: user.countSubscriptions,
-      },
-      message: 'Successfully logged in',
-      statusCode: HttpStatus.OK,
-    };
+    return { accessToken, user };
   }
 
-  async register(
-    username: string,
-    email: string,
-    password: string,
-    repeatPassword: string,
-    res: Response,
-  ) {
-    if (password !== repeatPassword) {
-      return {
-        data: [],
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: `The password and repeat password must match.`,
-      };
-    }
-
+  async register(dto: RegisterDto) {
     const existingUser = await this.userRepository.findOne({
-      where: [{ username }, { email }],
+      where: [{ username: dto.username }, { email: dto.email }],
     });
 
     if (existingUser) {
-      return {
-        data: [],
-        statusCode: HttpStatus.CONFLICT,
-        message: `User with this already exists.`,
-      };
+      throw new HttpException(
+        'User with this already exists.',
+        HttpStatus.CONFLICT,
+      );
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(dto.password, 10);
     const credentials = this.userRepository.create({
-      username,
-      email,
+      username: dto.username,
+      email: dto.email,
       password: hashedPassword,
     });
 
-    await this.userRepository.save(credentials);
-
-    const user = await this.userRepository.findOne({
-      where: { email },
-    });
+    const user = await this.userRepository.save(credentials);
 
     if (!user) {
-      return {
-        data: {},
-        message: 'User not found',
-        statusCode: HttpStatus.NOT_FOUND,
-      };
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
 
-    const payload: JwtPayload = { id: user.id, email: user.email };
-    const accessToken = await this.jwtService.sign(payload);
+    const accessToken = await this.setAuthCookie(user);
 
-    res.cookie('accessToken', accessToken, {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'strict',
-      maxAhe: 20 * 60 * 1000,
-    });
-
-    return {
-      data: {
-        id: user.id,
-        username: user.username,
-        email: user.email,
-        bio: user.bio,
-        countFollowers: user.countFollowers,
-        countSubscriptions: user.countSubscriptions,
-      },
-      message: 'Successfully registered',
-      statusCode: HttpStatus.CREATED,
-    };
+    return { accessToken, user };
   }
 
-  async loggout(res: Response) {
-    res.clearCookie('accessToken', {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'strict',
-    });
-
-    return {
-      data: {},
-      message: 'Logged out',
-      statusCode: HttpStatus.OK,
-    };
+  private async setAuthCookie(user: UserEntity) {
+    const payload: JwtPayload = { id: user.id, email: user.email };
+    return this.jwtService.sign(payload);
   }
 }
