@@ -4,9 +4,9 @@ import React from 'react';
 import { usePathname } from 'next/navigation';
 import styles from './NavItem.module.scss';
 import Link from 'next/link';
-import { INavbarItems } from '@widgets/nav-bar/config/navbar.config';
+import { INavbarItem } from '@shared/ui/nav/model/INavItem';
 
-const NavItem: React.FC<INavbarItems> = ({ name, url, icon, onClick }) => {
+const NavItem: React.FC<INavbarItem> = ({ name, url, icon, onClick }) => {
     const currentRoute = usePathname();
 
     const handleClick = (e: React.MouseEvent) => {

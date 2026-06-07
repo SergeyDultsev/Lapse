@@ -1,0 +1,21 @@
+
+.drop-menu {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  width: 100%;
+  max-width: 220px;
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius-medium);
+    padding: 10px;
+  }
+
+  &__invisible {
+    display: none;
+  }
+}

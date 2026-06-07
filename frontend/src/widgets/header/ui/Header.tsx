@@ -3,12 +3,19 @@
 import styles from './Header.module.scss';
 import Logo from '@assets/img/Logo';
 import { ButtonBase } from '@/shared';
-import { useOpenModal } from '@providers/modal/model/modal.store';
 import { AuthModal } from '@features';
+import useHeader from '@widgets/header/hooks/useHeader';
+import DropMenu from '@shared/ui/nav/ui/drop-menu/DropMenu';
 
 const Header: React.FC = () => {
-    const openModal = useOpenModal();
-    const showLoginModal = () => openModal(<AuthModal mode={'login'} />);
+    const {
+        isDrop,
+        openModal,
+        setDrop,
+        items,
+    } = useHeader();
+
+    const isOpenModal = () => openModal(<AuthModal mode={'register'} />);
 
     return (
         <header className={styles['header']}>
@@ -20,7 +27,7 @@ const Header: React.FC = () => {
 
                 <div className={styles['header-left__buttons']}>
                     <ButtonBase
-                        onClick={showLoginModal}
+                        onClick={isOpenModal}
                         variant={'primary'}
                         size={'sm'}
                     >
@@ -34,10 +41,17 @@ const Header: React.FC = () => {
                     </ButtonBase>
                 </div>
 
-                <div className={styles['header-left__avatar']}>
+                <div
+                    className={styles['header-left__avatar']}
+                    onClick={() => setDrop(!isDrop)}
+                >
 
                 </div>
 
+                <DropMenu
+                    navItems={items}
+                    isVisible={isDrop}
+                />
             </div>
         </header>
     );
