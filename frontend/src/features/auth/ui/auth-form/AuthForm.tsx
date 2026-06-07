@@ -23,24 +23,24 @@ const AuthForm: React.FC<{
         register,
     } = useAuth();
 
-    const onSubmitLogin = () => {
-        login({
-            email: authData.email,
-            password: authData.password,
-        });
-    };
-
-    const onSubmitRegister = () => {
-        register({
-            username: authData.username,
-            email: authData.email,
-            password: authData.password,
-            repeatPassword: authData.repeatPassword,
-        });
+    const onSubmit = () => {
+        if (credentialsForm === 'login') {
+            login({
+                email: authData.email,
+                password: authData.password,
+            });
+        } else {
+            register({
+                username: authData.username,
+                email: authData.email,
+                password: authData.password,
+                repeatPassword: authData.repeatPassword,
+            });
+        }
     };
     
     return (
-        <div className={styles['auth-form']}>
+        <form className={styles['auth-form']} onSubmit={onSubmit}>
 
             {credentialsForm === 'login' ?
                 (
@@ -127,7 +127,7 @@ const AuthForm: React.FC<{
                     <ButtonBase
                         size={'lg'}
                         variant={'secondary'}
-                        onClick={() => {onSubmitLogin()}}
+                        type="submit"
                     >
                         { currentConfig.button }
                     </ButtonBase>
@@ -135,7 +135,7 @@ const AuthForm: React.FC<{
                     <ButtonBase
                         size={'lg'}
                         variant={'secondary'}
-                        onClick={() => {onSubmitRegister()}}
+                        type="submit"
                     >
                         { currentConfig.button }
                     </ButtonBase>
@@ -165,7 +165,7 @@ const AuthForm: React.FC<{
                     </div>
                 )
             }
-        </div>
+        </form>
     );
 };
 

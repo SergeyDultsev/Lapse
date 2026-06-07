@@ -10,10 +10,18 @@ interface ButtonProps  {
     variant?: 'primary' | 'secondary' | 'danger' | 'success';
     className?: string;
     onClick?: () => void;
+    type: 'button' | 'submit' | 'reset';
 }
 
 const ButtonBase: React.FC<ButtonProps > = (
-    { children, className, size, variant, onClick }) => {
+    { 
+        children, 
+        className, 
+        size, 
+        variant, 
+        onClick, 
+        type, 
+    }) => {
 
     return (
         <button
@@ -24,6 +32,7 @@ const ButtonBase: React.FC<ButtonProps > = (
                 className
             )}
             onClick={onClick}
+            type={type}
         >
             {children}
         </button>
