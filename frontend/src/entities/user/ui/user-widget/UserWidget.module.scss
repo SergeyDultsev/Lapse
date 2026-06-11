@@ -1,0 +1,31 @@
+.user-widget {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  border: 1px solid var(--bg-tertiary);
+  border-radius: var(--border-radius-small);
+  padding: 6px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__user-info {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__username {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-primary);
+  }
+
+  &__email {
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--text-primary);
+  }
+}
