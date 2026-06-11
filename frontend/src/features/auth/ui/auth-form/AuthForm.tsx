@@ -3,25 +3,20 @@
 import styles from './AuthForm.module.scss';
 import { ButtonBase, InputBase } from '@/shared';
 import { tCredentialsForm } from '@features/auth/config/auth.configs';
-import useAuthForm from '@features/auth/hooks/useAuthForm';
 import useAuth from '@features/auth/hooks/useAuth';
 
 const AuthForm: React.FC<{
     mode: tCredentialsForm
 }> = ({ mode }) => {
-
     const {
+        login,
+        register,
         credentialsForm,
         authData,
         currentConfig,
         setForm,
         setCredentialsForm,
-    } = useAuthForm(mode);
-
-    const {
-        login,
-        register,
-    } = useAuth();
+    } = useAuth(mode);
 
     const onSubmit = () => {
         if (credentialsForm === 'login') {
