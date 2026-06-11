@@ -9,6 +9,13 @@ const useAuth = (mode: tCredentialsForm) => {
     const [credentialsForm, setCredentialsForm] = useState<tCredentialsForm>(mode);
     const currentConfig = config[credentialsForm];
 
+    const [authData, setAuthData] = useState({
+        username: '',
+        email: '',
+        password: '',
+        repeatPassword: '',
+    });
+
     const login = (data: ILogin) => {
         return loginMutation.mutate(data);
     };
@@ -16,13 +23,6 @@ const useAuth = (mode: tCredentialsForm) => {
     const register = (data: IRegister) => {
         return registerMutation.mutate(data);
     };
-
-    const [authData, setAuthData] = useState({
-        username: '',
-        email: '',
-        password: '',
-        repeatPassword: '',
-    });
 
     const setForm = (fieldName: string, value: string | number) => {
         setAuthData(prevData => ({
