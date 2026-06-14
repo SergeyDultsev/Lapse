@@ -1,6 +1,6 @@
 import ProfilePage from '@/pages/profile-page/ProfilePage';
 import type { Metadata } from 'next';
-import { getUser } from '@entities/user/api/getUser';
+import { getUser } from '@entities/user';
 
 export const dynamic = 'force-dynamic';
 

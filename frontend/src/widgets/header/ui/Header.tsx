@@ -6,7 +6,7 @@ import { ButtonBase } from '@/shared';
 import { AuthModal } from '@features';
 import useHeader from '@widgets/header/hooks/useHeader';
 import DropMenu from '@shared/ui/nav/ui/drop-menu/DropMenu';
-import UserWidget from '@entities/user/ui/user-widget/UserWidget';
+import { UserWidget } from '@entities/user';
 
 const Header: React.FC = () => {
     const {

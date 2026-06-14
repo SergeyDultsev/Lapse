@@ -1,9 +1,8 @@
 'use client';
 
 import React from 'react';
-import PostList from '@/entities/post/ui/post-list/PostList';
+import { PostList, usePostsFeed } from '@/entities/post';
 import { LoaderBase } from '@/shared';
-import { usePostsFeed } from '@/entities/post/model/post.queries';
 
 const FeedPage: React.FC = () => {
     const { data, isPending } = usePostsFeed();

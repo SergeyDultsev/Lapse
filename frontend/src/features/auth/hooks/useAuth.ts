@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { useLogin, useRegister } from '@entities/auth/model/auth.queries';
-import { ILogin, IRegister } from '@entities/auth/model/types';
+import { useLogin, useRegister, ILogin, IRegister } from '@entities/auth';
 import { config, tCredentialsForm } from '@features/auth/config/auth.configs';
 
 const useAuth = (mode: tCredentialsForm) => {

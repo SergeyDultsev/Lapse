@@ -3,8 +3,7 @@
 import React from 'react';
 
 import { LoaderBase } from '@/shared';
-import { usePostsUser } from '@/entities/post/model/post.queries';
-import PostList from '@/entities/post/ui/post-list/PostList';
+import { PostList, usePostsUser } from '@/entities/post';
 
 const FavoritePage: React.FC = () => {
     const { data, isPending } = usePostsUser('1');

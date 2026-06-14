@@ -2,13 +2,12 @@
 
 import React from 'react';
 
-import PostList from '@/entities/post/ui/post-list/PostList';
+import { PostList, usePostsUser } from '@/entities/post';
 import { LoaderBase } from '@/shared';
-import { usePostsUser } from '@/entities/post/model/post.queries';
 import { ProfileBar } from '@/widgets';
-import { IUser } from '@entities/user/model/types';
+import { IUser } from '@entities/user';
 
-const ProfilePage: React.FC = ({ id }: string) => {
+const ProfilePage: React.FC<string> = (id) => {
     const { data, isPending } = usePostsUser(id);
 
     if (isPending) {
@@ -22,7 +21,7 @@ const ProfilePage: React.FC = ({ id }: string) => {
     if (!data) {
         return (
             <section className="main">
-                <div>Нет данных</div>
+                Нет данных
             </section>
         );
     }

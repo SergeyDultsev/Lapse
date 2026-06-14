@@ -1,4 +1,4 @@
-import { IUser } from '@/entities/user/model/types';
+import { IUser } from '@/entities/user';
 
 export interface IPost {
     id: string,

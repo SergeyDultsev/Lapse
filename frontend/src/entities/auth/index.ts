@@ -15,7 +15,12 @@ export { logout } from './api/logout';
  */
 export { authKey } from './model/auth.key';
 
-export { useLogin, useRegister, useMe, useLogout } from './model/auth.queries';
+export {
+    useLogin,
+    useRegister,
+    useMe,
+    useLogout
+} from './model/auth.queries';
 
 export type { ILogin } from './model/types';
 
