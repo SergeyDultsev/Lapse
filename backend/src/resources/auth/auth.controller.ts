@@ -5,12 +5,16 @@ import {
   HttpCode,
   HttpStatus,
   Post,
+  Req,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import type { Response } from 'express';
 import { AuthService } from '@resources/auth/auth.service';
 import { LoginDto } from '@resources/auth/dto/login.dto';
 import { RegisterDto } from '@resources/auth/dto/register.dto';
+import { JwtAuthGuard } from '@resources/auth/guards/jwt-auth.guard';
+import { JwtPayload } from '@resources/auth/strategies/jwt.strategy';
 
 @Controller('auth')
 export class AuthController {
@@ -18,7 +22,10 @@ export class AuthController {
 
   @Post('/login')
   @HttpCode(HttpStatus.OK)
-  async login(@Body() dto: LoginDto, @Res({ passthrough: true }) res: Response) {
+  async login(
+    @Body() dto: LoginDto,
+    @Res({ passthrough: true }) res: Response,
+  ) {
     const { accessToken, user } = await this.authService.login(dto);
     res.cookie('accessToken', accessToken, {
       httpOnly: true,
@@ -81,8 +88,15 @@ export class AuthController {
   }
 
   @Get('/me')
+  @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.OK)
-  me() {
-    return 'me';
+  async me(@Req() req: Request & { user: JwtPayload }) {
+    const user = await this.authService.getMe(req.user.id);
+
+    return {
+      data: user,
+      message: 'User authenticated',
+      statusCode: HttpStatus.OK,
+    };
   }
 }

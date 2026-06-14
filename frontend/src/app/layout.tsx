@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Manrope as FontManrope } from 'next/font/google';
 import '@assets/css/global.scss';
+import AppProviders from '@providers/app-providers/ui/AppProvider';
 
 export const metadata: Metadata = {
     title: 'Lapse',
@@ -25,7 +26,9 @@ export default function RootLayout({
         className={manrope.className}
     >
         <body>
-            {children}
+            <AppProviders>
+                {children}
+            </AppProviders>
         </body>
     </html>
   );

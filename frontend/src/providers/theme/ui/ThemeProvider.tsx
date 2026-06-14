@@ -4,10 +4,11 @@ import React, {
     ReactNode,
     useEffect,
 } from 'react';
-import { useTheme, ITheme } from '@/providers';
+import { useTheme } from '@/providers';
+import { tTheme } from '@providers/theme/types/ITheme';
 
 const ThemeProvider = ({ children }: { children: ReactNode }) => {
-    const theme: ITheme = useTheme();
+    const theme: tTheme = useTheme();
 
     useEffect(() => {
         if (theme === 'system') {

@@ -11,7 +11,7 @@ export const login = async (data: ILogin) => {
         body: JSON.stringify(data),
     });
 
-    if (!response.ok || response.statusCode !== 201) {
+    if (!response.ok) {
         console.error(response);
     }
 

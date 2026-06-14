@@ -6,7 +6,6 @@ export {
     useToggleTheme, 
 } from '@providers/theme/model/theme.store';
 
-export type { 
-    ITheme, 
-    IThemeStore,  
-} from '@providers/theme';
+export type {
+    IThemeStore,
+} from '@providers/theme/types/ITheme';

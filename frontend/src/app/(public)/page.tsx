@@ -1,6 +1,8 @@
 import FeedPage from '@pages/feed-page/FeedPage';
 import type { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
     title: 'Главная',
     description: 'Главная страница',

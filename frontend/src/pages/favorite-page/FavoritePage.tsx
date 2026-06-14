@@ -7,7 +7,7 @@ import { usePostsUser } from '@/entities/post/model/post.queries';
 import PostList from '@/entities/post/ui/post-list/PostList';
 
 const FavoritePage: React.FC = () => {
-    const { data, isPending } = usePostsUser();
+    const { data, isPending } = usePostsUser('1');
 
     if (isPending) {
         return (

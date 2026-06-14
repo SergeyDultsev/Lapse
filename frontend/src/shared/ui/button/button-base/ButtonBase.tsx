@@ -10,7 +10,7 @@ interface ButtonProps  {
     variant?: 'primary' | 'secondary' | 'danger' | 'success';
     className?: string;
     onClick?: () => void;
-    type: 'button' | 'submit' | 'reset';
+    type?: 'button' | 'submit' | 'reset';
 }
 
 const ButtonBase: React.FC<ButtonProps > = (
@@ -20,7 +20,7 @@ const ButtonBase: React.FC<ButtonProps > = (
         size, 
         variant, 
         onClick, 
-        type, 
+        type = 'button', 
     }) => {
 
     return (

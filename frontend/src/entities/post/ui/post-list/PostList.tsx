@@ -3,7 +3,7 @@
 import React from 'react';
 import styles from './PostList.module.scss';
 import PostItem from '@/entities/post/ui/post-item/PostItem';
-import { IPostList } from '@/entities/post/types';
+import { IPostList } from '@/entities/post/model/types';
 
 const PostList: React.FC<IPostList> = ({ posts }) => {
     return (

@@ -1,12 +1,11 @@
 export { default as ModalProvider } from '@/providers/modal/ui/ModalProvider';
 
 export {
-    useSetModal,
+    useOpenModal,
     useCloseModal,
-    useModalName,
+    useModal,
 } from '@providers/modal/model/modal.store';
 
-export type { 
-    IModal,
-    IModalStore, 
-} from '@providers/modal';
+export type {
+    IModalStore,
+} from '@providers/modal/types/IModal';

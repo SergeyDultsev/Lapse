@@ -72,6 +72,12 @@ export class AuthService {
     return { accessToken, user };
   }
 
+  async getMe(userId: string) {
+    await this.userRepository.findOne({
+      where: { id: userId },
+    });
+  }
+
   private async setAuthCookie(user: UserEntity) {
     const payload: JwtPayload = { id: user.id, email: user.email };
     return this.jwtService.sign(payload);

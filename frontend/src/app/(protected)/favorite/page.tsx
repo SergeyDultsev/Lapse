@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import FavoritePage from '@pages/favorite-page/FavoritePage';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
     title: 'Избранное',
 };

@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import TopicPage from '@/pages/topic-page/TopicPage';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
     title: 'Животные',
     description: 'Тема про животных',

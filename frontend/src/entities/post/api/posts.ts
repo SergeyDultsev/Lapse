@@ -1,4 +1,4 @@
-import { IPost } from '@/entities/post/types';
+import { IPost } from '@/entities/post/model/types';
 import { postsUser } from '@/entities/post/mock/post.user';
 import { postsFeed } from '@/entities/post/mock/post.feed';
 import { postsTopic } from '@/entities/post/mock/post.topic';
@@ -27,7 +27,7 @@ export const getPostsTopic = (): Promise<IPost[]> => {
     });
 };
 
-export const getPostById = (id: string): Promise<IPost> =>  {
+export const getPostById = (id: string): Promise<IPost[]> =>  {
     return new Promise<IPost[]>(resolve => {
         setTimeout(() => {
             resolve(postsFeed);
@@ -35,7 +35,7 @@ export const getPostById = (id: string): Promise<IPost> =>  {
     });
 };
 
-export const deletePostById = (id: string): Promise<IPost> =>  {
+export const deletePostById = (id: string): Promise<IPost[]> =>  {
     return new Promise<IPost[]>(resolve => {
         setTimeout(() => {
             resolve(postsFeed);
@@ -43,7 +43,7 @@ export const deletePostById = (id: string): Promise<IPost> =>  {
     });
 };
 
-export const updatePostById = (id: string): Promise<IPost> =>  {
+export const updatePostById = (id: string): Promise<IPost[]> =>  {
     return new Promise<IPost[]>(resolve => {
         setTimeout(() => {
             resolve(postsFeed);

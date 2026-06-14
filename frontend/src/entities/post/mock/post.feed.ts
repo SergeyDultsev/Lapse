@@ -1,4 +1,4 @@
-import { IPost } from '@/entities/post/types';
+import { IPost } from '@/entities/post/model/types';
 
 export const postsFeed: IPost[] = [
     {
@@ -9,6 +9,9 @@ export const postsFeed: IPost[] = [
             id: '1',
             username: 'Illidanchik',
             email: 'email@',
+            bio: '',
+            countFollowers: 0,
+            countSubscriptions: 0,
         },
         meta: {
             countLike: 12,
@@ -24,6 +27,9 @@ export const postsFeed: IPost[] = [
             id: '1',
             username: 'Hui',
             email: 'email@',
+            bio: '',
+            countFollowers: 0,
+            countSubscriptions: 0,
         },
         meta: {
             countLike: 34,
@@ -39,6 +45,9 @@ export const postsFeed: IPost[] = [
             id: '1',
             username: 'Hie',
             email: 'email@',
+            bio: '',
+            countFollowers: 0,
+            countSubscriptions: 0,
         },
         meta: {
             countLike: 123,

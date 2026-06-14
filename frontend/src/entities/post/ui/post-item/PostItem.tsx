@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styles from './PostItem.module.scss';
-import { IPost } from '@/entities/post/types';
+import { IPost } from '@/entities/post/model/types';
 import AltAvatar from '@/assets/img/avatar.jpg';
 import { MenuIcon } from 'shared';
 import {

@@ -39,7 +39,7 @@ export const usePost = (postId: string) => {
 
 export const usePostCreate = () => {
     return useMutation({
-        mutationFn: ({ data }: { data: unknown }) => console.log(data),
+        mutationFn: async ({ data }: { data: unknown }) => { console.log(data); },
     });
 };
 
