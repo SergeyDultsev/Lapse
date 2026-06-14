@@ -7,20 +7,25 @@ import {
     SaveIcon,
 } from 'shared';
 
-export const createNavBarItems = (): INavbarItem[] => [
+export const createNavBarItems = (
+    userId?: string
+): INavbarItem[] => [
     {
         name: 'Лента',
         url: '/',
         icon: <ExploreIcon />,
+        isVisible: true,
     },
     {
         name: 'Профиль',
-        url: '/profile',
+        url: userId ? `/profile/${userId}` : '/profile',
         icon: <ProfileIcon />,
+        isVisible: userId !== undefined,
     },
     {
         name: 'Избранное',
         url: '/favorite',
         icon: <SaveIcon />,
+        isVisible: userId !== undefined,
     },
 ];

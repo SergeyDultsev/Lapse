@@ -1,3 +1,6 @@
+import { IResponse } from '@/shared';
+import { IUser } from '@entities/user';
+
 export const checkAuth = async () => {
     const url = `${process.env.NEXT_PUBLIC_API_URL}auth/me`;
     const response = await fetch(url, {
@@ -9,9 +12,9 @@ export const checkAuth = async () => {
         credentials: 'include',
     });
 
-    if (!response.ok) {
-        console.error(response);
-    }
+    const data: IResponse<IUser> = await response.json();
 
-    return response.json();
+    if (data.statusCode === 401) return null;
+
+    return data;
 };

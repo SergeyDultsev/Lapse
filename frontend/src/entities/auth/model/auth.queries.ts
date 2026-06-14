@@ -44,5 +44,6 @@ export const useMe = () => {
     return useQuery({
        queryKey: authKey.me(),
        queryFn: checkAuth,
+       staleTime: 1000 * 60 * 1000,
     });
 };

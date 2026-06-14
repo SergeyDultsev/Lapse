@@ -7,6 +7,7 @@ import { AuthModal } from '@features';
 import useHeader from '@widgets/header/hooks/useHeader';
 import DropMenu from '@shared/ui/nav/ui/drop-menu/DropMenu';
 import { UserWidget } from '@entities/user';
+import { useMe} from '@entities/auth';
 
 const Header: React.FC = () => {
     const {
@@ -15,6 +16,8 @@ const Header: React.FC = () => {
         setDrop,
         items,
     } = useHeader();
+
+    const { data: me } = useMe();
 
     const isOpenModal = () => openModal(<AuthModal mode={'register'} />);
 
@@ -27,33 +30,41 @@ const Header: React.FC = () => {
             <div className={styles['header-left']}>
 
                 <div className={styles['header-left__buttons']}>
-                    <ButtonBase
-                        onClick={isOpenModal}
-                        variant={'primary'}
-                        size={'sm'}
-                    >
-                        Авторизация
-                    </ButtonBase>
-                    <ButtonBase
-                        variant={'primary'}
-                        size={'sm'}
-                    >
-                        Написать пост
-                    </ButtonBase>
+                    {!me && (
+                        <ButtonBase
+                            onClick={isOpenModal}
+                            variant={'primary'}
+                            size={'sm'}
+                        >
+                            Авторизация
+                        </ButtonBase>
+                    )}
+
+                    {me && (
+                        <ButtonBase
+                            variant={'primary'}
+                            size={'sm'}
+                        >
+                            Написать пост
+                        </ButtonBase>
+                    )}
                 </div>
 
-                <div
-                    className={styles['header-left__avatar']}
-                    onClick={() => setDrop(!isDrop)}
-                >
+                {me && (
+                    <div
+                        className={styles['header-left__avatar']}
+                        onClick={() => setDrop(!isDrop)}
+                    >
+                    </div>
+                )}
 
-                </div>
-
-                <DropMenu
-                    header={<UserWidget />}
-                    navItems={items}
-                    isVisible={isDrop}
-                />
+                {me && (
+                    <DropMenu
+                        header={<UserWidget />}
+                        navItems={items}
+                        isVisible={isDrop}
+                    />
+                )}
             </div>
         </header>
     );

@@ -1,6 +1,8 @@
 import { ILogin } from '@entities/auth/model/types';
+import { IResponse } from '@/shared';
+import { IUser } from '@entities/user';
 
-export const login = async (data: ILogin) => {
+export const login = async (loginData: ILogin) => {
     const url = process.env.NEXT_PUBLIC_API_URL;
     const response  = await fetch(`${url}auth/login`, {
         method: 'POST',
@@ -8,12 +10,12 @@ export const login = async (data: ILogin) => {
             'Content-Type': 'application/json',
         },
         credentials: 'include',
-        body: JSON.stringify(data),
+        body: JSON.stringify(loginData),
     });
 
-    if (!response.ok) {
-        console.error(response);
-    }
+    const user: IResponse<IUser> = await response.json();
 
-    return response.json();
+    if (user.statusCode != 200) return null;
+
+    return user;
 };

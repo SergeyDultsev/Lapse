@@ -19,7 +19,7 @@ export {
     useLogin,
     useRegister,
     useMe,
-    useLogout
+    useLogout,
 } from './model/auth.queries';
 
 export type { ILogin } from './model/types';
