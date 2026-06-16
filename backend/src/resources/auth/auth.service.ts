@@ -73,7 +73,7 @@ export class AuthService {
   }
 
   async getMe(userId: string) {
-    await this.userRepository.findOne({
+    return this.userRepository.findOne({
       where: { id: userId },
     });
   }

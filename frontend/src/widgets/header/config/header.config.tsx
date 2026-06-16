@@ -9,6 +9,7 @@ import {
 
 export const createNavDropItems = (fn: {
     toggleTheme: () => void;
+    logout: () => void;
 }): INavbarItem[] => [
     {
         name: 'Настройки',
@@ -23,5 +24,6 @@ export const createNavDropItems = (fn: {
     {
         name: 'Выход',
         icon: <ExitIcon />,
+        onClick: fn.logout,
     },
 ];

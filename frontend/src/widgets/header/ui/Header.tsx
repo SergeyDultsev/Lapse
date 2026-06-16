@@ -7,7 +7,7 @@ import { AuthModal } from '@features';
 import useHeader from '@widgets/header/hooks/useHeader';
 import DropMenu from '@shared/ui/nav/ui/drop-menu/DropMenu';
 import { UserWidget } from '@entities/user';
-import { useMe} from '@entities/auth';
+import { useMe } from '@entities/auth';
 
 const Header: React.FC = () => {
     const {
@@ -58,13 +58,11 @@ const Header: React.FC = () => {
                     </div>
                 )}
 
-                {me && (
-                    <DropMenu
-                        header={<UserWidget />}
-                        navItems={items}
-                        isVisible={isDrop}
-                    />
-                )}
+                <DropMenu
+                    header={<UserWidget />}
+                    navItems={items}
+                    isVisible={isDrop}
+                />
             </div>
         </header>
     );

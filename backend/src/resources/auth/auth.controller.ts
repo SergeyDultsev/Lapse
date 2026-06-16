@@ -30,8 +30,9 @@ export class AuthController {
     res.cookie('accessToken', accessToken, {
       httpOnly: true,
       secure: false,
-      sameSite: 'strict',
+      sameSite: 'lax',
       maxAge: 20 * 60 * 1000,
+      path: '/',
     });
 
     return {
@@ -60,8 +61,9 @@ export class AuthController {
     res.cookie('accessToken', accessToken, {
       httpOnly: true,
       secure: false,
-      sameSite: 'strict',
+      sameSite: 'lax',
       maxAge: 20 * 60 * 1000,
+      path: '/',
     });
 
     return {
@@ -77,7 +79,8 @@ export class AuthController {
     res.clearCookie('accessToken', {
       httpOnly: true,
       secure: false,
-      sameSite: 'strict',
+      sameSite: 'lax',
+      path: '/',
     });
 
     return {

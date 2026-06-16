@@ -18,7 +18,9 @@ const AuthForm: React.FC<{
         setCredentialsForm,
     } = useAuth(mode);
 
-    const onSubmit = () => {
+    const onSubmit = (e) => {
+        e.preventDefault();
+
         if (credentialsForm === 'login') {
             login({
                 email: authData.email,

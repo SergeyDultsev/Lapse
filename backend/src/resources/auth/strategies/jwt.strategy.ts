@@ -1,10 +1,11 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
-import { ExtractJwt, Strategy } from 'passport-jwt';
+import { Strategy } from 'passport-jwt';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '@resources/user/entites/user.entity';
 import { Repository } from 'typeorm';
+import { Request } from 'express';
 
 export type JwtPayload = {
   id: string;
@@ -22,7 +23,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     if (!secret) throw new Error('JWT is not defined');
 
     super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: (req: Request) => {
+        return req?.cookies?.accessToken || null;
+      },
       ignoreExpiration: false,
       secretOrKey: secret,
     });

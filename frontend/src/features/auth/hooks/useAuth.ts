@@ -1,12 +1,14 @@
-import { useState } from 'react';
-import { useLogin, useRegister, ILogin, IRegister } from '@entities/auth';
+import { useState, useEffect } from 'react';
+import { useLogin, useRegister, ILogin, IRegister, useLogout } from '@entities/auth';
 import { config, tCredentialsForm } from '@features/auth/config/auth.configs';
 
-const useAuth = (mode: tCredentialsForm) => {
+const useAuth = (mode?: tCredentialsForm) => {
     const loginMutation = useLogin();
     const registerMutation = useRegister();
-    const [credentialsForm, setCredentialsForm] = useState<tCredentialsForm>(mode);
-    const currentConfig = config[credentialsForm];
+    const logoutMutation = useLogout();
+
+    const [credentialsForm, setCredentialsForm] = useState<tCredentialsForm | null>(mode ?? null);
+    const currentConfig = credentialsForm ? config[credentialsForm] : undefined;
 
     const [authData, setAuthData] = useState({
         username: '',
@@ -23,19 +25,32 @@ const useAuth = (mode: tCredentialsForm) => {
         return registerMutation.mutate(data);
     };
 
+    const logout = () => {
+        return logoutMutation.mutate();
+    };
+
     const setForm = (fieldName: string, value: string | number) => {
         setAuthData(prevData => ({
             ...prevData,
             [fieldName]: value,
         }));
     };
+
+    useEffect(() => {
+        setCredentialsForm(mode ?? null);
+    }, [mode]);
+
+    const passwordMatch = authData.password === authData.repeatPassword;
     
     return {
         login,
         register,
+        logout,
         credentialsForm,
         authData,
         currentConfig,
+        passwordMatch,
+
         setCredentialsForm,
         setForm,
     };

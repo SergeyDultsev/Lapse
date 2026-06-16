@@ -19,8 +19,10 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "migration:generate": "npx typeorm-ts-node-commonjs migration:generate src/migrations/InitialMigration -d src/config/data-source.ts --pretty",
+    "migration:generate:docker": "docker exec -it nestjs npm run migration:generate",
     "migration:run": "npx typeorm-ts-node-commonjs migration:run -d src/config/data-source.ts",
-    "migration:revert": "npx typeorm-ts-node-commonjs migration:revert -d src/config/data-source.ts"
+    "migration:revert": "npx typeorm-ts-node-commonjs migration:revert -d src/config/data-source.ts",
+    "shell": "docker exec -it nestjs sh"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
