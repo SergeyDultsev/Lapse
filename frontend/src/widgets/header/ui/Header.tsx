@@ -59,7 +59,7 @@ const Header: React.FC = () => {
                 )}
 
                 <DropMenu
-                    header={<UserWidget />}
+                    // header={<UserWidget />}
                     navItems={items}
                     isVisible={isDrop}
                 />

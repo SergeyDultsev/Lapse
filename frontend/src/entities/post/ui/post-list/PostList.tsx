@@ -6,6 +6,14 @@ import PostItem from '@/entities/post/ui/post-item/PostItem';
 import { IPostList } from '@/entities/post/model/types';
 
 const PostList: React.FC<IPostList> = ({ posts }) => {
+
+    if (!posts?.length) {
+        return (
+            <section className={styles['post-list']}>
+            </section>
+        );
+    }
+
     return (
         <section className={styles['post-list']}>
             {posts.map((item) => (
