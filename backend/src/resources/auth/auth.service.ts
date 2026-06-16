@@ -7,6 +7,7 @@ import * as bcrypt from 'bcrypt';
 import { JwtPayload } from '@resources/auth/strategies/jwt.strategy';
 import { RegisterDto } from '@resources/auth/dto/register.dto';
 import { LoginDto } from '@resources/auth/dto/login.dto';
+import { UserService } from '@resources/user/user.service';
 
 @Injectable()
 export class AuthService {
@@ -14,6 +15,7 @@ export class AuthService {
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
     private jwtService: JwtService,
+    private userService: UserService,
   ) {}
 
   async login(dto: LoginDto) {
@@ -39,7 +41,7 @@ export class AuthService {
 
     const accessToken = await this.setAuthCookie(user);
 
-    return { accessToken, user };
+    return { accessToken, user: this.userService.sanitizeUser(user) };
   }
 
   async register(dto: RegisterDto) {
@@ -69,13 +71,17 @@ export class AuthService {
 
     const accessToken = await this.setAuthCookie(user);
 
-    return { accessToken, user };
+    return { accessToken, user: this.userService.sanitizeUser(user) };
   }
 
   async getMe(userId: string) {
-    return this.userRepository.findOne({
+    const user = await this.userRepository.findOne({
       where: { id: userId },
     });
+
+    if (!user) return null;
+
+    return this.userService.sanitizeUser(user);
   }
 
   private async setAuthCookie(user: UserEntity) {

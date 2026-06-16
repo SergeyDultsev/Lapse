@@ -2,34 +2,20 @@
 
 import React from 'react';
 
-import { PostList, usePostsUser } from '@/entities/post';
-import { LoaderBase } from '@/shared';
+import { IPost, PostList } from '@/entities/post';
 import { ProfileBar } from '@/widgets';
 import { IUser } from '@entities/user';
 
-const ProfilePage: React.FC<string> = (id) => {
-    const { data, isPending } = usePostsUser(id);
+interface IProfilePageProps {
+    userData: IUser;
+    userPosts: IPost[];
+}
 
-    if (isPending) {
-        return (
-            <section className="loader-spinner__block">
-                <LoaderBase />
-            </section>
-        );
-    }
-
-    if (!data) {
-        return (
-            <section className="main">
-                Нет данных
-            </section>
-        );
-    }
-    
+const ProfilePage: React.FC<IProfilePageProps> = ({ userData, userPosts }) => {
     return (
         <main className="main">
-            <ProfileBar />
-            <PostList posts={data} />
+            <ProfileBar {...userData} />
+            <PostList posts={userPosts} />
         </main>
     );
 };

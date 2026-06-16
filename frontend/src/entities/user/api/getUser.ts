@@ -1,14 +1,29 @@
+import { IResponse } from '@/shared';
+import { IUser } from '@entities/user';
 
 export const getUser = async (id: string) => {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/users/${id}`;
-    const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        mode: 'cors',
-        credentials: 'include',
-    });
+    const isServer = typeof window === 'undefined';
 
-    return response.json();
+    const baseUrl = isServer
+        ? process.env.API_URL || 'http://backend:3000'
+        : process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+
+    const url = `${baseUrl}/users/${id}`;
+
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const responseData: IResponse<IUser> = await response.json();
+
+        if (responseData.statusCode !== 200) return null;
+
+        return responseData.data;
+    } catch (e) {
+        console.error(e);
+    }
 };

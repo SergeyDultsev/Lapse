@@ -6,7 +6,7 @@ import {
     ButtonBase, 
 } from '@/shared';
 
-const Settings: React.FC = () => {
+const SettingBar: React.FC = () => {
     return (
       <section>
           <h3 className={styles['settings-title']}>

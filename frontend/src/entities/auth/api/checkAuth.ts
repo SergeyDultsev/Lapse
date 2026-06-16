@@ -12,16 +12,9 @@ export const checkAuth = async () => {
         credentials: 'include',
     });
 
-    console.log('Response status:', response.status);
-    console.log('Response headers:', response.headers);
+    const responseData: IResponse<IUser> = await response.json();
 
-    // Проверьте, есть ли cookie в браузере
-    console.log('Document cookie:', document.cookie);
+    if (responseData.statusCode === 401) return null;
 
-    const data = await response.json();
-    console.log('Response data:', data);
-
-    if (data.statusCode === 401) return null;
-
-    return data;
+    return responseData.data || null;
 };

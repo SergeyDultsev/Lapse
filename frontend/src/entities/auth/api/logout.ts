@@ -12,9 +12,9 @@ export const logout = async () => {
         credentials: 'include',
     });
 
-    const data: IResponse<IUser> = await response.json();
+    const responseData: IResponse<IUser> = await response.json();
 
-    if (data.statusCode != 200) return null;
+    if (responseData.statusCode != 200) return null;
 
-    return data;
+    return responseData.data || null;
 };

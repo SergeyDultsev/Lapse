@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   HttpCode,
+  HttpException,
   HttpStatus,
   Post,
   Req,
@@ -95,6 +96,10 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   async me(@Req() req: Request & { user: JwtPayload }) {
     const user = await this.authService.getMe(req.user.id);
+
+    if (!user) {
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    }
 
     return {
       data: user,

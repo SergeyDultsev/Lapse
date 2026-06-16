@@ -13,9 +13,9 @@ export const register = async (registerData: IRegister) => {
         body: JSON.stringify(registerData),
     });
 
-    const user: IResponse<IUser> = await response.json();
+    const responseData: IResponse<IUser> = await response.json();
 
-    if (user.statusCode != 201) return null;
+    if (responseData.statusCode != 201) return null;
 
-    return user;
+    return responseData.data || null;
 };

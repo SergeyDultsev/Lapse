@@ -13,9 +13,9 @@ export const login = async (loginData: ILogin) => {
         body: JSON.stringify(loginData),
     });
 
-    const user: IResponse<IUser> = await response.json();
+    const responseData: IResponse<IUser> = await response.json();
 
-    if (user.statusCode != 200) return null;
+    if (responseData.statusCode != 200) return null;
 
-    return user;
+    return responseData.data || null;
 };
