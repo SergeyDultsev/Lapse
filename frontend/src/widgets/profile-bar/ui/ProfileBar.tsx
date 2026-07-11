@@ -14,7 +14,7 @@ const ProfileBar: React.FC<IUser> = (
         username,
         bio,
         countFollowers,
-        countSubscriptions, 
+        countSubscriptions,
     }) => {
 
     const { buttonMe, buttonUser, me } = useProfileBar(id);
