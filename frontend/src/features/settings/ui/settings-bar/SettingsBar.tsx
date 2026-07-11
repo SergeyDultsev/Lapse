@@ -1,12 +1,16 @@
 'use client';
 
 import React from 'react';
-import styles from './Settings.module.scss';
+import styles from './SettingsBar.module.scss';
 import { 
     ButtonBase, 
 } from '@/shared';
+import { useMe } from "@entities/auth";
 
-const SettingBar: React.FC = () => {
+const SettingsBar: React.FC = () => {
+    
+    const { data: me } = useMe();
+    
     return (
       <section>
           <h3 className={styles['settings-title']}>
@@ -23,7 +27,7 @@ const SettingBar: React.FC = () => {
                           Имя пользователя
                       </h4>
                       <p className={styles['settings-item__descr']}>
-                          Сергей Дульцев
+                          { me?.username }
                       </p>
                   </div>
                   <ButtonBase
@@ -40,7 +44,7 @@ const SettingBar: React.FC = () => {
                           Электронная почта
                       </h4>
                       <p className={styles['settings-item__descr']}>
-                          dultsev@gmail.com
+                          { me?.email }
                       </p>
                   </div>
                   <ButtonBase
@@ -91,4 +95,4 @@ const SettingBar: React.FC = () => {
     );
 };
 
-export default Settings;
+export default SettingsBar;

@@ -4,7 +4,7 @@ import React from 'react';
 import styles from './ButtonBase.module.scss';
 import classNames from 'classnames';
 
-interface ButtonProps  {
+export interface ButtonProps  {
     children: React.ReactNode;
     size?: 'sm' | 'md' | 'lg';
     variant?: 'primary' | 'secondary' | 'danger' | 'success';

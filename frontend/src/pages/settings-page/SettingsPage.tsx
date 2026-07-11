@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import Settings from '@/features/settings/ui/Settings';
+import { SettingBar } from '@features';
 
 const SettingsPage: React.FC = () => {
     return (
-        <Settings  />
+        <SettingBar  />
     );
 };
 
