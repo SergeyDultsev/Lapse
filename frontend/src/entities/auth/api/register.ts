@@ -15,7 +15,13 @@ export const register = async (registerData: IRegister) => {
 
     const responseData: IResponse<IUser> = await response.json();
 
-    if (responseData.statusCode != 201) return null;
+    if (!response.ok) {
+        throw new Error(
+            Array.isArray(responseData.message)
+                ? responseData.message.join(', ')
+                : responseData.message
+        );
+    }
 
     return responseData.data || null;
 };

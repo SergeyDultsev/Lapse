@@ -18,11 +18,11 @@ const useAuth = (mode?: tCredentialsForm) => {
     });
 
     const login = (data: ILogin) => {
-        return loginMutation.mutate(data);
+        return loginMutation.mutateAsync(data);
     };
 
     const register = (data: IRegister) => {
-        return registerMutation.mutate(data);
+        return registerMutation.mutateAsync(data);
     };
 
     const logout = () => {

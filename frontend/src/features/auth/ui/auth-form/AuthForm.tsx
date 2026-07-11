@@ -4,6 +4,7 @@ import styles from './AuthForm.module.scss';
 import { ButtonBase, InputBase } from '@/shared';
 import { tCredentialsForm } from '@features/auth/config/auth.configs';
 import useAuth from '@features/auth/hooks/useAuth';
+import { useCloseModal } from '@/providers';
 
 const AuthForm: React.FC<{
     mode: tCredentialsForm
@@ -18,22 +19,28 @@ const AuthForm: React.FC<{
         setCredentialsForm,
     } = useAuth(mode);
 
-    const onSubmit = (e) => {
+    const closeModal = useCloseModal();
+
+    const onSubmit = async (e) => {
         e.preventDefault();
 
-        if (credentialsForm === 'login') {
-            login({
-                email: authData.email,
-                password: authData.password,
-            });
-        } else {
-            register({
-                username: authData.username,
-                email: authData.email,
-                password: authData.password,
-                repeatPassword: authData.repeatPassword,
-            });
-        }
+        try {
+            if (credentialsForm === 'login') {
+                await login({
+                    email: authData.email,
+                    password: authData.password,
+                });
+            } else {
+                await register({
+                    username: authData.username,
+                    email: authData.email,
+                    password: authData.password,
+                    repeatPassword: authData.repeatPassword,
+                });
+            }
+
+            closeModal();
+        } catch (e) { console.error(e); }
     };
     
     return (

@@ -15,7 +15,13 @@ export const login = async (loginData: ILogin) => {
 
     const responseData: IResponse<IUser> = await response.json();
 
-    if (responseData.statusCode != 200) return null;
+    if (!response.ok) {
+        throw new Error(
+            Array.isArray(responseData.message)
+                ? responseData.message.join(', ')
+                : responseData.message
+        );
+    }
 
     return responseData.data || null;
 };
