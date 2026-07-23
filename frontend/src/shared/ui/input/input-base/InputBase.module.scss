@@ -3,7 +3,6 @@
   border-radius: var(--border-radius-medium);
   border: 1px solid var(--color-dark-600);
   transition: all .2s ease-in-out;
-  font-family: 'Manrope';
   font-size: 13px;
   color: var(--text-primary);
 
@@ -15,20 +14,33 @@
       border: 1px solid var(--color-accent-500);
 
       &::placeholder{
-        font-family: 'Manrope';
         font-size: 13px;
         color: var(--color-accent-500);
       }
     }
+
+    &:autofill {
+      color: var(--text-primary);
+      background-color: transparent;
+      border-color: var(--color-accent-500);
+    }
+
+    &:-webkit-autofill {
+      color: var(--text-primary);
+      border-color: var(--color-accent-500);
+
+      -webkit-text-fill-color: var(--text-primary);
+      -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
   }
 
   &:hover{
-    cursor: pointer;
+    cursor: text;
     transition: all .2s ease-in-out;
   }
 
   &::placeholder{
-    font-family: 'Manrope';
     font-size: 13px;
     color: var(--color-gray-600);
   }
