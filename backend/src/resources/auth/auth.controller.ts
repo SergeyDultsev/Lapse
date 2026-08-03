@@ -14,8 +14,9 @@ import type { Response } from 'express';
 import { AuthService } from '@resources/auth/auth.service';
 import { LoginDto } from '@resources/auth/dto/login.dto';
 import { RegisterDto } from '@resources/auth/dto/register.dto';
-import { JwtAuthGuard } from '@resources/auth/guards/jwt-auth.guard';
+import { JwtGuard } from '@resources/auth/guards/jwt.guard';
 import { JwtPayload } from '@resources/auth/strategies/jwt.strategy';
+import { JwtRefreshGuard } from '@resources/auth/guards/jwt-refresh.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -92,7 +93,7 @@ export class AuthController {
   }
 
   @Get('/me')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtGuard)
   @HttpCode(HttpStatus.OK)
   async me(@Req() req: Request & { user: JwtPayload }) {
     const user = await this.authService.getMe(req.user.id);
@@ -103,6 +104,35 @@ export class AuthController {
 
     return {
       data: user,
+      message: 'User authenticated',
+      statusCode: HttpStatus.OK,
+    };
+  }
+
+  @Post('/refresh')
+  @UseGuards(JwtRefreshGuard)
+  @HttpCode(HttpStatus.OK)
+  async refresh(@Req() req, @Res({ passthrough: true }) res: Response) {
+    const refreshToken = req.cookies.refreshToken;
+
+    const tokens = await this.authService.refresh(req.user.id, refreshToken);
+
+    res.cookie('accessToken', tokens.accessToken, {
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: false,
+      maxAge: 15 * 60 * 1000,
+    });
+
+    res.cookie('refreshToken', tokens.refreshToken, {
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: false,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
+    return {
+      data: {},
       message: 'User authenticated',
       statusCode: HttpStatus.OK,
     };

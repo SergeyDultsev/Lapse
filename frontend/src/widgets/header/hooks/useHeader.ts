@@ -4,7 +4,6 @@ import { useToggleTheme } from '@/providers';
 import { createNavDropItems } from '@widgets/header/config/header.config';
 import useAuth from '@features/auth/hooks/useAuth';
 
-
 const useHeader = () => {
     const [isDrop, setDrop] = useState(false);
 

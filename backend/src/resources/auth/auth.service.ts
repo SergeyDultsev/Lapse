@@ -1,4 +1,9 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { UserEntity } from '@resources/user/entites/user.entity';
@@ -39,9 +44,15 @@ export class AuthService {
       );
     }
 
-    const accessToken = await this.setAuthCookie(user);
+    const tokens = await this.generateTokens(user);
 
-    return { accessToken, user: this.userService.sanitizeUser(user) };
+    user.refreshTokenHash = await bcrypt.hash(tokens.refreshToken, 10);
+    await this.userRepository.save(user);
+
+    return {
+      ...tokens,
+      user: this.userService.sanitizeUser(user),
+    };
   }
 
   async register(dto: RegisterDto) {
@@ -69,9 +80,15 @@ export class AuthService {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
 
-    const accessToken = await this.setAuthCookie(user);
+    const tokens = await this.generateTokens(user);
 
-    return { accessToken, user: this.userService.sanitizeUser(user) };
+    user.refreshTokenHash = await bcrypt.hash(tokens.refreshToken, 10);
+    await this.userRepository.save(user);
+
+    return {
+      ...tokens,
+      user: this.userService.sanitizeUser(user),
+    };
   }
 
   async getMe(userId: string) {
@@ -84,8 +101,51 @@ export class AuthService {
     return this.userService.sanitizeUser(user);
   }
 
-  private async setAuthCookie(user: UserEntity) {
-    const payload: JwtPayload = { id: user.id, email: user.email };
-    return this.jwtService.sign(payload);
+  async refresh(userId: string, refreshToken: string) {
+    const user = await this.userRepository.findOne({
+      where: {
+        id: userId,
+      },
+    });
+
+    if (!user || !user.refreshTokenHash) {
+      throw new UnauthorizedException();
+    }
+
+    const isValid = await bcrypt.compare(refreshToken, user.refreshTokenHash);
+
+    if (!isValid) {
+      throw new UnauthorizedException();
+    }
+
+    const tokens = await this.generateTokens(user);
+
+    user.refreshTokenHash = await bcrypt.hash(tokens.refreshToken, 10);
+
+    await this.userRepository.save(user);
+
+    return tokens;
+  }
+
+  private async generateTokens(user: UserEntity) {
+    const payload: JwtPayload = {
+      id: user.id,
+      email: user.email,
+    };
+
+    const accessToken = this.jwtService.sign(payload, {
+      secret: process.env.JWT_SECRET,
+      expiresIn: process.env.JWT_ACCESS_EXPIRES_IN!,
+    } as any);
+
+    const refreshToken = this.jwtService.sign(payload, {
+      secret: process.env.JWT_REFRESH_SECRET,
+      expiresIn: process.env.JWT_REFRESH_EXPIRES_IN!,
+    } as any);
+
+    return {
+      accessToken,
+      refreshToken,
+    };
   }
 }

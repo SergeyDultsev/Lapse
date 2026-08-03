@@ -29,7 +29,7 @@ import jwtConfig from './config/jwt.config';
         database: db.database,
         entities: [],
         autoLoadEntities: true,
-        synchronize: false,
+        synchronize: true,
       }),
     }),
     PostModule,
