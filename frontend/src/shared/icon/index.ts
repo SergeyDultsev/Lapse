@@ -9,3 +9,4 @@ export { default as EyeIcon } from './EyeIcon';
 export { default as FavoriteIcon } from './FavoriteIcon';
 export { default as MenuIcon } from './MenuIcon';
 export { default as TagIcon } from './TagIcon';
+export { default as HistoryIcon } from './HistoryIcon';

@@ -28,8 +28,6 @@ const NavBar: React.FC = () => {
             .filter((item) => item.isVisible).map((item) => (
                 <NavItem key={item.name} {...item} />
             ))}
-
-             <hr className={styles['nav-border']} />
         </nav>
     );
 };

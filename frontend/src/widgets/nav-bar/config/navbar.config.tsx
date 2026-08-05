@@ -4,7 +4,8 @@ import { INavbarItem } from '@shared/ui/nav/model/INavItem';
 import {
     ExploreIcon,
     ProfileIcon,
-    SaveIcon,
+    FavoriteIcon,
+    HistoryIcon,
 } from 'shared';
 
 export const createNavBarItems = (
@@ -23,9 +24,15 @@ export const createNavBarItems = (
         isVisible: userId !== undefined,
     },
     {
-        name: 'Избранное',
+        name: 'История',
+        url: '/history',
+        icon: <HistoryIcon />,
+        isVisible: userId !== undefined,
+    },
+    {
+        name: 'Лайки',
         url: '/favorite',
-        icon: <SaveIcon />,
+        icon: <FavoriteIcon />,
         isVisible: userId !== undefined,
     },
 ];

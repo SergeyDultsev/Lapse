@@ -67,12 +67,6 @@ html, body {
   min-height: 100%;
 }
 
-.layout {
-  display: flex;
-  width: 100%;
-  position: relative;
-}
-
 .loader-spinner__block {
   display: flex;
   justify-content: center;
@@ -80,9 +74,15 @@ html, body {
 }
 
 .container {
+  position: relative;
+  display: flex;
+  gap: 20px;
   width: 100%;
-  max-width: 670px;
-  padding: 20px 0;
-  min-height: 100vh;
   margin: 0 auto;
+  padding: 20px 0;
+}
+
+.main {
+  justify-items: end;
+  width: 100%;
 }
