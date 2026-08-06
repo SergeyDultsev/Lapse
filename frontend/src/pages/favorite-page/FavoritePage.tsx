@@ -10,7 +10,7 @@ const FavoritePage: React.FC = () => {
 
     if (isPending) {
         return (
-            <section className="loader-spinner__block">
+            <section className="main">
                 <LoaderBase />
             </section>
         );

@@ -9,6 +9,9 @@ import DropMenu from '@shared/ui/nav/ui/drop-menu/DropMenu';
 import { UserWidget } from '@entities/user';
 import { useMe } from '@entities/auth';
 import { globalConfig } from '@shared/configs/global.config';
+import {usePathname} from "next/navigation";
+import Link from "next/link";
+import React from "react";
 
 const Header: React.FC = () => {
     const {
@@ -22,14 +25,18 @@ const Header: React.FC = () => {
 
     const isOpenModal = () => openModal(<AuthModal mode={'register'} />);
 
+    const currentRoute = usePathname();
+
     return (
         <header
             className={styles['header']}
             style={{ maxWidth: `${globalConfig.containerWidth}px` }}
         >
-            <div className={styles['header-right']}>
-                <Logo />
-            </div>
+            <Link href='/'>
+                <div className={styles['header-right']}>
+                    <Logo />
+                </div>
+            </Link>
 
             <div className={styles['header-left']}>
 

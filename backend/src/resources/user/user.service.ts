@@ -10,9 +10,9 @@ export class UserService {
     private userRepository: Repository<UserEntity>,
   ) {}
 
-  async getUser(id: string) {
+  async getUser(userId: string) {
     const user = await this.userRepository.findOne({
-      where: { id },
+      where: { userId },
     });
 
     if (!user) {
@@ -28,7 +28,7 @@ export class UserService {
 
   public sanitizeUser(user: UserEntity) {
     return {
-      id: user.id,
+      id: user.userId,
       username: user.username,
       email: user.email,
       bio: user.bio,

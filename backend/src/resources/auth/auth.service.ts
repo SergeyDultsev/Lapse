@@ -93,7 +93,7 @@ export class AuthService {
 
   async getMe(userId: string) {
     const user = await this.userRepository.findOne({
-      where: { id: userId },
+      where: { userId: userId },
     });
 
     if (!user) return null;
@@ -104,7 +104,7 @@ export class AuthService {
   async refresh(userId: string, refreshToken: string) {
     const user = await this.userRepository.findOne({
       where: {
-        id: userId,
+        userId: userId,
       },
     });
 
@@ -129,7 +129,7 @@ export class AuthService {
 
   private async generateTokens(user: UserEntity) {
     const payload: JwtPayload = {
-      id: user.id,
+      id: user.userId,
       email: user.email,
     };
 

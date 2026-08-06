@@ -9,10 +9,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div>
             <Header />
             <div>
-                <main className="container" style={{ maxWidth: `${globalConfig.containerWidth}px` }}>
+                <section className="container" style={{ maxWidth: `${globalConfig.containerWidth}px` }}>
                     <NavBar />
                     {children}
-                </main>
+                </section>
             </div>
         </div>
     );
