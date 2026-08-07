@@ -4,7 +4,7 @@ import React from 'react';
 
 import styles from './ProfileBar.module.scss';
 import ButtonBase from '@shared/ui/button/button-base/ButtonBase';
-import { shortyNumber } from '@/shared';
+import { useShortyNumber } from '@/shared';
 import { IUser } from '@entities/user';
 import { useProfileBar } from '@widgets/profile-bar/hooks/useProfileBar';
 
@@ -26,8 +26,8 @@ const ProfileBar: React.FC<IUser> = (
                 <div className={styles['profile-info__content']}>
                     <h2 className={styles['profile-info__content__name']}>{ username }</h2>
                     <p className={styles['profile-info__content__data']}>{ bio }</p>
-                    <p className={styles['profile-info__content__data']}>{ shortyNumber(countFollowers) } подписчиков</p>
-                    <p className={styles['profile-info__content__data']}>{ shortyNumber(countSubscriptions) } подписок</p>
+                    <p className={styles['profile-info__content__data']}>{ useShortyNumber(countFollowers) } подписчиков</p>
+                    <p className={styles['profile-info__content__data']}>{ useShortyNumber(countSubscriptions) } подписок</p>
                 </div>
             </div>
             <div className={styles['profile__btns']}>

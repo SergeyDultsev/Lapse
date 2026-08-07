@@ -5,7 +5,9 @@ import { SettingBar } from '@features';
 
 const SettingsPage: React.FC = () => {
     return (
-        <SettingBar  />
+        <main className="main">
+            <SettingBar  />
+        </main>
     );
 };
 

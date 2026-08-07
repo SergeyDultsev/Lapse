@@ -8,4 +8,5 @@ export {
 
 export type {
     IThemeStore,
+    themeNames,
 } from '@providers/theme/types/ITheme';

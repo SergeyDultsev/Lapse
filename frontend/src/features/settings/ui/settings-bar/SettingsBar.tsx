@@ -5,14 +5,17 @@ import styles from './SettingsBar.module.scss';
 import { 
     ButtonBase, 
 } from '@/shared';
-import { useMe } from "@entities/auth";
+import { useMe } from '@entities/auth';
+import { themeNames, useTheme, useToggleTheme } from '@/providers';
 
 const SettingsBar: React.FC = () => {
-    
     const { data: me } = useMe();
+
+    const theme = useTheme();
+    const toggleTheme = useToggleTheme();
     
     return (
-      <section>
+      <section className={styles['settings-bar']}>
           <h3 className={styles['settings-title']}>
               Настройки
           </h3>
@@ -68,8 +71,9 @@ const SettingsBar: React.FC = () => {
                   <ButtonBase
                       variant="primary"
                       size={'sm'}
+                      onClick={toggleTheme}
                   >
-                      Светлая
+                      { themeNames[theme] }
                   </ButtonBase>
               </div>
 
