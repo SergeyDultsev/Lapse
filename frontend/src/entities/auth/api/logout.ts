@@ -1,15 +1,9 @@
-import { IResponse } from '@/shared';
+import { IResponse, apiClient } from '@/shared';
 import { IUser } from '@entities/user';
 
 export const logout = async () => {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/auth/logout`;
-    const response = await fetch(url, {
+    const response = await apiClient('/auth/logout', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        mode: 'cors',
-        credentials: 'include',
     });
 
     const responseData: IResponse<IUser> = await response.json();

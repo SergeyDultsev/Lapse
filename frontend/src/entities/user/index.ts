@@ -8,6 +8,7 @@ export { default as UserAvatar } from './ui/user-avatar/UserAvatar';
  * model
  */
 export { getUser } from './api/getUser';
+export { useUser } from './model/user.queries';
 
 export { userKeys } from './model/user.key';
 

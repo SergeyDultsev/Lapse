@@ -7,8 +7,8 @@ export class UserController {
 
   @Get(':id')
   @HttpCode(200)
-  async findUserById(@Param('userId') userId: string) {
-    const user = await this.userService.getUser(userId);
+  async findUserById(@Param('id') id: string) {
+    const user = await this.userService.getUser(id);
 
     return {
       data: user,
@@ -17,6 +17,7 @@ export class UserController {
     };
   }
 
+  @Get()
   @HttpCode(200)
   async usersAll() {
     const users = await this.userService.getAll();

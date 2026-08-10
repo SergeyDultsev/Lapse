@@ -1,5 +1,3 @@
-'use client';
-
 import { Header, NavBar } from '@/widgets';
 import { globalConfig } from '@shared/configs/global.config';
 import React from 'react';

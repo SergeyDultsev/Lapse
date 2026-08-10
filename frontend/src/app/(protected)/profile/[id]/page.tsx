@@ -2,8 +2,6 @@ import ProfilePage from '@/pages/profile-page/ProfilePage';
 import { getUser } from '@entities/user';
 import { IPost } from '@entities/post';
 
-export const dynamic = 'force-dynamic';
-
 export async function generateMetadata({
     params,
 }: {
@@ -25,13 +23,11 @@ export default async function Profile({
     params: Promise<{ id: string }>
 }) {
     const { id } = await params;
-
-    const userData = await getUser(id);
     const userPosts: IPost[] | [] = [];
 
     return (
-        <ProfilePage 
-            userData={userData}
+        <ProfilePage
+            id={id}
             userPosts={userPosts}
         />
     );

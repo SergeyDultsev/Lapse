@@ -1,15 +1,10 @@
 import { IRegister } from '@entities/auth';
-import { IResponse } from '@/shared';
+import { IResponse, apiClient } from '@/shared';
 import { IUser } from '@entities/user';
 
 export const register = async (registerData: IRegister) => {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/auth/register`;
-    const response = await fetch(url, {
+    const response = await apiClient('/auth/register', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        credentials: 'include',
         body: JSON.stringify(registerData),
     });
 

@@ -1,5 +1,5 @@
 export const userKeys = {
     all: ['users'] as const,
-    user: () => [...userKeys.all, 'user'],
+    user: (id?: string) => [...userKeys.all, 'user', id],
     subscribe: () => [...userKeys.all, 'subscribe'],
 };

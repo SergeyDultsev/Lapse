@@ -28,12 +28,20 @@ export class AuthController {
     @Body() dto: LoginDto,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const { accessToken, user } = await this.authService.login(dto);
+    const { accessToken, refreshToken, user } = await this.authService.login(dto);
     res.cookie('accessToken', accessToken, {
       httpOnly: true,
       secure: false,
       sameSite: 'lax',
       maxAge: 20 * 60 * 1000,
+      path: '/',
+    });
+
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'lax',
+      maxAge: 7 * 24 * 60 * 60 * 1000,
       path: '/',
     });
 
@@ -58,13 +66,21 @@ export class AuthController {
       };
     }
 
-    const { accessToken, user } = await this.authService.register(dto);
+    const { accessToken, refreshToken, user } = await this.authService.register(dto);
 
     res.cookie('accessToken', accessToken, {
       httpOnly: true,
       secure: false,
       sameSite: 'lax',
       maxAge: 20 * 60 * 1000,
+      path: '/',
+    });
+
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'lax',
+      maxAge: 7 * 24 * 60 * 60 * 1000,
       path: '/',
     });
 
@@ -79,6 +95,13 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   logout(@Res({ passthrough: true }) res: Response) {
     res.clearCookie('accessToken', {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'lax',
+      path: '/',
+    });
+
+    res.clearCookie('refreshToken', {
       httpOnly: true,
       secure: false,
       sameSite: 'lax',

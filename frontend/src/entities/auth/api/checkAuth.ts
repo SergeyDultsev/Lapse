@@ -1,16 +1,9 @@
 import { IResponse } from '@/shared';
 import { IUser } from '@entities/user';
+import { apiClient } from '@/shared';
 
 export const checkAuth = async () => {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/auth/me`;
-    const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        mode: 'cors',
-        credentials: 'include',
-    });
+    const response = await apiClient('/auth/me');
 
     const responseData: IResponse<IUser> = await response.json();
 

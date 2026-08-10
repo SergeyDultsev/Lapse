@@ -9,19 +9,19 @@
   &__title {
     font-weight: 700;
     font-size: 24px;
-    color: var(--color-primary);
+    color: var(--accent-primary);
   }
 
   &__text {
     font-weight: 400;
     font-size: 18px;
-    color: var(--color-text-primary);
+    color: var(--accent-primary);
   }
 
   &__link {
     font-weight: 400;
     font-size: 18px;
-    color: var(--color-primary);
+    color: var(--accent-primary);
     text-decoration: underline;
   }
 }
