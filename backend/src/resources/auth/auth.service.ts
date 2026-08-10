@@ -129,7 +129,7 @@ export class AuthService {
 
   private async generateTokens(user: UserEntity) {
     const payload: JwtPayload = {
-      id: user.userId,
+      userId: user.userId,
       email: user.email,
     };
 

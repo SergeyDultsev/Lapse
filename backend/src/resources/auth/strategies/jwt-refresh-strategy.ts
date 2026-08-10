@@ -5,7 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { Request } from 'express';
 
 export type JwtPayload = {
-  id: string;
+  userId: string;
   email: string;
 };
 
@@ -24,6 +24,9 @@ export class JwtRefreshStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: JwtPayload) {
-    return { payload };
+    return {
+      userId: payload.userId,
+      email: payload.email,
+    };
   }
 }

@@ -96,7 +96,7 @@ export class AuthController {
   @UseGuards(JwtGuard)
   @HttpCode(HttpStatus.OK)
   async me(@Req() req: Request & { user: JwtPayload }) {
-    const user = await this.authService.getMe(req.user.id);
+    const user = await this.authService.getMe(req.user.userId);
 
     if (!user) {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);

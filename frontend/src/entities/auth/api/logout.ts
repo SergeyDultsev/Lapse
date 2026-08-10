@@ -2,7 +2,7 @@ import { IResponse } from '@/shared';
 import { IUser } from '@entities/user';
 
 export const logout = async () => {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}auth/logout`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/auth/logout`;
     const response = await fetch(url, {
         method: 'POST',
         headers: {

@@ -7,7 +7,7 @@ export class SelfUserGuard implements CanActivate {
     const user = request.user;
     const targetUserId: string = request.params.id;
 
-    if (String(user.id) !== String(targetUserId)) {
+    if (String(user.userId) !== String(targetUserId)) {
       return false;
     }
 

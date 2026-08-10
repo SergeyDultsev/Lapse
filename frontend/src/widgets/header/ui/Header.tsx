@@ -9,9 +9,9 @@ import DropMenu from '@shared/ui/nav/ui/drop-menu/DropMenu';
 import { UserWidget } from '@entities/user';
 import { useMe } from '@entities/auth';
 import { globalConfig } from '@shared/configs/global.config';
-import {usePathname} from "next/navigation";
-import Link from "next/link";
-import React from "react";
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import React from 'react';
 
 const Header: React.FC = () => {
     const {

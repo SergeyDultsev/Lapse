@@ -8,7 +8,7 @@ import { Repository } from 'typeorm';
 import { Request } from 'express';
 
 export type JwtPayload = {
-  id: string;
+  userId: string;
   email: string;
 };
 
@@ -32,12 +32,16 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: JwtPayload) {
+    if (!payload.userId) {
+      throw new UnauthorizedException('Invalid token payload');
+    }
+
     const user = await this.userRepository.findOne({
-      where: { userId: payload.id },
+      where: { userId: payload.userId },
     });
 
     if (!user) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('User not found');
     }
 
     return {

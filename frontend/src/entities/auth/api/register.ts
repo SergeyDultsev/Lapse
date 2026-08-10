@@ -3,7 +3,7 @@ import { IResponse } from '@/shared';
 import { IUser } from '@entities/user';
 
 export const register = async (registerData: IRegister) => {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}auth/register`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/auth/register`;
     const response = await fetch(url, {
         method: 'POST',
         headers: {
