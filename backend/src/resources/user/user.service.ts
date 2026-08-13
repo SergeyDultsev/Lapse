@@ -23,7 +23,8 @@ export class UserService {
   }
 
   async getAll() {
-    return await this.userRepository.find();
+    const users = await this.userRepository.find();
+    return this.sanitizeUsers(users);
   }
 
   public sanitizeUser(user: UserEntity) {
@@ -32,8 +33,12 @@ export class UserService {
       username: user.username,
       email: user.email,
       bio: user.bio,
-      countFollowers: user.countFollowers,
-      countSubscriptions: user.countSubscriptions,
+      meta: {
+        countFollowers: user.countFollowers,
+        countSubscriptions: user.countSubscriptions,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      },
     };
   }
 

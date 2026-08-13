@@ -68,26 +68,22 @@ export class AuthService {
     }
 
     const hashedPassword = await bcrypt.hash(dto.password, 10);
-    const credentials = this.userRepository.create({
+    const user = this.userRepository.create({
       username: dto.username,
       email: dto.email,
       password: hashedPassword,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
-
-    const user = await this.userRepository.save(credentials);
-
-    if (!user) {
-      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
-    }
 
     const tokens = await this.generateTokens(user);
 
     user.refreshTokenHash = await bcrypt.hash(tokens.refreshToken, 10);
-    await this.userRepository.save(user);
+    const savedUser = await this.userRepository.save(user);
 
     return {
       ...tokens,
-      user: this.userService.sanitizeUser(user),
+      user: this.userService.sanitizeUser(savedUser),
     };
   }
 

@@ -2,14 +2,23 @@
 
 import React from 'react';
 import styles from './PostList.module.scss';
-import PostItem from '@/entities/post/ui/post-item/PostItem';
 import { IPostList } from '@/entities/post/model/types';
+import { LoaderBase } from '@/shared';
+import { PostItem } from '@entities/post';
 
-const PostList: React.FC<IPostList> = ({ posts }) => {
+const PostList: React.FC<IPostList> = ({ posts, isLoading }) => {
 
     if (!posts?.length) {
         return (
             <section className={styles['post-list']}>
+            </section>
+        );
+    }
+
+    if (isLoading) {
+        return (
+            <section className={styles['post-list']}>
+                <LoaderBase />
             </section>
         );
     }

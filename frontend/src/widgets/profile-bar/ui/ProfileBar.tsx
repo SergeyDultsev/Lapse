@@ -13,8 +13,7 @@ const ProfileBar: React.FC<IUser> = (
         id,
         username,
         bio,
-        countFollowers,
-        countSubscriptions,
+        meta,
     }) => {
 
     const { buttonMe, buttonUser, me } = useProfileBar(id);
@@ -26,8 +25,8 @@ const ProfileBar: React.FC<IUser> = (
                 <div className={styles['profile-info__content']}>
                     <h2 className={styles['profile-info__content__name']}>{ username }</h2>
                     <p className={styles['profile-info__content__data']}>{ bio }</p>
-                    <p className={styles['profile-info__content__data']}>{ useShortyNumber(countFollowers) } подписчиков</p>
-                    <p className={styles['profile-info__content__data']}>{ useShortyNumber(countSubscriptions) } подписок</p>
+                    <p className={styles['profile-info__content__data']}>{ useShortyNumber(meta.countFollowers) } подписчиков</p>
+                    <p className={styles['profile-info__content__data']}>{ useShortyNumber(meta.countSubscriptions) } подписок</p>
                 </div>
             </div>
             <div className={styles['profile__btns']}>

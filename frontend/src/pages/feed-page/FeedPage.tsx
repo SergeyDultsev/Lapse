@@ -1,31 +1,13 @@
 'use client';
 
 import React from 'react';
-import { PostList, usePostsFeed } from '@/entities/post';
-import { LoaderBase } from '@/shared';
+import { PostList } from '@/entities/post';
 
 const FeedPage: React.FC = () => {
-    const { data, isPending } = usePostsFeed();
-
-    if (isPending) {
-        return (
-            <section className="main">
-                <LoaderBase />
-            </section>
-        );
-    }
-
-    if (!data) {
-        return (
-            <section className="main">
-                <div>Нет данных</div>
-            </section>
-        );
-    }
 
     return (
         <main className="main">
-            <PostList posts={data} />
+            <PostList posts={[]} isLoading={false} />
         </main>
     );
 };

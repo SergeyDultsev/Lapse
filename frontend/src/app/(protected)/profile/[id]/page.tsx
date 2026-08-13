@@ -1,6 +1,9 @@
 import ProfilePage from '@/pages/profile-page/ProfilePage';
 import { getUser } from '@entities/user';
-import { IPost } from '@entities/post';
+import { getPostsByUserId } from '@entities/post';
+import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
+import { LoaderBase } from '@/shared';
 
 export async function generateMetadata({
     params,
@@ -17,18 +20,35 @@ export async function generateMetadata({
     };
 }
 
+async function ProfileContent({ id }: { id: string }) {
+    const [userData, userPosts] = await Promise.all([
+        getUser(id),
+        getPostsByUserId(id),
+    ]);
+
+    if (!userData) {
+        notFound();
+    }
+
+    return (
+        <ProfilePage
+            userId={id}
+            user={userData}
+            posts={userPosts || []}
+        />
+    );
+}
+
 export default async function Profile({
     params,
 }: {
     params: Promise<{ id: string }>
 }) {
     const { id } = await params;
-    const userPosts: IPost[] | [] = [];
 
     return (
-        <ProfilePage
-            id={id}
-            userPosts={userPosts}
-        />
+        <Suspense fallback={<LoaderBase />}>
+            <ProfileContent id={id} />
+        </Suspense>
     );
 }

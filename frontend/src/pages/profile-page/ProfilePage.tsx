@@ -2,30 +2,25 @@
 
 import React from 'react';
 
-import { IPost, PostList } from '@/entities/post';
+import { IPost, PostList, usePostsUser } from '@/entities/post';
+import { IUser } from '@entities/user';
 import { ProfileBar } from '@/widgets';
-import { IUser, useUser } from '@entities/user';
 
 interface IProfilePageProps {
-    id: string;
-    userPosts: IPost[];
+    userId: string;
+    user: IUser;
+    posts: IPost[];
 }
 
-const ProfilePage: React.FC<IProfilePageProps> = ({ id, userPosts }) => {
-    const { data: userData, isLoading } = useUser(id);
+const ProfilePage: React.FC<IProfilePageProps> = ({ user, posts, userId }) => {
+    const { data: updatedPosts, isLoading } = usePostsUser(userId);
 
-    if (isLoading) {
-        return <main className="main"><div>Загрузка...</div></main>;
-    }
-
-    if (!userData) {
-        return <main className="main"><div>Пользователь не найден</div></main>;
-    }
+    const displayPosts = updatedPosts || posts;
 
     return (
         <main className="main">
-            <ProfileBar {...userData} />
-            <PostList posts={userPosts} />
+            <ProfileBar {...user} />
+            <PostList posts={displayPosts} isLoading={isLoading} />
         </main>
     );
 };

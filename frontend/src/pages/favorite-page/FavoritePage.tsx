@@ -2,31 +2,19 @@
 
 import React from 'react';
 
-import { LoaderBase } from '@/shared';
 import { PostList, usePostsUser } from '@/entities/post';
+import { redirect } from 'next/navigation';
 
 const FavoritePage: React.FC = () => {
     const { data, isPending } = usePostsUser('1');
 
-    if (isPending) {
-        return (
-            <section className="main">
-                <LoaderBase />
-            </section>
-        );
-    }
-
     if (!data) {
-        return (
-            <section className="main">
-                <div>Нет данных</div>
-            </section>
-        );
+        redirect('/not-found');
     }
 
     return (
         <main className="main">
-            <PostList posts={data} />
+            <PostList posts={data} isLoading={isPending} />
         </main>
     );
 };

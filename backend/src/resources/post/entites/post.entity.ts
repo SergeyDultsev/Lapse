@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Post {
+export class PostEntity {
   @PrimaryGeneratedColumn('uuid')
   postId: string;
 
@@ -28,4 +28,10 @@ export class Post {
     default: 0,
   })
   countView: number;
+
+  @Column({ type: 'timestamp' })
+  createdAt: Date;
+
+  @Column({ type: 'timestamp' })
+  updatedAt: Date;
 }

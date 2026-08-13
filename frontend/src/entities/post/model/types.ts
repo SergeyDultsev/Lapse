@@ -14,4 +14,5 @@ export interface IPost {
 
 export interface IPostList {
     posts: IPost[];
+    isLoading: boolean;
 }

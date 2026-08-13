@@ -3,6 +3,10 @@ export interface IUser {
     username: string,
     email: string,
     bio: string,
-    countFollowers: number,
-    countSubscriptions: number,
+    meta: {
+        countFollowers: number,
+        countSubscriptions: number,
+        createdAt: Date,
+        updatedAt: Date,
+    }
 }
