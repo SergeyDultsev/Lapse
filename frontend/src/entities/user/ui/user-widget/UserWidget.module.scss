@@ -2,13 +2,7 @@
   display: flex;
   justify-content: left;
   align-items: center;
-  border: 1px solid var(--bg-tertiary);
-  border-radius: var(--border-radius-small);
   padding: 6px;
-
-  &:hover {
-    cursor: pointer;
-  }
 
   &__user-info {
     display: flex;
@@ -25,7 +19,7 @@
 
   &__email {
     font-weight: 500;
-    font-size: 13px;
+    font-size: 10px;
     color: var(--text-primary);
   }
 }

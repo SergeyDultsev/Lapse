@@ -73,6 +73,7 @@ const Header: React.FC = () => {
                     // header={<UserWidget />}
                     navItems={items}
                     isVisible={isDrop}
+                    onClose={() => setDrop(false)}
                 />
             </div>
         </header>
