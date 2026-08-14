@@ -10,6 +10,8 @@ interface IDropMenuProps {
     header?: React.ReactNode;
     footer?: React.ReactNode;
     onClose?: () => void;
+    top?: number,
+    right?: number,
 }
 
 const DropMenu: React.FC<IDropMenuProps> = (
@@ -19,6 +21,8 @@ const DropMenu: React.FC<IDropMenuProps> = (
         header,
         footer,
         onClose,
+        top,
+        right,
     }
 ) => {
     
@@ -26,7 +30,7 @@ const DropMenu: React.FC<IDropMenuProps> = (
     
     useEffect(() => {
         if (!isVisible) return;
-        const onKey = (e: KeyboardEvent) => e.key = 'Escape' && onClose?.();
+        const onKey = (e: KeyboardEvent) => e.key ==='Escape' && onClose?.();
         document.addEventListener('keydown', onKey);
         return () => document.removeEventListener('keydown', onKey);
     }, [isVisible, onClose]);
@@ -34,6 +38,7 @@ const DropMenu: React.FC<IDropMenuProps> = (
     return (
         <div
             ref={ref}
+            style={{ top: `${top}px`, right: `${right}px` }}
             className={`${isVisible ? styles['drop-menu'] : styles['drop-menu__invisible']}`}
         >
             <div className={styles['drop-menu__nav']}>

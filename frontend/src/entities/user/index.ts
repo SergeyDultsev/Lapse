@@ -1,7 +1,6 @@
 /**
  * UI
  */
-export { default as UserWidget } from './ui/user-widget/UserWidget';
 export { default as UserAvatar } from './ui/user-avatar/UserAvatar';
 
 /**

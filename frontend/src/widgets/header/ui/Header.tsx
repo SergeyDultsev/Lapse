@@ -1,17 +1,16 @@
 'use client';
 
+import Link from 'next/link';
+import React from 'react';
 import styles from './Header.module.scss';
 import Logo from '@assets/img/Logo';
 import { ButtonBase } from '@/shared';
 import { AuthModal } from '@features';
-import useHeader from '@widgets/header/hooks/useHeader';
-import DropMenu from '@shared/ui/nav/ui/drop-menu/DropMenu';
-import { UserWidget } from '@entities/user';
 import { useMe } from '@entities/auth';
 import { globalConfig } from '@shared/configs/global.config';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
-import React from 'react';
+import { RIGHT_DROP_DOWN_MENU, TOP_DROP_DOWN_MENU } from '@widgets/header/config/header.config';
+import useHeader from '@widgets/header/hooks/useHeader';
+import DropMenu from '@shared/ui/nav/ui/drop-menu/DropMenu';
 
 const Header: React.FC = () => {
     const {
@@ -24,8 +23,6 @@ const Header: React.FC = () => {
     const { data: me } = useMe();
 
     const isOpenModal = () => openModal(<AuthModal mode={'register'} />);
-
-    const currentRoute = usePathname();
 
     return (
         <header
@@ -70,10 +67,11 @@ const Header: React.FC = () => {
                 )}
 
                 <DropMenu
-                    // header={<UserWidget />}
                     navItems={items}
                     isVisible={isDrop}
                     onClose={() => setDrop(false)}
+                    top={TOP_DROP_DOWN_MENU}
+                    right={RIGHT_DROP_DOWN_MENU}
                 />
             </div>
         </header>

@@ -27,3 +27,6 @@ export const createNavDropItems = (fn: {
         onClick: fn.logout,
     },
 ];
+
+export const TOP_DROP_DOWN_MENU: number = 60;
+export const RIGHT_DROP_DOWN_MENU: number = 0;
