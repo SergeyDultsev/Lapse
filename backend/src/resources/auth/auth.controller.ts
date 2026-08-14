@@ -148,6 +148,7 @@ export class AuthController {
       sameSite: 'lax',
       secure: false,
       maxAge: 15 * 60 * 1000,
+      path: '/',
     });
 
     res.cookie('refreshToken', tokens.refreshToken, {
@@ -155,6 +156,7 @@ export class AuthController {
       sameSite: 'lax',
       secure: false,
       maxAge: 7 * 24 * 60 * 60 * 1000,
+      path: '/',
     });
 
     return {

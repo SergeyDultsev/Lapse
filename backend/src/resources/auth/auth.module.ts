@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from '@resources/auth/strategies/jwt.strategy';
+import { JwtRefreshStrategy } from '@resources/auth/strategies/jwt-refresh-strategy';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from '@resources/user/entites/user.entity';
@@ -34,6 +35,6 @@ import { UserService } from '@resources/user/user.service';
     TypeOrmModule.forFeature([UserEntity]),
   ],
   controllers: [AuthController],
-  providers: [AuthService, UserService, JwtStrategy],
+  providers: [AuthService, UserService, JwtStrategy, JwtRefreshStrategy],
 })
 export class AuthModule {}

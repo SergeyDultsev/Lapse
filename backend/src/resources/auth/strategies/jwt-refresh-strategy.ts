@@ -10,10 +10,10 @@ export type JwtPayload = {
 };
 
 @Injectable()
-export class JwtRefreshStrategy extends PassportStrategy(Strategy) {
+export class JwtRefreshStrategy extends PassportStrategy(Strategy, 'jwt-refresh') {
   constructor(private configService: ConfigService) {
-    const secret = configService.get<string>('jwt.refreshsecret');
-    if (!secret) throw new Error('JWT is not defined');
+    const secret = configService.get<string>('jwt.refreshSecret');
+    if (!secret) throw new Error('JWT refresh secret is not defined');
 
     super({
       jwtFromRequest: (req: Request) => {

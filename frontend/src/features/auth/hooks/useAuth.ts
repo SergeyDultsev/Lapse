@@ -26,6 +26,7 @@ const useAuth = (mode?: tCredentialsForm) => {
     };
 
     const logout = () => {
+        window.location.reload();
         return logoutMutation.mutate();
     };
 
