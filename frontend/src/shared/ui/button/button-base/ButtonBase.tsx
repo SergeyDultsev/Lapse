@@ -3,14 +3,15 @@
 import React from 'react';
 import styles from './ButtonBase.module.scss';
 import classNames from 'classnames';
+import { tButtonVariant, tButtonType, tButtonSize } from '../config/types';
 
 export interface ButtonProps  {
     children: React.ReactNode;
-    size?: 'sm' | 'md' | 'lg';
-    variant?: 'primary' | 'secondary' | 'danger' | 'success';
+    size?: tButtonSize;
+    variant?: tButtonVariant;
     className?: string;
     onClick?: () => void;
-    type?: 'button' | 'submit' | 'reset';
+    type?: tButtonType;
 }
 
 const ButtonBase: React.FC<ButtonProps > = (
