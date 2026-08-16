@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useOpenModal } from '@providers/modal/model/modal.store';
 import { useToggleTheme } from '@/providers';
 import { createNavDropItems } from '@widgets/header/config/header.config';
@@ -11,10 +11,7 @@ const useHeader = () => {
     const toggleTheme = useToggleTheme();
     const { logout } = useAuth();
 
-    const items = useMemo(
-        () => createNavDropItems({ toggleTheme, logout }),
-        [toggleTheme, logout]
-    );
+    const items = createNavDropItems({ toggleTheme, logout });
 
     return {
         isDrop,

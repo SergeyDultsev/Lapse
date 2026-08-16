@@ -4,7 +4,7 @@ import { INavbarItem } from '@shared/ui/nav/model/INavItem';
 import {
     SettingsIcon,
     DarkModeIcon,
-    ExitIcon,
+    ExitIcon, HistoryIcon, FavoriteIcon,
 } from 'shared';
 
 export const createNavDropItems = (fn: {
@@ -15,6 +15,16 @@ export const createNavDropItems = (fn: {
         name: 'Настройки',
         url: '/settings',
         icon: <SettingsIcon />,
+    },
+    {
+        name: 'История',
+        url: '/history',
+        icon: <HistoryIcon />,
+    },
+    {
+        name: 'Лайки',
+        url: '/favorite',
+        icon: <FavoriteIcon />,
     },
     {
         name: 'Тема',

@@ -23,16 +23,4 @@ export const createNavBarItems = (
         icon: <ProfileIcon />,
         isVisible: userId !== undefined,
     },
-    {
-        name: 'История',
-        url: '/history',
-        icon: <HistoryIcon />,
-        isVisible: userId !== undefined,
-    },
-    {
-        name: 'Лайки',
-        url: '/favorite',
-        icon: <FavoriteIcon />,
-        isVisible: userId !== undefined,
-    },
 ];
