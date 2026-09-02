@@ -3,17 +3,7 @@
 import React from 'react';
 import styles from './InputBase.module.scss';
 import classNames from 'classnames';
-
-interface IInputBase {
-    placeholder: string
-    typeInput?: 'base' | 'auth' | 'search'
-    type: 'text' | 'email' | 'password'
-    className?: string
-    required?: boolean
-    name?: string
-    value?: string | number
-    onChange?: (name: string, value: string | number) => void
-}
+import { IInputBase } from '@shared/ui/input/types/types';
 
 const InputBase: React.FC<IInputBase> = (
     {

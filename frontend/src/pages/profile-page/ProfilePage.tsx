@@ -2,9 +2,9 @@
 
 import React from 'react';
 
-import { IPost, PostList, usePostsUser } from '@/entities/post';
+import { IPost, usePostsUser } from '@/entities/post';
 import { IUser } from '@entities/user';
-import { ProfileBar } from '@/widgets';
+import { PostFeed, ProfileBar } from '@/widgets';
 
 interface IProfilePageProps {
     userId: string;
@@ -20,7 +20,7 @@ const ProfilePage: React.FC<IProfilePageProps> = ({ user, posts, userId }) => {
     return (
         <main className="main">
             <ProfileBar {...user} />
-            <PostList posts={displayPosts} isLoading={isLoading} />
+            <PostFeed posts={displayPosts} isLoading={isLoading} />
         </main>
     );
 };

@@ -9,8 +9,8 @@ export { getPostById } from './api/getPostById';
 /**
  * UI
  */
-export { default as PostList } from './ui/post-list/PostList';
-export { default as PostItem } from './ui/post-item/PostItem';
+export { default as PostCard } from './ui/post-card/PostCard';
+export { default as PostsNotFound } from './ui/posts-not-found/PostsNotFound'
 
 /**
  * model

@@ -1,16 +1,17 @@
 'use client';
 
 import React from 'react';
-import styles from './PostList.module.scss';
-import { IPostList } from '@/entities/post/model/types';
+import styles from './PostFeed.module.scss';
+import { IPostList } from '@entities/post/model/types';
 import { LoaderBase } from '@/shared';
-import { PostItem } from '@entities/post';
+import { PostCard, PostsNotFound } from '@entities/post';
 
-const PostList: React.FC<IPostList> = ({ posts, isLoading }) => {
+const PostFeed: React.FC<IPostList> = ({ posts, isLoading }) => {
 
     if (!posts?.length) {
         return (
             <section className={styles['post-list']}>
+                <PostsNotFound />
             </section>
         );
     }
@@ -26,7 +27,7 @@ const PostList: React.FC<IPostList> = ({ posts, isLoading }) => {
     return (
         <section className={styles['post-list']}>
             {posts.map((item) => (
-                <PostItem
+                <PostCard
                     key={item.id}
                     id={item.id}
                     author={item.author }
@@ -39,4 +40,4 @@ const PostList: React.FC<IPostList> = ({ posts, isLoading }) => {
     );
 };
 
-export default PostList;
+export default PostFeed;

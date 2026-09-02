@@ -2,8 +2,9 @@
 
 import React from 'react';
 
-import { PostList, usePostsUser } from '@/entities/post';
+import { usePostsUser } from '@/entities/post';
 import { redirect } from 'next/navigation';
+import { PostFeed } from '@/widgets';
 
 const FavoritePage: React.FC = () => {
     const { data, isPending } = usePostsUser('1');
@@ -14,7 +15,7 @@ const FavoritePage: React.FC = () => {
 
     return (
         <main className="main">
-            <PostList posts={data} isLoading={isPending} />
+            <PostFeed posts={data} isLoading={isPending} />
         </main>
     );
 };

@@ -5,7 +5,7 @@ import {
     SettingsIcon,
     DarkModeIcon,
     ExitIcon, HistoryIcon, FavoriteIcon,
-} from 'shared';
+} from '@/shared';
 
 export const createNavDropItems = (fn: {
     toggleTheme: () => void;

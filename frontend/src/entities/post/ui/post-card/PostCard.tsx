@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './PostItem.module.scss';
+import styles from './PostCard.module.scss';
 import { IPost } from '@/entities/post/model/types';
 import AltAvatar from '@/assets/img/avatar.jpg';
 import { MenuIcon } from 'shared';
@@ -12,7 +12,7 @@ import {
     useShortyNumber,
 } from 'shared';
 
-const PostItem: React.FC<IPost> = ({ author, title, body, meta }) => {
+const PostCard: React.FC<IPost> = ({ author, title, body, meta }) => {
     return (
         <article className={styles['post-item']}>
             <div className={styles['post-item__author']}>
@@ -41,4 +41,4 @@ const PostItem: React.FC<IPost> = ({ author, title, body, meta }) => {
     );
 };
 
-export default PostItem;
+export default PostCard;

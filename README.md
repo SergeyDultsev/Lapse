@@ -1,31 +1,6 @@
 # Lapse
 Lapse - пет-проект блога с использованием современного fullstack-стека.
 
-## Содержание
-- [Реализовано](#Реализовано)
-- [Технологии](#Технологии)
-- [Установка](#Установка)
-- [Автор](#Автор)
-
-## Реализовано
-- Вывод постов
-- Профиль
-- Переключение темы
-
-## Технологии
-- [NextJS](https://nextjs.org/)
-- [NestJS](https://nestjs.com/)
-- [Zustand](https://zustand-demo.pmnd.rs/)
-- [TanStack](https://tanstack.com/query/latest)
-- [Docker](https://www.docker.com/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [SCSS](https://sass-lang.com/)
-- [Redis](https://redis.io/)
-
-## Методологии
-- [FSD](https://feature-sliced.design/ru/docs/get-started/tutorial)
-- [BEM](https://ru.bem.info/)
-
 ## Установка
 Для установки и запуска проекта, необходим [NodeJS](https://nodejs.org/) v20+.
 

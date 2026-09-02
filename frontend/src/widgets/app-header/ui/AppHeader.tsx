@@ -2,17 +2,17 @@
 
 import Link from 'next/link';
 import React from 'react';
-import styles from './Header.module.scss';
+import styles from './AppHeader.module.scss';
 import Logo from '@assets/img/Logo';
 import { ButtonBase } from '@/shared';
 import { AuthModal } from '@features';
 import { useMe } from '@entities/auth';
 import { globalConfig } from '@shared/configs/global.config';
-import { RIGHT_DROP_DOWN_MENU, TOP_DROP_DOWN_MENU } from '@widgets/header/config/header.config';
-import useHeader from '@widgets/header/hooks/useHeader';
+import { RIGHT_DROP_DOWN_MENU, TOP_DROP_DOWN_MENU } from '@widgets/app-header/config/header.config';
+import useHeader from '@widgets/app-header/hooks/useHeader';
 import DropMenu from '@shared/ui/nav/ui/drop-menu/DropMenu';
 
-const Header: React.FC = () => {
+const AppHeader: React.FC = () => {
     const {
         isDrop,
         openModal,
@@ -29,7 +29,7 @@ const Header: React.FC = () => {
             className={styles['header']}
             style={{ maxWidth: `${globalConfig.containerWidth}px` }}
         >
-            <Link href='/'>
+            <Link href='/frontend/public'>
                 <div className={styles['header-right']}>
                     <Logo />
                 </div>
@@ -78,4 +78,4 @@ const Header: React.FC = () => {
     );
 };
 
-export default Header;
+export default AppHeader;

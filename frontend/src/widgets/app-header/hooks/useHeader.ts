@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useOpenModal } from '@providers/modal/model/modal.store';
 import { useToggleTheme } from '@/providers';
-import { createNavDropItems } from '@widgets/header/config/header.config';
+import { createNavDropItems } from '@widgets/app-header/config/header.config';
 import useAuth from '@features/auth/hooks/useAuth';
 
 const useHeader = () => {
