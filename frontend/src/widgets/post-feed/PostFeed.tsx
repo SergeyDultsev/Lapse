@@ -32,7 +32,7 @@ const PostFeed: React.FC<IPostList> = ({ posts, isLoading }) => {
                     id={item.id}
                     author={item.author }
                     title={item.title}
-                    body={item.body}
+                    textContent={item.textContent}
                     meta={item.meta}
                 />
             ))}

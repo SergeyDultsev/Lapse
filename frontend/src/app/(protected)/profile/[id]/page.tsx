@@ -1,5 +1,5 @@
 import ProfilePage from '@/pages/profile-page/ProfilePage';
-import { getUser } from '@entities/user';
+import { getUserById } from '@entities/user';
 import { getPostsByUserId } from '@entities/post';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
@@ -12,7 +12,7 @@ export async function generateMetadata({
 }) {
     const { id } = await params;
 
-    const user = await getUser(id);
+    const user = await getUserById(id);
 
     return {
         title: user?.username ?? 'Пользователь',
@@ -22,7 +22,7 @@ export async function generateMetadata({
 
 async function ProfileContent({ id }: { id: string }) {
     const [userData, userPosts] = await Promise.all([
-        getUser(id),
+        getUserById(id),
         getPostsByUserId(id),
     ]);
 

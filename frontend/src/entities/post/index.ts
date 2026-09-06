@@ -10,7 +10,7 @@ export { getPostById } from './api/getPostById';
  * UI
  */
 export { default as PostCard } from './ui/post-card/PostCard';
-export { default as PostsNotFound } from './ui/posts-not-found/PostsNotFound'
+export { default as PostsNotFound } from './ui/posts-not-found/PostsNotFound';
 
 /**
  * model

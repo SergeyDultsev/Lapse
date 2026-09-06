@@ -3,7 +3,7 @@ import { IUser } from '@/entities/user';
 export interface IPost {
     id: string,
     title: string,
-    body: string,
+    textContent: string,
     author: IUser
     meta: {
         countLike: number,

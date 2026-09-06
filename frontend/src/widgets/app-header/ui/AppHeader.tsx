@@ -5,7 +5,7 @@ import React from 'react';
 import styles from './AppHeader.module.scss';
 import Logo from '@assets/img/Logo';
 import { ButtonBase } from '@/shared';
-import { AuthModal } from '@features';
+import { AuthModal, PostCreateModal } from '@features';
 import { useMe } from '@entities/auth';
 import { globalConfig } from '@shared/configs/global.config';
 import { RIGHT_DROP_DOWN_MENU, TOP_DROP_DOWN_MENU } from '@widgets/app-header/config/header.config';
@@ -22,8 +22,9 @@ const AppHeader: React.FC = () => {
 
     const { data: me } = useMe();
 
-    const isOpenModal = () => openModal(<AuthModal mode={'register'} />);
-
+    const isOpenAuthModal = () => openModal(<AuthModal mode={'register'} />);
+    const isOpenPostCreateModal = () => openModal(<PostCreateModal />);
+    
     return (
         <header
             className={styles['header']}
@@ -40,7 +41,7 @@ const AppHeader: React.FC = () => {
                 <div className={styles['header-left__buttons']}>
                     {!me && (
                         <ButtonBase
-                            onClick={isOpenModal}
+                            onClick={isOpenAuthModal}
                             variant={'primary'}
                             size={'sm'}
                         >
@@ -50,6 +51,7 @@ const AppHeader: React.FC = () => {
 
                     {me && (
                         <ButtonBase
+                            onClick={isOpenPostCreateModal}
                             variant={'primary'}
                             size={'sm'}
                         >

@@ -1,7 +1,7 @@
 import { IPost } from '@entities/post';
 import { apiClient, IResponse } from '@/shared';
 
-export const getPostById = async (postId: string): Promise<IPost[]> =>  {
+export const getPostById = async (postId: string): Promise<IPost> =>  {
     const isServer = typeof window === 'undefined';
     if (isServer) {
         const baseUrl = process.env.API_URL || 'http://backend:3000';
@@ -15,7 +15,7 @@ export const getPostById = async (postId: string): Promise<IPost[]> =>  {
                 },
             });
 
-            const responseData: IResponse<IPost[]> = await response.json();
+            const responseData: IResponse<IPost> = await response.json();
 
             if (responseData.statusCode !== 200) return [];
 
@@ -29,7 +29,7 @@ export const getPostById = async (postId: string): Promise<IPost[]> =>  {
     try {
 
         const response = await apiClient(`/posts/${postId}`);
-        const responseData: IResponse<IPost[]> = await response.json();
+        const responseData: IResponse<IPost> = await response.json();
 
         if (responseData.statusCode !== 200) return [];
 

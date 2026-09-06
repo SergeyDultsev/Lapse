@@ -19,7 +19,7 @@ export class PostController {
   constructor(private readonly postService: PostService) {}
 
   @UseGuards(JwtGuard)
-  @Post('/created')
+  @Post('/create')
   @HttpCode(HttpStatus.CREATED)
   async createPost(@Body() dto: CreatePostDto, @Req() req: any) {
     const newPost = await this.postService.createPost(req.user.userId, dto);

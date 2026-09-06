@@ -1,1 +1,3 @@
-export { default as AuthModal } from './auth/ui/auth-modal/AuthModal';
+export * from './auth';
+export * from './user';
+export * from './post';

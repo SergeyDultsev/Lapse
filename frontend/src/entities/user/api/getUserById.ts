@@ -1,7 +1,7 @@
 import { IResponse, apiClient } from '@/shared';
 import { IUser } from '@entities/user';
 
-export const getUser = async (id: string) => {
+export const getUserById = async (id: string) => {
     const isServer = typeof window === 'undefined';
     if (isServer) {
         const baseUrl = process.env.API_URL || 'http://backend:3000';
