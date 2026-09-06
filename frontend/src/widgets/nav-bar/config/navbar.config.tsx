@@ -4,8 +4,6 @@ import { INavbarItem } from '@shared/ui/nav/model/INavItem';
 import {
     ExploreIcon,
     ProfileIcon,
-    FavoriteIcon,
-    HistoryIcon,
 } from 'shared';
 
 export const createNavBarItems = (

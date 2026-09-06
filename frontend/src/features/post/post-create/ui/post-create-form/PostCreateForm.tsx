@@ -1,14 +1,39 @@
 import styles from './PostCreateFrom.module.scss';
-import { ButtonBase } from '@/shared';
+import { ButtonBase, InputBase } from '@/shared';
 
-const PostCreateForm: React.FC = () => {
+interface IPostCreateFormProps {
+    title: string;
+    textContent: string;
+    setPost: (fieldName: string, value: string | number) => void;
+    sendPost: () => void;
+}
+
+const PostCreateForm: React.FC<IPostCreateFormProps> = ({
+    title,
+    textContent,
+    setPost,
+    sendPost,
+}) => {
     return (
         <form className={styles['post-form']}>
-            <textarea className={styles['post-form__textarea']} placeholder={'Написать пост'}></textarea>
+            <InputBase
+                name={'title'}
+                type={'text'}
+                placeholder={'Заголовок'}
+                value={title}
+                onChange={setPost}
+            />
+            <textarea
+                className={styles['post-form__textarea']}
+                placeholder={'Написать пост'}
+                value={textContent}
+                onChange={(e) => setPost('textContent', e.target.value)}
+            ></textarea>
             <div className={styles['post-form__btns']}>
                 <ButtonBase
                     variant={'primary'}
                     size={'sm'}
+                    onClick={sendPost}
                 >
                     Опубликовать
                 </ButtonBase>

@@ -56,7 +56,7 @@ const AuthForm: React.FC<{
                 ) : (
                     <div className={styles['auth-form__header']}>
                         <h2 className={styles['auth-form__header__title']}>
-                            {currentConfig.title }
+                            { currentConfig.title }
                         </h2>
                     </div>
                 )
