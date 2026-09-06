@@ -2,7 +2,8 @@ import styles from './DropMenu.module.scss';
 import { NavItem } from '@/shared';
 import { INavbarItem } from '@shared/ui/nav/model/INavItem';
 import { useOutsideClick } from '@/shared';
-import { useEffect } from 'react';
+import { useEffect, useRef} from 'react';
+import { usePathname } from 'next/navigation';
 
 interface IDropMenuProps {
     navItems: INavbarItem[];
@@ -25,7 +26,8 @@ const DropMenu: React.FC<IDropMenuProps> = (
         right,
     }
 ) => {
-    
+    const pathname =  usePathname();
+    const prevPathname = useRef(pathname);
     const ref = useOutsideClick<HTMLDivElement>(() => onClose?.());
     
     useEffect(() => {
@@ -34,7 +36,14 @@ const DropMenu: React.FC<IDropMenuProps> = (
         document.addEventListener('keydown', onKey);
         return () => document.removeEventListener('keydown', onKey);
     }, [isVisible, onClose]);
-    
+
+    useEffect(() => {
+        if (prevPathname.current !== pathname) {
+            onClose?.();
+            prevPathname.current = pathname;
+        }
+    }, [pathname, onClose]);
+
     return (
         <div
             ref={ref}

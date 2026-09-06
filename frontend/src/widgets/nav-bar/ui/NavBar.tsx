@@ -14,9 +14,10 @@ const NavBar: React.FC = () => {
     return (
         <nav className={styles['nav-bar']}>
             {items
-            .filter((item) => item.isVisible).map((item) => (
-                <NavItem key={item.name} {...item} />
-            ))}
+                .filter((item) => item.isVisible).map((item) => (
+                    <NavItem key={item.name} {...item} />
+                ))}
+            <div className={styles['nav-border']} />
         </nav>
     );
 };
