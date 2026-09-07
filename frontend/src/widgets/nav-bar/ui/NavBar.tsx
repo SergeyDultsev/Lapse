@@ -9,7 +9,7 @@ import { useMe } from '@entities/auth';
 const NavBar: React.FC = () => {
     const { data: me } = useMe();
 
-    const items = createNavBarItems(me?.id);
+    const items = createNavBarItems(me?.userId);
 
     return (
         <nav className={styles['nav-bar']}>

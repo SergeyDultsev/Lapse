@@ -1,7 +1,8 @@
 import { IUser } from '@/entities/user';
 
 export interface IPost {
-    id: string,
+    userId: string;
+    postId: string,
     title: string,
     textContent: string,
     author: IUser

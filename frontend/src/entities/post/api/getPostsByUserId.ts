@@ -5,7 +5,7 @@ export const getPostsByUserId = async (userId: string): Promise<IPost[]> => {
     const isServer = typeof window === 'undefined';
     if (isServer) {
         const baseUrl = process.env.API_URL || 'http://backend:3000';
-        const url = `${baseUrl}/posts/${userId}`;
+        const url = `${baseUrl}/posts/users/${userId}`;
 
         try {
             const response = await fetch(url, {
@@ -27,7 +27,7 @@ export const getPostsByUserId = async (userId: string): Promise<IPost[]> => {
     }
 
     try {
-        const response = await apiClient(`/posts/${userId}`);
+        const response = await apiClient(`/posts/users/${userId}`);
 
         const responseData: IResponse<IPost[]> = await response.json();
 

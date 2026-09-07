@@ -1,5 +1,5 @@
 import styles from './PostCreateFrom.module.scss';
-import { ButtonBase, InputBase } from '@/shared';
+import { ButtonBase } from '@/shared';
 
 interface IPostCreateFormProps {
     title: string;
@@ -16,12 +16,13 @@ const PostCreateForm: React.FC<IPostCreateFormProps> = ({
 }) => {
     return (
         <form className={styles['post-form']}>
-            <InputBase
+            <input
+                className={styles['post-form__input']}
                 name={'title'}
                 type={'text'}
                 placeholder={'Заголовок'}
                 value={title}
-                onChange={setPost}
+                onChange={(e) => setPost(title, e.target.value)}
             />
             <textarea
                 className={styles['post-form__textarea']}

@@ -31,6 +31,18 @@ export class PostController {
     };
   }
 
+  @Get('users/:id')
+  @HttpCode(HttpStatus.OK)
+  async getUserPosts(@Param('id') userId: string) {
+    const posts = await this.postService.getPosts(userId);
+
+    return {
+      data: posts,
+      message: 'User posts retrieved',
+      statusCode: HttpStatus.OK,
+    };
+  }
+
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   async getPost(@Param('id') postId: string) {
@@ -39,19 +51,6 @@ export class PostController {
     return {
       data: post,
       message: 'Post retrieved',
-      statusCode: HttpStatus.OK,
-    };
-  }
-
-  @UseGuards(JwtGuard)
-  @Get('users/:id')
-  @HttpCode(HttpStatus.OK)
-  async getUserPosts(@Req() req: any) {
-    const posts = await this.postService.getPosts(req.user.userId);
-
-    return {
-      data: posts,
-      message: 'User posts retrieved',
       statusCode: HttpStatus.OK,
     };
   }

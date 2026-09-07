@@ -28,9 +28,10 @@ const PostFeed: React.FC<IPostList> = ({ posts, isLoading }) => {
         <section className={styles['post-list']}>
             {posts.map((item) => (
                 <PostCard
-                    key={item.id}
-                    id={item.id}
-                    author={item.author }
+                    key={item.postId}
+                    userId={item.userId}
+                    postId={item.postId}
+                    author={item.author}
                     title={item.title}
                     textContent={item.textContent}
                     meta={item.meta}

@@ -110,7 +110,7 @@ export class PostService {
    */
   public sanitizePost(post: PostEntity, user: UserEntity) {
     return {
-      id: post.postId,
+      postId: post.postId,
       userId: post.userId,
       title: post.title,
       textContent: post.textContent,

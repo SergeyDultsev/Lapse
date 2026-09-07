@@ -41,6 +41,11 @@ export const useCreatePost = () => {
     };
 
     const sendPost = () => {
+        localStorage.setItem(
+            'post-draft',
+            JSON.stringify({})
+        );
+
         return sendMutation.mutateAsync(postData);
     };
     

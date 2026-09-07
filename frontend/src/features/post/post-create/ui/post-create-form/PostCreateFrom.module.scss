@@ -1,7 +1,23 @@
 .post-form {
   display: flex;
   flex-direction: column;
+  gap: 10px;
   margin: 20px;
+
+  &__input {
+    width: 100%;
+    font-size: 13px;
+    color: var(--text-primary);
+
+    &:hover{
+      cursor: text;
+    }
+
+    &::placeholder{
+      font-size: 13px;
+      color: var(--text-primary);
+    }
+  }
 
   &__textarea {
     width: 100%;

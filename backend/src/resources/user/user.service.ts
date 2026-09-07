@@ -29,7 +29,7 @@ export class UserService {
 
   public sanitizeUser(user: UserEntity) {
     return {
-      id: user.userId,
+      userId: user.userId,
       username: user.username,
       email: user.email,
       bio: user.bio,
