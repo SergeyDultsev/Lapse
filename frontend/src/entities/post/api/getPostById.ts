@@ -5,7 +5,7 @@ export const getPostById = async (postId: string): Promise<IPost> =>  {
     const isServer = typeof window === 'undefined';
     if (isServer) {
         const baseUrl = process.env.API_URL || 'http://backend:3000';
-        const url = `${baseUrl}/posts/{postId}`;
+        const url = `${baseUrl}/posts/${postId}`;
 
         try {
             const response = await fetch(url, {

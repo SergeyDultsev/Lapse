@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSendPost } from '@entities/post/model/post.queries';
+import { useDebounce } from '@/shared';
 
 interface IPostData {
     title: string;
@@ -15,7 +16,6 @@ const defaultPost: IPostData = {
 
 export const useCreatePost = () => {
     const sendMutation = useSendPost();
-
     const [postData, setPostData] = useState<IPostData>(() => {
         const draftJson = localStorage.getItem('post-draft');
 
@@ -23,7 +23,8 @@ export const useCreatePost = () => {
             ? JSON.parse(draftJson)
             : defaultPost;
     });
-    
+    const hasChanged = Boolean(postData.title?.trim() || postData.textContent?.trim());
+
     const setPost = (fieldName: string, value: string | number) => {
         setPostData(prevPost => (
             {
@@ -43,16 +44,22 @@ export const useCreatePost = () => {
     const sendPost = () => {
         localStorage.setItem(
             'post-draft',
-            JSON.stringify({})
+            JSON.stringify(defaultPost)
         );
 
         return sendMutation.mutateAsync(postData);
     };
     
+    const debouncedSavePost = useDebounce(() => {
+        if (hasChanged) {
+            savePost();
+        }
+    }, 500);
+    
     return {
         postData,
         setPost,
-        savePost,
         sendPost,
+        debouncedSavePost,
     };
 };

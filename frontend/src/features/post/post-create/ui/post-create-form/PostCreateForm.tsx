@@ -22,7 +22,7 @@ const PostCreateForm: React.FC<IPostCreateFormProps> = ({
                 type={'text'}
                 placeholder={'Заголовок'}
                 value={title}
-                onChange={(e) => setPost(title, e.target.value)}
+                onChange={(e) => setPost('title', e.target.value)}
             />
             <textarea
                 className={styles['post-form__textarea']}

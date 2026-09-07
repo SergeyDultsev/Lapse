@@ -5,6 +5,7 @@ import styles from './PostFeed.module.scss';
 import { IPostList } from '@entities/post/model/types';
 import { LoaderBase } from '@/shared';
 import { PostCard, PostsNotFound } from '@entities/post';
+import Link from 'next/link';
 
 const PostFeed: React.FC<IPostList> = ({ posts, isLoading }) => {
 
@@ -27,15 +28,16 @@ const PostFeed: React.FC<IPostList> = ({ posts, isLoading }) => {
     return (
         <section className={styles['post-list']}>
             {posts.map((item) => (
-                <PostCard
-                    key={item.postId}
-                    userId={item.userId}
-                    postId={item.postId}
-                    author={item.author}
-                    title={item.title}
-                    textContent={item.textContent}
-                    meta={item.meta}
-                />
+                <Link href={`/post/${item.postId}`} key={item.postId}>
+                    <PostCard
+                        userId={item.userId}
+                        postId={item.postId}
+                        author={item.author}
+                        title={item.title}
+                        textContent={item.textContent}
+                        meta={item.meta}
+                    />
+                </Link>
             ))}
         </section>
     );

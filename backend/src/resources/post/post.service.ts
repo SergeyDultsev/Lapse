@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
 import { UserEntity } from '@resources/user/entites/user.entity';
 import { UserService } from '@resources/user/user.service';
+import { count } from 'rxjs';
 
 @Injectable()
 export class PostService {
@@ -61,6 +62,8 @@ export class PostService {
     const user = await this.userRepository.findOne({
       where: { userId: post.userId },
     });
+
+    await this.postRepository.increment({ postId }, 'countView', 1);
 
     if (!user) return null;
 
