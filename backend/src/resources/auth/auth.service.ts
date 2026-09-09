@@ -72,8 +72,6 @@ export class AuthService {
       username: dto.username,
       email: dto.email,
       password: hashedPassword,
-      createdAt: new Date(),
-      updatedAt: new Date(),
     });
 
     const tokens = await this.generateTokens(user);

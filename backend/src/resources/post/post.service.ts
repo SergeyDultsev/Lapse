@@ -40,6 +40,8 @@ export class PostService {
       where: { userId: savedPost.userId },
     });
 
+    await this.userRepository.increment({ userId }, 'countPosts', 1);
+
     if (!user) return;
 
     return this.sanitizePost(savedPost, user);

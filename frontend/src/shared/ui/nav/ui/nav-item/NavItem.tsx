@@ -6,7 +6,7 @@ import styles from './NavItem.module.scss';
 import Link from 'next/link';
 import { INavbarItem } from '@shared/ui/nav/model/INavItem';
 
-const NavItem: React.FC<INavbarItem> = ({ name, url, icon, onClick }) => {
+const NavItem: React.FC<INavbarItem> = ({ name, url, icon, onClick, openInNewTab }) => {
     const currentRoute = usePathname();
 
     const handleClick = (e: React.MouseEvent) => {
@@ -29,7 +29,10 @@ const NavItem: React.FC<INavbarItem> = ({ name, url, icon, onClick }) => {
     }
 
     return (
-        <Link href={url}>
+        <Link
+            href={url}
+            target={openInNewTab ? '_blank' : undefined
+        }>
             <li
                 className={`${currentRoute === url
                     ? styles['nav-item__active']

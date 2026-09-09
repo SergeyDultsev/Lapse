@@ -15,16 +15,19 @@ export const createNavDropItems = (fn: {
         name: 'Настройки',
         url: '/settings',
         icon: <SettingsIcon />,
+        openInNewTab: true,
     },
     {
         name: 'История',
         url: '/history',
         icon: <HistoryIcon />,
+        openInNewTab: true,
     },
     {
         name: 'Лайки',
         url: '/favorite',
         icon: <FavoriteIcon />,
+        openInNewTab: true,
     },
     {
         name: 'Тема',

@@ -36,6 +36,7 @@ export class UserService {
       meta: {
         countFollowers: user.countFollowers,
         countSubscriptions: user.countSubscriptions,
+        countPosts: user.countPosts,
         createdAt: user.createdAt,
         updatedAt: user.updatedAt,
       },

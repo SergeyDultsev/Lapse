@@ -37,6 +37,11 @@ export class UserEntity {
   countSubscriptions: number;
 
   @Column({
+    default: 0,
+  })
+  countPosts: number;
+
+  @Column({
     nullable: true,
   })
   refreshTokenHash: string;

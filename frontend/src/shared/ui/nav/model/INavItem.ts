@@ -6,4 +6,5 @@ export interface INavbarItem {
     url?: string;
     icon?: ReactNode;
     onClick?: () => void;
+    openInNewTab?: boolean;
 }
