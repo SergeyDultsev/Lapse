@@ -28,7 +28,7 @@ const PostFeed: React.FC<IPostList> = ({ posts, isLoading }) => {
     return (
         <section className={styles['post-list']}>
             {posts.map((item) => (
-                <Link href={`/post/${item.postId}`} key={item.postId}>
+                <Link href={`/post/${item.postId}`} target={'_blank'} key={item.postId}>
                     <PostCard
                         userId={item.userId}
                         postId={item.postId}

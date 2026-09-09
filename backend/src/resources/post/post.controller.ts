@@ -9,10 +9,12 @@ import {
   Req,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto } from '@resources/post/dto/create-post.dto';
 import { JwtGuard } from '@resources/auth/guards/jwt.guard';
+import { PaginationDto } from '@/common/dto/PaginationDto';
 
 @Controller('posts')
 export class PostController {
@@ -33,8 +35,15 @@ export class PostController {
 
   @Get('users/:id')
   @HttpCode(HttpStatus.OK)
-  async getUserPosts(@Param('id') userId: string) {
-    const posts = await this.postService.getPosts(userId);
+  async getUserPosts(
+    @Param('id') userId: string,
+    @Query() pagination: PaginationDto,
+  ) {
+    const posts = await this.postService.getPosts(
+      userId,
+      pagination.page,
+      pagination.limit,
+    );
 
     return {
       data: posts,

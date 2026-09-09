@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { UserEntity } from '@resources/user/entites/user.entity';
 
 @Entity()
 export class PostEntity {
@@ -34,4 +35,9 @@ export class PostEntity {
 
   @Column({ type: 'timestamp' })
   updatedAt: Date;
+
+  @ManyToOne(() => UserEntity, (user) => user.posts, {
+    onDelete: 'CASCADE',
+  })
+  user: UserEntity;
 }

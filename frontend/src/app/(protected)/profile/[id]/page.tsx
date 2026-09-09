@@ -30,11 +30,14 @@ async function ProfileContent({ id }: { id: string }) {
         notFound();
     }
 
+    const postList = userPosts.posts;
+    console.log(postList);
+
     return (
         <ProfilePage
             userId={id}
             user={userData}
-            posts={userPosts || []}
+            posts={postList || []}
         />
     );
 }

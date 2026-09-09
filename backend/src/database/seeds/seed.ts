@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcrypt';
 import dataSource from '../../config/data-source';
-import { UserEntity } from '../../resources/user/entites/user.entity';
+import { UserEntity } from '@resources/user/entites/user.entity';
 
 async function seed() {
   await dataSource.initialize();

@@ -15,7 +15,7 @@ interface IProfilePageProps {
 const ProfilePage: React.FC<IProfilePageProps> = ({ user, posts, userId }) => {
     const { data: updatedPosts, isLoading } = usePostsUser(userId);
 
-    const displayPosts = updatedPosts || posts;
+    const displayPosts = updatedPosts?.posts ?? posts ?? [];
 
     return (
         <main className="main">

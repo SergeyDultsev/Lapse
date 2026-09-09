@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Exclude } from 'class-transformer';
+import { PostEntity } from '@resources/post/entites/post.entity';
 
 @Entity()
 export class UserEntity {
@@ -51,4 +52,9 @@ export class UserEntity {
     nullable: true,
   })
   updatedAt: Date;
+
+  @OneToMany(() => PostEntity, (post) => post.user, {
+    onDelete: 'CASCADE',
+  })
+  posts: PostEntity[];
 }

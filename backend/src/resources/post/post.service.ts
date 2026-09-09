@@ -5,7 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
 import { UserEntity } from '@resources/user/entites/user.entity';
 import { UserService } from '@resources/user/user.service';
-import { count } from 'rxjs';
+import { shuffle } from '@/common/utils/shuffle';
 
 @Injectable()
 export class PostService {
@@ -91,16 +91,30 @@ export class PostService {
    * Выводит посты пользователя
    *
    * @param userId Идентификатор пользователь
+   * @param page текущая страница
+   * @param limit кол-во постов
    *
    * @returns Коллекцию постов пользователя
    */
-  async getPosts(userId: string) {
-    const posts = await this.postRepository.find({
+  async getPosts(userId: string, page: number, limit: number) {
+    const [posts, totalItems] = await this.postRepository.findAndCount({
       where: { userId },
       order: { createdAt: 'DESC' },
+      skip: (page - 1) * limit,
+      take: limit,
     });
 
-    return this.sanitizePosts(posts);
+    const shufflePosts = shuffle(posts);
+
+    return {
+      posts: await this.sanitizePosts(shufflePosts),
+      meta: {
+        totalItems,
+        page,
+        limit,
+        lastPage: Math.ceil(totalItems / limit),
+      },
+    };
   }
 
   /**
