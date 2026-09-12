@@ -129,6 +129,16 @@ export class PostService {
   }
 
   /**
+   * Выводит все посты
+   *
+   * @returns Коллекцию постов пользователя
+   */
+  async getAll() {
+    const posts = await this.postRepository.find();
+    return this.sanitizePosts(posts);
+  }
+
+  /**
    * Создает JSON-коллекцию одного поста
    *
    * @param post Пост

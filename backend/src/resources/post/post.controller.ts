@@ -83,4 +83,15 @@ export class PostController {
       statusCode: HttpStatus.OK,
     };
   }
+
+  @HttpCode(HttpStatus.OK)
+  async postsAll() {
+    const posts = await this.postService.getAll();
+
+    return {
+      data: posts,
+      message: 'Posts retrieved',
+      statusCode: HttpStatus.OK,
+    };
+  }
 }
