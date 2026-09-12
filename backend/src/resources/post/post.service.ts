@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PostEntity } from '@resources/post/entites/post.entity';
 import { CreatePostDto } from '@resources/post/dto/create-post.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -59,7 +59,9 @@ export class PostService {
       where: { postId: postId },
     });
 
-    if (!post) return null;
+    if (!post) {
+      throw new HttpException('Post not found', HttpStatus.NOT_FOUND);
+    }
 
     const user = await this.userRepository.findOne({
       where: { userId: post.userId },
@@ -76,13 +78,20 @@ export class PostService {
    * Удаляет пост пользователя
    *
    * @param postId Идентификатор поста
+   * @param userId Идентификатор пользователя
    *
    * @returns Удаленный код
    */
-  async deletePost(postId: string) {
+  async deletePost(postId: string, userId: string) {
     const post = await this.getPost(postId);
 
-    if (!post) return null;
+    if (!post) {
+      throw new HttpException('Post not found', HttpStatus.NOT_FOUND);
+    }
+
+    if (post.userId !== userId) {
+      throw new HttpException('Post cannot be deleted', HttpStatus.FORBIDDEN);
+    }
 
     await this.postRepository.delete(postId);
 

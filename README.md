@@ -8,7 +8,9 @@ Lapse - пет-проект блога с использованием совр�
 # Клонирование
 git clone https://github.com/SergeyDultsev/Lapse.git
 cd Lapse
+```
 
+```bash
 # Запуск докера
 docker compose up -d --build
 ```

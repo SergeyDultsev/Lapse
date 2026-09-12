@@ -25,12 +25,9 @@
       "@app/*": ["app/*"],
       "@entities/*": ["entities/*"],
       "@features/*": ["features/*"],
-      "@features": ["features/index"],
-      "@libs/*": ["libs/*"],
       "@pages/*": ["pages/*"],
-      "@providers/*": ["providers/*"],
       "@shared/*": ["shared/*"],
-      "@widgets/*": ["widgets/*"],
+      "@widgets/*": ["widgets/*"]
     }
   },
   "include": [

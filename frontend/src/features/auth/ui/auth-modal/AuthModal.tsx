@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './AuthModal.module.scss';
-import { AuthForm } from '@features';
+import AuthForm from '../auth-form/AuthForm';
 import { tCredentialsForm } from '@features/auth/config/auth.configs';
 
 const AuthModal: React.FC<{ mode: tCredentialsForm }> = ({ mode }) => {

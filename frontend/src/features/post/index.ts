@@ -1,2 +1,3 @@
-export { default as PostCreateForm } from '@features/post/post-create/ui/post-create-form/PostCreateForm';
-export { default as PostCreateModal } from '@features/post/post-create/ui/post-create-modal/PostCreateModal';
+export { default as PostCreateModal } from './post-create/ui/post-create-modal/PostCreateModal';
+
+export { useCreatePost } from './post-create/lib/useCreatePost';

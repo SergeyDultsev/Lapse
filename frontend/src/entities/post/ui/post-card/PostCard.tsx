@@ -2,15 +2,15 @@
 
 import React from 'react';
 import styles from './PostCard.module.scss';
-import { IPost } from '@/entities/post/model/types';
-import AltAvatar from '@/assets/img/avatar.jpg';
-import { MenuIcon } from 'shared';
+import { IPost } from '@entities/post/model/types';
+import AltAvatar from '@assets/img/avatar.jpg';
 import {
+    MenuIcon,
     FavoriteIcon,
     CommentIcon,
     EyeIcon,
-    useShortyNumber,
-} from 'shared';
+} from '@shared/ui/icon';
+import { useShortyNumber } from '@shared/lib';
 const PostCard: React.FC<IPost> = (
     {
         author,

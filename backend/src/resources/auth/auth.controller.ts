@@ -28,7 +28,8 @@ export class AuthController {
     @Body() dto: LoginDto,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const { accessToken, refreshToken, user } = await this.authService.login(dto);
+    const { accessToken, refreshToken, user } =
+      await this.authService.login(dto);
     res.cookie('accessToken', accessToken, {
       httpOnly: true,
       secure: false,
@@ -66,7 +67,8 @@ export class AuthController {
       };
     }
 
-    const { accessToken, refreshToken, user } = await this.authService.register(dto);
+    const { accessToken, refreshToken, user } =
+      await this.authService.register(dto);
 
     res.cookie('accessToken', accessToken, {
       httpOnly: true,

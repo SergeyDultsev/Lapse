@@ -4,12 +4,13 @@ import Link from 'next/link';
 import React from 'react';
 import styles from './AppHeader.module.scss';
 import Logo from '@assets/img/Logo';
-import { ButtonBase } from '@/shared';
-import { AuthModal, PostCreateModal } from '@features';
+import { ButtonBase } from '@shared/ui/button';
+import { AuthModal } from '@features/auth';
+import { PostCreateModal } from '@features/post';
 import { useMe } from '@entities/auth';
-import { globalConfig } from '@shared/configs/global.config';
+import { globalConfig } from '@shared/config/global.config';
 import { RIGHT_DROP_DOWN_MENU, TOP_DROP_DOWN_MENU } from '@widgets/app-header/config/header.config';
-import useHeader from '@widgets/app-header/hooks/useHeader';
+import useHeader from '@widgets/app-header/lib/useHeader';
 import DropMenu from '@shared/ui/nav/ui/drop-menu/DropMenu';
 
 const AppHeader: React.FC = () => {

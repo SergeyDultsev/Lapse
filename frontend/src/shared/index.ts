@@ -1,4 +1,4 @@
-export * from './icon';
 export * from './ui';
 export * from './lib';
-export * from './interface';
+export * from './api';
+export * from './config';

@@ -1,11 +1,11 @@
 import React from 'react';
-import { INavbarItem } from '@shared/ui/nav/model/INavItem';
+import { INavbarItem } from '@shared/ui/nav';
 
 import {
     SettingsIcon,
     DarkModeIcon,
     ExitIcon, HistoryIcon, FavoriteIcon,
-} from '@/shared';
+} from '@shared/ui/icon';
 
 export const createNavDropItems = (fn: {
     toggleTheme: () => void;

@@ -3,8 +3,8 @@
 import styles from './AuthForm.module.scss';
 import { ButtonBase, InputBase } from '@/shared';
 import { tCredentialsForm } from '@features/auth/config/auth.configs';
-import useAuth from '@features/auth/hooks/useAuth';
-import { useCloseModal } from '@/providers';
+import useAuth from '@features/auth/lib/useAuth';
+import { useCloseModal } from '@shared/ui/modal';
 
 const AuthForm: React.FC<{
     mode: tCredentialsForm

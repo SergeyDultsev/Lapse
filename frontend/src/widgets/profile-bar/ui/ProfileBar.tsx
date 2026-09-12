@@ -6,17 +6,17 @@ import styles from './ProfileBar.module.scss';
 import ButtonBase from '@shared/ui/button/button-base/ButtonBase';
 import { useShortyNumber } from '@/shared';
 import { IUser } from '@entities/user';
-import { useProfileBar } from '@widgets/profile-bar/hooks/useProfileBar';
+import { useProfileBar } from '@widgets/profile-bar/lib/useProfileBar';
 
 const ProfileBar: React.FC<IUser> = (
     {
-        id,
+        userId,
         username,
         bio,
         meta,
     }) => {
 
-    const { buttonMe, buttonUser, me } = useProfileBar(id);
+    const { buttonMe, buttonUser, me } = useProfileBar(userId);
 
     return (
         <section className={styles['profile']}>
@@ -30,7 +30,7 @@ const ProfileBar: React.FC<IUser> = (
                 </div>
             </div>
             <div className={styles['profile__btns']}>
-                {me?.id === id ? (
+                {me?.userId === userId ? (
                     buttonMe.map((button) => (
                         <ButtonBase variant={button.variant} size={button.size} key={button.children}>
                             { button.children }

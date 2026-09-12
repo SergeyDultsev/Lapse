@@ -1,7 +1,6 @@
-export { useShortyNumber } from './useShortyNumber/useShortyNumber';
-export { useHydration } from './useHydration/useHydration';
-export { useDebounce } from './useDebounce/useDebounce';
-export { useOutsideClick } from './useOutsideClick/useOutsideClick';
-export { apiClient } from './api-client';
+export { useShortyNumber } from './use-shorty-number/use-shorty-number';
+export { useHydration } from './use-hydration/use-hydration';
+export { useDebounce } from './use-debounce/use-debounce';
+export { useOutsideClick } from './use-outside-click/use-outside-click';
 
-export * from './useLoading';
+export * from './use-loading';

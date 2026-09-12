@@ -2,8 +2,13 @@ import styles from './PostNotFound.module.scss';
 
 const PostsNotFound: React.FC = () => {
   return (
-      <div className={styles['posts-not-found']}>
-          Нету постов
+      <div className={styles['not-found']}>
+          <h2 className={styles['not-found__title']}>
+              Нету постов
+          </h2>
+          <div className={styles['not-found__body']}>
+
+          </div>
       </div>
   );
 };

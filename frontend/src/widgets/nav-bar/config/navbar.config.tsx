@@ -1,10 +1,10 @@
 import React from 'react';
-import { INavbarItem } from '@shared/ui/nav/model/INavItem';
+import { INavbarItem } from '@shared/ui/nav';
 
 import {
     ExploreIcon,
     ProfileIcon,
-} from 'shared';
+} from '@shared/ui/icon';
 
 export const createNavBarItems = (
     userId?: string

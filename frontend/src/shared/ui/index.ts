@@ -1,4 +1,7 @@
-export { default as ButtonBase } from './button/button-base/ButtonBase';
-export { default as InputBase } from '@shared/ui/input/ui/input-base/InputBase';
-export { default as LoaderBase } from './loader/loader-base/LoaderBase';
-export { default as NavItem } from './nav/ui/nav-item/NavItem';
+export * from './button';
+export * from './input';
+export * from './loader';
+export * from './nav';
+export * from './select';
+export * from './icon';
+export * from './modal';

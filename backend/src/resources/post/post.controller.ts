@@ -15,6 +15,7 @@ import { PostService } from './post.service';
 import { CreatePostDto } from '@resources/post/dto/create-post.dto';
 import { JwtGuard } from '@resources/auth/guards/jwt.guard';
 import { PaginationDto } from '@/common/dto/PaginationDto';
+import { JwtPayload } from '@resources/auth/strategies/jwt.strategy';
 
 @Controller('posts')
 export class PostController {
@@ -67,8 +68,14 @@ export class PostController {
   @UseGuards(JwtGuard)
   @Delete(':id')
   @HttpCode(HttpStatus.OK)
-  async deletePost(@Param('id') postId: string) {
-    const deletedPost = await this.postService.deletePost(postId);
+  async deletePost(
+    @Param('id') postId: string,
+    @Req() req: Request & { user: JwtPayload },
+  ) {
+    const deletedPost = await this.postService.deletePost(
+      postId,
+      req.user.userId,
+    );
 
     return {
       data: deletedPost,

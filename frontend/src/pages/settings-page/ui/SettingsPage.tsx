@@ -3,7 +3,7 @@
 import React from 'react';
 import styles from './SettingsPage.module.scss';
 import { useMe } from '@entities/auth';
-import { useTheme, useToggleTheme } from '@/providers';
+import { useTheme, useToggleTheme } from '@features/theme';
 import { ButtonBase } from '@/shared';
 import { createSettingsBarItems, createSettingsActions } from '@pages/settings-page/config/settings.config';
 

@@ -1,8 +1,8 @@
 import styles from './PostCreateModal.module.scss';
-import { PostCreateForm } from '@/features';
-import { ButtonBase } from '@/shared';
-import { useCreatePost } from '@features/post/post-create/hooks/useCreatePost';
-import { useCloseModal } from '@/providers';
+import PostCreateForm from '../post-create-form/PostCreateForm';
+import { ButtonBase } from '@shared/ui/button';
+import { useCreatePost } from '@features/post/post-create/lib/useCreatePost';
+import { useCloseModal } from '@shared/ui/modal';
 
 const PostCreateModal: React.FC = () => {
     const {

@@ -1,7 +1,6 @@
-import { themeNames } from '@/providers';
+import { themeNames, tTheme } from '@features/theme';
 import { IUser } from '@entities/user';
-import { tTheme } from '@/providers/theme/types/ITheme';
-import { tButtonSize, tButtonType, tButtonVariant } from '@shared/ui/button/config/types';
+import { tButtonSize, tButtonType, tButtonVariant } from '@shared/ui/button';
 
 export interface SettingsItem {
     id: 'username' | 'email' | 'theme' | 'delete';

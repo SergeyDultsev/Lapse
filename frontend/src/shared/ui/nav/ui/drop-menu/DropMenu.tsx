@@ -1,7 +1,9 @@
+'use client';
+
 import styles from './DropMenu.module.scss';
-import { NavItem } from '@/shared';
-import { INavbarItem } from '@shared/ui/nav/model/INavItem';
-import { useOutsideClick } from '@/shared';
+import NavItem from '../nav-item/NavItem';
+import { INavbarItem } from '../../model/INavItem';
+import { useOutsideClick } from '@shared/lib/use-outside-click/use-outside-click';
 import { useEffect, useRef} from 'react';
 import { usePathname } from 'next/navigation';
 

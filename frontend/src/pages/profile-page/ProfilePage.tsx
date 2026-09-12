@@ -4,7 +4,8 @@ import React from 'react';
 
 import { IPost, usePostsUser } from '@/entities/post';
 import { IUser } from '@entities/user';
-import { PostFeed, ProfileBar } from '@/widgets';
+import { PostFeed } from '@widgets/post-feed';
+import { ProfileBar } from '@widgets/profile-bar';
 
 interface IProfilePageProps {
     userId: string;

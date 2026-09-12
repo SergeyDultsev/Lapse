@@ -4,7 +4,7 @@ import React from 'react';
 
 import { usePostsUser } from '@/entities/post';
 import { redirect } from 'next/navigation';
-import { PostFeed } from '@/widgets';
+import { PostFeed } from '@widgets/post-feed';
 
 const FavoritePage: React.FC = () => {
     const { data, isPending } = usePostsUser('1');

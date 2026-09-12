@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './InputBase.module.scss';
+import styles from './InputSearch.module.scss';
 import classNames from 'classnames';
 import { IInputBase } from '@shared/ui/input/types/types';
 
