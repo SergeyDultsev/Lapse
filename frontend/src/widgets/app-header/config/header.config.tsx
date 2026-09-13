@@ -1,11 +1,7 @@
 import React from 'react';
 import { INavbarItem } from '@shared/ui/nav';
 
-import {
-    SettingsIcon,
-    DarkModeIcon,
-    ExitIcon, HistoryIcon, FavoriteIcon,
-} from '@shared/ui/icon';
+import Icon from "@shared/ui/icon/ui/Icon";
 
 export const createNavDropItems = (fn: {
     toggleTheme: () => void;
@@ -14,29 +10,28 @@ export const createNavDropItems = (fn: {
     {
         name: 'Настройки',
         url: '/settings',
-        icon: <SettingsIcon />,
+        icon: <Icon name={'Settings'} />,
         openInNewTab: true,
     },
     {
         name: 'История',
         url: '/history',
-        icon: <HistoryIcon />,
+        icon: <Icon name={'History'} />,
         openInNewTab: true,
     },
     {
         name: 'Лайки',
-        url: '/favorite',
-        icon: <FavoriteIcon />,
+        icon: <Icon name={'DarkMode'} />,
         openInNewTab: true,
     },
     {
         name: 'Тема',
-        icon: <DarkModeIcon />,
+        icon: <Icon name={'Exit'} />,
         onClick: fn.toggleTheme,
     },
     {
         name: 'Выход',
-        icon: <ExitIcon />,
+        icon: <Icon name={'Favorite'} />,
         onClick: fn.logout,
     },
 ];

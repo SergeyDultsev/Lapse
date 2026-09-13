@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import React from 'react';
 import styles from './AppHeader.module.scss';
-import Logo from '@assets/img/Logo';
+import Logo from '../../../../public/Logo';
 import { ButtonBase } from '@shared/ui/button';
 import { AuthModal } from '@features/auth';
 import { PostCreateModal } from '@features/post';

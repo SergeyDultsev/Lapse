@@ -1,10 +1,8 @@
 import React from 'react';
 import { INavbarItem } from '@shared/ui/nav';
 
-import {
-    ExploreIcon,
-    ProfileIcon,
-} from '@shared/ui/icon';
+import ExploreIcon from '@assets/icons/ExploreIcon';
+import ProfileIcon from '@assets/icons/ProfileIcon';
 
 export const createNavBarItems = (
     userId?: string

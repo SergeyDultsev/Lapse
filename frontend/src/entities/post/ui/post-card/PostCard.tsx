@@ -4,12 +4,10 @@ import React from 'react';
 import styles from './PostCard.module.scss';
 import { IPost } from '@entities/post/model/types';
 import AltAvatar from '@assets/img/avatar.jpg';
-import {
-    MenuIcon,
-    FavoriteIcon,
-    CommentIcon,
-    EyeIcon,
-} from '@shared/ui/icon';
+import MenuIcon from '@assets/icons/MenuIcon';
+import FavoriteIcon from '@assets/icons/FavoriteIcon';
+import CommentIcon from '@assets/icons/CommentIcon';
+import EyeIcon from '@assets/icons/EyeIcon';
 import { useShortyNumber } from '@shared/lib';
 const PostCard: React.FC<IPost> = (
     {

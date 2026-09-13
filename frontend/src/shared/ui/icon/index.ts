@@ -1,13 +1,1 @@
-export { default as ProfileIcon } from './ProfileIcon';
-export { default as ExploreIcon } from './ExploreIcon';
-export { default as SettingsIcon } from './SettingsIcon';
-export { default as ExitIcon } from './ExitIcon';
-export { default as DarkModeIcon } from './DarkModeIcon';
-export { default as SaveIcon } from './SaveIcon';
-export { default as CommentIcon } from './CommentIcon';
-export { default as EyeIcon } from './EyeIcon';
-export { default as FavoriteIcon } from './FavoriteIcon';
-export { default as MenuIcon } from './MenuIcon';
-export { default as TagIcon } from './TagIcon';
-export { default as HistoryIcon } from './HistoryIcon';
-export { default as SearchIcon } from './SearchIcon';
+import { default as Icon } from './ui/Icon';
