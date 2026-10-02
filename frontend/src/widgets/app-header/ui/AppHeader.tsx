@@ -1,37 +1,40 @@
 'use client';
 
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './AppHeader.module.scss';
 import Logo from '../../../../public/Logo';
-import { ButtonBase } from '@shared/ui/button';
-import { AuthModal } from '@features/auth';
-import { PostCreateModal } from '@features/post';
-import { useMe } from '@entities/auth';
 import { globalConfig } from '@shared/config/global.config';
+import AuthModal from '@modules/auth/components/auth-modal/AuthModal';
+import PostCreateModal from '@modules/posts/components/post-create-modal/PostCreateModal';
+import { useMe } from '@modules/auth/model/auth.queries';
+import { UIButton } from '@shared/ui/ui-button/ui/UIButton';
+import { useModal } from '@/providers/ModalProvider';
+import { UIDrop } from '@shared/ui/ui-drop/ui/UIDrop';
 import { RIGHT_DROP_DOWN_MENU, TOP_DROP_DOWN_MENU } from '@widgets/app-header/config/header.config';
 import useHeader from '@widgets/app-header/lib/useHeader';
-import DropMenu from '@shared/ui/nav/ui/drop-menu/DropMenu';
 
 const AppHeader: React.FC = () => {
-    const {
-        isDrop,
-        openModal,
-        setDrop,
-        items,
-    } = useHeader();
-
+    const { items } = useHeader();
     const { data: me } = useMe();
+    const modal = useModal();
 
-    const isOpenAuthModal = () => openModal(<AuthModal mode={'register'} />);
-    const isOpenPostCreateModal = () => openModal(<PostCreateModal />);
+    const [isDrop, setDrop] = useState(false);
+
+    const openAuthModal = () => {
+        modal?.openModal(<AuthModal mode={'register'} />);
+    };
+
+    const openPostCreateModal = () => {
+        modal?.openModal(<PostCreateModal />);
+    };
     
     return (
         <header
             className={styles['header']}
             style={{ maxWidth: `${globalConfig.containerWidth}px` }}
         >
-            <Link href='/frontend/public'>
+            <Link href='/'>
                 <div className={styles['header-right']}>
                     <Logo />
                 </div>
@@ -41,23 +44,23 @@ const AppHeader: React.FC = () => {
 
                 <div className={styles['header-left__buttons']}>
                     {!me && (
-                        <ButtonBase
-                            onClick={isOpenAuthModal}
+                        <UIButton
+                            onClick={openAuthModal}
                             variant={'primary'}
                             size={'sm'}
                         >
                             Авторизация
-                        </ButtonBase>
+                        </UIButton>
                     )}
 
                     {me && (
-                        <ButtonBase
-                            onClick={isOpenPostCreateModal}
+                        <UIButton
+                            onClick={openPostCreateModal}
                             variant={'primary'}
                             size={'sm'}
                         >
                             Написать пост
-                        </ButtonBase>
+                        </UIButton>
                     )}
                 </div>
 
@@ -69,7 +72,7 @@ const AppHeader: React.FC = () => {
                     </div>
                 )}
 
-                <DropMenu
+                <UIDrop
                     navItems={items}
                     isVisible={isDrop}
                     onClose={() => setDrop(false)}

@@ -1,1 +1,0 @@
-import { default as Icon } from './ui/Icon';

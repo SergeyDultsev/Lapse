@@ -1,5 +1,5 @@
 import React from 'react';
-import { INavbarItem } from '@shared/ui/nav';
+import { INavbarItem } from '@shared/ui/ui-nav/ui/UINavItem';
 
 import ExploreIcon from '@assets/icons/ExploreIcon';
 import ProfileIcon from '@assets/icons/ProfileIcon';

@@ -23,9 +23,7 @@
       "@/*": ["*"],
       "@assets/*": ["assets/*"],
       "@app/*": ["app/*"],
-      "@entities/*": ["entities/*"],
-      "@features/*": ["features/*"],
-      "@pages/*": ["pages/*"],
+      "@modules/*": ["modules/*"],
       "@shared/*": ["shared/*"],
       "@widgets/*": ["widgets/*"]
     }

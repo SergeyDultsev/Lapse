@@ -1,0 +1,57 @@
+'use client';
+
+import React, { ReactNode } from 'react';
+import { usePathname } from 'next/navigation';
+import styles from './UINavItem.module.scss';
+import Link from 'next/link';
+
+export interface INavbarItem {
+    name: string;
+    isVisible?: boolean;
+    url?: string;
+    icon?: ReactNode;
+    onClick?: () => void;
+    openInNewTab?: boolean;
+}
+
+const UINavItem: React.FC<INavbarItem> = ({ name, url, icon, onClick, openInNewTab }) => {
+    const currentRoute = usePathname();
+
+    const handleClick = (e: React.MouseEvent) => {
+        if (onClick) {
+            e.preventDefault();
+            onClick();
+        }
+    };
+
+    if (!url) {
+        return (
+            <li
+                className={styles['nav-item']}
+                onClick={handleClick}
+            >
+                <span className={styles['nav-item__icon']}>{icon}</span>
+                <p className={styles['nav-item__description']}>{name}</p>
+            </li>
+        );
+    }
+
+    return (
+        <Link
+            href={url}
+            target={openInNewTab ? '_blank' : undefined
+        }>
+            <li
+                className={`${currentRoute === url
+                    ? styles['nav-item__active']
+                    : styles['nav-item']
+                }`}
+            >
+                <span className={styles['nav-item__icon']}>{icon}</span>
+                <p className={styles['nav-item__description']}>{name}</p>
+            </li>
+        </Link>
+    );
+};
+
+export default UINavItem;

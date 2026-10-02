@@ -2,9 +2,9 @@
 
 import React from 'react';
 import styles from './NavBar.module.scss';
-import { NavItem } from '@/shared';
 import { createNavBarItems } from '../config/navbar.config';
-import { useMe } from '@entities/auth';
+import { useMe } from '@modules/auth/model/auth.queries';
+import UINavItem from '@shared/ui/ui-nav-item/ui/UINavItem';
 
 const NavBar: React.FC = () => {
     const { data: me } = useMe();
@@ -15,7 +15,7 @@ const NavBar: React.FC = () => {
         <nav className={styles['nav-bar']}>
             {items
                 .filter((item) => item.isVisible).map((item) => (
-                    <NavItem key={item.name} {...item} />
+                    <UINavItem key={item.name} {...item} />
                 ))}
             <div className={styles['nav-border']} />
         </nav>
