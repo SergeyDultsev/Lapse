@@ -15,10 +15,10 @@ type tModalProviderProps = {
     children: React.ReactNode;
 };
 
-export const ModalContext = createContext(null);
+export const ModalContext = createContext<tModalContext | null>(null);
 
-export const useModal = () => {
-    const modal = useContext(ModalContext);
+export const useModal = (): tModalContext => {
+    const modal = useContext(ModalContext) as tModalContext | null;
     if (!modal) {
         throw new Error('useModal error');
     }
