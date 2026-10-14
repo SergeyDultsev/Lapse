@@ -14,9 +14,13 @@ const PostCreateModal: React.FC = () => {
     
     const modal = useModal();
 
-    const handleSendPost = () => {
-        sendPost();
-        modal?.closeModal();
+    const handleSendPost = async () => {
+        try {
+            await sendPost();
+            modal?.closeModal();
+        } catch (error) {
+            console.error('Failed to create post:', error);
+        }
     };
 
     return (

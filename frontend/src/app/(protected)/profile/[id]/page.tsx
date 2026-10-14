@@ -1,4 +1,5 @@
 import { getUserById } from '@modules/users/api/getUserById';
+import { isApiError } from '@shared/api';
 import { notFound } from 'next/navigation';
 import React, { Suspense } from 'react';
 import UILoader from '@shared/ui/ui-loader/ui/UILoader';
@@ -13,23 +14,34 @@ export async function generateMetadata({
 }) {
     const { id } = await params;
 
-    const user = await getUserById(id);
+    try {
+        const user = await getUserById(id);
 
-    return {
-        title: user?.username ?? 'Пользователь',
-        description: user?.bio ?? 'Профиль пользователя',
-    };
+        return {
+            title: user?.username ?? 'Пользователь',
+            description: user?.bio ?? 'Профиль пользователя',
+        };
+    } catch {
+        return {
+            title: 'Пользователь',
+            description: 'Профиль пользователя',
+        };
+    }
 }
 
 async function ProfileContent({ id }: { id: string }) {
-    const [user, posts] = await Promise.all([
-        getUserById(id),
-        getPostsByUserId(id),
-    ]);
+    let user;
 
-    if (!user) {
-        notFound();
+    try {
+        user = await getUserById(id);
+    } catch (error) {
+        if (isApiError(error, 404)) {
+            notFound();
+        }
+        throw error;
     }
+
+    const posts = await getPostsByUserId(id).catch(() => null);
 
     return (
         <main className="main">

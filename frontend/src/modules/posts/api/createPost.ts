@@ -1,16 +1,11 @@
+import { apiFetch } from '@shared/api';
 import { IPost } from '@modules/posts/model/types';
-import { apiClient, IResponse } from '@shared/api';
 
-export const createPost = async (data: IPost) => {
-    try {
-        const response = await apiClient('/posts/create', {
-            method: 'POST',
-            body: JSON.stringify(data),
-        });
-        
-        const responseData: IResponse<IPost> = response.json();
-        return responseData.data;
-    } catch (e) {
-        console.error(e);
-    }
-};
+interface ICreatePostData {
+    title: string;
+    textContent: string;
+    image?: string;
+}
+
+export const createPost = (data: ICreatePostData) =>
+    apiFetch<IPost>('/posts/create', { method: 'POST', body: data });
