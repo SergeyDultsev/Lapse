@@ -49,7 +49,7 @@ services:
       - lapse_networks
 
   db:
-    image: postgres:latest
+    image: postgres:16-alpine
     container_name: postgres
     restart: always
     environment:
@@ -69,7 +69,7 @@ services:
       - lapse_networks
 
   redis:
-    image: redis:latest
+    image: redis:7-alpine
     container_name: redis
     restart: unless-stopped
     command: ["redis-server", "--appendonly", "yes"]

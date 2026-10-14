@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
 import { UserEntity } from '@resources/user/entites/user.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
@@ -13,6 +14,7 @@ import { JwtPayload } from '@resources/auth/strategies/jwt.strategy';
 import { RegisterDto } from '@resources/auth/dto/register.dto';
 import { LoginDto } from '@resources/auth/dto/login.dto';
 import { UserService } from '@resources/user/user.service';
+import type { SignOptions } from 'jsonwebtoken';
 
 @Injectable()
 export class AuthService {
@@ -21,6 +23,7 @@ export class AuthService {
     private userRepository: Repository<UserEntity>,
     private jwtService: JwtService,
     private userService: UserService,
+    private configService: ConfigService,
   ) {}
 
   async login(dto: LoginDto) {
@@ -44,7 +47,7 @@ export class AuthService {
       );
     }
 
-    const tokens = await this.generateTokens(user);
+    const tokens = this.generateTokens(user);
 
     user.refreshTokenHash = await bcrypt.hash(tokens.refreshToken, 10);
     await this.userRepository.save(user);
@@ -62,7 +65,7 @@ export class AuthService {
 
     if (existingUser) {
       throw new HttpException(
-        'User with this already exists.',
+        'User with this email or username already exists.',
         HttpStatus.CONFLICT,
       );
     }
@@ -74,10 +77,12 @@ export class AuthService {
       password: hashedPassword,
     });
 
-    const tokens = await this.generateTokens(user);
-
-    user.refreshTokenHash = await bcrypt.hash(tokens.refreshToken, 10);
     const savedUser = await this.userRepository.save(user);
+
+    const tokens = this.generateTokens(savedUser);
+
+    savedUser.refreshTokenHash = await bcrypt.hash(tokens.refreshToken, 10);
+    await this.userRepository.save(savedUser);
 
     return {
       ...tokens,
@@ -112,7 +117,7 @@ export class AuthService {
       throw new UnauthorizedException();
     }
 
-    const tokens = await this.generateTokens(user);
+    const tokens = this.generateTokens(user);
 
     user.refreshTokenHash = await bcrypt.hash(tokens.refreshToken, 10);
 
@@ -121,21 +126,29 @@ export class AuthService {
     return tokens;
   }
 
-  private async generateTokens(user: UserEntity) {
+  /**
+   * Инвалидирует refresh-токен пользователя (logout).
+   *
+   * @param userId Идентификатор пользователя
+   */
+  async logout(userId: string) {
+    await this.userRepository.update({ userId }, { refreshTokenHash: null });
+  }
+
+  private generateTokens(user: UserEntity) {
     const payload: JwtPayload = {
       userId: user.userId,
       email: user.email,
     };
 
-    const accessToken = this.jwtService.sign(payload, {
-      secret: process.env.JWT_SECRET,
-      expiresIn: process.env.JWT_ACCESS_EXPIRES_IN!,
-    } as any);
+    const accessToken = this.jwtService.sign(payload);
 
     const refreshToken = this.jwtService.sign(payload, {
-      secret: process.env.JWT_REFRESH_SECRET,
-      expiresIn: process.env.JWT_REFRESH_EXPIRES_IN!,
-    } as any);
+      secret: this.configService.get<string>('jwt.refreshSecret'),
+      expiresIn: this.configService.get<string>(
+        'jwt.refreshExpiresIn',
+      ) as SignOptions['expiresIn'],
+    });
 
     return {
       accessToken,

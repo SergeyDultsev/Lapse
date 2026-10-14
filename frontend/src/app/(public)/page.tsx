@@ -1,47 +1,41 @@
 import type { Metadata } from 'next';
 import React from 'react';
-import styles from '@modules/posts/components/post-feed/PostFeed.module.scss';
-import Link from 'next/link';
+import PostFeed from '@modules/posts/components/post-feed/PostFeed';
 import { IPost } from '@modules/posts/model/types';
-import PostCard from '@modules/posts/components/post-card/PostCard';
-import PostsNotFound from '@modules/posts/components/posts-not-found/PostsNotFound';
 
 export const dynamic = 'force-dynamic';
+
+const SERVER_API_URL = process.env.API_URL || 'http://localhost:3000';
+
+async function getPosts(): Promise<IPost[]> {
+    try {
+        const response = await fetch(`${SERVER_API_URL}/posts`, {
+            cache: 'no-store',
+        });
+
+        if (!response.ok) {
+            return [];
+        }
+
+        const responseData = await response.json();
+        return responseData.data ?? [];
+    } catch (error) {
+        console.error('Failed to load posts:', error);
+        return [];
+    }
+}
 
 export const metadata: Metadata = {
     title: 'Главная',
     description: 'Главная страница',
 };
 
-export default function Home() {
-    const posts: IPost[] = [];
-
-    if (!posts?.length) {
-        return (
-            <main className="main">
-                <section className={styles['post-list']}>
-                    <PostsNotFound />
-                </section>
-            </main>
-        );
-    }
+export default async function Home() {
+    const posts = await getPosts();
 
     return (
         <main className="main">
-            <section className={styles['post-list']}>
-                {posts.map((item) => (
-                    <Link href={`/post/${item.postId}`} target={'_blank'} key={item.postId}>
-                        <PostCard
-                            userId={item.userId}
-                            postId={item.postId}
-                            author={item.author}
-                            title={item.title}
-                            textContent={item.textContent}
-                            meta={item.meta}
-                        />
-                    </Link>
-                ))}
-            </section>
+            <PostFeed posts={posts} />
         </main>
     );
 }

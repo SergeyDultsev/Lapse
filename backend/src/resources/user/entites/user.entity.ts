@@ -44,7 +44,7 @@ export class UserEntity {
   @Column({
     nullable: true,
   })
-  refreshTokenHash: string;
+  refreshTokenHash: string | null;
 
   @Column({
     type: 'timestamp',

@@ -24,7 +24,10 @@ export class PostController {
   @UseGuards(JwtGuard)
   @Post('/create')
   @HttpCode(HttpStatus.CREATED)
-  async createPost(@Body() dto: CreatePostDto, @Req() req: any) {
+  async createPost(
+    @Body() dto: CreatePostDto,
+    @Req() req: Request & { user: JwtPayload },
+  ) {
     const newPost = await this.postService.createPost(req.user.userId, dto);
 
     return {
@@ -84,6 +87,7 @@ export class PostController {
     };
   }
 
+  @Get()
   @HttpCode(HttpStatus.OK)
   async postsAll() {
     const posts = await this.postService.getAll();

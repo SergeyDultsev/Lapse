@@ -1,4 +1,5 @@
 import { IsEmail, IsString, Length } from 'class-validator';
+import { Match } from '@/common/decorators/match.decorator';
 
 export class RegisterDto {
   @IsString()
@@ -13,5 +14,8 @@ export class RegisterDto {
 
   @IsString()
   @Length(8)
+  @Match('password', {
+    message: 'The password and repeat password must match.',
+  })
   repeatPassword: string;
 }

@@ -31,7 +31,6 @@ async function PostContext ({ id }: { id: string }) {
                 <PostCard
                     userId={postData.userId}
                     postId={postData.postId}
-                    author={postData.author}
                     title={postData.title}
                     textContent={postData.textContent}
                     meta={postData.meta}

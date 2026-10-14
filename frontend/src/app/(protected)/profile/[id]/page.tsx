@@ -34,7 +34,7 @@ async function ProfileContent({ id }: { id: string }) {
     return (
         <main className="main">
             <ProfileBar { ...user} />
-            <PostFeed {...posts } />
+            <PostFeed posts={posts?.data ?? []} />
         </main>
     );
 }

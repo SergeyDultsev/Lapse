@@ -28,7 +28,6 @@ const PostFeed: React.FC<IPostFeedProps> = ({ posts }) => {
                     <PostCard
                         userId={item.userId}
                         postId={item.postId}
-                        author={item.author}
                         title={item.title}
                         textContent={item.textContent}
                         meta={item.meta}

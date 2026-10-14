@@ -12,7 +12,6 @@ import { useShortyNumber } from '@shared/utils/useShortyNumber';
 
 const PostCard: React.FC<IPost> = (
     {
-        author,
         title,
         textContent,
         meta,

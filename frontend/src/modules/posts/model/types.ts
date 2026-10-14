@@ -5,10 +5,12 @@ export interface IPost {
     postId: string,
     title: string,
     textContent: string,
-    author: IUser
     meta: {
         countLike: number,
         countComment: number
         countView: number,
+        createdAt?: string,
+        updatedAt?: string,
+        author: IUser
     }
 }

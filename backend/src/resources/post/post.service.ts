@@ -5,7 +5,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
 import { UserEntity } from '@resources/user/entites/user.entity';
 import { UserService } from '@resources/user/user.service';
-import { shuffle } from '@/common/utils/shuffle';
 
 @Injectable()
 export class PostService {
@@ -16,6 +15,25 @@ export class PostService {
     private readonly userRepository: Repository<UserEntity>,
     private readonly userService: UserService,
   ) {}
+
+  /**
+   * Находит пост по идентификатору без побочных эффектов.
+   *
+   * @param postId Идентификатор поста
+   *
+   * @returns Пост из базы данных
+   */
+  private async findPostById(postId: string) {
+    const post = await this.postRepository.findOne({
+      where: { postId },
+    });
+
+    if (!post) {
+      throw new HttpException('Post not found', HttpStatus.NOT_FOUND);
+    }
+
+    return post;
+  }
 
   /**
    * Создает пост.
@@ -48,20 +66,14 @@ export class PostService {
   }
 
   /**
-   * Получает пост пользователя
+   * Получает пост пользователя и засчитывает просмотр.
    *
    * @param postId Идентификатор поста
    *
-   * @returns Удаленный код
+   * @returns Пост из базы данных
    */
   async getPost(postId: string) {
-    const post = await this.postRepository.findOne({
-      where: { postId: postId },
-    });
-
-    if (!post) {
-      throw new HttpException('Post not found', HttpStatus.NOT_FOUND);
-    }
+    const post = await this.findPostById(postId);
 
     const user = await this.userRepository.findOne({
       where: { userId: post.userId },
@@ -80,14 +92,10 @@ export class PostService {
    * @param postId Идентификатор поста
    * @param userId Идентификатор пользователя
    *
-   * @returns Удаленный код
+   * @returns Удаленный пост
    */
   async deletePost(postId: string, userId: string) {
-    const post = await this.getPost(postId);
-
-    if (!post) {
-      throw new HttpException('Post not found', HttpStatus.NOT_FOUND);
-    }
+    const post = await this.findPostById(postId);
 
     if (post.userId !== userId) {
       throw new HttpException('Post cannot be deleted', HttpStatus.FORBIDDEN);
@@ -95,7 +103,11 @@ export class PostService {
 
     await this.postRepository.delete(postId);
 
-    return post;
+    const user = await this.userRepository.findOne({
+      where: { userId: post.userId },
+    });
+
+    return user ? this.sanitizePost(post, user) : post;
   }
 
   /**
@@ -115,10 +127,8 @@ export class PostService {
       take: limit,
     });
 
-    const shufflePosts = shuffle(posts);
-
     return {
-      posts: await this.sanitizePosts(shufflePosts),
+      posts: await this.sanitizePosts(posts),
       meta: {
         totalItems,
         page,
@@ -134,7 +144,9 @@ export class PostService {
    * @returns Коллекцию постов пользователя
    */
   async getAll() {
-    const posts = await this.postRepository.find();
+    const posts = await this.postRepository.find({
+      order: { createdAt: 'DESC' },
+    });
     return this.sanitizePosts(posts);
   }
 

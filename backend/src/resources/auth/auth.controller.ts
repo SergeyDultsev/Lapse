@@ -17,10 +17,19 @@ import { RegisterDto } from '@resources/auth/dto/register.dto';
 import { JwtGuard } from '@resources/auth/guards/jwt.guard';
 import { JwtPayload } from '@resources/auth/strategies/jwt.strategy';
 import { JwtRefreshGuard } from '@resources/auth/guards/jwt-refresh.guard';
+import { cookieConfig } from '@/config/cookie.config';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
+
+  private setAuthCookies(
+    res: Response,
+    tokens: { accessToken: string; refreshToken: string },
+  ) {
+    res.cookie('accessToken', tokens.accessToken, cookieConfig.access);
+    res.cookie('refreshToken', tokens.refreshToken, cookieConfig.refresh);
+  }
 
   @Post('/login')
   @HttpCode(HttpStatus.OK)
@@ -30,21 +39,8 @@ export class AuthController {
   ) {
     const { accessToken, refreshToken, user } =
       await this.authService.login(dto);
-    res.cookie('accessToken', accessToken, {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'lax',
-      maxAge: 20 * 60 * 1000,
-      path: '/',
-    });
 
-    res.cookie('refreshToken', refreshToken, {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'lax',
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-      path: '/',
-    });
+    this.setAuthCookies(res, { accessToken, refreshToken });
 
     return {
       data: user,
@@ -59,32 +55,10 @@ export class AuthController {
     @Body() dto: RegisterDto,
     @Res({ passthrough: true }) res: Response,
   ) {
-    if (dto.password !== dto.repeatPassword) {
-      return {
-        data: [],
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: `The password and repeat password must match.`,
-      };
-    }
-
     const { accessToken, refreshToken, user } =
       await this.authService.register(dto);
 
-    res.cookie('accessToken', accessToken, {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'lax',
-      maxAge: 20 * 60 * 1000,
-      path: '/',
-    });
-
-    res.cookie('refreshToken', refreshToken, {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'lax',
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-      path: '/',
-    });
+    this.setAuthCookies(res, { accessToken, refreshToken });
 
     return {
       data: user,
@@ -94,21 +68,16 @@ export class AuthController {
   }
 
   @Post('/logout')
+  @UseGuards(JwtRefreshGuard)
   @HttpCode(HttpStatus.OK)
-  logout(@Res({ passthrough: true }) res: Response) {
-    res.clearCookie('accessToken', {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'lax',
-      path: '/',
-    });
+  async logout(
+    @Req() req: Request & { user: JwtPayload },
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    await this.authService.logout(req.user.userId);
 
-    res.clearCookie('refreshToken', {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'lax',
-      path: '/',
-    });
+    res.clearCookie('accessToken', { path: '/' });
+    res.clearCookie('refreshToken', { path: '/' });
 
     return {
       data: {},
@@ -137,7 +106,11 @@ export class AuthController {
   @Post('/refresh')
   @UseGuards(JwtRefreshGuard)
   @HttpCode(HttpStatus.OK)
-  async refresh(@Req() req, @Res({ passthrough: true }) res: Response) {
+  async refresh(
+    @Req()
+    req: Request & { user: JwtPayload; cookies: { refreshToken: string } },
+    @Res({ passthrough: true }) res: Response,
+  ) {
     const refreshToken = req.cookies.refreshToken;
 
     const tokens = await this.authService.refresh(
@@ -145,21 +118,7 @@ export class AuthController {
       refreshToken,
     );
 
-    res.cookie('accessToken', tokens.accessToken, {
-      httpOnly: true,
-      sameSite: 'lax',
-      secure: false,
-      maxAge: 15 * 60 * 1000,
-      path: '/',
-    });
-
-    res.cookie('refreshToken', tokens.refreshToken, {
-      httpOnly: true,
-      sameSite: 'lax',
-      secure: false,
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-      path: '/',
-    });
+    this.setAuthCookies(res, tokens);
 
     return {
       data: {},
