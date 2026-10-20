@@ -11,7 +11,7 @@
 
 **Frontend**
 - [Next.js](https://nextjs.org/) + [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
-- [TanStack Query](https://tanstack.com/query/latest), [SCSS Modules](https://sass-lang.com/) (BEM), Feature-Sliced Design
+- [TanStack Query](https://tanstack.com/query/latest), [SCSS Modules](https://sass-lang.com/) (BEM)
 
 **Инфраструктура**
 - Docker Compose: `backend` (Node 20), `frontend` (Node 20), `db` (PostgreSQL 16), `redis` (Redis 7)
@@ -58,6 +58,8 @@ docker compose up -d --build
 | Остановить и удалить данные БД | `docker compose down -v` |
 
 Сидеры идемпотентны: если пользователи уже есть в базе, повторный запуск ничего не изменит.
+
+> ⚠️ Если схема entity менялась, а база создавалась старой версией (`synchronize`), разработческую БД проще пересоздать: `docker compose down -v && docker compose up -d --build`. Миграции и сидеры применятся заново автоматически.
 
 ## Локальная разработка без Docker
 

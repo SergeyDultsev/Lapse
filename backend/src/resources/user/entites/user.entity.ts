@@ -1,6 +1,14 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { PostEntity } from '@resources/post/entites/post.entity';
+import { CommentEntity } from '@resources/comment/entites/comment.entity';
 
 @Entity()
 export class UserEntity {
@@ -46,20 +54,19 @@ export class UserEntity {
   })
   refreshTokenHash: string | null;
 
-  @Column({
-    type: 'timestamp',
-    nullable: true,
-  })
+  @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 
-  @Column({
-    type: 'timestamp',
-    nullable: true,
-  })
+  @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
 
   @OneToMany(() => PostEntity, (post) => post.user, {
     onDelete: 'CASCADE',
   })
   posts: PostEntity[];
+
+  @OneToMany(() => CommentEntity, (comment) => comment.user, {
+    onDelete: 'CASCADE',
+  })
+  comments: CommentEntity[];
 }

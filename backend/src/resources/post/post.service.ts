@@ -23,7 +23,7 @@ export class PostService {
    *
    * @returns Пост из базы данных
    */
-  private async findPostById(postId: string) {
+  public async findPostById(postId: string) {
     const post = await this.postRepository.findOne({
       where: { postId },
     });
@@ -45,11 +45,9 @@ export class PostService {
    */
   async createPost(userId: string, dto: CreatePostDto) {
     const post = this.postRepository.create({
-      userId: userId,
+      user: { userId } as UserEntity,
       title: dto.title,
       textContent: dto.textContent,
-      createdAt: new Date(),
-      updatedAt: new Date(),
     });
 
     const savedPost = await this.postRepository.save(post);
@@ -121,7 +119,7 @@ export class PostService {
    */
   async getPosts(userId: string, page: number, limit: number) {
     const [posts, totalItems] = await this.postRepository.findAndCount({
-      where: { userId },
+      where: { user: { userId } },
       order: { createdAt: 'DESC' },
       skip: (page - 1) * limit,
       take: limit,

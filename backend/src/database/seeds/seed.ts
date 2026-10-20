@@ -15,15 +15,12 @@ async function seed() {
   }
 
   const hashedPassword = await bcrypt.hash('password', 10);
-  const now = new Date();
 
   await userRepository.save(
     userRepository.create({
       username: 'admin',
       email: 'admin@lapse.com',
       password: hashedPassword,
-      createdAt: now,
-      updatedAt: now,
     }),
   );
 

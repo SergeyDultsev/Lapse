@@ -16,7 +16,6 @@ export class UsersSeeder implements Seeder {
     }
 
     const hashedPassword = await bcrypt.hash('password', 10);
-    const now = new Date();
 
     const users = [
       {
@@ -86,8 +85,6 @@ export class UsersSeeder implements Seeder {
         userRepository.create({
           ...user,
           password: hashedPassword,
-          createdAt: now,
-          updatedAt: now,
         }),
       ),
     );
