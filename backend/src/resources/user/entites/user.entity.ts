@@ -50,6 +50,7 @@ export class UserEntity {
   countPosts: number;
 
   @Column({
+    type: 'varchar',
     nullable: true,
   })
   refreshTokenHash: string | null;

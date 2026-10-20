@@ -6,15 +6,15 @@ import { CommentEntity } from '@resources/comment/entites/comment.entity';
 import { UserEntity } from '@resources/user/entites/user.entity';
 import { PostModule } from '@resources/post/post.module';
 import { UserModule } from '@resources/user/user.module';
-import { PostService } from '@resources/post/post.service';
+import { PostEntity } from '@resources/post/entites/post.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([CommentEntity, UserEntity]),
+    TypeOrmModule.forFeature([CommentEntity, UserEntity, PostEntity]),
     PostModule,
     UserModule,
   ],
   controllers: [CommentController],
-  providers: [CommentService, PostService],
+  providers: [CommentService],
 })
 export class CommentModule {}

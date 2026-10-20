@@ -126,7 +126,7 @@ npm run dev
 │       ├── config/     # БД, JWT, CORS, cookie
 │       ├── database/   # seeds
 │       └── common/     # dto, фильтры, декораторы, утилиты
-├── frontend/           # Next.js (FSD)
+├── frontend/           # Next.js
 │   └── src/
 │       ├── app/        # роутинг: (public) и (protected) группы
 │       ├── modules/    # фичи: auth, posts, users, settings
