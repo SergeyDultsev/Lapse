@@ -47,11 +47,13 @@ export class CommentController {
   async getComments(
     @Param('postId') postId: string,
     @Query() pagination: PaginationDto,
+    @Req() req: Request & { user: JwtPayload },
   ) {
     const comments = await this.commentService.getComments(
       postId,
       pagination.page,
       pagination.limit,
+      req.user?.userId,
     );
 
     return {
@@ -61,10 +63,17 @@ export class CommentController {
     };
   }
 
+  @UseGuards(JwtGuard)
   @Get('/:commentId/replies')
   @HttpCode(HttpStatus.OK)
-  async getReplies(@Param('commentId') commentId: string) {
-    const replies = await this.commentService.getReplies(commentId);
+  async getReplies(
+    @Param('commentId') commentId: string,
+    @Req() req: Request & { user: JwtPayload },
+  ) {
+    const replies = await this.commentService.getReplies(
+      commentId,
+      req.user.userId,
+    );
 
     return {
       data: replies,

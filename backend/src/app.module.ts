@@ -7,6 +7,8 @@ import { CommentModule } from '@resources/comment/comment.module';
 import { AuthModule } from '@resources/auth/auth.module';
 import { ConfigModule, ConfigType } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { PostLikeModule } from '@resources/post-like/post-like.module';
+import { CommentLikeModule } from '@resources/comment-like/comment-like.module';
 import databaseConfig from './config/database.config';
 import jwtConfig from './config/jwt.config';
 
@@ -35,6 +37,8 @@ import jwtConfig from './config/jwt.config';
     UserModule,
     CommentModule,
     AuthModule,
+    PostLikeModule,
+    CommentLikeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,6 +1,8 @@
 import {
   BadRequestException,
   ForbiddenException,
+  HttpException,
+  HttpStatus,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -12,6 +14,7 @@ import { UserEntity } from '@resources/user/entites/user.entity';
 import { UserService } from '@resources/user/user.service';
 import { PostService } from '@resources/post/post.service';
 import { PostEntity } from '@resources/post/entites/post.entity';
+import { CommentLikeEntity } from '@resources/comment-like/entites/comment-like.entity';
 
 @Injectable()
 export class CommentService {
@@ -22,9 +25,30 @@ export class CommentService {
     private readonly userRepository: Repository<UserEntity>,
     @InjectRepository(PostEntity)
     private readonly postRepository: Repository<PostEntity>,
+    @InjectRepository(CommentLikeEntity)
+    private readonly commentLikeRepository: Repository<CommentLikeEntity>,
     private readonly postService: PostService,
     private readonly userService: UserService,
   ) {}
+
+  /**
+   * Находит коммента по идентификатору без побочных эффектов.
+   *
+   * @param commentId Идентификатор коммент
+   *
+   * @returns Пост из базы данных
+   */
+  public async findCommentById(commentId: string) {
+    const comment = await this.commentRepository.findOne({
+      where: { commentId },
+    });
+
+    if (!comment) {
+      throw new HttpException('Post not found', HttpStatus.NOT_FOUND);
+    }
+
+    return comment;
+  }
 
   /**
    * Создает комментарий.
@@ -81,7 +105,10 @@ export class CommentService {
       );
     }
 
-    const [sanitizedComment] = await this.sanitizeComments([savedComment]);
+    const [sanitizedComment] = await this.sanitizeComments(
+      [savedComment],
+      userId,
+    );
 
     return sanitizedComment;
   }
@@ -92,10 +119,16 @@ export class CommentService {
    * @param postId Идентификатор поста
    * @param page текущая страница
    * @param limit кол-во комментариев
+   * @param userId Идентификатор авторизованного пользователя
    *
    * @returns Коллекцию комментариев с метой пагинации
    */
-  async getComments(postId: string, page: number, limit: number) {
+  async getComments(
+    postId: string,
+    page: number,
+    limit: number,
+    userId: string,
+  ) {
     const [comments, totalItems] = await this.commentRepository.findAndCount({
       where: { postId: postId, parentCommentId: IsNull() },
       order: { createdAt: 'DESC' },
@@ -104,7 +137,7 @@ export class CommentService {
     });
 
     return {
-      comments: await this.sanitizeComments(comments),
+      comments: await this.sanitizeComments(comments, userId),
       meta: {
         totalItems,
         page: page,
@@ -118,16 +151,17 @@ export class CommentService {
    * Выводит ответы на комментарий.
    *
    * @param commentId Идентификатор комментария
+   * @param userId Идентификатор авторизованного пользователя
    *
    * @returns Коллекцию ответов
    */
-  async getReplies(commentId: string) {
+  async getReplies(commentId: string, userId?: string) {
     const replies = await this.commentRepository.find({
       where: { parentCommentId: commentId },
       order: { createdAt: 'ASC' },
     });
 
-    return this.sanitizeComments(replies);
+    return this.sanitizeComments(replies, userId);
   }
 
   /**
@@ -173,16 +207,22 @@ export class CommentService {
    *
    * @param comment Комментарий
    * @param user Пользователь
+   * @param isLiked Флаг лайка
    *
    * @returns Коллекцию поста пользователя
    */
-  public sanitizeComment(comment: CommentEntity, user: UserEntity) {
+  public sanitizeComment(
+    comment: CommentEntity,
+    user: UserEntity,
+    isLiked: boolean,
+  ) {
     return {
       commentId: comment.commentId,
       userId: comment.userId,
       postId: comment.postId,
       parentCommentId: comment.parentCommentId,
       textContent: comment.textContent,
+      isLiked: isLiked,
       meta: {
         countLike: comment.countLike,
         countReplies: comment.countReplies,
@@ -197,12 +237,25 @@ export class CommentService {
    * Создает JSON-коллекцию комментариев
    *
    * @param comments Комментарии
+   * @param userId Идентификатор авторизованного пользователя
    *
    * @returns Коллекцию комментариев
    */
-  public async sanitizeComments(comments: CommentEntity[]) {
+  public async sanitizeComments(comments: CommentEntity[], userId?: string) {
     if (!comments || comments.length === 0) {
       return [];
+    }
+
+    let likesSet = new Set<string>();
+
+    if (userId) {
+      const commentsIds = comments.map((c) => c.commentId);
+
+      const likes = await this.commentLikeRepository.find({
+        where: { userId, commentId: In(commentsIds) },
+      });
+
+      likesSet = new Set(likes.map((like) => like.commentId));
     }
 
     const userIds = [...new Set(comments.map((comment) => comment.userId))];
@@ -215,7 +268,9 @@ export class CommentService {
     return comments
       .map((comment) => {
         const user = userCollection.get(comment.userId);
-        return user ? this.sanitizeComment(comment, user) : null;
+        return user
+          ? this.sanitizeComment(comment, user, likesSet.has(comment.commentId))
+          : null;
       })
       .filter((item): item is NonNullable<typeof item> => item !== null);
   }
