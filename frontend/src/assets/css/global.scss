@@ -29,13 +29,13 @@
     --bg-tertiary: var(--color-dark-700);
     --bg-modal: var(--color-dark-opasity);
 
-    --text-primary: var(--color-gray-400);
-    --text-secondary: var(--color-gray-600);
+    --text-primary: var(--color-dark-300);
+    --text-secondary: var(--color-dark-500);
 
     --border-default: var(--color-dark-600);
 
-    --accent-primary: var(--color-accent-500);
-    --accent-muted: var(--color-dark-600);
+    --accent-primary: var(--color-accent-400);
+    --accent-muted: #28203D;
   }
 }
 
@@ -45,13 +45,13 @@
   --bg-tertiary: var(--color-dark-700);
   --bg-modal: var(--color-dark-opasity);
 
-  --text-primary: var(--color-gray-400);
-  --text-secondary: var(--color-gray-600);
+  --text-primary: var(--color-dark-300);
+  --text-secondary: var(--color-dark-500);
 
   --border-default: var(--color-dark-600);
 
-  --accent-primary: var(--color-accent-500);
-  --accent-muted: var(--color-dark-600);
+  --accent-primary: var(--color-accent-400);
+  --accent-muted: #28203D;
 }
 
 html{
