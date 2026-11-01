@@ -14,6 +14,7 @@ import {
 import { PostService } from './post.service';
 import { CreatePostDto } from '@resources/post/dto/create-post.dto';
 import { JwtGuard } from '@resources/auth/guards/jwt.guard';
+import { OptionalJwtGuard } from '@resources/auth/guards/optional-jwt.guard';
 import { PaginationDto } from '@/common/dto/PaginationDto';
 import { JwtPayload } from '@resources/auth/strategies/jwt.strategy';
 
@@ -37,16 +38,19 @@ export class PostController {
     };
   }
 
+  @UseGuards(OptionalJwtGuard)
   @Get('users/:id')
   @HttpCode(HttpStatus.OK)
   async getUserPosts(
     @Param('id') userId: string,
     @Query() pagination: PaginationDto,
+    @Req() req: Request & { user?: JwtPayload },
   ) {
     const posts = await this.postService.getPosts(
       userId,
       pagination.page,
       pagination.limit,
+      req.user?.userId,
     );
 
     return {
@@ -56,10 +60,14 @@ export class PostController {
     };
   }
 
+  @UseGuards(OptionalJwtGuard)
   @Get(':id')
   @HttpCode(HttpStatus.OK)
-  async getPost(@Param('id') postId: string) {
-    const post = await this.postService.getPost(postId);
+  async getPost(
+    @Param('id') postId: string,
+    @Req() req: Request & { user?: JwtPayload },
+  ) {
+    const post = await this.postService.getPost(postId, req.user?.userId);
 
     return {
       data: post,
@@ -87,10 +95,11 @@ export class PostController {
     };
   }
 
+  @UseGuards(OptionalJwtGuard)
   @Get()
   @HttpCode(HttpStatus.OK)
-  async postsAll() {
-    const posts = await this.postService.getAll();
+  async postsAll(@Req() req: Request & { user?: JwtPayload }) {
+    const posts = await this.postService.getAll(req.user?.userId);
 
     return {
       data: posts,

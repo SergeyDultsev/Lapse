@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
 import { UserEntity } from '@resources/user/entites/user.entity';
 import { UserService } from '@resources/user/user.service';
+import { PostLikeEntity } from '@resources/post-like/entites/post-like.entity';
 
 @Injectable()
 export class PostService {
@@ -13,6 +14,8 @@ export class PostService {
     private readonly postRepository: Repository<PostEntity>,
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
+    @InjectRepository(PostLikeEntity)
+    private readonly postLikeRepository: Repository<PostLikeEntity>,
     private readonly userService: UserService,
   ) {}
 
@@ -60,28 +63,38 @@ export class PostService {
 
     if (!user) return;
 
-    return this.sanitizePost(savedPost, user);
+    return this.sanitizePost(savedPost, user, false);
   }
 
   /**
    * Получает пост пользователя и засчитывает просмотр.
    *
    * @param postId Идентификатор поста
+   * @param userId Идентификатор пользователя для проверки лайка (необязательный)
    *
    * @returns Пост из базы данных
    */
-  async getPost(postId: string) {
+  async getPost(postId: string, userId?: string) {
     const post = await this.findPostById(postId);
 
     const user = await this.userRepository.findOne({
       where: { userId: post.userId },
     });
 
-    await this.postRepository.increment({ postId }, 'countView', 1);
+    let isLiked = false;
+    if (userId) {
+      const like = await this.postLikeRepository.findOne({
+        where: { postId, userId },
+      });
+      isLiked = !!like;
+    }
 
     if (!user) return null;
 
-    return this.sanitizePost(post, user);
+    await this.postRepository.increment({ postId }, 'countView', 1);
+    post.countView = (post.countView ?? 0) + 1;
+
+    return this.sanitizePost(post, user, isLiked);
   }
 
   /**
@@ -105,7 +118,7 @@ export class PostService {
       where: { userId: post.userId },
     });
 
-    return user ? this.sanitizePost(post, user) : post;
+    return user ? this.sanitizePost(post, user, false) : post;
   }
 
   /**
@@ -114,10 +127,11 @@ export class PostService {
    * @param userId Идентификатор пользователь
    * @param page текущая страница
    * @param limit кол-во постов
+   * @param viewerId Идентификатор авторизованного пользователя (необязательный)
    *
    * @returns Коллекцию постов пользователя
    */
-  async getPosts(userId: string, page: number, limit: number) {
+  async getPosts(userId: string, page: number, limit: number, viewerId?: string) {
     const [posts, totalItems] = await this.postRepository.findAndCount({
       where: { user: { userId } },
       order: { createdAt: 'DESC' },
@@ -126,7 +140,7 @@ export class PostService {
     });
 
     return {
-      posts: await this.sanitizePosts(posts),
+      posts: await this.sanitizePosts(posts, viewerId),
       meta: {
         totalItems,
         page,
@@ -139,13 +153,15 @@ export class PostService {
   /**
    * Выводит все посты
    *
+   * @param viewerId Идентификатор авторизованного пользователя (необязательный)
+   *
    * @returns Коллекцию постов пользователя
    */
-  async getAll() {
+  async getAll(viewerId?: string) {
     const posts = await this.postRepository.find({
       order: { createdAt: 'DESC' },
     });
-    return this.sanitizePosts(posts);
+    return this.sanitizePosts(posts, viewerId);
   }
 
   /**
@@ -153,15 +169,17 @@ export class PostService {
    *
    * @param post Пост
    * @param user Пользователь
+   * @param isLiked Флаг лайка
    *
    * @returns Коллекцию поста пользователя
    */
-  public sanitizePost(post: PostEntity, user: UserEntity) {
+  public sanitizePost(post: PostEntity, user: UserEntity, isLiked: boolean) {
     return {
       postId: post.postId,
       userId: post.userId,
       title: post.title,
       textContent: post.textContent,
+      isLiked: isLiked,
       meta: {
         countLike: post.countLike,
         countComment: post.countComment,
@@ -177,12 +195,22 @@ export class PostService {
    * Создает JSON-коллекцию постов
    *
    * @param posts Посты
+   * @param userId Идентификатор авторизованного пользователя (необязательный)
    *
    * @returns Коллекцию постов пользователя
    */
-  public async sanitizePosts(posts: PostEntity[]) {
+  public async sanitizePosts(posts: PostEntity[], userId?: string) {
     if (!posts || posts.length === 0) {
       return [];
+    }
+
+    let likesSet = new Set<string>();
+    if (userId) {
+      const postIds = posts.map((p) => p.postId);
+      const likes = await this.postLikeRepository.find({
+        where: { userId, postId: In(postIds) },
+      });
+      likesSet = new Set(likes.map((like) => like.postId));
     }
 
     const userIds = [...new Set(posts.map((post) => post.userId))];
@@ -195,7 +223,9 @@ export class PostService {
     return posts
       .map((post) => {
         const user = userCollection.get(post.userId);
-        return user ? this.sanitizePost(post, user) : null;
+        return user
+          ? this.sanitizePost(post, user, likesSet.has(post.postId))
+          : null;
       })
       .filter((item): item is NonNullable<typeof item> => item !== null);
   }

@@ -5,17 +5,19 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   RelationId,
+  Unique,
   UpdateDateColumn,
 } from 'typeorm';
 import { PostEntity } from '@resources/post/entites/post.entity';
 import { UserEntity } from '@resources/user/entites/user.entity';
 
 @Entity()
+@Unique(['userId', 'postId'])
 export class PostLikeEntity {
   @PrimaryGeneratedColumn('uuid')
   postLikeId: string;
 
-  @ManyToOne(() => UserEntity, (user) => user.posts, {
+  @ManyToOne(() => UserEntity, {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'userId' })
@@ -24,7 +26,7 @@ export class PostLikeEntity {
   @RelationId((like: PostLikeEntity) => like.user)
   userId: string;
 
-  @ManyToOne(() => PostEntity, (post) => post.user, {
+  @ManyToOne(() => PostEntity, {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'postId' })
