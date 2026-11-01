@@ -1,6 +1,6 @@
 # Lapse
 
-Пет-проект блога на современном fullstack-стеке: NestJS + PostgreSQL на backend, Next.js (App Router, FSD) на frontend.
+Пет-проект блога на современном fullstack-стеке: NestJS + PostgreSQL на backend, Next.js (App Router) на frontend.
 
 ## Стек
 
@@ -133,7 +133,7 @@ npm run dev
 ├── frontend/           # Next.js
 │   └── src/
 │       ├── app/        # роутинг: (public) и (protected) группы
-│       ├── modules/    # фичи: auth, posts, users, settings
+│       ├── modules/    # фичи по доменам: auth, posts, users, settings
 │       ├── widgets/    # app-header, nav-bar
 │       ├── shared/     # ui-kit, api-клиент, конфиги, утилиты
 │       └── providers/  # Query, Theme, Modal
