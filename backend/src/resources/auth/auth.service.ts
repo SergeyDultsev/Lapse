@@ -26,6 +26,15 @@ export class AuthService {
     private configService: ConfigService,
   ) {}
 
+  /**
+   * Аутентифицирует пользователя по email и паролю.
+   *
+   * @param dto Email и пароль
+   *
+   * @returns Пару токенов и сериализованного пользователя
+   *
+   * @throws HttpException 401 — неверный email или пароль
+   */
   async login(dto: LoginDto) {
     const user = await this.userRepository.findOne({
       where: { email: dto.email },
@@ -58,6 +67,15 @@ export class AuthService {
     };
   }
 
+  /**
+   * Регистрирует нового пользователя и сразу выдает токены.
+   *
+   * @param dto Имя пользователя, email и пароль (дважды)
+   *
+   * @returns Пару токенов и сериализованного пользователя
+   *
+   * @throws HttpException 409 — email или имя пользователя уже заняты
+   */
   async register(dto: RegisterDto) {
     const existingUser = await this.userRepository.findOne({
       where: [{ username: dto.username }, { email: dto.email }],
@@ -90,6 +108,13 @@ export class AuthService {
     };
   }
 
+  /**
+   * Возвращает профиль текущего пользователя.
+   *
+   * @param userId Идентификатор пользователя из JWT
+   *
+   * @returns Сериализованного пользователя или null, если не найден
+   */
   async getMe(userId: string) {
     const user = await this.userRepository.findOne({
       where: { userId: userId },
@@ -100,6 +125,16 @@ export class AuthService {
     return this.userService.sanitizeUser(user);
   }
 
+  /**
+   * Ротирует пару токенов по валидному refresh-токену.
+   *
+   * @param userId Идентификатор пользователя из JWT
+   * @param refreshToken Refresh-токен из cookie (сравнивается с хэшем в БД)
+   *
+   * @returns Новую пару токенов
+   *
+   * @throws UnauthorizedException — токен отсутствует в БД или не совпал
+   */
   async refresh(userId: string, refreshToken: string) {
     const user = await this.userRepository.findOne({
       where: {

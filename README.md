@@ -16,6 +16,10 @@
 **Инфраструктура**
 - Docker Compose: `backend` (Node 20), `frontend` (Node 20), `db` (PostgreSQL 16), `redis` (Redis 7)
 
+## Документация
+
+- 📖 [API reference](docs/API.md) — все роуты backend'а, форматы запросов/ответов, правила авторизации и коды ошибок
+
 ## Требования
 
 - [Node.js](https://nodejs.org/) v20+
@@ -133,6 +137,7 @@ npm run dev
 │       ├── widgets/    # app-header, nav-bar
 │       ├── shared/     # ui-kit, api-клиент, конфиги, утилиты
 │       └── providers/  # Query, Theme, Modal
+├── docs/               # документация (API reference)
 └── docker-compose.yaml
 ```
 

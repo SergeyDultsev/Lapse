@@ -13,6 +13,7 @@ import {
 } from '@nestjs/common';
 import { CommentService } from './comment.service';
 import { JwtGuard } from '@resources/auth/guards/jwt.guard';
+import { OptionalJwtGuard } from '@resources/auth/guards/optional-jwt.guard';
 import { CreateCommentDto } from '@resources/comment/dto/create-comment.dto';
 import { JwtPayload } from '@resources/auth/strategies/jwt.strategy';
 import { PaginationDto } from '@/common/dto/PaginationDto';
@@ -42,12 +43,13 @@ export class CommentController {
     };
   }
 
+  @UseGuards(OptionalJwtGuard)
   @Get('/:postId')
   @HttpCode(HttpStatus.OK)
   async getComments(
     @Param('postId') postId: string,
     @Query() pagination: PaginationDto,
-    @Req() req: Request & { user: JwtPayload },
+    @Req() req: Request & { user?: JwtPayload },
   ) {
     const comments = await this.commentService.getComments(
       postId,

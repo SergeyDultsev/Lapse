@@ -119,7 +119,7 @@ export class CommentService {
    * @param postId Идентификатор поста
    * @param page текущая страница
    * @param limit кол-во комментариев
-   * @param userId Идентификатор авторизованного пользователя
+   * @param userId Идентификатор авторизованного пользователя (необязательный)
    *
    * @returns Коллекцию комментариев с метой пагинации
    */
@@ -127,7 +127,7 @@ export class CommentService {
     postId: string,
     page: number,
     limit: number,
-    userId: string,
+    userId?: string,
   ) {
     const [comments, totalItems] = await this.commentRepository.findAndCount({
       where: { postId: postId, parentCommentId: IsNull() },
